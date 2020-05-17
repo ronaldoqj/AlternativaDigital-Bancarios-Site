@@ -1,4 +1,4 @@
-@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css2?family=Anton&display=swap);@charset "UTF-8";
 
 /* You can add global styles to this file, and also import other style files */
 
@@ -11,6 +11,10 @@ html {
 
 body {
   overflow-y: scroll;
+}
+
+main {
+  margin-bottom: 120px;
 }
 
 header#top-of-site {
@@ -60,7 +64,7 @@ header#top-of-site #menus {
   color: white;
   cursor: pointer;
   transition: all 0.3s;
-  z-index: 909090;
+  z-index: 90;
 }
 
 #expand__menu2 img {
@@ -191,18 +195,94 @@ section#top-banner .container .row {
   height: 100%;
 }
 
-section#top-banner .container .cols__texts div {
-  padding-left: 15px;
-}
-
 section#top-banner .container .col {
   padding: 0;
 }
 
-section#top-banner .container-text {
+section#top-banner .container .cols__texts div {
+  padding-left: 15px;
+  font-family: "Anton", sans-serif;
+}
+
+section#top-banner .container-text-1 {
+  font-size: 11px;
+  line-height: 1.2em;
+  padding: 5px;
   color: white;
-  background-color: black;
-  opacity: 0.5;
+  background-color: rgba(0, 0, 0, 0.6);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding-right: 20px;
+  transition: all 0.3s;
+}
+
+section#top-banner .container-text-2 {
+  line-height: 1.4em;
+  padding: 2px;
+  color: #333;
+  background-color: rgba(255, 255, 255, 0.8);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding-right: 20px;
+  transition: all 0.3s;
+}
+
+section#top-banner .container-text-3 {
+  line-height: 1.2em;
+  padding: 15px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+  transition: all 0.3s;
+}
+
+@media (max-width: 991.98px) {
+  section#top-banner .container-text-1 {
+    font-size: 10px;
+  }
+
+  section#top-banner .container-text-2 {
+    font-size: 11px;
+  }
+}
+
+@media (min-width: 575.98px) {
+  section#top-banner .container-text-3 {
+    font-size: 22px;
+  }
+}
+
+@media (min-width: 767.98px) {
+  section#top-banner .container-text-3 {
+    font-size: 30px;
+  }
+}
+
+@media (min-width: 991.98px) {
+  section#top-banner .container-text-1 {
+    font-size: 11px;
+  }
+
+  section#top-banner .container-text-2 {
+    font-size: 13px;
+  }
+
+  section#top-banner .container-text-3 {
+    font-size: 35px;
+  }
+}
+
+@media (min-width: 1199.98px) {
+  section#top-banner .container-text-3 {
+    font-size: 40px;
+  }
+}
+
+section#top-banner .__separador .col div {
+  background-color: #C1C1C1;
+  height: 1px;
+  margin: 20px 40px;
 }
 
 /* Small devices (landscape phones, 576px and up) */

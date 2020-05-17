@@ -1,0 +1,14 @@
+#news .news-with-image div:first-child div {
+  border: solid 1px purple;
+  background-position: center !important;
+  background-size: cover !important;
+}
+
+#news .news-with-image div:last-child div {
+  border: solid 1px blue;
+}
+
+.test {
+  border: solid 1px black;
+}
+
