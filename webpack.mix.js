@@ -14,6 +14,7 @@ const mix = require('laravel-mix');
 mix.sass('resources/_site/sass/plugins.scss', 'public/_site/css/plugins.css')
    .sass('resources/_site/sass/template.scss', 'public/_site/css/template.css')
    .sass('resources/_site/sass/pages/home.scss', 'public/_site/css/pages/home.css')
+   .sass('resources/_site/sass/pages/editais.scss', 'public/_site/css/pages/editais.css')
    .styles('node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css', 'public/_site/css/mCustomScrollbar.css')
    .scripts([
       'node_modules/jquery/dist/jquery.min.js',

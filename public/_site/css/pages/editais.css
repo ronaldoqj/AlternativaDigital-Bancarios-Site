@@ -1,0 +1,132 @@
+/* ----------------------------------------------------------------- */
+
+/*               File of global functions (mixin)                    */
+
+/* ----------------------------------------------------------------- */
+
+#editais .title-page {
+  font-size: 2.8rem;
+  color: #125488;
+  font-family: "Anton", sans-serif;
+  text-transform: uppercase;
+  margin-top: 30px;
+  margin-left: 10px;
+}
+
+#editais .title-page::before {
+  content: "";
+  margin-left: -10px;
+  width: 20px;
+  height: 20px;
+  border-top: solid 3px #125488;
+  border-left: solid 3px #125488;
+  position: absolute;
+}
+
+#editais .title-page::after {
+  transform: translate(-15px, -10px);
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-right: solid 3px #125488;
+  border-bottom: solid 3px #125488;
+  display: inline-table;
+}
+
+#editais .__news--editais .__news--box {
+  line-height: 1.4em;
+  font-family: "Anton", sans-serif;
+  color: #333;
+  padding: 25px 20px 0 20px;
+}
+
+#editais .__news--editais .__news--box:first-child {
+  border-right: solid 1px #C1C1C1;
+}
+
+#editais .__news--editais .__news--box .__news--content .__text--1 {
+  color: #53A6D8;
+  line-height: inherit;
+  font-size: 1em;
+}
+
+#editais .__news--editais .__news--box .__news--content .__text--1 span {
+  color: #B3B3B3;
+  padding-left: 10px;
+}
+
+#editais .__news--editais .__news--box .__news--content .__text--2 {
+  font-size: 2em;
+  line-height: 1.2em;
+  padding: 8px 0;
+}
+
+#editais .__news--editais .__news--box .__news--content .__text--3 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 1em;
+}
+
+#editais .__news--editais .__news--box .__news--content > div:last-child {
+  border-bottom: solid 1px #C1C1C1;
+  margin-top: 20px;
+}
+
+#editais .__news--editais:first-child .__news--box {
+  padding-top: 0;
+}
+
+#editais .__news--editais:last-child .__news--content > div:last-child {
+  border-bottom: 20px !important;
+}
+
+#editais .__news--editais .__title--icons {
+  color: black;
+}
+
+#editais .__news--editais .__icons--editais {
+  margin-top: 10px;
+}
+
+#editais .__news--editais .__icons--editais .icon-file .icon-pdf {
+  background: url(/_site/assets/SVGs/icon-baixar-pdf.svg) no-repeat;
+  width: 115px;
+  height: 35px;
+}
+
+#editais .__news--editais .__icons--editais .icons-socials h6 {
+  margin-left: 10px;
+  color: #C4C4C4;
+  font-family: "Anton", sans-serif;
+}
+
+#editais .__news--editais .__icons--editais .icons-socials div {
+  float: right;
+  margin-left: 10px;
+  text-align: right;
+}
+
+#editais .__news--editais .__icons--editais .icons-socials .icon-facebook {
+  background: url(/_site/assets/SVGs/Facebook-Vertical.svg) no-repeat;
+  width: 25px;
+  height: 35px;
+}
+
+#editais .__news--editais .__icons--editais .icons-socials .icon-twitter {
+  background: url(/_site/assets/SVGs/Twitter-Vertical.svg) no-repeat;
+  width: 25px;
+  height: 35px;
+}
+
+#editais .__news--editais .__icons--editais .icons-socials .icon-instagram {
+  background: url(/_site/assets/SVGs/Instagram-Vertical.svg) no-repeat;
+  width: 25px;
+  height: 35px;
+}
+
+#editais .__news--editais .__icons--editais .icons-socials .icon-whatapp {
+  background: url(/_site/assets/SVGs/Whatsapp-Vertical.svg) no-repeat;
+  width: 25px;
+  height: 35px;
+}
+

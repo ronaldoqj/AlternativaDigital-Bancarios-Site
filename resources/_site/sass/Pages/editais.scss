@@ -1,0 +1,165 @@
+
+// Globals Functions (Mixins)
+@import "../_functions";
+
+#editais
+{
+
+    .title-page
+    {
+        font-size: 2.8rem;
+        color: #125488;
+        font-family: 'Anton', sans-serif;
+        text-transform: uppercase;
+        margin-top: 30px;
+        margin-left: 10px;
+    }
+
+    .title-page::before {
+        content: '';
+        margin-left: -10px;
+        width: 20px;
+        height: 20px;
+        border-top: solid 3px #125488;
+        border-left: solid 3px #125488;
+        position: absolute;
+    }
+    .title-page::after {
+        transform: translate(-15px, -10px);
+        content: "";
+        width: 20px;
+        height: 20px;
+        border-right: solid 3px #125488;
+        border-bottom: solid 3px #125488;
+        display: inline-table;
+    }
+
+    .__news--editais
+    {
+        .__news--box
+        {
+            line-height: 1.4em;
+            font-family: 'Anton', sans-serif;
+            color: #333;
+            padding: 25px 20px 0 20px;
+
+            &:first-child {
+                border-right: solid 1px #C1C1C1;
+            }
+            
+            .__news--content
+            {
+    
+                .__text--1
+                {
+                    color: #53A6D8;
+                    line-height: inherit;
+                    font-size: 1em;
+    
+                    span {
+                        color: #B3B3B3;
+                        padding-left: 10px;
+                    }
+                }
+                .__text--2
+                {
+                    font-size: 2em;
+                    line-height: 1.2em;
+                    padding: 8px 0;
+                }
+                .__text--3
+                {
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-weight: normal;
+                    font-size: 1em;
+                }
+    
+                > div {
+                    &:last-child {
+                        border-bottom: solid 1px #C1C1C1;
+                        margin-top: 20px;
+                    }
+                }
+            }
+            
+        }
+
+
+        &:first-child .__news--box {
+            padding-top: 0;
+        }
+
+        &:last-child {
+            .__news--content
+            {
+                > div {
+                    &:last-child {
+                        border-bottom: 20px !important;
+                    }
+                }
+            }
+           
+        }
+
+
+
+        .__title--icons {
+            color: black;
+        }
+
+        .__icons--editais
+        {
+
+            margin-top: 10px;
+
+            .icon-file
+            {
+                .icon-pdf {
+                    background: url(/_site/assets/SVGs/icon-baixar-pdf.svg) no-repeat;
+                    width: 115px;
+                    height: 35px;
+                }
+            }
+
+            .icons-socials
+            {
+                h6 {
+                    margin-left: 10px;
+                    color: #C4C4C4;
+                    font-family: 'Anton', sans-serif;
+                }
+
+                div {
+                    float: right;
+                    margin-left: 10px;
+                    text-align: right;
+                }
+       
+                .icon-facebook {
+                    background: url(/_site/assets/SVGs/Facebook-Vertical.svg) no-repeat;
+                    width: 25px;
+                    height: 35px;
+                }
+                .icon-twitter {
+                    background: url(/_site/assets/SVGs/Twitter-Vertical.svg) no-repeat;
+                    width: 25px;
+                    height: 35px;
+                }
+                .icon-instagram {
+                    background: url(/_site/assets/SVGs/Instagram-Vertical.svg) no-repeat;
+                    width: 25px;
+                    height: 35px;
+                }
+                .icon-whatapp {
+                    background: url(/_site/assets/SVGs/Whatsapp-Vertical.svg) no-repeat;
+                    width: 25px;
+                    height: 35px;
+                }
+            }
+            
+        }
+
+    }
+
+}
+

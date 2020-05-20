@@ -27,45 +27,24 @@
             </div>
 
             <div class="sidebar-header">
-                <h3>Bootstrap Sidebar</h3>
+                <a href="/">
+                    <img src="/_site/assets/logo.png" class="img-fluid logo"  />
+                </a>
             </div>
 
             <ul class="list-unstyled components">
-                <p>Dummy Heading</p>
+                <p>Menu</p>
                 <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li>
-                            <a href="#">Home 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Home 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Home 3</a>
-                        </li>
-                    </ul>
+                    <a href="{{url('/editais')}}" target="self">Editais</a>
                 </li>
                 <li>
-                    <a href="#">About</a>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li>
-                            <a href="#">Page 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 3</a>
-                        </li>
-                    </ul>
+                    <a href="#">Acordos e Convenções</a>
                 </li>
                 <li>
-                    <a href="#">Portfolio</a>
+                    <a href="#">Meu Banco</a>
                 </li>
                 <li>
-                    <a href="#">Contact</a>
+                    <a href="#">Menu</a>
                 </li>
             </ul>
 
@@ -133,33 +112,9 @@
                 </div>
             </header>
 
-            <section id="top-banner" style="">
-                <div class="container" style="background-image: url(/_site/assets/Home/obito-uchiha-madra.jpg); height: 350px;">
-                    <div class="row align-items-end">
-                        <div class="col cols__texts">
-
-                            <div class="col-12 col-lg-9 container-text-1">#bancos</div>
-                            <div class="container-text-2">Fórum Social das Resistências | 17/09/2019 </div>
-                            <div class="col-12 col-lg-9 container-text-3">Fetrafi-RS sedia evento do Fórum Social das Resistências</div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="container __separador">
-                    <div class="row">
-                        <div class="col">
-                            <div></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
             <section id="content">
 
-
                 @yield('content')
-
 
             </section>
 
