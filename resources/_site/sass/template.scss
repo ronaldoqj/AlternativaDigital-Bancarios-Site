@@ -5,5 +5,12 @@
 // Layout of project
 @import "./_layout";
 
+// Componentes
+@import "./componentes/titulos";
+@import "./componentes/cards-news";
+
+// STYLES Shareds
+@import "./_styles-shared";
+
 // Pages of project
 @import "./Pages/home";

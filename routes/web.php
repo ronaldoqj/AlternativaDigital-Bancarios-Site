@@ -18,6 +18,11 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::get('/', 'WelcomeController@index')->name('welcome');
 Route::get('/editais', 'EditaisController@index')->name('editais');
+Route::get('/acordos-e-convencoes', 'AcordosEConvencoesController@index')->name('acordos-e-convencoes');
+Route::get('/noticia', 'NoticiasController@withImage')->name('noticias-with-image');
+Route::get('/noticia-video', 'NoticiasController@withVideo')->name('noticias-with-video');
+Route::get('/noticia-audio', 'NoticiasController@withAudio')->name('noticias-with-audio');
+Route::get('/noticia-texto', 'NoticiasController@withOnlyText')->name('noticias-only-text');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

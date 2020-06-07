@@ -11,6 +11,10 @@ main {
     margin-bottom: 130px;
 }
 
+.h-5 {
+    height: 30px;
+}
+
 header#top-of-site {
     background-color: #125488;
     padding: 8px 0;
@@ -217,6 +221,17 @@ section#top-banner
             background-color: #C1C1C1;
             height: 1px;
             margin: 20px 60px;
+        }
+    }
+}
+
+.__separador--without--line {
+    opacity: 0.3;
+
+    .col {
+        div {
+            height: 1px;
+            margin: 15px;
         }
     }
 }
@@ -437,7 +452,7 @@ a:focus {
 
 #sidebar .sidebar-header {
     padding: 20px;
-
+    
     a {
         display: block;
     }
@@ -448,7 +463,7 @@ a:focus {
 }
 
 #sidebar ul.components {
-    padding: 20px 0;
+    padding: 20px 0 0 0;
 }
 
 #sidebar ul p {
@@ -518,6 +533,122 @@ a.article:hover {
     color: #fff !important;
 }
 
+
+#sidebar
+{
+    .redes-sociais
+    {
+        width: 170px;
+        margin: 0 auto;
+
+        div
+        {
+            margin: 5px 0;
+
+            div {
+                width: 68px;
+                height: 35px;
+                cursor: pointer;
+                box-shadow: 0px 0px 0px #0B3C5E;
+                transition: 0.3s;
+
+                &:hover {
+                    // box-shadow: 2px 2px 5px #125488;
+                    box-shadow: 4px 4px 6px 1px #00000080;
+                    transition: 0.5s;
+                }
+            }
+        }
+        #sidebar-facebook   { background: url(/_site/assets/SVGs/Header/Facebook.svg) no-repeat; }
+        #sidebar-twitter    { background: url(/_site/assets/SVGs/Header/Twitter.svg) no-repeat; }
+        #sidebar-instagram  { background: url(/_site/assets/SVGs/Header/Instagram.svg) no-repeat; }
+        #sidebar-whatsapp   { background: url(/_site/assets/SVGs/Header/Whatsapp.svg) no-repeat; }
+        #sidebar-podcasts   { background: url(/_site/assets/SVGs/Header/Podcasts.svg) no-repeat; }
+        #sidebar-youtube    { background: url(/_site/assets/SVGs/Header/Youtube.svg) no-repeat; }
+
+        
+        
+    }
+}
+
+
 /* ---------------------------------------------------
-    CONTENT STYLE
+    COMPONENTES STYLE
 ----------------------------------------------------- */
+
+/* collapse */
+
+.accordionStandard
+{
+
+    cursor: pointer;
+
+    .card
+    {
+        font-family: 'Anton', sans-serif;
+        background-color: transparent;
+        color: #333;
+        border: 0;
+
+        .card-header {
+            background-color: inherit;
+            border: inherit;
+        }
+
+        .card-body {
+            padding: 0 45px 15px 45px;
+        }
+
+    }
+
+    .box--header
+    {
+        .title--header
+        {
+            font-family: inherit;
+            $padding-left: 28px;
+            $padding-right: 28px;
+            margin-left: $padding-left;
+            font-size: 2.1em;
+            color: #0B3C5E;
+            transition: 0.3s;
+
+            &::before {
+                content: '';
+                position: absolute;
+                margin-top: 11px;
+                position: absolute;
+                width: 13px;
+                height: 13px;
+                margin-left: -28px;
+                border-right: solid 1px #919191;
+                border-bottom: solid 1px #919191;
+                transition: 0.3s;
+            }
+        }
+
+        &[aria-expanded="false"]
+        {
+            .title--header {
+                &::before { transform: rotate(-45deg); }
+            }
+        }
+
+        &[aria-expanded="true"]
+        {
+            .title--header {
+                color: #53A6D8;
+
+                &::before {
+                    transform: rotate(45deg);
+                    border-right: solid 1px #125488;
+                    border-bottom: solid 1px #125488;
+                }
+            }
+        }
+    }
+    
+}
+
+
+

@@ -20,6 +20,10 @@ main {
   margin-bottom: 130px;
 }
 
+.h-5 {
+  height: 30px;
+}
+
 header#top-of-site {
   background-color: #125488;
   padding: 8px 0;
@@ -292,6 +296,15 @@ section#top-banner .container-text-3 {
   margin: 20px 60px;
 }
 
+.__separador--without--line {
+  opacity: 0.3;
+}
+
+.__separador--without--line .col div {
+  height: 1px;
+  margin: 15px;
+}
+
 /* Small devices (landscape phones, 576px and up) */
 
 @media (max-width: 1200px) {
@@ -504,7 +517,7 @@ a:focus {
 }
 
 #sidebar ul.components {
-  padding: 20px 0;
+  padding: 20px 0 0 0;
 }
 
 #sidebar ul p {
@@ -575,9 +588,149 @@ a.article:hover {
   color: #fff !important;
 }
 
+#sidebar .redes-sociais {
+  width: 170px;
+  margin: 0 auto;
+}
+
+#sidebar .redes-sociais div {
+  margin: 5px 0;
+}
+
+#sidebar .redes-sociais div div {
+  width: 68px;
+  height: 35px;
+  cursor: pointer;
+  box-shadow: 0px 0px 0px #0B3C5E;
+  transition: 0.3s;
+}
+
+#sidebar .redes-sociais div div:hover {
+  box-shadow: 4px 4px 6px 1px #00000080;
+  transition: 0.5s;
+}
+
+#sidebar .redes-sociais #sidebar-facebook {
+  background: url(/_site/assets/SVGs/Header/Facebook.svg) no-repeat;
+}
+
+#sidebar .redes-sociais #sidebar-twitter {
+  background: url(/_site/assets/SVGs/Header/Twitter.svg) no-repeat;
+}
+
+#sidebar .redes-sociais #sidebar-instagram {
+  background: url(/_site/assets/SVGs/Header/Instagram.svg) no-repeat;
+}
+
+#sidebar .redes-sociais #sidebar-whatsapp {
+  background: url(/_site/assets/SVGs/Header/Whatsapp.svg) no-repeat;
+}
+
+#sidebar .redes-sociais #sidebar-podcasts {
+  background: url(/_site/assets/SVGs/Header/Podcasts.svg) no-repeat;
+}
+
+#sidebar .redes-sociais #sidebar-youtube {
+  background: url(/_site/assets/SVGs/Header/Youtube.svg) no-repeat;
+}
+
 /* ---------------------------------------------------
-    CONTENT STYLE
+    COMPONENTES STYLE
 ----------------------------------------------------- */
+
+/* collapse */
+
+.accordionStandard {
+  cursor: pointer;
+}
+
+.accordionStandard .card {
+  font-family: "Anton", sans-serif;
+  background-color: transparent;
+  color: #333;
+  border: 0;
+}
+
+.accordionStandard .card .card-header {
+  background-color: inherit;
+  border: inherit;
+}
+
+.accordionStandard .card .card-body {
+  padding: 0 45px 15px 45px;
+}
+
+.accordionStandard .box--header .title--header {
+  font-family: inherit;
+  margin-left: 28px;
+  font-size: 2.1em;
+  color: #0B3C5E;
+  transition: 0.3s;
+}
+
+.accordionStandard .box--header .title--header::before {
+  content: "";
+  position: absolute;
+  margin-top: 11px;
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  margin-left: -28px;
+  border-right: solid 1px #919191;
+  border-bottom: solid 1px #919191;
+  transition: 0.3s;
+}
+
+.accordionStandard .box--header[aria-expanded=false] .title--header::before {
+  transform: rotate(-45deg);
+}
+
+.accordionStandard .box--header[aria-expanded=true] .title--header {
+  color: #53A6D8;
+}
+
+.accordionStandard .box--header[aria-expanded=true] .title--header::before {
+  transform: rotate(45deg);
+  border-right: solid 1px #125488;
+  border-bottom: solid 1px #125488;
+}
+
+.title-page {
+  font-size: 2.9rem;
+  color: #125488;
+  font-family: "Anton", sans-serif;
+  text-transform: uppercase;
+  margin-top: 30px;
+  margin-left: 10px;
+  transition: 0.4s;
+}
+
+.title-page span:last-child {
+  color: #C1C1C1;
+}
+
+.title-page::before {
+  content: "";
+  margin-left: -15px;
+  margin-top: -5px;
+  width: 20px;
+  height: 20px;
+  border-top: solid 3px #125488;
+  border-left: solid 3px #125488;
+  position: absolute;
+  transition: 0.4s;
+}
+
+.title-page::after {
+  transform: translate(-12px, -8px);
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-right: solid 3px #125488;
+  border-bottom: solid 3px #125488;
+  display: inline-table;
+  transition: 0.4s;
+}
 
 /* ----------------------------------------------------------------- */
 
@@ -585,86 +738,199 @@ a.article:hover {
 
 /* ----------------------------------------------------------------- */
 
-#news .__news--with--image .__news--left div,
-#news .__news--with--video .__news--left div,
-#news .__news--with--audio .__news--left div,
-#news .__news--with--only-text .__news--left div {
+.COMPONENTE__news--with--image .__news--left,
+.COMPONENTE__news--with--video .__news--left,
+.COMPONENTE__news--with--audio .__news--left,
+.COMPONENTE__news--with--only-text .__news--left {
+  padding-bottom: 10px;
+}
+
+.COMPONENTE__news--with--image .__news--left div,
+.COMPONENTE__news--with--video .__news--left div,
+.COMPONENTE__news--with--audio .__news--left div,
+.COMPONENTE__news--with--only-text .__news--left div {
   background-position: center !important;
   background-size: cover !important;
 }
 
-#news .__news--with--image .__news--right,
-#news .__news--with--video .__news--right,
-#news .__news--with--audio .__news--right,
-#news .__news--with--only-text .__news--right {
+.COMPONENTE__news--with--image .__news--right,
+.COMPONENTE__news--with--video .__news--right,
+.COMPONENTE__news--with--audio .__news--right,
+.COMPONENTE__news--with--only-text .__news--right {
   line-height: 1.4em;
   font-family: "Anton", sans-serif;
   color: #333;
 }
 
-#news .__news--with--image .__news--right .__text--1,
-#news .__news--with--video .__news--right .__text--1,
-#news .__news--with--audio .__news--right .__text--1,
-#news .__news--with--only-text .__news--right .__text--1 {
+.COMPONENTE__news--with--image .__news--right .__text--1,
+.COMPONENTE__news--with--video .__news--right .__text--1,
+.COMPONENTE__news--with--audio .__news--right .__text--1,
+.COMPONENTE__news--with--only-text .__news--right .__text--1 {
   color: #53A6D8;
   line-height: inherit;
 }
 
-#news .__news--with--image .__news--right .__text--1 span,
-#news .__news--with--video .__news--right .__text--1 span,
-#news .__news--with--audio .__news--right .__text--1 span,
-#news .__news--with--only-text .__news--right .__text--1 span {
+.COMPONENTE__news--with--image .__news--right .__text--1 span,
+.COMPONENTE__news--with--video .__news--right .__text--1 span,
+.COMPONENTE__news--with--audio .__news--right .__text--1 span,
+.COMPONENTE__news--with--only-text .__news--right .__text--1 span {
   color: #B3B3B3;
   padding-left: 10px;
 }
 
-#news .__news--with--image .__news--right .__text--2,
-#news .__news--with--video .__news--right .__text--2,
-#news .__news--with--audio .__news--right .__text--2,
-#news .__news--with--only-text .__news--right .__text--2 {
+.COMPONENTE__news--with--image .__news--right .__text--2,
+.COMPONENTE__news--with--video .__news--right .__text--2,
+.COMPONENTE__news--with--audio .__news--right .__text--2,
+.COMPONENTE__news--with--only-text .__news--right .__text--2 {
   font-size: 2.9em;
   line-height: 1.2em;
   padding: 8px 0;
 }
 
-#news .__news--with--image .__news--right .__text--3,
-#news .__news--with--video .__news--right .__text--3,
-#news .__news--with--audio .__news--right .__text--3,
-#news .__news--with--only-text .__news--right .__text--3 {
+.COMPONENTE__news--with--image .__news--right .__text--3,
+.COMPONENTE__news--with--video .__news--right .__text--3,
+.COMPONENTE__news--with--audio .__news--right .__text--3,
+.COMPONENTE__news--with--only-text .__news--right .__text--3 {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: normal;
   font-size: 1em;
+  line-height: 1.2em;
 }
 
-#news .__news--with--video .__news--left .container,
-#news .__news--with--video .__news--left .container .row {
+.COMPONENTE__news--with--video .__news--left .container,
+.COMPONENTE__news--with--video .__news--left .container .row {
   height: 100%;
 }
 
-#news .__news--with--video .__news--left .container {
+.COMPONENTE__news--with--video .__news--left .container {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-#news .__news--with--video .__news--left .container:hover img {
+.COMPONENTE__news--with--video .__news--left .container:hover img {
   cursor: pointer;
 }
 
-#news .__news--with--video .__news--left .player {
+.COMPONENTE__news--with--video .__news--left .player {
   border: solid 1px yellowgreen;
   width: 40px;
   height: 40px;
   background-color: yellowgreen;
 }
 
-#news .__news--with--audio .__espectro--audio {
+.COMPONENTE__news--with--audio .__espectro--audio {
   background: url(/_site/assets/espectro-de-audio.png) repeat-x;
   height: 70px;
   margin-bottom: 15px;
 }
 
-#news .__news--with--audio .__espectro--audio div {
+.COMPONENTE__news--with--audio .__espectro--audio div {
   background: url(/_site/assets/player-audio.png) no-repeat;
   width: 53px;
   height: 53px;
 }
+
+/* ---------------------------------------------------
+                    STYLES Shared
+    Estilos com elementos, componentes reutilizaveis
+    em varias paginas do projeto
+----------------------------------------------------- */
+
+/* Buttons Editais */
+
+/**
+* Padrão hover
+*
+* Style default para os buttons
+* download editais com hover
+*
+* Arquivos que importam este estilo:
+* editais.scss -> [editais.scss, acordos-e-convencoes]
+*
+* @package
+*/
+
+.SHARED__download {
+  cursor: pointer;
+}
+
+.SHARED__download .cls-1,
+.SHARED__download .cls-3,
+.SHARED__download .cls-4,
+.SHARED__download path,
+.SHARED__download tspan {
+  transition: 0.4s;
+}
+
+.SHARED__download:hover svg tspan,
+.SHARED__download:hover svg fill,
+.SHARED__download:hover svg path {
+  fill: #0B3C5E;
+  transition: 0.4s;
+}
+
+.SHARED__download:hover svg path[data-name=path-SVG-download-5] {
+  fill: transparent;
+}
+
+/* Icons Socials Midia */
+
+/**
+* Padrão hover
+*
+* Style default para os icones
+* de redes sociais cinzas
+* e com os incones no layout vertical
+*
+* Arquivos que importam este estilo:
+* news.scss -> [noticia-only-text.blade.php,
+                noticia-with-audio.blade.php,
+                noticia-with-image.blade.php,
+                noticia-with-video.blade.php]
+* editais.scss -> editais.blade.php
+* @package
+*/
+
+.SHARED__icons__socials--midia div {
+  width: 70px;
+  height: 55px;
+}
+
+.SHARED__icons__socials--midia div img {
+  width: 50px;
+}
+
+.SHARED__icons__socials--midia div a {
+  margin: 10px;
+  display: block;
+}
+
+@media (min-width: 390px) {
+  .SHARED__icons__socials--midia div a {
+    margin: 15px;
+  }
+}
+
+.SHARED__icons__socials--midia div a svg .cls-1,
+.SHARED__icons__socials--midia div a svg .cls-3,
+.SHARED__icons__socials--midia div a svg .cls-4,
+.SHARED__icons__socials--midia div a svg path,
+.SHARED__icons__socials--midia div a svg tspan {
+  fill: #A5A5A5;
+  transition: 0.4s;
+}
+
+.SHARED__icons__socials--midia div a:hover svg .cls-1,
+.SHARED__icons__socials--midia div a:hover svg .cls-3,
+.SHARED__icons__socials--midia div a:hover svg .cls-4,
+.SHARED__icons__socials--midia div a:hover svg path,
+.SHARED__icons__socials--midia div a:hover svg tspan {
+  fill: #015C92;
+  transition: 0.4s;
+}
+
+/* ----------------------------------------------------------------- */
+
+/*               File of global functions (mixin)                    */
+
+/* ----------------------------------------------------------------- */
 

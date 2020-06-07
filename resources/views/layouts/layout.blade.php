@@ -17,7 +17,12 @@
         <link rel="stylesheet" type="text/css" href="{{ url(mix('/_site/css/mCustomScrollbar.css')) }}" />
         <link rel="stylesheet" type="text/css" href="{{ url(mix('/_site/css/template.css')) }}" />
 
+        <!-- Icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         @yield('css')
+
+
+        <script src="{{ url(mix('/_site/js/svg-inject.min.js')) }}"></script>
 
     </head>
     <body>
@@ -46,6 +51,25 @@
                 <li>
                     <a href="#">Menu</a>
                 </li>
+            </ul>
+
+            <ul class="list-unstyled components">
+                <p>Redes Sociais</p>
+                
+                <div class="redes-sociais">
+                    <div class="d-flex justify-content-between">
+                        <div id="sidebar-facebook"></div>
+                        <div id="sidebar-twitter"></div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <div id="sidebar-instagram"></div>
+                        <div id="sidebar-whatsapp"></div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <div id="sidebar-podcasts"></div>
+                        <div id="sidebar-youtube"></div>
+                    </div>
+                </div>
             </ul>
 
         </nav>
@@ -145,8 +169,11 @@
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
         <!-- Plugins -->
         <script src="{{ url(mix('/_site/js/plugins.js')) }}"></script>
+        
 
         <!-- Scripts -->
         <script src="{{ url(mix('/_site/js/template.js')) }}"></script>

@@ -1,11 +1,11 @@
 @extends('layouts.layout')
 @section('css')
-<link href="{{asset('/_site/css/pages/home.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{{url(mix('/_site/css/pages/home.css'))}}" type="text/css" rel="stylesheet" media="screen,projection"/>
 @endsection
 @section('content')
 
 <!-- Banner TOP -->
-<section id="top-banner" style="">
+<section id="top-banner">
     <div class="container" style="background-image: url(/_site/assets/Home/fetrafi-rs.png); height: 350px;">
         <div class="row align-items-end">
             <div class="col cols__texts">
@@ -24,7 +24,7 @@
 
     <div class="container __separador"><div class="row"><div class="col"><div></div></div></div></div>
 
-    <div class="row __news--with--image">
+    <div class="row COMPONENTE__news--with--image">
         <div class="col-12 col-lg-5 __news--left">
             <div style="background-image: url({{asset('/_site/assets/Home/corona-virus.jpg')}}); height: 250px"></div>
         </div>
@@ -37,7 +37,7 @@
 
     <div class="container __separador"><div class="row"><div class="col"><div></div></div></div></div>
 
-    <div class="row __news--with--video">
+    <div class="row COMPONENTE__news--with--video">
         <div class="col-12 col-lg-5 __news--left">
             <div style="background-image: url({{asset('/_site/assets/Home/bancarios-denunciam.png')}}); height: 250px">
 
@@ -59,7 +59,7 @@
 
     <div class="container __separador"><div class="row"><div class="col"><div></div></div></div></div>
 
-    <div class="row __news--with--audio">
+    <div class="row COMPONENTE__news--with--audio">
         <div class="col-12 __news--right">
             <div class="__text--1">Saúde do Trabalhador | 17/09/2019 <span>#bancos</span></div>
             <div class="__text--2">Trabalhadores saem frustrados do GT de Saúde do Itaú</div>
@@ -72,17 +72,13 @@
 
     <div class="container __separador"><div class="row"><div class="col"><div></div></div></div></div>
 
-    <div class="row __news--with--only-text">
+    <div class="row COMPONENTE__news--with--only-text">
         <div class="col-12 __news--right">
             <div class="__text--1">Saúde do Trabalhador | 17/09/2019 <span>#bancos</span></div>
             <div class="__text--2">Itaú vai antecipar o pagamento da 13ª cesta alimentação para 25 de outubro</div>
             <div class="__text--3">A diretoria executiva da Fetrafi-RS decidiu orientar seus associados a dizerem sim para a proposta elaborada pela Anabb, AAFBB, Contraf-CUT e FAABB para manutenção da Caixa de Assistência dos Funcionários do Banco do Brasil (Cassi), que já foi enviada para análise do banco.</div>
         </div>
     </div>
-
-
-    <!-- play.png -->
-
 
 </section>
 

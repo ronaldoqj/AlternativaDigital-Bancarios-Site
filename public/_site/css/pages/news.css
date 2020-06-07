@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+/* ----------------------------------------------------------------- */
+
+/*               File of global functions (mixin)                    */
+
+/* ----------------------------------------------------------------- */
+
+#noticias {
+  font-size: 1rem;
+}
+
+#noticias .controls-of-news {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+#noticias .controls-of-news .box__social--midia {
+  padding: 0;
+  /* Icons Socials Midia */
+  /**
+  * Padrão hover
+  *
+  * Style implementado no arquivo "_styles-shared.scss"
+  * Style default para os icones
+  * de redes sociais cinzas
+  * e com os incones no layout padrão vertical
+  *
+  * @subpackage 
+  */
+}
+
+#noticias .controls-of-news .box__social--midia .SHARED__icons__socials--midia {
+  height: auto;
+}
+
+#noticias .controls-of-news .box__social--midia .SHARED__icons__socials--midia div .titulo-btns {
+  position: absolute;
+  margin-top: -15px;
+  margin-left: 10px;
+  color: #A5A5A5;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+@media (min-width: 390px) {
+  #noticias .controls-of-news .box__social--midia .SHARED__icons__socials--midia div .titulo-btns {
+    margin-top: -10px;
+    margin-left: 15px;
+  }
+}
+
+#noticias p {
+  font-size: 1.8em;
+  font-weight: normal;
+  line-height: 1.5em;
+  color: #333;
+}
+

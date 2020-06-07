@@ -1,0 +1,101 @@
+/* ---------------------------------------------------
+                    STYLES Shared
+    Estilos com elementos, componentes reutilizaveis
+    em varias paginas do projeto
+----------------------------------------------------- */
+
+
+/* Buttons Editais */
+/**
+* Padrão hover
+*
+* Style default para os buttons
+* download editais com hover
+*
+* Arquivos que importam este estilo:
+* editais.scss -> [editais.scss, acordos-e-convencoes]
+*
+* @package
+*/
+.SHARED__download
+{
+    cursor: pointer;
+
+    .cls-1, .cls-3, .cls-4, path, tspan
+    {
+        transition: 0.4s;
+    }
+
+    &:hover {
+        svg 
+        {
+            tspan, fill, path
+            {
+                fill: #0B3C5E;
+                transition: 0.4s;
+            }
+         
+            path[data-name="path-SVG-download-5"] {
+                fill: transparent;
+            }
+
+        }
+    }
+}
+
+
+/* Icons Socials Midia */
+/**
+* Padrão hover
+*
+* Style default para os icones
+* de redes sociais cinzas
+* e com os incones no layout vertical
+*
+* Arquivos que importam este estilo:
+* news.scss -> [noticia-only-text.blade.php,
+                noticia-with-audio.blade.php,
+                noticia-with-image.blade.php,
+                noticia-with-video.blade.php]
+* editais.scss -> editais.blade.php
+* @package
+*/
+
+
+.SHARED__icons__socials--midia
+{
+    div
+    {
+        width: 70px;
+        height: 55px;
+        
+        img { width: 50px; }
+
+        a {
+            margin: 10px;
+            display: block;
+
+            @media (min-width: 390px) {
+                margin: 15px;
+            }
+
+            svg  {
+                .cls-1, .cls-3, .cls-4, path, tspan {
+                    fill: #A5A5A5;
+                    transition: 0.4s;
+                }
+            }
+            
+            &:hover {
+                svg {
+                    .cls-1, .cls-3, .cls-4, path, tspan {
+                        fill: #015C92;
+                        transition: 0.4s;
+                    }
+                }
+            }
+        }
+
+    }
+
+}

@@ -19,19 +19,17 @@
                 <div class="__text--1">Edital FETRAFI-RS | 06/06/2018</div>
                 <div class="__text--2">EDITAL DE CONVOCAÇÃO DE TRABALHADORES(AS) EM INSTITUIÇÕES FINANCEIRAS</div>
                 <div class="__text--3">Os SINDICATOS DOS EMPREGADOS EM ESTABELECIMENTOS BANCÁRIOS: DE ALEGRETE E REGIÃO, com sede na rua Gal. Sampaio, 1040, 2° andar, Conj. 06, na cidade de... </div>
-                
-                <div class="d-flex __icons--editais">
-                    <div class="icon-file mr-auto">
-                        <h6>&nbsp;</h6>
-                        <div class="icon-pdf"></div>
-                    </div>
-                    <div class="icons-socials">
-                        <h6>Compartilhar</h6>
-                        <div class="icon-whatapp"></div>
-                        <div class="icon-instagram"></div>
-                        <div class="icon-twitter"></div>
-                        <div class="icon-facebook"></div>
-                    </div>
+
+                <div class="__icons--editais">
+                    <div class="SHARED__download"> <a href="#"><img src="{{asset('/_site/assets/SVGs/baixar-edital.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                </div>
+
+                <div class="titulo-btns">Compartilhar</div>
+                <div class="SHARED__icons__socials--midia">
+                    <div> <a href="#"><img src="{{asset('/_site/assets/SVGs/Facebook-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                    <div> <a href="#"><img src="{{asset('/_site/assets/SVGs/Twitter-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                    <div> <a href="#"><img src="{{asset('/_site/assets/SVGs/Instagram-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                    <div> <a href="#"><img src="{{asset('/_site/assets/SVGs/Whatsapp-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                 </div>
 
                 <div class="clear-fix"></div>
@@ -43,19 +41,17 @@
                 <div class="__text--1">Edital FETRAFI-RS | 06/06/2018</div>
                 <div class="__text--2">EDITAL DE CONVOCAÇÃO DE TRABALHADORES(AS) EM INSTITUIÇÕES FINANCEIRAS</div>
                 <div class="__text--3">Os SINDICATOS DOS EMPREGADOS EM ESTABELECIMENTOS BANCÁRIOS: DE ALEGRETE E REGIÃO, com sede na rua Gal. Sampaio, 1040, 2° andar, Conj. 06, na cidade de... </div>
-                
-                <div class="d-flex __icons--editais">
-                    <div class="icon-file mr-auto">
-                        <h6>&nbsp;</h6>
-                        <div class="icon-pdf"></div>
-                    </div>
-                    <div class="icons-socials">
-                        <h6>Compartilhar</h6>
-                        <div class="icon-whatapp"></div>
-                        <div class="icon-instagram"></div>
-                        <div class="icon-twitter"></div>
-                        <div class="icon-facebook"></div>
-                    </div>
+
+                <div class="__icons--editais">
+                    <div class="SHARED__download"> <a href="#"><img src="{{asset('/_site/assets/SVGs/baixar-edital.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                </div>
+
+                <div class="titulo-btns">Compartilhar</div>
+                <div class="SHARED__icons__socials--midia">
+                    <div> <a href="#"><img src="{{asset('/_site/assets/SVGs/Facebook-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                    <div> <a href="#"><img src="{{asset('/_site/assets/SVGs/Twitter-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                    <div> <a href="#"><img src="{{asset('/_site/assets/SVGs/Instagram-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                    <div> <a href="#"><img src="{{asset('/_site/assets/SVGs/Whatsapp-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                 </div>
 
                 <div class="clear-fix"></div>

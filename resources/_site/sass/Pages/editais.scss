@@ -4,47 +4,22 @@
 
 #editais
 {
-
-    .title-page
-    {
-        font-size: 2.8rem;
-        color: #125488;
-        font-family: 'Anton', sans-serif;
-        text-transform: uppercase;
-        margin-top: 30px;
-        margin-left: 10px;
-    }
-
-    .title-page::before {
-        content: '';
-        margin-left: -10px;
-        width: 20px;
-        height: 20px;
-        border-top: solid 3px #125488;
-        border-left: solid 3px #125488;
-        position: absolute;
-    }
-    .title-page::after {
-        transform: translate(-15px, -10px);
-        content: "";
-        width: 20px;
-        height: 20px;
-        border-right: solid 3px #125488;
-        border-bottom: solid 3px #125488;
-        display: inline-table;
-    }
-
+    padding-top: 20px;
     .__news--editais
     {
         .__news--box
         {
             line-height: 1.4em;
-            font-family: 'Anton', sans-serif;
+            
             color: #333;
-            padding: 25px 20px 0 20px;
+            padding: 25px 20px 0 15px;
 
             &:first-child {
-                border-right: solid 1px #C1C1C1;
+                /* Medium devices (tablets, 768px and up) */
+                @media (min-width: 768px)
+                {
+                    border-right: solid 1px #C1C1C1;
+                }
             }
             
             .__news--content
@@ -52,9 +27,10 @@
     
                 .__text--1
                 {
+                    font-family: 'Anton', sans-serif;
                     color: #53A6D8;
                     line-height: inherit;
-                    font-size: 1em;
+                    font-size: 1.5em;
     
                     span {
                         color: #B3B3B3;
@@ -63,15 +39,18 @@
                 }
                 .__text--2
                 {
-                    font-size: 2em;
+                    font-family: 'Anton', sans-serif;
+                    font-size: 2.1em;
                     line-height: 1.2em;
                     padding: 8px 0;
                 }
                 .__text--3
                 {
+                    font-family: 'Anton', sans-serif;
                     font-family: Arial, Helvetica, sans-serif;
                     font-weight: normal;
-                    font-size: 1em;
+                    font-size: 1.5em;
+                    line-height: 1.2em;
                 }
     
                 > div {
@@ -101,62 +80,53 @@
            
         }
 
-
-
-        .__title--icons {
-            color: black;
-        }
-
         .__icons--editais
         {
+            text-align: center;
+            margin: 20px auto;
 
-            margin-top: 10px;
 
-            .icon-file
-            {
-                .icon-pdf {
-                    background: url(/_site/assets/SVGs/icon-baixar-pdf.svg) no-repeat;
-                    width: 115px;
-                    height: 35px;
-                }
+            /* Button Edital */
+            /**
+            * Padrão hover
+            *
+            * Style implementado no arquivo "_styles-shared.scss"
+            * Style para os SVGs de download dos Editais
+            *
+            * @subpackage 
+            */
+            .SHARED__download {
+                text-align: center;
             }
+        }
 
-            .icons-socials
-            {
-                h6 {
-                    margin-left: 10px;
-                    color: #C4C4C4;
-                    font-family: 'Anton', sans-serif;
-                }
 
-                div {
-                    float: right;
-                    margin-left: 10px;
-                    text-align: right;
-                }
-       
-                .icon-facebook {
-                    background: url(/_site/assets/SVGs/Facebook-Vertical.svg) no-repeat;
-                    width: 25px;
-                    height: 35px;
-                }
-                .icon-twitter {
-                    background: url(/_site/assets/SVGs/Twitter-Vertical.svg) no-repeat;
-                    width: 25px;
-                    height: 35px;
-                }
-                .icon-instagram {
-                    background: url(/_site/assets/SVGs/Instagram-Vertical.svg) no-repeat;
-                    width: 25px;
-                    height: 35px;
-                }
-                .icon-whatapp {
-                    background: url(/_site/assets/SVGs/Whatsapp-Vertical.svg) no-repeat;
-                    width: 25px;
-                    height: 35px;
-                }
-            }
-            
+        .titulo-btns {
+            font-size: Arial, Helvetica, sans-serif !important;
+            color: #919191;
+            font-size: 0.9em;
+            text-align: center;
+        }
+
+
+        /* Icons Socials Midia */
+        /**
+        * Padrão hover
+        *
+        * Style implementado no arquivo "_styles-shared.scss"
+        * Style default para os icones
+        * de redes sociais cinzas
+        * e com os incones no layout padrão vertical
+        *
+        * @subpackage 
+        */
+        .SHARED__icons__socials--midia
+        {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            max-width: 330px;
+            margin: -5px auto 30px auto;
         }
 
     }
