@@ -399,10 +399,10 @@ a:focus {
 ----------------------------------------------------- */
 
 #sidebar {
-    width: 250px;
+    width: 300px;
     position: fixed;
     top: 0;
-    left: -250px;
+    left: -300px;
     height: 100vh;
     z-index: 999;
     background: #0B3C5E;
@@ -428,6 +428,9 @@ a:focus {
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3s;
     transition: all 0.3s;
+
+    // Retirado o icone e colocado paliativamente um caracter
+    font-size: 25px;
 }
 
 #dismiss:hover {
@@ -467,17 +470,19 @@ a:focus {
 }
 
 #sidebar ul p {
-    color: #fff;
+    color: #125488;
     margin-bottom: 0;
     padding: 0px 10px 0px 32px;
     font-family: 'Anton', sans-serif;
     font-size: 2em;
+    text-transform: uppercase;
 }
 
 #sidebar ul li a {
     padding: 4px 10px 4px 42px;
-    font-size: 1.2em;
+    font-size: 1.6em;
     display: block;
+    text-transform: uppercase;
 }
 
 #sidebar ul li a:hover {
@@ -538,7 +543,7 @@ a.article:hover {
 {
     .redes-sociais
     {
-        width: 170px;
+        width: 210px;
         margin: 0 auto;
 
         div
@@ -546,7 +551,7 @@ a.article:hover {
             margin: 5px 0;
 
             div {
-                width: 68px;
+                width: 60px;
                 height: 35px;
                 cursor: pointer;
                 box-shadow: 0px 0px 0px #0B3C5E;
@@ -565,10 +570,29 @@ a.article:hover {
         #sidebar-whatsapp   { background: url(/_site/assets/SVGs/Header/Whatsapp.svg) no-repeat; }
         #sidebar-podcasts   { background: url(/_site/assets/SVGs/Header/Podcasts.svg) no-repeat; }
         #sidebar-youtube    { background: url(/_site/assets/SVGs/Header/Youtube.svg) no-repeat; }
-
-        
-        
     }
+
+    .contato {
+        margin-top: 4px;
+        padding: 5px;
+        margin-left: 30px;
+
+        .d-flex {
+            div {
+                font-size: 1.1em;
+                margin-left: 10px;
+                margin-bottom: 10px;
+                line-height: 2em;
+
+                &:first-child {
+                    margin-left: 0;
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+        }
+    }
+
 }
 
 

@@ -25,6 +25,9 @@ class NoticiasController extends Controller
         return 'index';
     }
 
+    public function withImageDestaque() {
+        return view('noticia-with-image-destaque');
+    }
 
     public function withImage()
     {

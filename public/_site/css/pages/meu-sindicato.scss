@@ -6,21 +6,21 @@
 
 /* ----------------------------------------------------------------- */
 
-#acordos-e-convencoes {
+#meu-sindicato {
   margin-top: 50px;
 }
 
-#acordos-e-convencoes .card-body h2 {
+#meu-sindicato .card-body h2 {
   margin-bottom: 8px;
   text-transform: uppercase;
   color: #A5A5A5;
 }
 
-#acordos-e-convencoes .card-body h2[aria-expanded=true] {
+#meu-sindicato .card-body h2[aria-expanded=true] {
   color: #53A6D8;
 }
 
-#acordos-e-convencoes .card-body h2::before {
+#meu-sindicato .card-body h2::before {
   content: "\2022";
   width: 10px;
   height: 10px;
@@ -30,7 +30,7 @@
   vertical-align: middle;
 }
 
-#acordos-e-convencoes .accordionStandard {
+#meu-sindicato .accordionStandard {
   margin-top: 20px;
   /* Buttons Editais */
   /**
@@ -43,21 +43,21 @@
   */
 }
 
-#acordos-e-convencoes .accordionStandard h2 {
+#meu-sindicato .accordionStandard h2 {
   font-size: 2.1em;
 }
 
-#acordos-e-convencoes .accordionStandard h3 {
+#meu-sindicato .accordionStandard h3 {
   margin-top: 8px;
   font-size: 1.3em;
   color: #53A6D8;
 }
 
-#acordos-e-convencoes .accordionStandard h4 {
+#meu-sindicato .accordionStandard h4 {
   font-size: 2.1em;
 }
 
-#acordos-e-convencoes .accordionStandard p {
+#meu-sindicato .accordionStandard p {
   margin-top: 20px;
   color: #333;
   font-size: 1.5em;
@@ -65,11 +65,11 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-#acordos-e-convencoes .accordionStandard .download {
+#meu-sindicato .accordionStandard .download {
   text-align: center;
 }
 
-#acordos-e-convencoes .accordionStandard .__card--acordion {
+#meu-sindicato .accordionStandard .__card--acordion {
   margin-top: -15px;
   margin-bottom: 20px;
   /* Icons Socials Midia */
@@ -85,42 +85,42 @@
   */
 }
 
-#acordos-e-convencoes .accordionStandard .__card--acordion .__card--box {
+#meu-sindicato .accordionStandard .__card--acordion .__card--box {
   line-height: 1.4em;
   color: #333;
   padding: 25px 20px 0 15px;
 }
 
-#acordos-e-convencoes .accordionStandard .__card--acordion .__card--box:first-child {
+#meu-sindicato .accordionStandard .__card--acordion .__card--box:first-child {
   /* Medium devices (tablets, 768px and up) */
 }
 
 @media (min-width: 768px) {
-  #acordos-e-convencoes .accordionStandard .__card--acordion .__card--box:first-child {
+  #meu-sindicato .accordionStandard .__card--acordion .__card--box:first-child {
     border-right: solid 1px #C1C1C1;
   }
 }
 
-#acordos-e-convencoes .accordionStandard .__card--acordion .__card--box .__card--content .__text--1 {
+#meu-sindicato .accordionStandard .__card--acordion .__card--box .__card--content .__text--1 {
   font-family: "Anton", sans-serif;
   color: #53A6D8;
   line-height: inherit;
   font-size: 1.5em;
 }
 
-#acordos-e-convencoes .accordionStandard .__card--acordion .__card--box .__card--content .__text--1 span {
+#meu-sindicato .accordionStandard .__card--acordion .__card--box .__card--content .__text--1 span {
   color: #B3B3B3;
   padding-left: 10px;
 }
 
-#acordos-e-convencoes .accordionStandard .__card--acordion .__card--box .__card--content .__text--2 {
+#meu-sindicato .accordionStandard .__card--acordion .__card--box .__card--content .__text--2 {
   font-family: "Anton", sans-serif;
   font-size: 2.1em;
   line-height: 1.2em;
   padding: 8px 0;
 }
 
-#acordos-e-convencoes .accordionStandard .__card--acordion .__card--box .__card--content .__text--3 {
+#meu-sindicato .accordionStandard .__card--acordion .__card--box .__card--content .__text--3 {
   font-family: "Anton", sans-serif;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: normal;
@@ -128,20 +128,20 @@
   line-height: 1.2em;
 }
 
-#acordos-e-convencoes .accordionStandard .__card--acordion .__card--box .__card--content > div:last-child {
+#meu-sindicato .accordionStandard .__card--acordion .__card--box .__card--content > div:last-child {
   border-bottom: solid 1px #C1C1C1;
   margin-top: 20px;
 }
 
-#acordos-e-convencoes .accordionStandard .__card--acordion:first-child .__card--box {
+#meu-sindicato .accordionStandard .__card--acordion:first-child .__card--box {
   padding-top: 0;
 }
 
-#acordos-e-convencoes .accordionStandard .__card--acordion:last-child .__card--content > div:last-child {
+#meu-sindicato .accordionStandard .__card--acordion:last-child .__card--content > div:last-child {
   border-bottom: 20px !important;
 }
 
-#acordos-e-convencoes .accordionStandard .__card--acordion .__icons--editais {
+#meu-sindicato .accordionStandard .__card--acordion .__icons--editais {
   text-align: center;
   margin: 20px auto;
   /* Button Edital */
@@ -155,18 +155,18 @@
   */
 }
 
-#acordos-e-convencoes .accordionStandard .__card--acordion .__icons--editais .SHARED__download {
+#meu-sindicato .accordionStandard .__card--acordion .__icons--editais .SHARED__download {
   text-align: center;
 }
 
-#acordos-e-convencoes .accordionStandard .__card--acordion .titulo-btns {
+#meu-sindicato .accordionStandard .__card--acordion .titulo-btns {
   font-size: Arial, Helvetica, sans-serif !important;
   color: #919191;
   font-size: 0.9em;
   text-align: center;
 }
 
-#acordos-e-convencoes .accordionStandard .__card--acordion .SHARED__icons__socials--midia {
+#meu-sindicato .accordionStandard .__card--acordion .SHARED__icons__socials--midia {
   width: 100%;
   display: flex;
   justify-content: space-between;

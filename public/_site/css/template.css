@@ -453,10 +453,10 @@ a:focus {
 ----------------------------------------------------- */
 
 #sidebar {
-  width: 250px;
+  width: 300px;
   position: fixed;
   top: 0;
-  left: -250px;
+  left: -300px;
   height: 100vh;
   z-index: 999;
   background: #0B3C5E;
@@ -480,6 +480,7 @@ a:focus {
   right: 10px;
   cursor: pointer;
   transition: all 0.3s;
+  font-size: 25px;
 }
 
 #dismiss:hover {
@@ -521,17 +522,19 @@ a:focus {
 }
 
 #sidebar ul p {
-  color: #fff;
+  color: #125488;
   margin-bottom: 0;
   padding: 0px 10px 0px 32px;
   font-family: "Anton", sans-serif;
   font-size: 2em;
+  text-transform: uppercase;
 }
 
 #sidebar ul li a {
   padding: 4px 10px 4px 42px;
-  font-size: 1.2em;
+  font-size: 1.6em;
   display: block;
+  text-transform: uppercase;
 }
 
 #sidebar ul li a:hover {
@@ -589,7 +592,7 @@ a.article:hover {
 }
 
 #sidebar .redes-sociais {
-  width: 170px;
+  width: 210px;
   margin: 0 auto;
 }
 
@@ -598,7 +601,7 @@ a.article:hover {
 }
 
 #sidebar .redes-sociais div div {
-  width: 68px;
+  width: 60px;
   height: 35px;
   cursor: pointer;
   box-shadow: 0px 0px 0px #0B3C5E;
@@ -632,6 +635,25 @@ a.article:hover {
 
 #sidebar .redes-sociais #sidebar-youtube {
   background: url(/_site/assets/SVGs/Header/Youtube.svg) no-repeat;
+}
+
+#sidebar .contato {
+  margin-top: 4px;
+  padding: 5px;
+  margin-left: 30px;
+}
+
+#sidebar .contato .d-flex div {
+  font-size: 1.1em;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  line-height: 2em;
+}
+
+#sidebar .contato .d-flex div:first-child {
+  margin-left: 0;
+  width: 30px;
+  height: 30px;
 }
 
 /* ---------------------------------------------------
@@ -768,6 +790,7 @@ a.article:hover {
 .COMPONENTE__news--with--only-text .__news--right .__text--1 {
   color: #53A6D8;
   line-height: inherit;
+  font-size: 1.5em;
 }
 
 .COMPONENTE__news--with--image .__news--right .__text--1 span,
@@ -793,7 +816,7 @@ a.article:hover {
 .COMPONENTE__news--with--only-text .__news--right .__text--3 {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: normal;
-  font-size: 1em;
+  font-size: 1.5em;
   line-height: 1.2em;
 }
 

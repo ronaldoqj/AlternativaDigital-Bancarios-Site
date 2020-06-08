@@ -7,7 +7,7 @@
 
 <!-- Banner TOP -->
 <section id="top-banner">
-    <div class="container" style="background-image: url(/_site/assets/Home/fetrafi-rs.png); height: 350px;"></div> 
+    <div class="container" style="background-image: url(/_site/assets/Home/corona-virus.jpg); height: 350px;"></div> 
 </section>
 <!-- Fim Banner TOP -->
 
@@ -32,8 +32,6 @@
                 </div>
              
             </div>
-
-            
           
         </div>
 
@@ -68,8 +66,9 @@
     </div>
 
 
-    <div class="container __separador--without--line"><div class="row"><div class="col"><div></div></div></div></div>
+    <div class="container __separador"><div class="row"><div class="col"><div></div></div></div></div>
 
+    <a href="/noticia">
     <div class="row COMPONENTE__news--with--image">
         <div class="col-12 col-lg-5 __news--left">
             <div style="background-image: url({{asset('/_site/assets/Home/corona-virus.jpg')}}); height: 250px"></div>
@@ -80,9 +79,11 @@
             <div class="__text--3">Em um mês, houve diversas conquistas, mas movimento cobra solução pra aglomerações nas agências.</div>
         </div>
     </div>
+    </a>
 
     <div class="container __separador"><div class="row"><div class="col"><div></div></div></div></div>
 
+    <a href="/noticia-video">
     <div class="row COMPONENTE__news--with--video">
         <div class="col-12 col-lg-5 __news--left">
             <div style="background-image: url({{asset('/_site/assets/Home/bancarios-denunciam.png')}}); height: 250px">
@@ -102,9 +103,11 @@
             <div class="__text--3">Em um mês, houve diversas conquistas, mas movimento cobra solução pra aglomerações nas agências.</div>
         </div>
     </div>
+    </a>
 
     <div class="container __separador"><div class="row"><div class="col"><div></div></div></div></div>
 
+    <a href="/noticia-audio">
     <div class="row COMPONENTE__news--with--audio">
         <div class="col-12 __news--right">
             <div class="__text--1">Saúde do Trabalhador | 17/09/2019 <span>#bancos</span></div>
@@ -115,9 +118,11 @@
             <div class="__text--3">Os representantes dos trabalhadores do Itaú saíram frustrados da reunião do Grupo de Trabalho (GT) de Saúde, realizada na sede da Confederação Nacional dos Trabalhadores do Ramo Financeiro (Contraf-CUT), em São Paulo, nesta quinta-feira (12). O encontro foi marcado para a direção do banco trazer os retornos das reivindicações apresentadas em julho. Porém, o banco não trouxe retorno algum.</div>
         </div>
     </div>
+    </a>
 
     <div class="container __separador"><div class="row"><div class="col"><div></div></div></div></div>
 
+    <a href="/noticia-texto">
     <div class="row COMPONENTE__news--with--only-text">
         <div class="col-12 __news--right">
             <div class="__text--1">Saúde do Trabalhador | 17/09/2019 <span>#bancos</span></div>
@@ -125,6 +130,7 @@
             <div class="__text--3">A diretoria executiva da Fetrafi-RS decidiu orientar seus associados a dizerem sim para a proposta elaborada pela Anabb, AAFBB, Contraf-CUT e FAABB para manutenção da Caixa de Assistência dos Funcionários do Banco do Brasil (Cassi), que já foi enviada para análise do banco.</div>
         </div>
     </div>
+    </a>
 
 
     <!-- play.png -->

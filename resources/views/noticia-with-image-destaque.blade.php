@@ -7,8 +7,11 @@
 
 <!-- Banner TOP -->
 <section id="top-banner">
+    <div class="container" style="background-image: url(/_site/assets/Home/fetrafi-rs.png); height: 350px;"></div> 
 </section>
 <!-- Fim Banner TOP -->
+
+
 
 <section id="noticias">
     <div class="container">
@@ -29,18 +32,15 @@
                 </div>
              
             </div>
-
+          
         </div>
-        
 
-        <div class="row COMPONENTE__news--with--only-text mb-2">
+        <div class="row COMPONENTE__news--with--only-text">
             <div class="col-12 __news--right">
-                <div class="__text--1">Saúde do Trabalhador | 17/09/2019 <span>#bancos</span></div>
-                <div class="__text--2">Itaú vai antecipar o pagamento da 13ª cesta alimentação para 25 de outubro</div>
+                <div class="__text--1">Direito do Trabalhador | 15/10/2019 <span>#bancos</span></div>
+                <div class="__text--2">Fetrafi-RS sedia evento do Fórum Social das Resistências</div>
             </div>
         </div>
-
-
         <p>
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
         </p>

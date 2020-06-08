@@ -17,6 +17,7 @@ mix.sass('resources/_site/sass/plugins.scss', 'public/_site/css/plugins.css')
    .sass('resources/_site/sass/pages/news.scss', 'public/_site/css/pages/news.css')
    .sass('resources/_site/sass/pages/editais.scss', 'public/_site/css/pages/editais.css')
    .sass('resources/_site/sass/pages/acordos-e-convencoes.scss', 'public/_site/css/pages/acordos-e-convencoes.scss')
+   .sass('resources/_site/sass/pages/meu-sindicato.scss', 'public/_site/css/pages/meu-sindicato.css')
    .styles('node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css', 'public/_site/css/mCustomScrollbar.css')
    .scripts([
       //'node_modules/jquery/dist/jquery.min.js',

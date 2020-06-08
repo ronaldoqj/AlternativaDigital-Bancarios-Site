@@ -28,7 +28,8 @@
     <body>
         <nav id="sidebar" class="">
             <div id="dismiss">
-                <i class="fas fa-arrow-left"></i>
+                <!-- <i class="fas fa-arrow-left"></i> -->
+                X
             </div>
 
             <div class="sidebar-header">
@@ -43,13 +44,13 @@
                     <a href="{{url('/editais')}}" target="self">Editais</a>
                 </li>
                 <li>
-                    <a href="#">Acordos e Convenções</a>
+                    <a href="{{url('/acordos-e-convencoes')}}">Acordos e Convenções</a>
                 </li>
                 <li>
                     <a href="#">Meu Banco</a>
                 </li>
                 <li>
-                    <a href="#">Menu</a>
+                    <a href="{{url('/meu-sindicato')}}">Meu Sindicato</a>
                 </li>
             </ul>
 
@@ -60,14 +61,28 @@
                     <div class="d-flex justify-content-between">
                         <div id="sidebar-facebook"></div>
                         <div id="sidebar-twitter"></div>
-                    </div>
-                    <div class="d-flex justify-content-between">
                         <div id="sidebar-instagram"></div>
-                        <div id="sidebar-whatsapp"></div>
                     </div>
                     <div class="d-flex justify-content-between">
+                        <div id="sidebar-whatsapp"></div>
                         <div id="sidebar-podcasts"></div>
                         <div id="sidebar-youtube"></div>
+                    </div>
+                </div>
+            </ul>
+
+
+            <ul class="list-unstyled components">
+                <p>Contato</p>
+                
+                <div class="contato">
+                    <div class="d-flex ">
+                        <div><img src="{{asset('/_site/assets/SVGs/icon-telefone.svg')}}" class="img-fluid" /></div>
+                        <div>51. 3345 2565</div>
+                    </div>
+                    <div class="d-flex ">
+                        <div><img src="{{asset('/_site/assets/SVGs/icon-caracter-arroba.svg')}}" class="img-fluid" /></div>
+                        <div>CONTATO@BANCARIOSRS.COM.BR</div>
                     </div>
                 </div>
             </ul>
