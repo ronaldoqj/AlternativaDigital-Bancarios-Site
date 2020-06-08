@@ -26,7 +26,11 @@ main {
 
 header#top-of-site {
   background-color: #125488;
-  padding: 8px 0;
+  padding: 15px 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 90909090;
 }
 
 header#top-of-site .container {
@@ -165,7 +169,7 @@ body {
 }
 
 footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
 }
@@ -401,6 +405,10 @@ section#top-banner .container-text-3 {
 
 /* Extra large devices (large desktops, 1200px and up) */
 
+#content {
+  margin-top: 102px;
+}
+
 /* MENU LATERAL */
 
 /*
@@ -458,7 +466,7 @@ a:focus {
   top: 0;
   left: -300px;
   height: 100vh;
-  z-index: 999;
+  z-index: 99999999;
   background: #0B3C5E;
   color: #fff;
   transition: all 0.3s;

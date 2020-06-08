@@ -17,7 +17,11 @@ main {
 
 header#top-of-site {
     background-color: #125488;
-    padding: 8px 0;
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 90909090;
 
     .container { padding: 0; }
 
@@ -113,7 +117,7 @@ body {
     margin-bottom: 60px; /* Margin bottom by footer height */
 }
 footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
 
@@ -344,7 +348,9 @@ section#top-banner
 
 
 
-
+#content {
+    margin-top: 102px;
+}
 
 
 
@@ -404,7 +410,7 @@ a:focus {
     top: 0;
     left: -300px;
     height: 100vh;
-    z-index: 999;
+    z-index: 99999999;
     background: #0B3C5E;
     color: #fff;
     transition: all 0.3s;
