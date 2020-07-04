@@ -1,0 +1,90 @@
+
+// Globals Functions (Mixins)
+@import "../../_functions";
+
+
+#content-syndicate
+{
+    #contato
+    {
+        .description-of-page
+        {
+            padding: 10px 0 15px;
+
+            p {
+                font-size: 1.4em;
+                line-height: 1.2em;
+            }
+        }
+        
+
+        .dados-contato {
+            font-family: 'Anton', sans-serif;
+            color: #707070;
+            font-size: 2em;
+            transition: 0.4s;
+
+            @media (min-width: 575.98px)
+            {
+                margin-left: 40px;
+            }
+        }
+
+        .icons {
+            margin-top: -8px;
+            margin-right: 10px;
+
+            svg {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        .text {
+            white-space: nowrap;
+            overflow-x: auto;
+        }
+
+        svg 
+        {
+            white-space: nowrap;
+            tspan, fill, path
+            {
+                fill: #707070;
+                transition: 0.4s;
+            }
+         
+            path[data-name="path-SVG-download-5"] {
+                fill: transparent;
+            }
+
+            &:hover {
+                tspan, fill, path
+                {
+                    fill: #0B3C5E;
+                    transition: 0.4s;
+                }
+            }
+
+        }
+
+
+        .legendas {
+            font-family: 'Anton', sans-serif;
+            color: #707070;
+            font-size: 1.5em;
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .flex-icons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+
+        form {
+            margin-top: 30px;
+        }
+    }
+}

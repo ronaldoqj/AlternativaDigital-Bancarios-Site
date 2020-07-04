@@ -1,0 +1,115 @@
+@charset "UTF-8";
+
+/* ----------------------------------------------------------------- */
+
+/*               File of global functions (mixin)                    */
+
+/* ----------------------------------------------------------------- */
+
+#editais {
+  padding-top: 20px;
+}
+
+#editais .__news--editais {
+  /* Icons Socials Midia */
+  /**
+  * Padrão hover
+  *
+  * Style implementado no arquivo "_styles-shared.scss"
+  * Style default para os icones
+  * de redes sociais cinzas
+  * e com os incones no layout padrão vertical
+  *
+  * @subpackage 
+  */
+}
+
+#editais .__news--editais .__news--box {
+  line-height: 1.4em;
+  color: #333;
+  padding: 25px 20px 0 15px;
+}
+
+#editais .__news--editais .__news--box:first-child {
+  /* Medium devices (tablets, 768px and up) */
+}
+
+@media (min-width: 768px) {
+  #editais .__news--editais .__news--box:first-child {
+    border-right: solid 1px #C1C1C1;
+  }
+}
+
+#editais .__news--editais .__news--box .__news--content .__text--1 {
+  font-family: "Anton", sans-serif;
+  color: #53A6D8;
+  line-height: inherit;
+  font-size: 1.5em;
+}
+
+#editais .__news--editais .__news--box .__news--content .__text--1 span {
+  color: #B3B3B3;
+  padding-left: 10px;
+}
+
+#editais .__news--editais .__news--box .__news--content .__text--2 {
+  font-family: "Anton", sans-serif;
+  font-size: 2.1em;
+  line-height: 1.2em;
+  padding: 8px 0;
+}
+
+#editais .__news--editais .__news--box .__news--content .__text--3 {
+  font-family: "Anton", sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 1.5em;
+  line-height: 1.2em;
+}
+
+#editais .__news--editais .__news--box .__news--content > div:last-child {
+  border-bottom: solid 1px #C1C1C1;
+  margin-top: 20px;
+}
+
+#editais .__news--editais:first-child .__news--box {
+  padding-top: 0;
+}
+
+#editais .__news--editais:last-child .__news--content > div:last-child {
+  border-bottom: 20px !important;
+}
+
+#editais .__news--editais .__icons--editais {
+  text-align: center;
+  margin: 20px auto;
+  /* Button Edital */
+  /**
+  * Padrão hover
+  *
+  * Style implementado no arquivo "_styles-shared.scss"
+  * Style para os SVGs de download dos Editais
+  *
+  * @subpackage 
+  */
+}
+
+#editais .__news--editais .__icons--editais .SHARED__download {
+  text-align: center;
+}
+
+#editais .__news--editais .titulo-btns {
+  font-size: Arial, Helvetica, sans-serif !important;
+  color: #919191;
+  font-size: 0.9em;
+  text-align: center;
+}
+
+#editais .__news--editais .SHARED__icons__socials--midia {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  max-width: 330px;
+  margin: -5px auto 30px auto;
+}
+

@@ -1,0 +1,32 @@
+
+// Globals Functions (Mixins)
+@import "../../_functions";
+
+
+#content-syndicate
+{
+    #servicos
+    {
+        h1 {
+            text-transform: uppercase;
+            margin: 20px 0 5px;
+        }
+    
+        .responsive-imgs {
+            width: 100%;
+            height: 250px;
+            @include full-image-cover();
+        }
+        .container-responsive-img {
+            margin-bottom: 10px;
+            transition: 0.4s;
+        }
+    
+        @media (max-width: 768px)
+        {
+            .container-responsive-img {
+                padding: 0;
+            }
+        }
+    }
+}

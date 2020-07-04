@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="21.413" height="16.372" viewBox="0 0 21.413 16.372">
+  <g id="Grupo_1028" data-name="Grupo 1028" transform="translate(0 0)">
+    <rect id="Retângulo_900" data-name="Retângulo 900" width="21.413" height="1.26" transform="translate(0 11.334)" fill="#c1c1c1"/>
+    <rect id="Retângulo_901" data-name="Retângulo 901" width="21.413" height="1.26" transform="translate(0 15.113)" fill="#c1c1c1"/>
+    <g id="Grupo_1045" data-name="Grupo 1045" transform="translate(0.108)">
+      <ellipse id="Elipse_31" data-name="Elipse 31" cx="1.045" cy="1.045" rx="1.045" ry="1.045" transform="translate(13.027 2.312)" fill="#c1c1c1"/>
+      <path id="Caminho_412" data-name="Caminho 412" d="M106.987,207.936V217.7c0,.279.365.5.815.5h17.929c.45,0,.815-.226.815-.5h0v-.328h-3.991v-2.25h-2.2l-2.855-2.758-1.126,1.088,1.728,1.67h-1.045l-1.206-1.165-2.428-2.346-3.634,3.511h-.9V208.6h15.745v6.172h1.916v-6.836c0-.279-.365-.5-.816-.5H107.8C107.352,207.431,106.987,207.657,106.987,207.936Z" transform="translate(-106.987 -207.431)" fill="#c1c1c1"/>
+      <path id="Caminho_413" data-name="Caminho 413" d="M134.722,226.288H131.23v1.144h3.492Z" transform="translate(-113.418 -218.22)" fill="#c1c1c1"/>
+    </g>
+  </g>
+</svg>

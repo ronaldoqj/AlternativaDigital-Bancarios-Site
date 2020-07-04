@@ -1,0 +1,208 @@
+@import '~/../resources/_adm/sass/_vars.scss';
+
+/**
+* Bancários | Front-End
+*
+* Template do Front-End
+*
+* This style sheet describes the
+* structure and the main components
+* about of template
+*
+* @Data Bancários | Front End
+* @package layout
+* @author Ronaldo Quionha de Jesus.
+*
+* @colordef #06A7E0; standard blue
+* @colordef #E5F6FC; light blue
+* @colordef #F59433; standard orange
+
+* @colordef #4B4849; dark grey
+* @colordef #9E9D9D; medium grey
+* @colordef #E6E5E5; grey
+* @colordef #F2F2F2; light grey
+* @colordef #FAFAFA; minimun grey
+* @colordef #FFFFF; white
+*/
+
+
+/**
+* Variaveis utilizada para o 
+* comportamento do template
+* 
+* @note Para um correto funcionamento do template,
+*       altere unicamente e caso seja necessario, somente
+*       o bloco de variaveis a seguir:
+*
+*           body   | Prefixo = body   (Configurações do elemento body do documento)
+*           Header | Prefixo = height (Topo do site)
+*           Menu   | Prefixo = menu   (Menu lateral principal)
+*           Footer | Prefixo = footer (Rodapé)
+*
+* @css-for Template Vars
+*/
+$body-background-color: #FAFAFA;
+$animations-time-duration: 0.4s;
+
+$header-height: 80px;
+$footer-height: 30px;
+$menu-sidebar-width: 220px;
+
+$header-background-color: white;
+$header-shadow: 0px 4px 20px #0000000A;
+$header-z-index: 909090;
+
+$menu-sidebar-background-color: white;
+$menu-sidebar-z-index: 909090;
+$menu-sidebar-shadow: 0px 4px 20px #0000000A;
+
+//$main-background: url("/images/bg-template.svg") no-repeat center fixed;
+$main-background-size: cover;
+
+$footer-background-color: #9E9D9D;
+
+$lg-less: 992px;
+
+
+/**
+* Variaveis de calculos do template
+* 
+* Variaveis responsaveis pelos corretos calculos para
+* o funcionamento do template.
+*
+* @note Não mexer. Altere unicamente caso seja necessário
+*       corrigir algum possivel bug na renderização da
+*       estrutura do template.
+*
+* @css-for Calc Template Vars
+*/
+$cemPorCento: 100%;
+$menu-fixed-height-mobile: calc(#{$cemPorCento} - #{$header-height} );
+$menu-fixed-height-desktop: calc(#{$cemPorCento} - #{$header-height} - #{$footer-height} );
+$content-height-mobile: calc(#{$cemPorCento} - #{$footer-height} );
+
+
+/**
+* Styles of Template
+* 
+* Only styles for template, nothing else.
+* 
+* @css-for Template
+*/
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background-color: $body-background-color;
+}
+
+#app
+{
+    height: 100%;
+    width: 100%;
+
+    header#header 
+    {
+        position: fixed;
+        width: 100%;
+        height: $header-height;
+        top:0;
+        background-color: $header-background-color;
+        box-shadow: $header-shadow;
+        z-index: $header-z-index;
+    }
+
+
+    /**
+    * Estrutura do Menu Sidebar
+    *
+    * Controle de mostrar e esconder o menu com base
+    * na existencia da classe ".show" dentro da tag
+    * <div id="menu" class="">.
+    *
+    * MOBILE:
+    * Caso exista a classe ".show" mostra o menu de forma flutuante,
+    * Alterando a atributo "margin-left = 0;".
+    * 
+    * Caso contrario, não exista a classe ".show", recolhe o menu
+    * aplicando ao atributo "margin-left" valor negativo do tamanho
+    * da largura do menu.
+    *
+    * Desktop
+    * Mantem o menu sempre visivel com o atributo "margin-left = 0;".
+    * Aplica ao atributo "margin-left" o valor do tamanho da largura
+    * do menu
+    *
+    * Menu-SiderBar
+    *
+    * @css-for #menu
+    */
+    #menu-sidebar
+    {
+        position: fixed;
+        background-color: $menu-sidebar-background-color;
+        top: $header-height;
+        width: $menu-sidebar-width;
+        min-width: $menu-sidebar-width;
+        height: $menu-fixed-height-mobile;
+        margin-left: -$menu-sidebar-width;
+        transition: margin-left $animations-time-duration, height $animations-time-duration;
+        overflow-y: auto;
+        box-shadow: $menu-sidebar-shadow;
+
+        &.show {
+            margin-left: 0;
+        }
+    }
+
+    #content
+    {
+        min-height: $content-height-mobile;
+        padding-top: $header-height;
+        padding-bottom: 0;
+        display: flex;
+
+        main#main {
+            flex-grow: 1;
+            //background: $main-background;
+            background-size: $main-background-size;
+        }
+    }
+
+    footer#footer
+    {
+        background-color: $footer-background-color;
+        width: 100%;
+        height: $footer-height;
+        position: relative;
+        bottom: unset;
+    }
+
+    @media (min-width: $lg-less)
+    {
+        #menu-sidebar
+        {
+            margin-left: 0;
+            height: $menu-fixed-height-desktop;
+        }
+
+        #content
+        {
+            min-height: 100%;
+            margin-left: $menu-sidebar-width;
+            padding-bottom: $footer-height;
+        }
+
+        footer#footer
+        {
+            position: fixed;
+            bottom: 0;
+        }
+    }
+}

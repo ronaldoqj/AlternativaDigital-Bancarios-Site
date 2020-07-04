@@ -1,0 +1,86 @@
+@import '~/../resources/_adm/sass/_vars.scss';
+
+.component--btn__icon--text
+{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    .image {
+        border: solid 1px $grey;
+        width: 40px;
+        height: 40px;
+        z-index: 1;
+        border-radius: 80px;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        transition: $transition-normal;
+
+        svg {
+            transition: ease-out $transition-normal;
+            path, rect {
+
+            }
+        }
+    }
+
+    .text {
+        font-family: $font-second;
+        font-weight: bold;
+        font-size: 0.75em;
+        text-transform: uppercase;
+        background-color: $grey;
+        height: 25px;
+        margin-left: -5px;
+        z-index: 0;
+        color: white;
+        padding: 0 10px;
+        display: flex;
+        align-items: center;
+
+        transition: $transition-normal;
+    }
+
+    &.selected
+    {
+        .image
+        {
+            border: solid 1px $blue-light;
+            transition: $transition-normal;
+    
+            svg
+            {
+                path, rect {
+                    fill: $blue-light;
+                }
+            }
+        }
+        
+        .text {
+            background-color: $blue-light;
+        }
+    }
+
+    &:hover {
+        .image
+        {
+            border: solid 1px $blue;
+
+            svg {
+                path, rect {
+                    fill: $blue;
+                }
+                transform: rotateY(360deg);
+            }
+        }
+
+        .text {
+            background-color: $blue;
+        }
+    }
+    
+
+}

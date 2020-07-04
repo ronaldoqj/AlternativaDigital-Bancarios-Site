@@ -1,0 +1,189 @@
+@charset "UTF-8";
+
+/* ----------------------------------------------------------------- */
+
+/*               File of global functions (mixin)                    */
+
+/* ----------------------------------------------------------------- */
+
+section#top-banner #box-top-sindicato {
+  background-position: center !important;
+  background-size: cover !important;
+}
+
+#menu-sindicato {
+  transition: 0.4s;
+  background-color: #0B3C5E;
+  clear: both;
+  /* Mobile */
+}
+
+#menu-sindicato .container-menus-sindicatos {
+  height: auto;
+  opacity: 1;
+  transition: all 0.3s;
+}
+
+#menu-sindicato .title-menu-mobile {
+  display: none;
+}
+
+#menu-sindicato .title-menu-mobile .text-tile-menu {
+  color: white;
+  font-size: 1.83em;
+  text-align: center;
+  padding: 25px 0;
+}
+
+#menu-sindicato .legendas {
+  display: none;
+  text-align: center;
+  font-size: 1.83em;
+  color: white;
+  padding: 25px 0 15px;
+  font-weight: bold;
+}
+
+#menu-sindicato .col-texts {
+  padding-right: 0;
+}
+
+#menu-sindicato .flex-texts {
+  display: flex;
+  justify-content: space-around;
+  white-space: nowrap;
+  transition: 0.4s;
+}
+
+#menu-sindicato .flex-texts div a {
+  font-size: 1.2em;
+  color: white;
+  display: block;
+  padding: 15px 15px;
+  transition: 0.4s;
+}
+
+#menu-sindicato .flex-texts div:last-child a::after {
+  content: none;
+}
+
+#menu-sindicato .flex-texts div a:hover {
+  color: #53A6D8;
+}
+
+#menu-sindicato .flex-texts div.separador {
+  margin-top: 18px;
+  width: 1px;
+  height: 20px;
+  background-color: #53A6D8;
+}
+
+#menu-sindicato .flex-icons {
+  display: flex;
+  justify-content: space-around;
+  transition: 0.4s;
+}
+
+#menu-sindicato .flex-icons div {
+  padding-top: 8px;
+  width: 40px;
+  height: 40px;
+}
+
+#menu-sindicato .flex-icons a svg .cls-1,
+#menu-sindicato .flex-icons a svg .cls-3,
+#menu-sindicato .flex-icons a svg .cls-4,
+#menu-sindicato .flex-icons a svg path,
+#menu-sindicato .flex-icons a svg tspan {
+  transition: 0.4s;
+}
+
+#menu-sindicato .flex-icons a:hover svg .cls-1,
+#menu-sindicato .flex-icons a:hover svg .cls-3,
+#menu-sindicato .flex-icons a:hover svg .cls-4,
+#menu-sindicato .flex-icons a:hover svg path,
+#menu-sindicato .flex-icons a:hover svg tspan {
+  fill: #53A6D8;
+}
+
+@media (max-width: 991.98px) {
+  #menu-sindicato {
+    /* Expande o Menu do Sindicato */
+    /**
+    * Expande Menu Sindicato
+    *
+    * Style responsavel por manipular
+    * os elementos para expandir o menu
+    * quando é adicionado a classe "show"
+    * na div "#menu-sindicato"
+    *
+    * @style
+    */
+  }
+
+  #menu-sindicato .container-menus-sindicatos {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
+  #menu-sindicato .rotate {
+    transition: 0.4s;
+  }
+
+  #menu-sindicato.show .container-menus-sindicatos {
+    height: auto;
+    transition: all 0.3s;
+    opacity: 1;
+  }
+
+  #menu-sindicato.show .rotate {
+    transform: rotate(180deg);
+  }
+
+  #menu-sindicato .title-menu-mobile {
+    display: block;
+  }
+
+  #menu-sindicato .title-menu-mobile #expand__menu--sindicato {
+    position: absolute;
+    margin-top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s;
+    z-index: 90;
+  }
+
+  #menu-sindicato .legendas {
+    display: block;
+  }
+
+  #menu-sindicato .flex-texts {
+    display: block;
+  }
+
+  #menu-sindicato .flex-texts div {
+    text-align: center;
+  }
+
+  #menu-sindicato .flex-texts div a {
+    font-size: 1.5em;
+  }
+
+  #menu-sindicato .flex-texts div.separador {
+    display: none;
+  }
+
+  #menu-sindicato .flex-icons {
+    margin: 15px 0;
+  }
+
+  #menu-sindicato .flex-icons div {
+    padding-bottom: 5px;
+    width: 50px;
+    height: 50px;
+  }
+}
+

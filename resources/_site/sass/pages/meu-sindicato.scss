@@ -1,0 +1,214 @@
+
+// Globals Functions (Mixins)
+@import "../_functions";
+
+#meu-sindicato
+{
+    padding-top: 20px;
+
+    .card-body {
+        
+        margin-top: 10px;
+
+        h2 {
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            color: #A5A5A5;
+
+            &[aria-expanded="true"] {
+                color: #53A6D8;
+            }
+
+            &::before {
+                // Caracter bullet
+                content: "\2022";
+                width: 10px;
+                height: 10px;
+                margin-left: -10px;
+                margin-right: -2px;
+                font-size: 0.6em;
+                vertical-align: middle;
+            }
+        }
+    }
+
+
+    .accordionStandard
+    {
+
+        margin-top: 20px;
+
+        h2 {
+            font-size: 2.1em;
+            color: #0B3C5E;
+        }
+
+        h3 {
+            margin-top: 8px;
+            font-size: 1.3em;
+            color: #53A6D8;
+        }
+
+        h4 {
+            font-size: 2.1em;
+        }
+
+        p {
+            margin-top: 20px;
+            color: #333;
+            font-size: 1.5em;
+            line-height: 1.4em;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Buttons Editais */
+        /**
+        * Padrão hover
+        *
+        * Style implementado no arquivo "_styles-shared.scss"
+        * Style para os SVGs de download dos Editais
+        *
+        * @subpackage 
+        */
+        .download {
+            text-align: center;
+        }
+
+        .__card--acordion
+        {
+            margin-top: -15px;
+            margin-bottom: 20px;
+
+            .__card--box
+            {
+                line-height: 1.4em;
+                
+                color: #333;
+                padding: 25px 20px 0 25px;
+
+                &:first-child {
+                    /* Medium devices (tablets, 768px and up) */
+                    @media (min-width: 768px)
+                    {
+                        border-right: solid 1px #C1C1C1;
+                    }
+                }
+                
+                .__card--content
+                {
+                    .__text--1
+                    {
+                        font-family: 'Anton', sans-serif;
+                        color: #53A6D8;
+                        line-height: inherit;
+                        font-size: 1.5em;
+                        margin-top: 10px;
+        
+                        span {
+                            color: #B3B3B3;
+                            padding-left: 10px;
+                        }
+                    }
+                    .__text--2
+                    {
+                        font-family: 'Anton', sans-serif;
+                        font-size: 2.1em;
+                        line-height: 1.2em;
+                        padding: 8px 0;
+                    }
+                    .__text--3
+                    {
+                        font-family: 'Anton', sans-serif;
+                        font-family: Arial, Helvetica, sans-serif;
+                        font-weight: normal;
+                        font-size: 1.5em;
+                        line-height: 1.2em;
+                    }
+        
+                    > div {
+                        &:last-child {
+                            border-bottom: solid 1px #C1C1C1;
+                            margin-top: 20px;
+                        }
+                    }
+                }
+                
+            }
+
+
+            &:first-child .__card--box {
+                padding-top: 0;
+            }
+
+            &:last-child {
+                .__card--content
+                {
+                    > div {
+                        &:last-child {
+                            border-bottom: 20px !important;
+                        }
+                    }
+                }
+            
+            }
+
+            .__icons--editais
+            {
+                text-align: center;
+                margin: 20px auto;
+
+
+                /* Button Edital */
+                /**
+                * Padrão hover
+                *
+                * Style implementado no arquivo "_styles-shared.scss"
+                * Style para os SVGs de download dos Editais
+                *
+                * @subpackage 
+                */
+                .SHARED__download {
+                    text-align: center;
+                }
+            }
+
+
+            .titulo-btns {
+                font-size: Arial, Helvetica, sans-serif !important;
+                color: #919191;
+                font-size: 0.9em;
+                text-align: center;
+            }
+
+
+            /* Icons Socials Midia */
+            /**
+            * Padrão hover
+            *
+            * Style implementado no arquivo "_styles-shared.scss"
+            * Style default para os icones
+            * de redes sociais cinzas
+            * e com os incones no layout padrão vertical
+            *
+            * @subpackage 
+            */
+            .SHARED__icons__socials--midia
+            {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                max-width: 330px;
+                margin: -5px auto 30px auto;
+            }
+
+        }
+
+
+
+
+
+
+    }
+
+}
+

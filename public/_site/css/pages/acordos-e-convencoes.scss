@@ -1,0 +1,176 @@
+@charset "UTF-8";
+
+/* ----------------------------------------------------------------- */
+
+/*               File of global functions (mixin)                    */
+
+/* ----------------------------------------------------------------- */
+
+#acordos-e-convencoes {
+  padding-top: 20px;
+}
+
+#acordos-e-convencoes .card-body h2 {
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  color: #A5A5A5;
+}
+
+#acordos-e-convencoes .card-body h2[aria-expanded=true] {
+  color: #53A6D8;
+}
+
+#acordos-e-convencoes .card-body h2::before {
+  content: "\2022";
+  width: 10px;
+  height: 10px;
+  margin-left: -10px;
+  margin-right: -2px;
+  font-size: 0.6em;
+  vertical-align: middle;
+}
+
+#acordos-e-convencoes .accordionStandard {
+  margin-top: 20px;
+  /* Buttons Editais */
+  /**
+  * Padrão hover
+  *
+  * Style implementado no arquivo "_styles-shared.scss"
+  * Style para os SVGs de download dos Editais
+  *
+  * @subpackage 
+  */
+}
+
+#acordos-e-convencoes .accordionStandard h2 {
+  font-size: 2.1em;
+}
+
+#acordos-e-convencoes .accordionStandard h3 {
+  margin-top: 8px;
+  font-size: 1.3em;
+  color: #53A6D8;
+}
+
+#acordos-e-convencoes .accordionStandard h4 {
+  font-size: 2.1em;
+}
+
+#acordos-e-convencoes .accordionStandard p {
+  margin-top: 20px;
+  color: #333;
+  font-size: 1.5em;
+  line-height: 1.4em;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#acordos-e-convencoes .accordionStandard .download {
+  text-align: center;
+}
+
+#acordos-e-convencoes .accordionStandard .__card--acordion {
+  margin-top: -15px;
+  margin-bottom: 20px;
+  /* Icons Socials Midia */
+  /**
+  * Padrão hover
+  *
+  * Style implementado no arquivo "_styles-shared.scss"
+  * Style default para os icones
+  * de redes sociais cinzas
+  * e com os incones no layout padrão vertical
+  *
+  * @subpackage 
+  */
+}
+
+#acordos-e-convencoes .accordionStandard .__card--acordion .__card--box {
+  line-height: 1.4em;
+  color: #333;
+  padding: 25px 20px 0 15px;
+}
+
+#acordos-e-convencoes .accordionStandard .__card--acordion .__card--box:first-child {
+  /* Medium devices (tablets, 768px and up) */
+}
+
+@media (min-width: 768px) {
+  #acordos-e-convencoes .accordionStandard .__card--acordion .__card--box:first-child {
+    border-right: solid 1px #C1C1C1;
+  }
+}
+
+#acordos-e-convencoes .accordionStandard .__card--acordion .__card--box .__card--content .__text--1 {
+  font-family: "Anton", sans-serif;
+  color: #53A6D8;
+  line-height: inherit;
+  font-size: 1.5em;
+}
+
+#acordos-e-convencoes .accordionStandard .__card--acordion .__card--box .__card--content .__text--1 span {
+  color: #B3B3B3;
+  padding-left: 10px;
+}
+
+#acordos-e-convencoes .accordionStandard .__card--acordion .__card--box .__card--content .__text--2 {
+  font-family: "Anton", sans-serif;
+  font-size: 2.1em;
+  line-height: 1.2em;
+  padding: 8px 0;
+}
+
+#acordos-e-convencoes .accordionStandard .__card--acordion .__card--box .__card--content .__text--3 {
+  font-family: "Anton", sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 1.5em;
+  line-height: 1.2em;
+}
+
+#acordos-e-convencoes .accordionStandard .__card--acordion .__card--box .__card--content > div:last-child {
+  border-bottom: solid 1px #C1C1C1;
+  margin-top: 20px;
+}
+
+#acordos-e-convencoes .accordionStandard .__card--acordion:first-child .__card--box {
+  padding-top: 0;
+}
+
+#acordos-e-convencoes .accordionStandard .__card--acordion:last-child .__card--content > div:last-child {
+  border-bottom: 20px !important;
+}
+
+#acordos-e-convencoes .accordionStandard .__card--acordion .__icons--editais {
+  text-align: center;
+  margin: 20px auto;
+  /* Button Edital */
+  /**
+  * Padrão hover
+  *
+  * Style implementado no arquivo "_styles-shared.scss"
+  * Style para os SVGs de download dos Editais
+  *
+  * @subpackage 
+  */
+}
+
+#acordos-e-convencoes .accordionStandard .__card--acordion .__icons--editais .SHARED__download {
+  text-align: center;
+}
+
+#acordos-e-convencoes .accordionStandard .__card--acordion .titulo-btns {
+  font-size: Arial, Helvetica, sans-serif !important;
+  color: #919191;
+  font-size: 0.9em;
+  text-align: center;
+}
+
+#acordos-e-convencoes .accordionStandard .__card--acordion .SHARED__icons__socials--midia {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  max-width: 330px;
+  margin: -5px auto 30px auto;
+}
+

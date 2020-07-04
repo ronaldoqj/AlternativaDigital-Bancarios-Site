@@ -1,0 +1,19 @@
+/* ----------------------------------------------------------------- */
+
+/*               File of global functions (mixin)                    */
+
+/* ----------------------------------------------------------------- */
+
+#content-syndicate #sindicalize-se .description-of-page {
+  padding: 10px 0 15px;
+}
+
+#content-syndicate #sindicalize-se .description-of-page p {
+  font-size: 1.4em;
+  line-height: 1.2em;
+}
+
+#content-syndicate #sindicalize-se form {
+  margin-top: 30px;
+}
+

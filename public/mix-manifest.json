@@ -1,0 +1,23 @@
+{
+    "/_adm/js/app.js": "/_adm/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/_site/css/plugins.css": "/_site/css/plugins.css",
+    "/_site/css/template.css": "/_site/css/template.css",
+    "/_site/css/pages/home.css": "/_site/css/pages/home.css",
+    "/_site/css/pages/news.css": "/_site/css/pages/news.css",
+    "/_site/css/pages/editais.css": "/_site/css/pages/editais.css",
+    "/_site/css/pages/acordos-e-convencoes.scss": "/_site/css/pages/acordos-e-convencoes.scss",
+    "/_site/css/pages/meu-sindicato.css": "/_site/css/pages/meu-sindicato.css",
+    "/_site/css/pages/sindicatos/sindicato.css": "/_site/css/pages/sindicatos/sindicato.css",
+    "/_site/css/pages/sindicatos/o-sindicato.css": "/_site/css/pages/sindicatos/o-sindicato.css",
+    "/_site/css/pages/sindicatos/servicos.css": "/_site/css/pages/sindicatos/servicos.css",
+    "/_site/css/pages/sindicatos/editais.css": "/_site/css/pages/sindicatos/editais.css",
+    "/_site/css/pages/sindicatos/contato.css": "/_site/css/pages/sindicatos/contato.css",
+    "/_site/css/pages/sindicatos/sindicalize-se.css": "/_site/css/pages/sindicatos/sindicalize-se.css",
+    "/_site/css/pages/menu-sindicato.css": "/_site/css/pages/menu-sindicato.css",
+    "/_adm/css/app.css": "/_adm/css/app.css",
+    "/_site/css/mCustomScrollbar.css": "/_site/css/mCustomScrollbar.css",
+    "/_site/js/plugins.js": "/_site/js/plugins.js",
+    "/_site/js/svg-inject.min.js": "/_site/js/svg-inject.min.js",
+    "/_site/js/template.js": "/_site/js/template.js"
+}

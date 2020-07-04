@@ -1,0 +1,25 @@
+
+// Globals Functions (Mixins)
+@import "../../_functions";
+
+
+#content-syndicate
+{
+    #sindicalize-se
+    {
+        .description-of-page
+        {
+            padding: 10px 0 15px;
+
+            p {
+                font-size: 1.4em;
+                line-height: 1.2em;
+            }
+        }
+        
+
+        form {
+            margin-top: 30px;
+        }
+    }
+}
