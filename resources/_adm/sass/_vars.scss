@@ -26,3 +26,58 @@ $component-background-color: white;
 $transition-normal: 0.4s;
 $transition-slow: 1s;
 
+
+/**
+* Variaveis utilizada para o 
+* comportamento do template
+* 
+* @note Para um correto funcionamento do template,
+*       altere unicamente e caso seja necessario, somente
+*       o bloco de variaveis a seguir:
+*
+*           body   | Prefixo = body   (Configurações do elemento body do documento)
+*           Header | Prefixo = height (Topo do site)
+*           Menu   | Prefixo = menu   (Menu lateral principal)
+*           Footer | Prefixo = footer (Rodapé)
+*
+* @css-for Template Vars
+*/
+$body-background-color: #FAFAFA;
+$animations-time-duration: 0.4s;
+
+$header-height: 100px;
+$footer-height: 30px;
+$menu-sidebar-width: 80px;
+
+$header-background-color: #EAEEF1;
+$header-shadow: 0 0px 6px #aaa;
+$header-z-index: 909090;
+
+$menu-sidebar-background-color: linear-gradient(#39607E, #071C3B);
+$menu-sidebar-z-index: 909090;
+$menu-sidebar-shadow: 0px 0 6px #aaa;
+
+//$main-background: url("/images/bg-template.svg") no-repeat center fixed;
+$main-background-size: cover;
+
+$footer-background-color: #9E9D9D;
+
+$lg-less: 992px;
+
+
+/**
+* Variaveis de calculos do template
+* 
+* Variaveis responsaveis pelos corretos calculos para
+* o funcionamento do template.
+*
+* @note Não mexer. Altere unicamente caso seja necessário
+*       corrigir algum possivel bug na renderização da
+*       estrutura do template.
+*
+* @css-for Calc Template Vars
+*/
+$cemPorCento: 100%;
+$menu-fixed-height-mobile: $cemPorCento;
+$menu-fixed-height-desktop: $cemPorCento;
+$content-height-mobile: $cemPorCento;

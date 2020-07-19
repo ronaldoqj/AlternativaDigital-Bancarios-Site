@@ -22,6 +22,10 @@ import vuetify from './vuetify'
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+// Componentes do template
+Vue.component('header-component', require('./components/_template/HeaderComponent.vue').default);
+Vue.component('sidebar-menu-component', require('./components/_template/SidebarmenuComponent.vue').default);
+
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('errors-component', require('./components/widget/ErrorsComponent.vue').default);
 Vue.component('login-component', require('./components/widget/LoginComponent.vue').default);

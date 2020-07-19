@@ -2,6 +2,8 @@
 
 400;600;700;800&family=PT+Sans:wght@400;700&display=swap);@charset "UTF-8";
 
+
+
 :root {
   --blue: #071C3B;
   --indigo: #6610f2;
@@ -11096,31 +11098,6 @@ a.text-purple:focus {
 }
 
 /**
-* Bancários | Front-End
-*
-* Template do Front-End
-*
-* This style sheet describes the
-* structure and the main components
-* about of template
-*
-* @Data Bancários | Front End
-* @package layout
-* @author Ronaldo Quionha de Jesus.
-*
-* @colordef #06A7E0; standard blue
-* @colordef #E5F6FC; light blue
-* @colordef #F59433; standard orange
-
-* @colordef #4B4849; dark grey
-* @colordef #9E9D9D; medium grey
-* @colordef #E6E5E5; grey
-* @colordef #F2F2F2; light grey
-* @colordef #FAFAFA; minimun grey
-* @colordef #FFFFF; white
-*/
-
-/**
 * Variaveis utilizada para o 
 * comportamento do template
 * 
@@ -11147,6 +11124,31 @@ a.text-purple:focus {
 *       estrutura do template.
 *
 * @css-for Calc Template Vars
+*/
+
+/**
+* Bancários | Front-End
+*
+* Template do Front-End
+*
+* This style sheet describes the
+* structure and the main components
+* about of template
+*
+* @Data Bancários | Front End
+* @package layout
+* @author Ronaldo Quionha de Jesus.
+*
+* @colordef #06A7E0; standard blue
+* @colordef #E5F6FC; light blue
+* @colordef #F59433; standard orange
+
+* @colordef #4B4849; dark grey
+* @colordef #9E9D9D; medium grey
+* @colordef #E6E5E5; grey
+* @colordef #F2F2F2; light grey
+* @colordef #FAFAFA; minimun grey
+* @colordef #FFFFF; white
 */
 
 /**
@@ -11201,23 +11203,23 @@ body {
 }
 
 #app header#header {
-  height: 80px;
+  height: 100px;
   width: 100%;
-  background-color: white;
-  box-shadow: 0px 4px 20px #0000000A;
+  background-color: #EAEEF1;
+  box-shadow: 0 0px 6px #aaa;
   z-index: 909090;
 }
 
 #app #menu-sidebar {
   position: fixed;
-  background-color: white;
-  width: 310px;
-  min-width: 310px;
+  background-image: linear-gradient(#39607E, #071C3B);
+  width: 80px;
+  min-width: 80px;
   height: 100%;
-  margin-left: -310px;
+  margin-left: -80px;
   transition: margin-left 0.4s, height 0.4s;
   overflow-y: auto;
-  box-shadow: 0px 4px 20px #0000000A;
+  box-shadow: 0px 0 6px #aaa;
 }
 
 #app #menu-sidebar.show {
@@ -11239,11 +11241,102 @@ body {
   #app #menu-sidebar {
     margin-left: 0;
     height: 100%;
+    overflow-x: hidden;
   }
 
   #app #content {
     min-height: 100%;
-    margin-left: 310px;
+    margin-left: 80px;
   }
+}
+
+/**
+* Variaveis utilizada para o 
+* comportamento do template
+* 
+* @note Para um correto funcionamento do template,
+*       altere unicamente e caso seja necessario, somente
+*       o bloco de variaveis a seguir:
+*
+*           body   | Prefixo = body   (Configurações do elemento body do documento)
+*           Header | Prefixo = height (Topo do site)
+*           Menu   | Prefixo = menu   (Menu lateral principal)
+*           Footer | Prefixo = footer (Rodapé)
+*
+* @css-for Template Vars
+*/
+
+/**
+* Variaveis de calculos do template
+* 
+* Variaveis responsaveis pelos corretos calculos para
+* o funcionamento do template.
+*
+* @note Não mexer. Altere unicamente caso seja necessário
+*       corrigir algum possivel bug na renderização da
+*       estrutura do template.
+*
+* @css-for Calc Template Vars
+*/
+
+#header .box-left-right {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+#header .box-left-right .left {
+  padding: 0 30px;
+  color: #125488;
+}
+
+#header .box-left-right .left .title-header {
+  font-size: 2em;
+  font-weight: bold;
+  margin: -6px 0;
+}
+
+#header .box-left-right .left .subtitle-header {
+  font-size: 0.83em;
+  font-weight: bold;
+}
+
+#header .box-left-right .right {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 10px;
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+}
+
+#header .box-left-right .right .user .profile {
+  width: 50px;
+  height: 50px;
+  border-radius: 100px;
+  background-size: cover;
+  background-position: center;
+}
+
+#header .box-left-right .right .texts {
+  margin-left: 10px;
+}
+
+#header .box-left-right .right .texts p {
+  margin: 0;
+  color: #0B3C5E;
+  font-weight: bold;
+  font-size: 0.7em;
+  margin-bottom: -4px;
+}
+
+#header .box-left-right .right .texts p:first-child {
+  font-size: 0.84em;
+}
+
+#header .box-left-right .right .texts p span {
+  color: #919191;
+  font-weight: normal;
 }
 

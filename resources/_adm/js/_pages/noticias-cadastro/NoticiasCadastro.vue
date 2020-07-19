@@ -170,7 +170,7 @@
                         <div class="col-4" :class="borderFields.creditoBannerDestaque">
                             <div class="credito-da-imagem"></div>
                             <v-text-field
-                                v-model="dateInputs.creditoBannerDestaque"
+                                v-model="dataInputs.creditoBannerDestaque"
                                 name="creditoBannerDestaque"
                                 label="Crédito da Imagem:"
                                 placeholder="Crédito da Imagem"
@@ -220,7 +220,7 @@
                         <div class="col-6" :class="borderFields.creditoImagemDestaque">
                             <div class="credito-da-imagem"></div>
                             <v-text-field
-                                v-model="dateInputs.creditoImagemDestaque"
+                                v-model="dataInputs.creditoImagemDestaque"
                                 name="creditoImagemDestaque"
                                 label="Crédito da Imagem:"
                                 placeholder="Crédito da Imagem"
@@ -280,7 +280,7 @@
                             <label>Vídeo Youtube</label>
                             <div class="box-files">
                                 <v-text-field
-                                    v-model="dateInputs.youtube"
+                                    v-model="dataInputs.youtube"
                                     name="videoYoutube"
                                     label="Código do Vídeo:"
                                     dense="dense"
@@ -299,10 +299,10 @@
 
         <div class="row"><div class="col"><hr mt-5 mb-5></div></div>
 
-        <div class="row">
+        <div class="row inputs-finais-to-all-types">
             <div class="col-8" :class="borderFields.cartola">
                 <v-text-field
-                    v-model="dateInputs.cartola"
+                    v-model="dataInputs.cartola"
                     name="cartola"
                     label="Cartola:"
                     dense="dense"
@@ -311,7 +311,7 @@
             </div>
             <div class="col-4" :class="borderFields.tags">
                 <v-text-field
-                    v-model="dateInputs.tags"
+                    v-model="dataInputs.tags"
                     name="tags"
                     label="Tag's:"
                     dense="dense"
@@ -320,10 +320,10 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row inputs-finais-to-all-types">
             <div class="col-12" :class="borderFields.tituloDaNoticia">
                 <v-textarea
-                v-model="dateInputs.tituloDaNoticia"
+                v-model="dataInputs.tituloDaNoticia"
                 name="tituloDaNoticia"
                 label="Título da Notícia:"
                 dense="dense"
@@ -333,10 +333,10 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row inputs-finais-to-all-types">
             <div class="col-12" :class="borderFields.linhaDeApoio">
                 <v-textarea
-                v-model="dateInputs.linhaDeApoio"
+                v-model="dataInputs.linhaDeApoio"
                 name="linhaDeApoio"
                 label="Linha de Apoio:"
                 dense="dense"
@@ -346,10 +346,10 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row inputs-finais-to-all-types">
             <div class="col-12" :class="borderFields.texto">
                 <v-textarea
-                v-model="dateInputs.texto"
+                v-model="dataInputs.texto"
                 name="texto"
                 label="Texto:"
                 dense="dense"
@@ -358,10 +358,10 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row inputs-finais-to-all-types">
             <div class="col-12" :class="borderFields.jornalistaResponsavel">
                 <v-text-field
-                    v-model="dateInputs.jornalistaResponsavel"
+                    v-model="dataInputs.jornalistaResponsavel"
                     name="jornalistaResponsavel"
                     label="Jornalista Responsável:"
                     dense="dense"

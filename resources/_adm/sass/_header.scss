@@ -1,0 +1,71 @@
+@import '~/../resources/_adm/sass/_vars.scss';
+
+#header
+{
+    .box-left-right
+    {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+
+        .left {
+            padding: 0 30px;
+            color: #125488;
+
+            .title-header {
+                font-size: 2em;
+                font-weight: bold;
+                margin: -6px 0;
+            }
+
+            .subtitle-header {
+                font-size: 0.83em;
+                font-weight: bold;
+            }
+        }
+
+        .right
+        {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            padding: 10px;
+            border-top-left-radius: 100px;
+            border-bottom-left-radius: 100px;
+
+            .user {
+                .profile {
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 100px;
+                    background-size: cover;
+                    background-position: center;
+                }
+            }
+
+            .texts
+            {
+                margin-left: 10px;
+
+                p {
+                    margin: 0;
+                    color: #0B3C5E;
+                    font-weight: bold;
+                    font-size: 0.7em;
+                    margin-bottom: -4px;
+    
+                    &:first-child {
+                        font-size: 0.84em;
+                    }
+
+                    span {
+                        color: #919191;
+                        font-weight: normal;
+                    }
+                }
+            }
+
+        }
+    }
+}

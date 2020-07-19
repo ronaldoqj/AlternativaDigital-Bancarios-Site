@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="41" viewBox="0 0 40 41">
+  <g id="Grupo_1121" data-name="Grupo 1121" transform="translate(-16 -598)">
+    <text id="USUÁRIOS" transform="translate(16 628)" fill="#fff" font-size="8" font-family="OpenSans, Open Sans"><tspan x="0.551" y="9">USUÁRIOS</tspan></text>
+    <g id="Grupo_1071" data-name="Grupo 1071" transform="translate(-794.363 426.412)">
+      <path id="Caminho_427" data-name="Caminho 427" d="M832.281,186.31a7.361,7.361,0,1,1,7.361-7.361A7.369,7.369,0,0,1,832.281,186.31Zm0-13.89a6.529,6.529,0,1,0,6.529,6.529A6.537,6.537,0,0,0,832.281,172.42Z" transform="translate(-4.642 0)" fill="#fff"/>
+      <path id="Caminho_428" data-name="Caminho 428" d="M836.852,235.306h-18.07a.415.415,0,0,1-.416-.416v-6.242a9.451,9.451,0,1,1,18.9,0v6.242A.416.416,0,0,1,836.852,235.306Zm-17.654-.832h17.239v-5.827a8.619,8.619,0,1,0-17.239,0Z" transform="translate(0 -33.719)" fill="#fff"/>
+      <path id="Caminho_429" data-name="Caminho 429" d="M861.149,195.112a6.608,6.608,0,0,1-4.7-1.948.416.416,0,0,1,.588-.588,5.819,5.819,0,1,0,4.115-9.934,5.885,5.885,0,0,0-.853.062.416.416,0,1,1-.121-.823,6.735,6.735,0,0,1,.974-.071,6.651,6.651,0,0,1,0,13.3Z" transform="translate(-26.884 -7.24)" fill="#fff"/>
+      <path id="Caminho_430" data-name="Caminho 430" d="M877.606,239.1h-5.684a.416.416,0,0,1,0-.832h5.269v-5.189a7.632,7.632,0,0,0-7.551-7.7,7.519,7.519,0,0,0-1.27.108.416.416,0,0,1-.141-.819,8.315,8.315,0,0,1,1.412-.12,8.465,8.465,0,0,1,8.382,8.527v5.6A.416.416,0,0,1,877.606,239.1Z" transform="translate(-35.07 -37.511)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

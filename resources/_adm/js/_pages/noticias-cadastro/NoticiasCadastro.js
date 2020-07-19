@@ -14,14 +14,10 @@ export default {
                             dataDaInclusao: 'requided',
                             dataLimiteNoDestaque: 'requided',
                             horaLimiteNoDestaque: 'requided',
-                            ativarNoticia: '',
-                            ativarNosSindicatos: '',
                             bannerDestaque: 'requided',
                             creditoBannerDestaque: 'requided',
                             imagemDestaque: 'requided',
                             creditoImagemDestaque: 'requided',
-                            filePodcast: '',
-                            videoYoutube: '',
                             cartola: 'requided',
                             tags: 'requided',
                             tituloDaNoticia: 'requided',
@@ -33,15 +29,6 @@ export default {
                       case 'noticia-video':
                         this.borderFields = {
                             dataDaInclusao: 'requided',
-                            dataLimiteNoDestaque: '',
-                            horaLimiteNoDestaque: '',
-                            ativarNoticia: '',
-                            ativarNosSindicatos: '',
-                            bannerDestaque: '',
-                            creditoBannerDestaque: '',
-                            imagemDestaque: '',
-                            creditoImagemDestaque: '',
-                            filePodcast: '',
                             videoYoutube: 'requided',
                             cartola: 'requided',
                             tags: 'requided',
@@ -54,16 +41,8 @@ export default {
                       case 'noticia-imagem':
                         this.borderFields = {
                             dataDaInclusao: 'requided',
-                            dataLimiteNoDestaque: '',
-                            horaLimiteNoDestaque: '',
-                            ativarNoticia: '',
-                            ativarNosSindicatos: '',
-                            bannerDestaque: '',
-                            creditoBannerDestaque: '',
                             imagemDestaque: 'requided',
                             creditoImagemDestaque: 'requided',
-                            filePodcast: '',
-                            videoYoutube: '',
                             cartola: 'requided',
                             tags: 'requided',
                             tituloDaNoticia: 'requided',
@@ -75,16 +54,7 @@ export default {
                       case 'noticia-podcast':
                         this.borderFields = {
                             dataDaInclusao: 'requided',
-                            dataLimiteNoDestaque: '',
-                            horaLimiteNoDestaque: '',
-                            ativarNoticia: '',
-                            ativarNosSindicatos: '',
-                            bannerDestaque: '',
-                            creditoBannerDestaque: '',
-                            imagemDestaque: '',
-                            creditoImagemDestaque: '',
                             filePodcast: 'requided',
-                            videoYoutube: '',
                             cartola: 'requided',
                             tags: 'requided',
                             tituloDaNoticia: 'requided',
@@ -96,16 +66,6 @@ export default {
                       case 'noticia-simples':
                         this.borderFields = {
                             dataDaInclusao: 'requided',
-                            dataLimiteNoDestaque: '',
-                            horaLimiteNoDestaque: '',
-                            ativarNoticia: '',
-                            ativarNosSindicatos: '',
-                            bannerDestaque: '',
-                            creditoBannerDestaque: '',
-                            imagemDestaque: '',
-                            creditoImagemDestaque: '',
-                            filePodcast: '',
-                            videoYoutube: '',
                             cartola: 'requided',
                             tags: 'requided',
                             tituloDaNoticia: 'requided',
@@ -145,9 +105,8 @@ export default {
           // Switch Ativar Notícia
           ativarNoticia: false,
 
-
           // DateTimes
-          dateInputs: {
+          dataInputs: {
               creditoBannerDestaque: '',
               creditoImagemDestaque: '',
               youtube: '',
@@ -158,6 +117,7 @@ export default {
               texto: '',
               jornalistaResponsave: ''
           },
+
           dateTimeInputs: {
               dates: {
                   dataDaInclusao: {
@@ -274,7 +234,7 @@ export default {
                             this.errorsShow.errors.push({title: 'Banner Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
                         }
                     }
-                    if ( _.isEmpty(this.dateInputs.creditoBannerDestaque) )
+                    if ( _.isEmpty(this.dataInputs.creditoBannerDestaque) )
                         this.errorsShow.errors.push({title: 'Crédito da Imagem (Banner Destaque)', description: 'obrigatório'});
 
                     if ( _.isEmpty(this.filesImagemDestaque) )
@@ -284,12 +244,12 @@ export default {
                             this.errorsShow.errors.push({title: 'Imagem Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
                         }
                     }
-                    if ( _.isEmpty(this.dateInputs.creditoImagemDestaque) )
+                    if ( _.isEmpty(this.dataInputs.creditoImagemDestaque) )
                         this.errorsShow.errors.push({title: 'Crédito da Imagem (Imagem Destaque)', description: 'obrigatório'});
                 break;
 
                 case 'noticia-video':
-                    if ( _.isEmpty(this.dateInputs.youtube) )
+                    if ( _.isEmpty(this.dataInputs.youtube) )
                         this.errorsShow.errors.push({title: 'Vídeo Youtube', description: 'obrigatório'});
                 break;
 
@@ -301,7 +261,7 @@ export default {
                             this.errorsShow.errors.push({title: 'Imagem Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
                         }
                     }
-                    if ( _.isEmpty(this.dateInputs.creditoImagemDestaque) )
+                    if ( _.isEmpty(this.dataInputs.creditoImagemDestaque) )
                         this.errorsShow.errors.push({title: 'Crédito da Imagem (Imagem Destaque)', description: 'obrigatório'});
                 break;
 
@@ -323,17 +283,17 @@ export default {
             if ( _.isEmpty(this.dateTimeInputs.dates.dataDaInclusao.date) )
                 this.errorsShow.errors.push({title: 'Data Inclusão', description: 'obrigatório'});
 
-            if ( _.isEmpty(this.dateInputs.cartola) )
+            if ( _.isEmpty(this.dataInputs.cartola) )
                 this.errorsShow.errors.push({title: 'Cartola', description: 'obrigatório'});
-            if ( _.isEmpty(this.dateInputs.tags) )
+            if ( _.isEmpty(this.dataInputs.tags) )
                 this.errorsShow.errors.push({title: 'Tag\'s', description: 'obrigatório'});
-            if ( _.isEmpty(this.dateInputs.tituloDaNoticia) )
+            if ( _.isEmpty(this.dataInputs.tituloDaNoticia) )
                 this.errorsShow.errors.push({title: 'Título da Notícia', description: 'obrigatório'});
-            if ( _.isEmpty(this.dateInputs.linhaDeApoio) )
+            if ( _.isEmpty(this.dataInputs.linhaDeApoio) )
                 this.errorsShow.errors.push({title: 'Linha de Apoio', description: 'obrigatório'});
-            if ( _.isEmpty(this.dateInputs.texto) )
+            if ( _.isEmpty(this.dataInputs.texto) )
                 this.errorsShow.errors.push({title: 'Texto', description: 'obrigatório'});
-            if ( _.isEmpty(this.dateInputs.jornalistaResponsavel) )
+            if ( _.isEmpty(this.dataInputs.jornalistaResponsavel) )
                 this.errorsShow.errors.push({title: 'Jornalista Responsável', description: 'obrigatório'});
 
 
@@ -348,16 +308,12 @@ export default {
     },
     created()
     {
-
-      for (var key in this.paramsBtnIcons) {
-          if (this.paramsBtnIcons[key].selected == true) {
-              this.btnTipoNoticiaSelecionado = this.paramsBtnIcons[key].type;
-          }
-      }
-
+        for (var key in this.paramsBtnIcons)
+        {
+            if (this.paramsBtnIcons[key].selected == true) {
+                this.btnTipoNoticiaSelecionado = this.paramsBtnIcons[key].type;
+            }
+        }
     },
     props: ['csrf', 'formAction'],
-    
-
-    
 }

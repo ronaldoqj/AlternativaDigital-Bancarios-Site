@@ -8,8 +8,8 @@
         justify-content: space-between;
         flex-wrap: wrap;
         border: solid 1px $grey;
-        padding: 20px 40px 10px;
-        border-radius: 40px;
+        padding: 20px 20px 10px;
+        border-radius: 20px;
     
         >div {
             margin-bottom: 10px;
@@ -36,12 +36,13 @@
         >label {
             font-size: 0.8em;
             margin-left: 10px;
+            margin-bottom: 0;
         }
 
         .box-files {
             border: solid 1px $grey;
             border-radius: 20px;
-            padding: 40px 20px 20px;
+            padding: 30px 20px 10px;
         }
     }
 
@@ -83,6 +84,13 @@
         }
     }
 
+    .inputs-finais-to-all-types {
+        
+
+        .v-input {
+            margin-bottom: -30px;
+        }
+    }
 
     // .v-snack--multi-line .v-snack__wrapper {
     //     position: fixed !important;

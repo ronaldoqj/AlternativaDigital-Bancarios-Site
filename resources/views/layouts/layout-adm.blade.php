@@ -17,7 +17,6 @@
         <link rel="stylesheet" type="text/css" href="{{ url(mix('/_adm/css/app.css')) }}" />
         <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
 
-
         <!-- Fonts -->
         <link rel="dns-prefetch" href="//fonts.gstatic.com">    
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined">
@@ -40,24 +39,41 @@
             
             {{-- Input hidden responsavel por inserir dados da sessão para o Vue --}}
             <!-- <input type="hidden" v-bind:value="$global.auth = {{json_encode( (array) session()->get('auth') )}}" /> -->
-                        
 
             <div id="menu-sidebar" class="">
                 <div id="box-nav">
                     <nav>
+                        <sidebar-menu-component></sidebar-menu-component>
                         @yield('menu-sidebar')
                     </nav>
                 </div>
             </div>
 
             <div id="content">
-                
                 <main id="main">
-                <header id="header">
-                    teste
-                    @yield('header')
-                </header>
-                        @yield('content')
+                    <header id="header">
+                        <div class="box-left-right">
+                            <div class="left">
+                                <div class="title-header"> /Cadastro Notícias/ </div>
+                                <div class="subtitle-header"> /noticias/ </div>
+                            </div>
+                            <div class="right">
+                                <div class="user">
+                                    <div class="profile" style="background-image: url('{{asset('_adm/assets/profile-default.jpg')}}');">
+                                    </div>
+                                </div>
+                                <div class="texts">
+                                    <p>Nome do usuário logado</p>
+                                    <p><span>emailuser@user.com.br</span></p>
+                                    <p>corporação do usuário</p>
+                                </div>
+                            </div>
+                        </div>
+                        @yield('header')
+                    </header>
+
+                    @yield('content')
+
                 </main>
             </div>
 
