@@ -17,6 +17,29 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+// ADM
+Route::prefix('adm')->namespace('Adm')->group(function ()
+{
+    // Route::fallback(function () {
+    //     // rota quando não encontrou no ADM
+    // });
+
+    Route::get('/', 'HomeController@index')->name('adm-home');
+    Route::get('/noticias', 'NoticiaController@index')->name('adm-noticias');
+    
+    Route::get('/noticias/cadastro', 'NoticiaController@cadastro')->name('adm-noticias-cadastro');
+    Route::post('/noticias/cadastro', 'NoticiaController@cadastrarNoticia')->name('adm-noticias-cadastrar');
+
+    // Formulários de cadastros do ADM
+    Route::prefix('formularios')->namespace('Formularios')->group(function ()
+    {
+        Route::match(['get', 'post'], '/noticia', 'NoticiaController@index')->name('adm-formularios-noticia');
+        Route::match(['get', 'post'], '/noticia/castastrar', 'NoticiaController@cadastrarNoticia')->name('adm-formularios-noticia-cadastrar');
+    });    
+});
+
+
+
 // Portal Bancários
 Route::get('/', 'WelcomeController@index')->name('welcome');
 Route::get('/editais', 'EditaisController@index')->name('editais');
@@ -38,10 +61,8 @@ Route::get('/sindicato', 'Sindicatos\SindicatoController@index')->name('sindicat
 Route::get('/o-sindicato', 'Sindicatos\OSindicatoController@index')->name('sindicato-o-sindicato');
 Route::get('/servicos', 'Sindicatos\ServicosController@index')->name('sindicato-servicos');
 
-Auth::routes();
+// Route::fallback(function () {
+//     // rota quando não encontrou no site
+// });
 
-Route::prefix('adm')->namespace('Adm')->group(function ()
-{
-    Route::get('/', 'HomeController@index')->name('home');
-    Route::get('/home', 'HomeController@index')->name('home-home');
-});
+Auth::routes();

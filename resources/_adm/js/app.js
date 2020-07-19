@@ -7,9 +7,9 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+window._ = require('lodash');
 
 import vuetify from './vuetify'
-
 
 /**
  * The following block of code may be used to automatically register your
@@ -23,8 +23,10 @@ import vuetify from './vuetify'
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('errors-component', require('./components/widget/ErrorsComponent.vue').default);
 Vue.component('login-component', require('./components/widget/LoginComponent.vue').default);
 Vue.component('noticias-cadastro-page', require('./_pages/noticias-cadastro/NoticiasCadastro.vue').default);
+Vue.component('noticias-page', require('./_pages/noticias/Noticias.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

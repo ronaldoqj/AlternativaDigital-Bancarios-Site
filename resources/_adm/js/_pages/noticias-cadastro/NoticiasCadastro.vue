@@ -1,10 +1,16 @@
 
 <template>
-
-
     
-    <div class="container">
-        <!-- <btn-icon-Text /> -->
+    <div id="noticias-cadastro" class="container-fluid">
+
+    <errors-component :objErrorsShow="errorsShow" @showErrorsChange="errorsShow.show = $event"></errors-component>
+
+    <form :action="formAction" method="post" @submit="checkForm" enctype="multipart/form-data">
+
+        <input type="hidden" name="_token" :value="csrf">
+        <input type="hidden" name="tipoDaNoticia" :value="btnTipoNoticiaSelecionado" />
+        <input type="hidden" name="ativarNoticia" :value="ativarNoticia" />
+
         <div class="row">
             <div class="col-12">
                 <div class="box-btns-noticias">
@@ -17,10 +23,8 @@
             </div>
         </div>
 
-
-        <v-app id="inspire">
         <div class="row">
-            <div class="col-3">
+            <div class="col-3" :class="borderFields.dataDaInclusao">
                 <v-dialog
                     ref="dialog1"
                     v-model="dateTimeInputs.dates.dataDaInclusao.modal"
@@ -30,8 +34,10 @@
                     >
                     <template v-slot:activator="{ on, attrs }">
                         <v-text-field
+                            name="dataInclusao"
                             v-model="dateTimeInputs.dates.dataDaInclusao.date"
-                            label="Data Inclusão"
+                            label="Data Inclusão:"
+                            dense="dense"
                             prepend-inner-icon="event"
                             readonly
                             v-bind="attrs"
@@ -47,7 +53,7 @@
                 </v-dialog>
             </div>
 
-            <div class="col-3">
+            <div class="col-3" :class="borderFields.dataLimiteNoDestaque">
                 <v-dialog
                     ref="dialog2"
                     v-model="dateTimeInputs.dates.limiteNoDestaque.modal"
@@ -57,8 +63,10 @@
                     >
                     <template v-slot:activator="{ on, attrs }">
                         <v-text-field
+                            name="dataLimiteNoDestaque"
                             v-model="dateTimeInputs.dates.limiteNoDestaque.date"
-                            label="Limite No Destaque"
+                            label="Limite No Destaque:"
+                            dense="dense"
                             prepend-inner-icon="event"
                             readonly
                             v-bind="attrs"
@@ -74,7 +82,7 @@
                 </v-dialog>
             </div>
 
-            <div class="col-2">
+            <div class="col-2" :class="borderFields.horaLimiteNoDestaque">
                 <v-dialog
                     ref="dialog3"
                     v-model="dateTimeInputs.times.limiteDestaque.modal"
@@ -84,8 +92,10 @@
                 >
                     <template v-slot:activator="{ on, attrs }">
                     <v-text-field
+                        name="horaLimiteNoDestaque"
                         v-model="dateTimeInputs.times.limiteDestaque.time"
-                        label="Limite Hora"
+                        label="Limite Hora:"
+                        dense="dense"
                         prepend-inner-icon="access_time"
                         readonly
                         v-bind="attrs"
@@ -105,25 +115,268 @@
                 </v-dialog>
             </div>
 
-            <div class="col-2">
-                <v-switch v-model="ativarNoticia" class="ma-4" label="Ativar Notícia"></v-switch>
+            <div class="col-1 switch-ativar-noticia">
+                <p>Ativar Notícia</p>
+                <v-switch v-model="ativarNoticia" class="ma-4"></v-switch>
             </div>
 
-            <div class="col-2">
+            <div class="col-3">
                 <v-select
+                name="ativarNosSindicatos"
+                label="Ativar nos Sindicatos:"
                 v-model="form.selectSindicato"
                 :items="sindicatos"
+                dense="dense"
                 color="primary"
-                label="Ativar Nos Sindicatos:"
                 outlined
                 ></v-select>
             </div>
-
         </div>
-        </v-app>
 
+        <hr>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-8 col-box-files" :class="borderFields.bannerDestaque">
+                            <label>Banner Destaque</label>
+                            <div class="box-files">
+                                <v-file-input name="bannerDestaque"
+                                    v-model="filesBannerDestaque"
+                                    label="Banner Destaque:"
+                                    placeholder="Procurar Imagem"
+                                    prepend-icon=""
+                                    prepend-inner-icon="add_photo_alternate"
+                                    dense="dense"
+                                    color="primary"
+                                    counter
+                                    multiple
+                                    accept="image/png, image/jpeg, image/bmp"
+                                    outlined
+                                    :show-size="1000"
+                                >
+                                    <template v-slot:selection="{ index, text }">
+                                    <v-chip v-if="index < 2" color="primary" dark label small>
+                                        {{ text }}
+                                    </v-chip>
+                                    <span v-else-if="index === 2" class="overline grey--text text--darken-3 mx-2" >
+                                        +{{ files.length - 2 }} File(s)
+                                    </span>
+                                    </template>
+                                </v-file-input>
+                            </div>
+                        </div>
+                        <div class="col-4" :class="borderFields.creditoBannerDestaque">
+                            <div class="credito-da-imagem"></div>
+                            <v-text-field
+                                v-model="dateInputs.creditoBannerDestaque"
+                                name="creditoBannerDestaque"
+                                label="Crédito da Imagem:"
+                                placeholder="Crédito da Imagem"
+                                dense="dense"
+                                outlined
+                            ></v-text-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-6 col-box-files" :class="borderFields.imagemDestaque">
+                            <label>Imagem Destaque</label>
+                            <div class="box-files">
+                                <v-file-input
+                                    name="imagemDestaque"
+                                    v-model="filesImagemDestaque"
+                                    label="Imagem Destaque:"
+                                    placeholder="Procurar Imagem"
+                                    prepend-icon=""
+                                    prepend-inner-icon="image"
+                                    dense="dense"
+                                    color="primary"
+                                    counter
+                                    multiple
+                                    outlined
+                                    :show-size="1000"
+                                >
+                                    <template v-slot:selection="{ index, text }">
+                                    <v-chip v-if="index < 2" color="primary" dark label small >
+                                        {{ text }}
+                                    </v-chip>
+                                    <span v-else-if="index === 2" class="overline grey--text text--darken-3 mx-2" >
+                                        +{{ files.length - 2 }} File(s)
+                                    </span>
+                                    </template>
+                                </v-file-input>
+
+                            </div>
+                        </div>
+                        <div class="col-6" :class="borderFields.creditoImagemDestaque">
+                            <div class="credito-da-imagem"></div>
+                            <v-text-field
+                                v-model="dateInputs.creditoImagemDestaque"
+                                name="creditoImagemDestaque"
+                                label="Crédito da Imagem:"
+                                placeholder="Crédito da Imagem"
+                                dense="dense"
+                                outlined
+                            ></v-text-field>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 col-box-files" :class="borderFields.filePodcast">
+                            <label>Mp3 Podcast</label>
+                            <div class="box-files">
+                                <v-file-input
+                                    name="filePodcast"
+                                    label="Mp3 Podcast:"
+                                    placeholder="Procurar Audio"
+                                    prepend-icon=""
+                                    prepend-inner-icon="mic_none"
+                                    v-model="filesPodcast"
+                                    dense="dense"
+                                    color="primary"
+                                    counter
+                                    multiple
+                                    accept="audio/mpeg"
+                                    outlined
+                                    :show-size="1000"
+                                >
+                                    <template v-slot:selection="{ index, text }">
+                                    <v-chip v-if="index < 2" color="primary" dark label small >
+                                        {{ text }}
+                                    </v-chip>
+                                    <span v-else-if="index === 2" class="overline grey--text text--darken-3 mx-2" >
+                                        +{{ files.length - 2 }} File(s)
+                                    </span>
+                                    </template>
+                                </v-file-input>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 col-box-files" :class="borderFields.videoYoutube">
+                            <label>Vídeo Youtube</label>
+                            <div class="box-files">
+                                <v-text-field
+                                    v-model="dateInputs.youtube"
+                                    name="videoYoutube"
+                                    label="Código do Vídeo:"
+                                    dense="dense"
+                                    prepend-inner-icon="videocam"
+                                    outlined
+                                ></v-text-field>
+                                <div class="youtube-exmaple-code">
+                                    youtube.com/watch?<span>v=yT3dMptaHwk</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row"><div class="col"><hr mt-5 mb-5></div></div>
+
+        <div class="row">
+            <div class="col-8" :class="borderFields.cartola">
+                <v-text-field
+                    v-model="dateInputs.cartola"
+                    name="cartola"
+                    label="Cartola:"
+                    dense="dense"
+                    outlined
+                ></v-text-field>
+            </div>
+            <div class="col-4" :class="borderFields.tags">
+                <v-text-field
+                    v-model="dateInputs.tags"
+                    name="tags"
+                    label="Tag's:"
+                    dense="dense"
+                    outlined
+                ></v-text-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12" :class="borderFields.tituloDaNoticia">
+                <v-textarea
+                v-model="dateInputs.tituloDaNoticia"
+                name="tituloDaNoticia"
+                label="Título da Notícia:"
+                dense="dense"
+                height="90"
+                outlined
+                ></v-textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12" :class="borderFields.linhaDeApoio">
+                <v-textarea
+                v-model="dateInputs.linhaDeApoio"
+                name="linhaDeApoio"
+                label="Linha de Apoio:"
+                dense="dense"
+                height="90"
+                outlined
+                ></v-textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12" :class="borderFields.texto">
+                <v-textarea
+                v-model="dateInputs.texto"
+                name="texto"
+                label="Texto:"
+                dense="dense"
+                outlined
+                ></v-textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12" :class="borderFields.jornalistaResponsavel">
+                <v-text-field
+                    v-model="dateInputs.jornalistaResponsavel"
+                    name="jornalistaResponsavel"
+                    label="Jornalista Responsável:"
+                    dense="dense"
+                    outlined
+                ></v-text-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <v-btn type="submit" class="btn-cadastrar" block rounded dark>Cadastrar</v-btn>
+            </div>
+        </div>
+    </form>  
     </div>
-
 </template>  
 
 <style src="./NoticiasCadastro.scss" lang="scss"></style>

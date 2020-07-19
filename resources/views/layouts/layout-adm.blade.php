@@ -35,15 +35,12 @@
         @yield('js')
     </head>
     <body>
-        
         <div id="app">
+        <v-app id="inspire">
             
             {{-- Input hidden responsavel por inserir dados da sessão para o Vue --}}
             <!-- <input type="hidden" v-bind:value="$global.auth = {{json_encode( (array) session()->get('auth') )}}" /> -->
-            
-            <header id="header">
-                @yield('header')
-            </header>
+                        
 
             <div id="menu-sidebar" class="">
                 <div id="box-nav">
@@ -54,16 +51,18 @@
             </div>
 
             <div id="content">
+                
                 <main id="main">
+                <header id="header">
+                    teste
+                    @yield('header')
+                </header>
                         @yield('content')
                 </main>
             </div>
 
-            <footer id="footer">
-                @yield('footer')
-            </footer>
          
+        </v-app>
         </div>
-
     </body>
 </html>

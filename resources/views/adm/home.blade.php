@@ -1,9 +1,15 @@
 @extends('layouts.layout-adm')
 
+
+@section('js')
+@endsection
+
 @section('content')
 
 
 <div class="container-fluid">
-    <noticias-cadastro-page />
+    
+        Home
+    
 </div>
 @endsection

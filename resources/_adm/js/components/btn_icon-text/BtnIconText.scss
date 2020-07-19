@@ -4,12 +4,15 @@
 {
     display: flex;
     align-items: center;
+    
     cursor: pointer;
 
     .image {
         border: solid 1px $grey;
         width: 40px;
+        max-width: 40px;
         height: 40px;
+        max-height: 40px;
         z-index: 1;
         border-radius: 80px;
         background-color: white;
@@ -31,6 +34,7 @@
         font-family: $font-second;
         font-weight: bold;
         font-size: 0.75em;
+        white-space: nowrap;
         text-transform: uppercase;
         background-color: $grey;
         height: 25px;
