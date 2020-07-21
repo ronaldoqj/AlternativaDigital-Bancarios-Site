@@ -185,6 +185,8 @@
                                 label="Crédito da Imagem:"
                                 placeholder="Crédito da Imagem"
                                 dense="dense"
+                                maxlength="240"
+                                counter="240"
                                 outlined
                             ></v-text-field>
                         </div>
@@ -243,6 +245,8 @@
                                 label="Crédito da Imagem:"
                                 placeholder="Crédito da Imagem"
                                 dense="dense"
+                                maxlength="240"
+                                counter="240"
                                 outlined
                             ></v-text-field>
                         </div>
@@ -315,10 +319,12 @@
                                     label="Código do Vídeo:"
                                     dense="dense"
                                     prepend-inner-icon="videocam"
+                                    maxlength="240"
+                                    counter="240"
                                     outlined
                                 ></v-text-field>
                                 <div class="youtube-exmaple-code">
-                                    youtube.com/watch?<span>v=yT3dMptaHwk</span>
+                                    https://www.youtube.com/embed/<span>zpORURyy-n8?rel=0</span>
                                 </div>
                             </div>
                         </div>
@@ -336,6 +342,8 @@
                     name="cartola"
                     label="Cartola:"
                     dense="dense"
+                    maxlength="240"
+                    counter="240"
                     outlined
                 ></v-text-field>
             </div>
@@ -345,6 +353,8 @@
                     name="tags"
                     label="Tag's:"
                     dense="dense"
+                    maxlength="240"
+                    counter="240"
                     outlined
                 ></v-text-field>
             </div>
@@ -358,6 +368,8 @@
                 label="Título da Notícia:"
                 dense="dense"
                 height="90"
+                maxlength="240"
+                counter="240"
                 outlined
                 ></v-textarea>
             </div>
@@ -371,6 +383,8 @@
                 label="Linha de Apoio:"
                 dense="dense"
                 height="90"
+                maxlength="240"
+                counter="240"
                 outlined
                 ></v-textarea>
             </div>
@@ -383,6 +397,7 @@
                 name="texto"
                 label="Texto:"
                 dense="dense"
+                counter="240"
                 outlined
                 ></v-textarea>
             </div>
@@ -395,6 +410,8 @@
                     name="jornalistaResponsavel"
                     label="Jornalista Responsável:"
                     dense="dense"
+                    maxlength="240"
+                    counter="240"
                     outlined
                 ></v-text-field>
             </div>

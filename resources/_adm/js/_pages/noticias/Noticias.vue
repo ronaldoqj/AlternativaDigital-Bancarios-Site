@@ -65,7 +65,11 @@
                         <div class="col-4" v-for="item in noticias.comVideo">
                             
                             <div class="box--noticia">
-                                <div class="imagem-noticia" :style="{ backgroundImage: `url(/${item.fileBannerDestaque_pathfile}/${item.fileBannerDestaque_namefile})` }"></div>
+                                
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        <iframe class="embed-responsive-item" :src="'https://www.youtube.com/embed/' + item.videoYoutube" allowfullscreen></iframe>
+                                    </div>
+
                                 <div class="buttons">
                                     <a :href="`/adm/noticias/edicao/${item.id}`"><img src="/_adm/assets/SVGs/editar.svg" class="img-fluid" onload="SVGInject(this)" /></a>
                                     <a :href="`/adm/noticias/exclusao/${item.id}`"><img src="/_adm/assets/SVGs/excluir.svg" class="img-fluid" onload="SVGInject(this)" /></a>
@@ -250,7 +254,7 @@ export default {
         this.noticias.comVideo = JSON.parse(JSON.parse(this.propNoticias).noticiaComVideo);
         this.noticias.simples = JSON.parse(JSON.parse(this.propNoticias).noticiaSimples);
 
-        console.log(this.noticias.destaques);
+        console.log(this.noticias.comVideo);
     }
 }
 
@@ -348,6 +352,8 @@ export default {
 
         .box--noticia
         {
+            position: relative;
+
             .imagem-noticia {
                 width: 100%;
                 height: 100px;
@@ -360,6 +366,8 @@ export default {
                 display: flex;
                 justify-content: center;
                 margin: -43px 0 0;
+                position: absolute;
+                width: 100%;
 
                 a
                 {
