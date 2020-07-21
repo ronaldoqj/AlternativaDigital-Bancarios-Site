@@ -100,7 +100,7 @@
                         <div class="col-4" v-for="item in noticias.comImagem">
                             
                             <div class="box--noticia">
-                                <div class="imagem-noticia" :style="{ backgroundImage: `url(/${item.fileBannerDestaque_pathfile}/${item.fileBannerDestaque_namefile})` }"></div>
+                                <div class="imagem-noticia" :style="{ backgroundImage: `url(/${item.fileImagemDestaque_pathfile}/${item.fileImagemDestaque_namefile})` }"></div>
                                 <div class="buttons">
                                     <a :href="`/adm/noticias/edicao/${item.id}`"><img src="/_adm/assets/SVGs/editar.svg" class="img-fluid" onload="SVGInject(this)" /></a>
                                     <a :href="`/adm/noticias/exclusao/${item.id}`"><img src="/_adm/assets/SVGs/excluir.svg" class="img-fluid" onload="SVGInject(this)" /></a>
@@ -192,7 +192,8 @@ import btnIconText from "../../components/btn_icon-text/BtnIconText.vue"
 export default {
     data: () => {
         return {
-            panel: [0, 1, 2, 3, 4],
+            // panel: [0, 1, 2, 3, 4],
+            panel: [0, 1, 2],
 
             size: {
                 height: '250px',

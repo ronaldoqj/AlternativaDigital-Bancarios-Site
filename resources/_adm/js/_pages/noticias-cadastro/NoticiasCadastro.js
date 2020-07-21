@@ -314,7 +314,7 @@ export default {
                     }
 
                     // Validações especificas
-                    if ( _.isEmpty(this.filesImagemDestaque && this.fileImagemIsEdit == '') )
+                    if ( _.isEmpty(this.filesImagemDestaque) && this.fileImagemIsEdit == '' )
                         this.errorsShow.errors.push({title: 'Imagem Destaque', description: 'obrigatório'});
                     if (! _.isEmpty(this.filesImagemDestaque && this.fileImagemIsEdit == '')  ) {
                         if ( this.filesImagemDestaque[0].size >= 1000000) {
