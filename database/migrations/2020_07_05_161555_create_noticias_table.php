@@ -40,6 +40,8 @@ class CreateNoticiasTable extends Migration
             $table->integer('userIdCreated')->nullable();
             $table->integer('userIdUpdated')->nullable();
 
+            $table->softDeletes();
+
             $table->timestamps();
         });
     }

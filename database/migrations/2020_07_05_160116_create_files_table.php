@@ -29,6 +29,8 @@ class CreateFilesTable extends Migration
             $table->string('description', 240)->nullable();
             $table->string('alternativeText', 140)->nullable();
 
+            $table->softDeletes();
+
             $table->timestamps();
         });
     }

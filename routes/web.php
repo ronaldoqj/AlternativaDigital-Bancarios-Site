@@ -29,13 +29,15 @@ Route::prefix('adm')->namespace('Adm')->group(function ()
     
     Route::get('/noticias/cadastro', 'NoticiaController@cadastro')->name('adm-noticias-cadastro');
     Route::post('/noticias/cadastro', 'NoticiaController@cadastrarNoticia')->name('adm-noticias-cadastrar');
+    Route::get('/noticias/edicao/{id?}', 'NoticiaController@edicao')->name('adm-noticias-edicao');
+    Route::post('/noticias/edicao', 'NoticiaController@editarNoticia')->name('adm-noticias-editar');
 
     // Formulários de cadastros do ADM
-    Route::prefix('formularios')->namespace('Formularios')->group(function ()
-    {
-        Route::match(['get', 'post'], '/noticia', 'NoticiaController@index')->name('adm-formularios-noticia');
-        Route::match(['get', 'post'], '/noticia/castastrar', 'NoticiaController@cadastrarNoticia')->name('adm-formularios-noticia-cadastrar');
-    });    
+    // Route::prefix('formularios')->namespace('Formularios')->group(function ()
+    // {
+    //     Route::match(['get', 'post'], '/noticia', 'NoticiaController@index')->name('adm-formularios-noticia');
+    //     Route::match(['get', 'post'], '/noticia/castastrar', 'NoticiaController@cadastrarNoticia')->name('adm-formularios-noticia-cadastrar');
+    // });
 });
 
 

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="41" height="41" viewBox="0 0 41 41">
+  <defs>
+    <filter id="Elipse_37" x="0" y="0" width="41" height="41" filterUnits="userSpaceOnUse">
+      <feOffset dx="2" dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Grupo_1113" data-name="Grupo 1113" transform="translate(-221 -257)">
+    <g transform="matrix(1, 0, 0, 1, 221, 257)" filter="url(#Elipse_37)">
+      <circle id="Elipse_37-2" data-name="Elipse 37" cx="17.5" cy="17.5" r="17.5" transform="translate(1 1)" fill="#53a6d8"/>
+    </g>
+    <g id="Grupo_1096" data-name="Grupo 1096" transform="translate(-8 2.623)">
+      <text id="EDITAR" transform="translate(230 276)" fill="#fff" font-size="5" font-family="OpenSans, Open Sans"><tspan x="9.08" y="5">EDITAR</tspan></text>
+      <g id="Grupo_1092" data-name="Grupo 1092" transform="translate(240.499 262.376)">
+        <path id="Caminho_473" data-name="Caminho 473" d="M5923.1-697.86a.189.189,0,0,0-.267,0l-3.2,3.264-6.711-6.53,5.062-4.962a.189.189,0,0,0,0-.267.188.188,0,0,0-.267,0l-5.2,5.1v0h0a.157.157,0,0,0-.019.03.177.177,0,0,0-.02.031.178.178,0,0,0-.01.048.18.18,0,0,0,0,.023v6.607h-3.115a.189.189,0,0,0-.188.189.189.189,0,0,0,.188.189h10.289a.19.19,0,0,0,.073-.015.192.192,0,0,0,.062-.042h0l3.334-3.4A.189.189,0,0,0,5923.1-697.86Zm-8.643,3.344-1.621-1.65v-4.51l6.331,6.16Zm-1.621-1.112,1.092,1.112h-1.092Z" transform="translate(-5909.159 706.409)" fill="#fff"/>
+        <path id="Caminho_474" data-name="Caminho 474" d="M5960.094-699.164a.189.189,0,0,0,.133.055.188.188,0,0,0,.134-.056l6.885-6.922a.189.189,0,0,0,0-.267.189.189,0,0,0-.267,0l-6.885,6.922A.189.189,0,0,0,5960.094-699.164Z" transform="translate(-5953.3 706.409)" fill="#fff"/>
+        <path id="Caminho_475" data-name="Caminho 475" d="M5989.527-680.222l-3.442,3.461a.189.189,0,0,0,0,.267.189.189,0,0,0,.133.055.187.187,0,0,0,.134-.056l3.442-3.461a.189.189,0,0,0,0-.267A.189.189,0,0,0,5989.527-680.222Z" transform="translate(-5975.849 683.739)" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="41" height="41" viewBox="0 0 41 41">
+  <defs>
+    <filter id="Elipse_36" x="0" y="0" width="41" height="41" filterUnits="userSpaceOnUse">
+      <feOffset dx="2" dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Grupo_1114" data-name="Grupo 1114" transform="translate(-293 -255)">
+    <g transform="matrix(1, 0, 0, 1, 293, 255)" filter="url(#Elipse_36)">
+      <circle id="Elipse_36-2" data-name="Elipse 36" cx="17.5" cy="17.5" r="17.5" transform="translate(1 1)" fill="#fe3e3e"/>
+    </g>
+    <g id="Grupo_1095" data-name="Grupo 1095" transform="translate(64 0.623)">
+      <text id="EXCLUIR" transform="translate(230 276)" fill="#fff" font-size="5" font-family="OpenSans, Open Sans"><tspan x="7.729" y="5">EXCLUIR</tspan></text>
+    </g>
+    <g id="Grupo_1098" data-name="Grupo 1098" transform="translate(-4055.488 -405.086)">
+      <path id="Caminho_476" data-name="Caminho 476" d="M4369.881,674.623l2.749-2.749a.458.458,0,0,0,0-.647l-2.621-2.621a.457.457,0,0,0-.647,0l-2.707,2.706L4364,668.658a.458.458,0,0,0-.631-.016l-2.719,2.46a.493.493,0,0,0-.023.707l2.628,2.716a.075.075,0,0,1,0,.105l-2.468,2.468a.458.458,0,0,0,0,.647l2.621,2.621a.458.458,0,0,0,.647,0l2.256-2.257a.457.457,0,0,1,.647,0l2.467,2.467a.457.457,0,0,0,.647,0l2.558-2.558a.458.458,0,0,0,0-.647Zm2.542,3.125-2.623,2.623a.075.075,0,0,1-.106,0l-2.737-2.738a.457.457,0,0,0-.647,0l-2.527,2.527a.075.075,0,0,1-.106,0l-2.688-2.714,2.707-2.7a.258.258,0,0,0,0-.362l-2.855-2.812a.075.075,0,0,1,0-.107l2.789-2.6a.075.075,0,0,1,.1,0l2.6,2.6a.458.458,0,0,0,.647,0l2.707-2.706,2.792,2.792-2.749,2.749a.458.458,0,0,0,0,.647l2.7,2.7A.074.074,0,0,1,4372.424,677.748Z" transform="translate(0 0)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

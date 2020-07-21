@@ -5,7 +5,7 @@
 
 
 :root {
-  --blue: #071C3B;
+  --blue: #125488;
   --indigo: #6610f2;
   --purple: #6f42c1;
   --pink: #e83e8c;
@@ -11292,9 +11292,10 @@ body {
 }
 
 #header .box-left-right .left .title-header {
-  font-size: 2em;
+  font-size: 1.8em;
   font-weight: bold;
-  margin: -6px 0;
+  margin: 0;
+  line-height: 1em;
 }
 
 #header .box-left-right .left .subtitle-header {

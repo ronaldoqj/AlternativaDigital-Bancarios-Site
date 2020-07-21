@@ -10,6 +10,7 @@
         <input type="hidden" name="_token" :value="csrf">
         <input type="hidden" name="tipoDaNoticia" :value="btnTipoNoticiaSelecionado" />
         <input type="hidden" name="ativarNoticia" :value="ativarNoticia" />
+        <input type="hidden" name="idNoticia" :value="idNoticia" />
 
         <div class="row">
             <div class="col-12">
@@ -142,29 +143,38 @@
                         <div class="col-8 col-box-files" :class="borderFields.bannerDestaque">
                             <label>Banner Destaque</label>
                             <div class="box-files">
-                                <v-file-input name="bannerDestaque"
-                                    v-model="filesBannerDestaque"
-                                    label="Banner Destaque:"
-                                    placeholder="Procurar Imagem"
-                                    prepend-icon=""
-                                    prepend-inner-icon="add_photo_alternate"
-                                    dense="dense"
-                                    color="primary"
-                                    counter
-                                    multiple
-                                    accept="image/png, image/jpeg, image/bmp"
-                                    outlined
-                                    :show-size="1000"
-                                >
-                                    <template v-slot:selection="{ index, text }">
-                                    <v-chip v-if="index < 2" color="primary" dark label small>
-                                        {{ text }}
-                                    </v-chip>
-                                    <span v-else-if="index === 2" class="overline grey--text text--darken-3 mx-2" >
-                                        +{{ files.length - 2 }} File(s)
-                                    </span>
-                                    </template>
-                                </v-file-input>
+
+                                <template v-if="fileBannerIsEdit != ''">
+                                    <div class="box-image">
+                                        <img :src="fileBannerIsEdit" class="img-fluid" alt="">
+                                        <p><v-btn depressed small color="error" @click="fileBannerIsEdit = ''">Excluir</v-btn></p>
+                                    </div>
+                                </template>
+                                <template v-else>
+                                    <v-file-input name="bannerDestaque"
+                                        v-model="filesBannerDestaque"
+                                        label="Banner Destaque:"
+                                        placeholder="Procurar Imagem"
+                                        prepend-icon=""
+                                        prepend-inner-icon="add_photo_alternate"
+                                        dense="dense"
+                                        color="primary"
+                                        counter
+                                        multiple
+                                        accept="image/png, image/jpeg, image/bmp"
+                                        outlined
+                                        :show-size="1000"
+                                    >
+                                        <template v-slot:selection="{ index, text }">
+                                        <v-chip v-if="index < 2" color="primary" dark label small>
+                                            {{ text }}
+                                        </v-chip>
+                                        <span v-else-if="index === 2" class="overline grey--text text--darken-3 mx-2" >
+                                            +{{ files.length - 2 }} File(s)
+                                        </span>
+                                        </template>
+                                    </v-file-input>
+                                </template>
                             </div>
                         </div>
                         <div class="col-4" :class="borderFields.creditoBannerDestaque">
@@ -191,30 +201,38 @@
                         <div class="col-6 col-box-files" :class="borderFields.imagemDestaque">
                             <label>Imagem Destaque</label>
                             <div class="box-files">
-                                <v-file-input
-                                    name="imagemDestaque"
-                                    v-model="filesImagemDestaque"
-                                    label="Imagem Destaque:"
-                                    placeholder="Procurar Imagem"
-                                    prepend-icon=""
-                                    prepend-inner-icon="image"
-                                    dense="dense"
-                                    color="primary"
-                                    counter
-                                    multiple
-                                    outlined
-                                    :show-size="1000"
-                                >
-                                    <template v-slot:selection="{ index, text }">
-                                    <v-chip v-if="index < 2" color="primary" dark label small >
-                                        {{ text }}
-                                    </v-chip>
-                                    <span v-else-if="index === 2" class="overline grey--text text--darken-3 mx-2" >
-                                        +{{ files.length - 2 }} File(s)
-                                    </span>
-                                    </template>
-                                </v-file-input>
-
+                                <template v-if="fileImagemIsEdit != ''">
+                                    <div class="box-image">
+                                        <img :src="fileImagemIsEdit" class="img-fluid" alt="">
+                                        <p><v-btn depressed small color="error" @click="fileImagemIsEdit = ''">Excluir</v-btn></p>
+                                    </div>
+                                </template>
+                                <template v-else>
+                                    <v-file-input
+                                        name="imagemDestaque"
+                                        v-model="filesImagemDestaque"
+                                        label="Imagem Destaque:"
+                                        placeholder="Procurar Imagem"
+                                        prepend-icon=""
+                                        prepend-inner-icon="image"
+                                        dense="dense"
+                                        color="primary"
+                                        counter
+                                        multiple
+                                        accept="image/png, image/jpeg, image/bmp"
+                                        outlined
+                                        :show-size="1000"
+                                    >
+                                        <template v-slot:selection="{ index, text }">
+                                        <v-chip v-if="index < 2" color="primary" dark label small >
+                                            {{ text }}
+                                        </v-chip>
+                                        <span v-else-if="index === 2" class="overline grey--text text--darken-3 mx-2" >
+                                            +{{ files.length - 2 }} File(s)
+                                        </span>
+                                        </template>
+                                    </v-file-input>
+                                </template>
                             </div>
                         </div>
                         <div class="col-6" :class="borderFields.creditoImagemDestaque">
@@ -241,30 +259,42 @@
                         <div class="col-12 col-box-files" :class="borderFields.filePodcast">
                             <label>Mp3 Podcast</label>
                             <div class="box-files">
-                                <v-file-input
-                                    name="filePodcast"
-                                    label="Mp3 Podcast:"
-                                    placeholder="Procurar Audio"
-                                    prepend-icon=""
-                                    prepend-inner-icon="mic_none"
-                                    v-model="filesPodcast"
-                                    dense="dense"
-                                    color="primary"
-                                    counter
-                                    multiple
-                                    accept="audio/mpeg"
-                                    outlined
-                                    :show-size="1000"
-                                >
-                                    <template v-slot:selection="{ index, text }">
-                                    <v-chip v-if="index < 2" color="primary" dark label small >
-                                        {{ text }}
-                                    </v-chip>
-                                    <span v-else-if="index === 2" class="overline grey--text text--darken-3 mx-2" >
-                                        +{{ files.length - 2 }} File(s)
-                                    </span>
-                                    </template>
-                                </v-file-input>
+
+                                <template v-if="filePodcastIsEdit != ''">
+                                    <div class="box-image">
+                                        <audio controls>
+                                            <source :src="filePodcastIsEdit" type="audio/mpeg">
+                                            Seu navegador de internet não suporta o elemento do tipo audio.
+                                        </audio>
+                                        <p><v-btn depressed small color="error" @click="filePodcastIsEdit = ''">Excluir</v-btn></p>
+                                    </div>
+                                </template>
+                                <template v-else>
+                                    <v-file-input
+                                        name="filePodcast"
+                                        label="Mp3 Podcast:"
+                                        placeholder="Procurar Audio"
+                                        prepend-icon=""
+                                        prepend-inner-icon="mic_none"
+                                        v-model="filesPodcast"
+                                        dense="dense"
+                                        color="primary"
+                                        counter
+                                        multiple
+                                        accept="audio/mpeg"
+                                        outlined
+                                        :show-size="1000"
+                                    >
+                                        <template v-slot:selection="{ index, text }">
+                                        <v-chip v-if="index < 2" color="primary" dark label small >
+                                            {{ text }}
+                                        </v-chip>
+                                        <span v-else-if="index === 2" class="overline grey--text text--darken-3 mx-2" >
+                                            +{{ files.length - 2 }} File(s)
+                                        </span>
+                                        </template>
+                                    </v-file-input>
+                                </template>
                             </div>
                         </div>
                     </div>
@@ -370,9 +400,9 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-12">
-                <v-btn type="submit" class="btn-cadastrar" block rounded dark>Cadastrar</v-btn>
+                <v-btn type="submit" class="btn-cadastrar" block rounded dark>{{valueBtnSubmit}}</v-btn>
             </div>
         </div>
     </form>  

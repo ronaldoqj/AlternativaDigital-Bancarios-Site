@@ -6,11 +6,10 @@
 
 @section('content')
 
-
 <div class="container-fluid">
     
     <div>
-        <noticias-page />
+        <noticias-page prop-noticias="{{ json_encode($return) }}" />
     </div>
 
 </div>

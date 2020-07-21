@@ -1,4 +1,5 @@
 import btnIconText from "../../components/btn_icon-text/BtnIconText.vue"
+import moment from 'moment';
 export default {
     watch: {
         btnTipoNoticiaSelecionado(newValue, oldValue)
@@ -86,6 +87,8 @@ export default {
       })
 
       return {
+          idNoticia: '',
+          valueBtnSubmit: 'Cadastrar',
 
           // variavel necessária para o component de mensagens de erro
           errorsShow: {
@@ -93,6 +96,8 @@ export default {
             title: 'Não foi possivel realizar o cadastro!',
             errors: []
           },
+
+          isEdit: false,
           
           borderFields: {},
           btnTipoNoticiaSelecionado: '',
@@ -115,7 +120,7 @@ export default {
               tituloDaNoticia: '',
               linhaDeApoio: '',
               texto: '',
-              jornalistaResponsave: ''
+              jornalistaResponsavel: ''
           },
 
           dateTimeInputs: {
@@ -172,9 +177,14 @@ export default {
               }
           },
 
+          // Controle dos files
           filesBannerDestaque: null,
+            fileBannerIsEdit: '',
           filesImagemDestaque: null,
-          filesPodcast: null
+            fileImagemIsEdit: '',
+          filesPodcast: null,
+            filePodcastIsEdit: '',
+
       }
 
     },
@@ -222,14 +232,25 @@ export default {
             switch (this.btnTipoNoticiaSelecionado)
             {
                 case 'noticia-destaque':
+                    // Opcionais
+                    if (! _.isEmpty(this.filesPodcast) )
+                    {
+                        if (! _.isEmpty(this.filesPodcast)  ) {
+                            if ( this.filesPodcast[0].size >= 20000000) {
+                                this.errorsShow.errors.push({title: 'Mp3 Podcast', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 20mb) '});
+                            }
+                        }
+                    }
+
+                    // Validações especificas
                     if ( _.isEmpty(this.dateTimeInputs.dates.limiteNoDestaque.date) )
                         this.errorsShow.errors.push({title: 'Limite No Destaque', description: 'obrigatório'});
                     if ( _.isEmpty(this.dateTimeInputs.times.limiteDestaque.time) )
                         this.errorsShow.errors.push({title: 'Limite Hora', description: 'obrigatório'});
 
-                    if ( _.isEmpty(this.filesBannerDestaque) )
+                    if ( _.isEmpty(this.filesBannerDestaque) && this.fileBannerIsEdit == '' )
                         this.errorsShow.errors.push({title: 'Banner Destaque', description: 'obrigatório'});
-                    if (! _.isEmpty(this.filesBannerDestaque)  ) {
+                    if (! _.isEmpty(this.filesBannerDestaque) && this.fileBannerIsEdit == ''  ) {
                         if ( this.filesBannerDestaque[0].size >= 1000000) {
                             this.errorsShow.errors.push({title: 'Banner Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
                         }
@@ -237,9 +258,9 @@ export default {
                     if ( _.isEmpty(this.dataInputs.creditoBannerDestaque) )
                         this.errorsShow.errors.push({title: 'Crédito da Imagem (Banner Destaque)', description: 'obrigatório'});
 
-                    if ( _.isEmpty(this.filesImagemDestaque) )
+                    if ( _.isEmpty(this.filesImagemDestaque) && this.fileImagemIsEdit == '' )
                         this.errorsShow.errors.push({title: 'Imagem Destaque', description: 'obrigatório'});
-                    if (! _.isEmpty(this.filesImagemDestaque)  ) {
+                    if (! _.isEmpty(this.filesImagemDestaque) && this.fileImagemIsEdit == ''  ) {
                         if ( this.filesImagemDestaque[0].size >= 1000000) {
                             this.errorsShow.errors.push({title: 'Imagem Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
                         }
@@ -249,14 +270,53 @@ export default {
                 break;
 
                 case 'noticia-video':
+                    // Opcionais
+                    if (! _.isEmpty(this.filesBannerDestaque) )
+                    {
+                        if ( this.filesBannerDestaque[0].size >= 1000000) {
+                            this.errorsShow.errors.push({title: 'Banner Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
+                        }
+                    }
+                    if (! _.isEmpty(this.filesImagemDestaque)  ) {
+                        if ( this.filesImagemDestaque[0].size >= 1000000) {
+                            this.errorsShow.errors.push({title: 'Imagem Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
+                        }
+                    }
+                    if (! _.isEmpty(this.filesPodcast) )
+                    {
+                        if (! _.isEmpty(this.filesPodcast)  ) {
+                            if ( this.filesPodcast[0].size >= 20000000) {
+                                this.errorsShow.errors.push({title: 'Mp3 Podcast', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 20mb) '});
+                            }
+                        }
+                    }
+
+                    // Validações especificas
                     if ( _.isEmpty(this.dataInputs.youtube) )
                         this.errorsShow.errors.push({title: 'Vídeo Youtube', description: 'obrigatório'});
                 break;
 
                 case 'noticia-imagem':
-                    if ( _.isEmpty(this.filesImagemDestaque) )
+                    // Opcionais
+                    if (! _.isEmpty(this.filesBannerDestaque) )
+                    {
+                        if ( this.filesBannerDestaque[0].size >= 1000000) {
+                            this.errorsShow.errors.push({title: 'Banner Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
+                        }
+                    }
+                    if (! _.isEmpty(this.filesPodcast) )
+                    {
+                        if (! _.isEmpty(this.filesPodcast)  ) {
+                            if ( this.filesPodcast[0].size >= 20000000) {
+                                this.errorsShow.errors.push({title: 'Mp3 Podcast', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 20mb) '});
+                            }
+                        }
+                    }
+
+                    // Validações especificas
+                    if ( _.isEmpty(this.filesImagemDestaque && this.fileImagemIsEdit == '') )
                         this.errorsShow.errors.push({title: 'Imagem Destaque', description: 'obrigatório'});
-                    if (! _.isEmpty(this.filesImagemDestaque)  ) {
+                    if (! _.isEmpty(this.filesImagemDestaque && this.fileImagemIsEdit == '')  ) {
                         if ( this.filesImagemDestaque[0].size >= 1000000) {
                             this.errorsShow.errors.push({title: 'Imagem Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
                         }
@@ -266,16 +326,49 @@ export default {
                 break;
 
                 case 'noticia-podcast':
-                    if ( _.isEmpty(this.filesPodcast) )
+                    // Opcionais
+                    if (! _.isEmpty(this.filesBannerDestaque) )
+                    {
+                        if ( this.filesBannerDestaque[0].size >= 1000000) {
+                            this.errorsShow.errors.push({title: 'Banner Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
+                        }
+                    }
+                    if (! _.isEmpty(this.filesImagemDestaque)  ) {
+                        if ( this.filesImagemDestaque[0].size >= 1000000) {
+                            this.errorsShow.errors.push({title: 'Imagem Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
+                        }
+                    }
+
+                    // Validações especificas
+                    if ( _.isEmpty(this.filesPodcast) && this.filePodcastIsEdit == '' )
                         this.errorsShow.errors.push({title: 'Mp3 Podcast', description: 'obrigatório'});
-                    if (! _.isEmpty(this.filesPodcast)  ) {
+                    if (! _.isEmpty(this.filesPodcast) && this.filePodcastIsEdit == '' ) {
                         if ( this.filesPodcast[0].size >= 20000000) {
                             this.errorsShow.errors.push({title: 'Mp3 Podcast', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 20mb) '});
                         }
                     }
                 break;
                 case 'noticia-simples':
-                    //code
+                    // Opcionais
+                    if (! _.isEmpty(this.filesBannerDestaque) )
+                    {
+                        if ( this.filesBannerDestaque[0].size >= 1000000) {
+                            this.errorsShow.errors.push({title: 'Banner Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
+                        }
+                    }
+                    if (! _.isEmpty(this.filesImagemDestaque)  ) {
+                        if ( this.filesImagemDestaque[0].size >= 1000000) {
+                            this.errorsShow.errors.push({title: 'Imagem Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
+                        }
+                    }
+                    if (! _.isEmpty(this.filesPodcast) )
+                    {
+                        if (! _.isEmpty(this.filesPodcast)  ) {
+                            if ( this.filesPodcast[0].size >= 20000000) {
+                                this.errorsShow.errors.push({title: 'Mp3 Podcast', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 20mb) '});
+                            }
+                        }
+                    }
                 break;
             }
 
@@ -305,6 +398,60 @@ export default {
             
         },
 
+        editStartCompleteFilds (noticia)
+        {
+            console.log(noticia);
+
+
+            this.idNoticia = noticia.id;
+            this.valueBtnSubmit = 'Editar';
+
+            // Seleciona o tipo de noticia
+            switch (noticia.tipoDaNoticia)
+            {
+                case 'noticia-destaque':
+                    this.clickBtnNoticias('btnIconTextDestaque');
+                break;
+                case 'noticia-video':
+                    this.clickBtnNoticias('btnIconTextVideo');
+                break;
+                case 'noticia-imagem':
+                    this.clickBtnNoticias('btnIconTextImagem');
+                break;
+                case 'noticia-podcast':
+                    this.clickBtnNoticias('btnIconTextPodcast');
+                break;
+                case 'noticia-simples':
+                    this.clickBtnNoticias('btnIconTextTexto');
+                break;
+            }
+
+            // Setando campos com os valores já cadastrados
+            this.dateTimeInputs.dates.dataDaInclusao.date = moment(String(noticia.dataInclusao)).format('YYYY-MM-DD');
+            this.dateTimeInputs.dates.limiteNoDestaque.date = _.isEmpty(noticia.dataLimiteNoDestaque) ? '' : moment(String(noticia.dataLimiteNoDestaque)).format('YYYY-MM-DD');
+            this.dateTimeInputs.times.limiteDestaque.time = _.isEmpty(noticia.horaLimiteNoDestaque) ? '' : moment(String('2020-01-01 '+noticia.horaLimiteNoDestaque)).format('h:mm');
+
+            this.ativarNoticia = noticia.ativo == 'S' ? true: false;
+
+            // Controle para mostrar os files ignorando a regra atual de validação (CONTEM VALOR DO TIPO STRING)
+            // Ou manter a mesma logica que é quando o formulário está realizando cadastro (VAZIO DO TIPO STRING) 
+            this.fileBannerIsEdit = noticia.fileBannerDestaque_id > 0 ? `/${noticia.fileBannerDestaque_pathfile}/${noticia.fileBannerDestaque_namefile}` : '';
+            this.fileImagemIsEdit = noticia.fileImagemDestaque_id > 0 ? `/${noticia.fileImagemDestaque_pathfile}/${noticia.fileImagemDestaque_namefile}` : '';
+            this.filePodcastIsEdit = noticia.filePodcast_id > 0 ? `/${noticia.filePodcast_pathfile}/${noticia.filePodcast_namefile}` : '';
+
+            this.dataInputs = {
+                creditoBannerDestaque: noticia.fileBannerDestaque_creditfile,
+                creditoImagemDestaque: noticia.fileImagemDestaque_creditfile,
+                youtube: noticia.videoYoutube,
+                cartola: noticia.cartola,
+                tags: noticia.tags,
+                tituloDaNoticia: noticia.titulo,
+                linhaDeApoio: noticia.linhaDeApoio,
+                texto: noticia.texto,
+                jornalistaResponsavel: noticia.jornalistaResponsavel
+            };
+        }
+
     },
     created()
     {
@@ -314,6 +461,12 @@ export default {
                 this.btnTipoNoticiaSelecionado = this.paramsBtnIcons[key].type;
             }
         }
+
+        if (!_.isEmpty(this.noticiaEdition)) {
+            this.isEdit = true;
+            this.editStartCompleteFilds(JSON.parse(this.noticiaEdition));
+        }
+        
     },
-    props: ['csrf', 'formAction'],
+    props: ['csrf', 'formAction', 'noticiaEdition'],
 }
