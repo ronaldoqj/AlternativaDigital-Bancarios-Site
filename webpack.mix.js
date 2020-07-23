@@ -43,5 +43,6 @@ mix.js('resources/_adm/js/app.js', 'public/_adm/js/app.js')
     .scripts('resources/_site/js/template.js', 'public/_site/js/template.js');
 
 mix.sass('resources/_adm/sass/app.scss', 'public/_adm/css/app.css');
+mix.sass('resources/_adm/sass/auth.scss', 'public/_adm/css/auth.css');
 
 mix.browserSync(process.env.APP_URL);

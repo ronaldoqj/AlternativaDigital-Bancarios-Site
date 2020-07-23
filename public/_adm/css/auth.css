@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+/**
+* Variaveis utilizada para o 
+* comportamento do template
+* 
+* @note Para um correto funcionamento do template,
+*       altere unicamente e caso seja necessario, somente
+*       o bloco de variaveis a seguir:
+*
+*           body   | Prefixo = body   (Configurações do elemento body do documento)
+*           Header | Prefixo = height (Topo do site)
+*           Menu   | Prefixo = menu   (Menu lateral principal)
+*           Footer | Prefixo = footer (Rodapé)
+*
+* @css-for Template Vars
+*/
+
+/**
+* Variaveis de calculos do template
+* 
+* Variaveis responsaveis pelos corretos calculos para
+* o funcionamento do template.
+*
+* @note Não mexer. Altere unicamente caso seja necessário
+*       corrigir algum possivel bug na renderização da
+*       estrutura do template.
+*
+* @css-for Calc Template Vars
+*/
+
+#container__auth {
+  height: 100%;
+  background-image: linear-gradient(#39607E, #071C3B);
+}
+
+#container__auth > div.container {
+  border: solid 1px purple;
+  height: 100%;
+}
+
+#container__auth > div.container > div.row {
+  height: 100%;
+}
+
+#container__auth > div.container > div.row .box__btn--forgot-password {
+  text-align: right;
+}
+
+#container__auth > div.container > div.row .box__btn--forgot-password a {
+  padding: 0;
+}
+

@@ -1,0 +1,28 @@
+
+// Variables
+@import '_vars';
+
+#container__auth
+{
+    height: 100%;
+    background-image: linear-gradient(#39607E, #071C3B);
+
+    > div.container {
+        border: solid 1px purple;
+        height: 100%;
+
+        > div.row {
+            height: 100%;
+
+            .box__btn--forgot-password {
+                text-align: right;
+
+                a {
+                    padding: 0;
+                }
+            }
+
+
+        }
+    }
+}
