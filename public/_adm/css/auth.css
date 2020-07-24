@@ -34,8 +34,15 @@
   background-image: linear-gradient(#39607E, #071C3B);
 }
 
+#container__auth .form__group--auth {
+  margin-bottom: 0;
+}
+
+#container__auth .form__group--auth .cols--inputs {
+  padding-top: 0;
+}
+
 #container__auth > div.container {
-  border: solid 1px purple;
   height: 100%;
 }
 
@@ -49,5 +56,13 @@
 
 #container__auth > div.container > div.row .box__btn--forgot-password a {
   padding: 0;
+}
+
+#container__auth .btn {
+  border-radius: 20px;
+}
+
+#container__auth .btn.btn-primary--auth {
+  color: white;
 }
 

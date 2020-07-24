@@ -45,5 +45,21 @@ Vue.component('noticias-page', require('./_pages/noticias/Noticias.vue').default
 const app = new Vue({
     vuetify,
     el: '#app',
+    data: {
+        email: '',
+        emailRules: [
+            v => !!v || 'E-mail é obrigatorio',
+            v => /.+@.+\..+/.test(v) || 'E-mail precisa ser valido',
+        ],
+
+        show1: false,
+        password: '',
+        rules: {
+            required: value => !!value || 'Required.',
+            min: v => v.length >= 6 || 'Minimo de 6 caracteres'
+        },
+
+
+    }
     //render: h => h(Login),
 });

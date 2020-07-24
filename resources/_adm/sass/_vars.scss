@@ -1,13 +1,3 @@
-$theme-colors: (
-    "purple": purple,
-    "primary": #125488
-);
-
-
-// Fonts of project
-$font-first: 'Open Sans', sans-serif;
-$font-second: 'PT Sans', sans-serif;
-
 // colors of project
 $blue: #125488;
 $blue-light: #53A6D8;
@@ -20,6 +10,19 @@ $red-strong: #721B1B;
 $gray: #C1C1C1;
 $grey: #C1C1C1;
 $gray-font: #919191;
+
+$theme-colors: (
+    "purple": purple,
+    "primary": #125488,
+    "primary--auth": $blue-light,
+);
+
+
+// Fonts of project
+$font-first: 'Open Sans', sans-serif;
+$font-second: 'PT Sans', sans-serif;
+
+
 
 $component-background-color: white;
 

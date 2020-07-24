@@ -4,11 +4,19 @@
 
 #container__auth
 {
+    .form__group--auth
+    {
+        margin-bottom: 0;
+
+        .cols--inputs {
+            padding-top: 0;
+        }
+    }
+
     height: 100%;
     background-image: linear-gradient(#39607E, #071C3B);
 
     > div.container {
-        border: solid 1px purple;
         height: 100%;
 
         > div.row {
@@ -21,8 +29,15 @@
                     padding: 0;
                 }
             }
+        }
+    }
 
+    .btn
+    {
+        border-radius: 20px;
 
+        &.btn-primary--auth {
+            color: white;
         }
     }
 }
