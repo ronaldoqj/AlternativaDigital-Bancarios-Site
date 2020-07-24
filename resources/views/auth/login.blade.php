@@ -29,6 +29,7 @@
                                 :rules="emailRules"
                                 label="Digite seu E-mail"
                                 prepend-icon="email"
+                                color="rgba(255,255,255,1)"
                                 required
                             ></v-text-field>
 
@@ -59,6 +60,7 @@
                                 label="Digite Sua Senha"
                                 hint="Minimo de 6 caracteres"
                                 counter
+                                color="rgba(255,255,255,1)"
                                 prepend-icon="lock"
                                 @click:append="show1 = !show1"
                             ></v-text-field>

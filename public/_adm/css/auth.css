@@ -42,6 +42,16 @@
   padding-top: 0;
 }
 
+#container__auth .form__group--auth .theme--light.v-text-field > .v-input__control > .v-input__slot:before {
+  border-color: white;
+}
+
+#container__auth .form__group--auth .theme--light.v-input,
+#container__auth .form__group--auth .theme--light.v-input input,
+#container__auth .form__group--auth .theme--light.v-input textarea {
+  color: white !important;
+}
+
 #container__auth > div.container {
   height: 100%;
 }

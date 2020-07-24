@@ -11,7 +11,20 @@
         .cols--inputs {
             padding-top: 0;
         }
-    }
+
+        .theme--light.v-text-field>.v-input__control>.v-input__slot:before {
+            border-color: white;
+        }
+
+        .theme--light.v-input, .theme--light.v-input input, .theme--light.v-input textarea {
+            color: white !important;
+        }
+
+        .v-input__icon {
+            i {
+                color: white !important;
+            }
+        }
 
     height: 100%;
     background-image: linear-gradient(#39607E, #071C3B);
