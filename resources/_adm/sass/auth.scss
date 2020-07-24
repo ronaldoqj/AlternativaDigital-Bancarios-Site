@@ -17,15 +17,31 @@
         }
 
         .theme--light.v-input, .theme--light.v-input input, .theme--light.v-input textarea {
-            color: white !important;
+            color: white;
         }
 
         .v-input__icon {
             i {
-                color: white !important;
+                color: white;
             }
         }
 
+        .theme--light.v-label {
+            color: white;
+        }
+
+        .theme--light.v-icon {
+            color: white;
+        }
+
+        .theme--light.v-counter {
+            color: white;
+        }
+
+        .theme--light.v-messages {
+            color: white;
+        }
+    }
     height: 100%;
     background-image: linear-gradient(#39607E, #071C3B);
 

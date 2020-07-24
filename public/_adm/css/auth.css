@@ -49,7 +49,27 @@
 #container__auth .form__group--auth .theme--light.v-input,
 #container__auth .form__group--auth .theme--light.v-input input,
 #container__auth .form__group--auth .theme--light.v-input textarea {
-  color: white !important;
+  color: white;
+}
+
+#container__auth .form__group--auth .v-input__icon i {
+  color: white;
+}
+
+#container__auth .form__group--auth .theme--light.v-label {
+  color: white;
+}
+
+#container__auth .form__group--auth .theme--light.v-icon {
+  color: white;
+}
+
+#container__auth .form__group--auth .theme--light.v-counter {
+  color: white;
+}
+
+#container__auth .form__group--auth .theme--light.v-messages {
+  color: white;
 }
 
 #container__auth > div.container {

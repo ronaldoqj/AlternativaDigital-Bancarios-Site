@@ -91,10 +91,6 @@ export default {
 
 
             // CkEditor
-           
-
-
-
 
           idNoticia: '',
           valueBtnSubmit: 'Cadastrar',

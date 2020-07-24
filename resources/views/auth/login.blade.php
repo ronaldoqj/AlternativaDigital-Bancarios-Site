@@ -26,6 +26,7 @@
 
                             <v-text-field
                                 v-model="email"
+                                name="email"
                                 :rules="emailRules"
                                 label="Digite seu E-mail"
                                 prepend-icon="email"

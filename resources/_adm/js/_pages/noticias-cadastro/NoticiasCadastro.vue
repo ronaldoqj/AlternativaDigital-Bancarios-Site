@@ -413,7 +413,7 @@
 
 
 
-
+        <input type="hidden" name="texto" v-model="dataInputs.texto" />
 
         <div class="row">
             <div class="col-12">
