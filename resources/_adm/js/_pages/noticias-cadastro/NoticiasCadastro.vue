@@ -390,7 +390,7 @@
             </div>
         </div>
 
-        <div class="row inputs-finais-to-all-types">
+        <!-- <div class="row inputs-finais-to-all-types">
             <div class="col-12" :class="borderFields.texto">
                 <v-textarea
                 v-model="dataInputs.texto"
@@ -400,8 +400,43 @@
                 counter="240"
                 outlined
                 ></v-textarea>
+
+                <ckeditor v-model="dataInputs.texto"></ckeditor>
+            </div>
+        </div> -->
+
+
+
+
+
+
+
+
+
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 col-box-files" :class="borderFields.texto">
+                            <label>Texto</label>
+                            <div class="box-files ckeditor">
+
+                                <ckeditor v-model="dataInputs.texto"></ckeditor>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+
+
+
+
+
+
 
         <div class="row inputs-finais-to-all-types">
             <div class="col-12" :class="borderFields.jornalistaResponsavel">

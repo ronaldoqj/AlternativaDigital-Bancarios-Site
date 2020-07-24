@@ -1,5 +1,6 @@
 import btnIconText from "../../components/btn_icon-text/BtnIconText.vue"
 import moment from 'moment';
+
 export default {
     watch: {
         btnTipoNoticiaSelecionado(newValue, oldValue)
@@ -87,6 +88,14 @@ export default {
       })
 
       return {
+
+
+            // CkEditor
+           
+
+
+
+
           idNoticia: '',
           valueBtnSubmit: 'Cadastrar',
 
@@ -188,8 +197,13 @@ export default {
       }
 
     },
-    components: { btnIconText },
+    components: { btnIconText  },
     methods: {
+
+
+        // CKeditor
+        
+
 
         shadowEfectBorderReset: function()
         {

@@ -10,6 +10,8 @@ window.Vue = require('vue');
 window._ = require('lodash');
 
 import vuetify from './vuetify'
+import CKEditor from 'ckeditor4-vue';
+Vue.use( CKEditor );
 
 /**
  * The following block of code may be used to automatically register your

@@ -87,11 +87,16 @@
 
     .requided
     {
-        .box-files{
+        .box-files {
             border-color: #53A6D8;
             transition: $transition-normal ease;
             animation: shadowEfectBorder 1s;
             animation-fill-mode: forwards;
+
+            &.ckeditor {
+                padding: 5px;
+                border-radius: 5px;
+            }
         }
 
         fieldset {
@@ -100,7 +105,9 @@
             animation: shadowEfectBorder 1s;
             animation-fill-mode: forwards;
         }
+        
     }
+            
 
     .inputs-finais-to-all-types {
         
@@ -115,6 +122,8 @@
     //     min-width: 100% !important;
     //     margin: 0 !important;
     // }
+
+    
 }
 
 
