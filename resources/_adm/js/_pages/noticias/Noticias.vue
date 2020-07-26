@@ -15,172 +15,243 @@
             </div>
         </div>
 
-        <v-expansion-panels
-        v-model="panel"
-        multiple
-        flat
-        >
+        <form ref="formDelete" :action="actionForm" method="post">
+            <input type="hidden" name="_token" :value="csrf">
+            <input type="hidden" name="id" :value="id">
+            <input type="hidden" name="action" :value="action">
+        
+            <v-expansion-panels
+            v-model="panel"
+            multiple
+            flat
+            >
+                <v-expansion-panel>
+                    <v-expansion-panel-header>
+                        <div class="header--panel">
+                            <div><btnIconText :params="paramsBtnIcons.btnIconTextDestaque"></btnIconText></div>
+                            <div></div>
+                        </div>
+                    </v-expansion-panel-header>
+                    <v-expansion-panel-content>
+                    <div class="container-fluid content--panel">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in noticias.destaques">
+                                
+                                <div class="box--noticia">
+                                    <div class="imagem-noticia" :style="{ backgroundImage: `url(/${item.fileBannerDestaque_pathfile}/${item.fileBannerDestaque_namefile})` }"></div>
+                                    <div class="buttons">
+                                        <a :href="`/adm/noticias/edicao/${item.id}`"><img src="/_adm/assets/SVGs/editar.svg" class="img-fluid" onload="SVGInject(this)" /></a>
+                                        
+                                        <v-menu :close-on-content-click="true" :nudge-width="150" offset-x>
+                                            <template v-slot:activator="{ on, attrs }">
+                                                <a @click="clickExcluir(item)" v-bind="attrs" v-on="on"><img src="/_adm/assets/SVGs/excluir.svg" class="img-fluid" onload="SVGInject(this)" /></a>
+                                            </template>
+                                            
+                                            <v-card>
+                                                <v-list-item> <v-list-item-title>Deseja excluir o registro?</v-list-item-title> </v-list-item>
+                                                
+                                                <v-btn x-small class="ma-2" text @click="menu = false">Cancelar</v-btn>
+                                                <v-btn small class="ma-2" tile outlined color="error" @click="formExcluirEnviar()">
+                                                    <v-icon left>delete_outline</v-icon> Excluir
+                                                </v-btn>
+                                            </v-card>
+                                        </v-menu>
 
-            <v-expansion-panel>
-                <v-expansion-panel-header>
-                    <div class="header--panel">
-                        <div><btnIconText :params="paramsBtnIcons.btnIconTextDestaque"></btnIconText></div>
-                        <div></div>
-                    </div>
-                </v-expansion-panel-header>
-                <v-expansion-panel-content>
-                <div class="container-fluid content--panel">
-                    <div class="row">
-                        <div class="col-4" v-for="item in noticias.destaques">
-                            
-                            <div class="box--noticia">
-                                <div class="imagem-noticia" :style="{ backgroundImage: `url(/${item.fileBannerDestaque_pathfile}/${item.fileBannerDestaque_namefile})` }"></div>
-                                <div class="buttons">
-                                    <a :href="`/adm/noticias/edicao/${item.id}`"><img src="/_adm/assets/SVGs/editar.svg" class="img-fluid" onload="SVGInject(this)" /></a>
-                                    <a :href="`/adm/noticias/exclusao/${item.id}`"><img src="/_adm/assets/SVGs/excluir.svg" class="img-fluid" onload="SVGInject(this)" /></a>
-                                </div>
-                                <div class="content">
-                                    <p>
-                                        <!-- 22ª Conferência Estadual dos Bancários e das Bancárias será no dia 4 de julho pela internet -->
-                                        {{item.titulo}}
-                                    </p>
+                                    </div>
+                                    <div class="content">
+                                        <p>
+                                            {{item.titulo}}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                </v-expansion-panel-content>
-            </v-expansion-panel>
+                    </v-expansion-panel-content>
+                </v-expansion-panel>
 
-            <v-expansion-panel>
-                <v-expansion-panel-header>
-                    <div class="header--panel">
-                        <div><btnIconText :params="paramsBtnIcons.btnIconTextVideo"></btnIconText></div>
-                        <div></div>
-                    </div>
-                </v-expansion-panel-header>
-                <v-expansion-panel-content>
-                <div class="container-fluid content--panel">
-                    <div class="row">
-                        <div class="col-4" v-for="item in noticias.comVideo">
-                            
-                            <div class="box--noticia">
-                                
+                <v-expansion-panel>
+                    <v-expansion-panel-header>
+                        <div class="header--panel">
+                            <div><btnIconText :params="paramsBtnIcons.btnIconTextVideo"></btnIconText></div>
+                            <div></div>
+                        </div>
+                    </v-expansion-panel-header>
+                    <v-expansion-panel-content>
+                    <div class="container-fluid content--panel">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in noticias.comVideo">
+                                <div class="box--noticia">
                                     <div class="embed-responsive embed-responsive-16by9">
                                         <iframe class="embed-responsive-item" :src="'https://www.youtube.com/embed/' + item.videoYoutube" allowfullscreen></iframe>
                                     </div>
 
-                                <div class="buttons">
-                                    <a :href="`/adm/noticias/edicao/${item.id}`"><img src="/_adm/assets/SVGs/editar.svg" class="img-fluid" onload="SVGInject(this)" /></a>
-                                    <a :href="`/adm/noticias/exclusao/${item.id}`"><img src="/_adm/assets/SVGs/excluir.svg" class="img-fluid" onload="SVGInject(this)" /></a>
-                                </div>
-                                <div class="content">
-                                    <p>
-                                        <!-- 22ª Conferência Estadual dos Bancários e das Bancárias será no dia 4 de julho pela internet -->
-                                        {{item.titulo}}
-                                    </p>
+                                    <div class="buttons">
+                                        <a :href="`/adm/noticias/edicao/${item.id}`"><img src="/_adm/assets/SVGs/editar.svg" class="img-fluid" onload="SVGInject(this)" /></a>
+                                        <v-menu :close-on-content-click="true" :nudge-width="150" offset-x>
+                                            <template v-slot:activator="{ on, attrs }">
+                                                <a @click="clickExcluir(item)" v-bind="attrs" v-on="on"><img src="/_adm/assets/SVGs/excluir.svg" class="img-fluid" onload="SVGInject(this)" /></a>
+                                            </template>
+                                            
+                                            <v-card>
+                                                <v-list-item> <v-list-item-title>Deseja excluir o registro?</v-list-item-title> </v-list-item>
+                                                
+                                                <v-btn x-small class="ma-2" text @click="menu = false">Cancelar</v-btn>
+                                                <v-btn small class="ma-2" tile outlined color="error" @click="formExcluirEnviar()">
+                                                    <v-icon left>delete_outline</v-icon> Excluir
+                                                </v-btn>
+                                            </v-card>
+                                        </v-menu>
+                                    </div>
+                                    <div class="content">
+                                        <p>
+                                            {{item.titulo}}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                </v-expansion-panel-content>
-            </v-expansion-panel>
+                    </v-expansion-panel-content>
+                </v-expansion-panel>
 
-            <v-expansion-panel>
-                <v-expansion-panel-header>
-                    <div class="header--panel">
-                        <div><btnIconText :params="paramsBtnIcons.btnIconTextImagem"></btnIconText></div>
-                        <div></div>
-                    </div>
-                </v-expansion-panel-header>
-                <v-expansion-panel-content>
-                <div class="container-fluid content--panel">
-                    <div class="row">
-                        <div class="col-4" v-for="item in noticias.comImagem">
-                            
-                            <div class="box--noticia">
-                                <div class="imagem-noticia" :style="{ backgroundImage: `url(/${item.fileImagemDestaque_pathfile}/${item.fileImagemDestaque_namefile})` }"></div>
-                                <div class="buttons">
-                                    <a :href="`/adm/noticias/edicao/${item.id}`"><img src="/_adm/assets/SVGs/editar.svg" class="img-fluid" onload="SVGInject(this)" /></a>
-                                    <a :href="`/adm/noticias/exclusao/${item.id}`"><img src="/_adm/assets/SVGs/excluir.svg" class="img-fluid" onload="SVGInject(this)" /></a>
-                                </div>
-                                <div class="content">
-                                    <p>
-                                        <!-- 22ª Conferência Estadual dos Bancários e das Bancárias será no dia 4 de julho pela internet -->
-                                        {{item.titulo}}
-                                    </p>
+                <v-expansion-panel>
+                    <v-expansion-panel-header>
+                        <div class="header--panel">
+                            <div><btnIconText :params="paramsBtnIcons.btnIconTextImagem"></btnIconText></div>
+                            <div></div>
+                        </div>
+                    </v-expansion-panel-header>
+                    <v-expansion-panel-content>
+                    <div class="container-fluid content--panel">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in noticias.comImagem">
+                                
+                                <div class="box--noticia">
+                                    <div class="imagem-noticia" :style="{ backgroundImage: `url(/${item.fileImagemDestaque_pathfile}/${item.fileImagemDestaque_namefile})` }"></div>
+                                    <div class="buttons">
+                                        <a :href="`/adm/noticias/edicao/${item.id}`"><img src="/_adm/assets/SVGs/editar.svg" class="img-fluid" onload="SVGInject(this)" /></a>
+                                        <v-menu :close-on-content-click="true" :nudge-width="150" offset-x>
+                                            <template v-slot:activator="{ on, attrs }">
+                                                <a @click="clickExcluir(item)" v-bind="attrs" v-on="on"><img src="/_adm/assets/SVGs/excluir.svg" class="img-fluid" onload="SVGInject(this)" /></a>
+                                            </template>
+                                            
+                                            <v-card>
+                                                <v-list-item> <v-list-item-title>Deseja excluir o registro?</v-list-item-title> </v-list-item>
+                                                
+                                                <v-btn x-small class="ma-2" text @click="menu = false">Cancelar</v-btn>
+                                                <v-btn small class="ma-2" tile outlined color="error" @click="formExcluirEnviar()">
+                                                    <v-icon left>delete_outline</v-icon> Excluir
+                                                </v-btn>
+                                            </v-card>
+                                        </v-menu>
+                                    </div>
+                                    <div class="content">
+                                        <p>
+                                            {{item.titulo}}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                </v-expansion-panel-content>
-            </v-expansion-panel>
+                    </v-expansion-panel-content>
+                </v-expansion-panel>
 
-            <v-expansion-panel>
-                <v-expansion-panel-header>
-                    <div class="header--panel">
-                        <div><btnIconText :params="paramsBtnIcons.btnIconTextPodcast"></btnIconText></div>
-                        <div></div>
-                    </div>
-                </v-expansion-panel-header>
-                <v-expansion-panel-content>
-                <div class="container-fluid content--panel">
-                    <div class="row">
-                        <div class="col-4" v-for="item in noticias.comPodcast">
-                            
-                            <div class="box--noticia">
-                                <div class="imagem-noticia" :style="{ backgroundImage: `url(/${item.fileBannerDestaque_pathfile}/${item.fileBannerDestaque_namefile})` }"></div>
-                                <div class="buttons">
-                                    <a :href="`/adm/noticias/edicao/${item.id}`"><img src="/_adm/assets/SVGs/editar.svg" class="img-fluid" onload="SVGInject(this)" /></a>
-                                    <a :href="`/adm/noticias/exclusao/${item.id}`"><img src="/_adm/assets/SVGs/excluir.svg" class="img-fluid" onload="SVGInject(this)" /></a>
-                                </div>
-                                <div class="content">
-                                    <p>
-                                        <!-- 22ª Conferência Estadual dos Bancários e das Bancárias será no dia 4 de julho pela internet -->
-                                        {{item.titulo}}
-                                    </p>
-                                </div>
-                            </div>
+                <v-expansion-panel>
+                    <v-expansion-panel-header>
+                        <div class="header--panel">
+                            <div><btnIconText :params="paramsBtnIcons.btnIconTextPodcast"></btnIconText></div>
+                            <div></div>
                         </div>
-                    </div>
-                </div>
-                </v-expansion-panel-content>
-            </v-expansion-panel>
-            
-            <v-expansion-panel>
-                <v-expansion-panel-header>
-                    <div class="header--panel">
-                        <div><btnIconText :params="paramsBtnIcons.btnIconTextTexto"></btnIconText></div>
-                        <div></div>
-                    </div>
-                </v-expansion-panel-header>
-                <v-expansion-panel-content>
-                <div class="container-fluid content--panel">
-                    <div class="row">
-                        <div class="col-4" v-for="item in noticias.simples">
-                            
-                            <div class="box--noticia">
-                                <div class="imagem-noticia" :style="{ backgroundImage: `url(/${item.fileBannerDestaque_pathfile}/${item.fileBannerDestaque_namefile})` }"></div>
-                                <div class="buttons">
-                                    <a :href="`/adm/noticias/edicao/${item.id}`"><img src="/_adm/assets/SVGs/editar.svg" class="img-fluid" onload="SVGInject(this)" /></a>
-                                    <a :href="`/adm/noticias/exclusao/${item.id}`"><img src="/_adm/assets/SVGs/excluir.svg" class="img-fluid" onload="SVGInject(this)" /></a>
-                                </div>
-                                <div class="content">
-                                    <p>
-                                        <!-- 22ª Conferência Estadual dos Bancários e das Bancárias será no dia 4 de julho pela internet -->
-                                        {{item.titulo}}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </v-expansion-panel-content>
-            </v-expansion-panel>
+                    </v-expansion-panel-header>
+                    <v-expansion-panel-content>
+                    <div class="container-fluid content--panel">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in noticias.comPodcast">
+                                
+                                <div class="box--noticia">
 
-        </v-expansion-panels>
+                                    <audio controls>
+                                        <source :src="`/${item.filePodcast_pathfile}/${item.filePodcast_namefile}`" type="audio/mpeg">
+                                        Seu navegador de internet não suporta o elemento do tipo audio.
+                                    </audio>
+
+                                    <div class="buttons">
+                                        <a :href="`/adm/noticias/edicao/${item.id}`"><img src="/_adm/assets/SVGs/editar.svg" class="img-fluid" onload="SVGInject(this)" /></a>
+                                        <v-menu :close-on-content-click="true" :nudge-width="150" offset-x>
+                                            <template v-slot:activator="{ on, attrs }">
+                                                <a @click="clickExcluir(item)" v-bind="attrs" v-on="on"><img src="/_adm/assets/SVGs/excluir.svg" class="img-fluid" onload="SVGInject(this)" /></a>
+                                            </template>
+                                            
+                                            <v-card>
+                                                <v-list-item> <v-list-item-title>Deseja excluir o registro?</v-list-item-title> </v-list-item>
+                                                
+                                                <v-btn x-small class="ma-2" text @click="menu = false">Cancelar</v-btn>
+                                                <v-btn small class="ma-2" tile outlined color="error" @click="formExcluirEnviar()">
+                                                    <v-icon left>delete_outline</v-icon> Excluir
+                                                </v-btn>
+                                            </v-card>
+                                        </v-menu>
+                                    </div>
+                                    <div class="content">
+                                        <p>
+                                            {{item.titulo}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </v-expansion-panel-content>
+                </v-expansion-panel>
+                
+                <v-expansion-panel>
+                    <v-expansion-panel-header>
+                        <div class="header--panel">
+                            <div><btnIconText :params="paramsBtnIcons.btnIconTextTexto"></btnIconText></div>
+                            <div></div>
+                        </div>
+                    </v-expansion-panel-header>
+                    <v-expansion-panel-content>
+                    <div class="container-fluid content--panel">
+                        <div class="row">
+                            
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in noticias.simples">
+                                
+                                <div class="box--noticia noticia-simples">
+                                    <div class="buttons">
+                                        <a :href="`/adm/noticias/edicao/${item.id}`"><img src="/_adm/assets/SVGs/editar.svg" class="img-fluid" onload="SVGInject(this)" /></a>
+                                        <v-menu :close-on-content-click="true" :nudge-width="150" offset-x>
+                                            <template v-slot:activator="{ on, attrs }">
+                                                <a @click="clickExcluir(item)" v-bind="attrs" v-on="on"><img src="/_adm/assets/SVGs/excluir.svg" class="img-fluid" onload="SVGInject(this)" /></a>
+                                            </template>
+                                            
+                                            <v-card>
+                                                <v-list-item> <v-list-item-title>Deseja excluir o registro?</v-list-item-title> </v-list-item>
+                                                
+                                                <v-btn x-small class="ma-2" text @click="menu = false">Cancelar</v-btn>
+                                                <v-btn small class="ma-2" tile outlined color="error" @click="formExcluirEnviar()">
+                                                    <v-icon left>delete_outline</v-icon> Excluir
+                                                </v-btn>
+                                            </v-card>
+                                        </v-menu>
+                                    </div>
+                                    <div class="content">
+                                        <p>
+                                            {{item.titulo}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </v-expansion-panel-content>
+                </v-expansion-panel>
+
+
+            </v-expansion-panels>
+        </form>
 
     </div>
 </template>  
@@ -192,8 +263,14 @@ import btnIconText from "../../components/btn_icon-text/BtnIconText.vue"
 export default {
     data: () => {
         return {
-            // panel: [0, 1, 2, 3, 4],
-            panel: [0, 1, 2],
+
+            // inputs Hidden
+            id: '',
+            action: '',
+
+            // controle dos acordeões
+            panel: [0, 1, 2, 3, 4],
+            
 
             size: {
                 height: '250px',
@@ -244,8 +321,17 @@ export default {
         }
     },
     components: { btnIconText },
-    props: [ 'propNoticias' ],
+    props: [ 'csrf', 'actionForm', 'propNoticias' ],
     methods: {
+        
+        clickExcluir(item)
+        {
+            this.id = item.id;
+            this.modal.action = 'excluir';
+        },
+        formExcluirEnviar() {
+            this.$refs.formDelete.submit();
+        }
     },
     created()
     {
@@ -254,8 +340,6 @@ export default {
         this.noticias.comPodcast = JSON.parse(JSON.parse(this.propNoticias).noticiaComPodcast);
         this.noticias.comVideo = JSON.parse(JSON.parse(this.propNoticias).noticiaComVideo);
         this.noticias.simples = JSON.parse(JSON.parse(this.propNoticias).noticiaSimples);
-
-        console.log(this.noticias.comVideo);
     }
 }
 
@@ -273,8 +357,9 @@ export default {
         justify-content: space-between;
         flex-wrap: wrap;
         border: solid 1px $grey;
-        padding: 10px 20px;
-        border-radius: 15px;
+        padding: 10px 40px;
+        border-radius: 40px;
+        background-color: $blue;
    
 
         a
@@ -306,7 +391,7 @@ export default {
                 }
 
                 p {
-                    color: $blue-strong;
+                    color: $blue-light;
                 }
             }
         }
@@ -339,7 +424,6 @@ export default {
 
             &:last-child
             {
-                // flex: auto;
                 background-color: #E0E1E3;
                 height: 2px;
                 width: 100%;
@@ -354,12 +438,18 @@ export default {
         .box--noticia
         {
             position: relative;
+            border-bottom: solid 1px $grey-light;
 
             .imagem-noticia {
                 width: 100%;
                 height: 100px;
                 background-size: cover;
                 background-position: center;
+            }
+
+            audio {
+                width: 100%;
+                margin: 0px 0 20px;
             }
 
             .buttons
@@ -369,7 +459,6 @@ export default {
                 margin: -43px 0 0;
                 position: absolute;
                 width: 100%;
-
                 a
                 {
                     svg
@@ -408,9 +497,18 @@ export default {
                 color: #125488;
                 line-height: 1.2em;
                 font-size: 0.9em;
+                margin-top: 15px;
             }
 
-
+            &.noticia-simples
+            {
+                .buttons {
+                    margin: 0;
+                    position: relative;
+                    margin-top: 20px;
+                }
+                
+            }
 
         }
         
@@ -418,4 +516,3 @@ export default {
 }
 
 </style>
-

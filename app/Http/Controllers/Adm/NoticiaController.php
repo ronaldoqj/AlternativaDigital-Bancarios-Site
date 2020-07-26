@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Adm;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Banco;
 use App\Models\Noticia;
 use App\Services\Upload;
 use App\Models\File;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
+use PHPUnit\Framework\Error\Notice;
 
 class NoticiaController extends Controller
 {
@@ -42,7 +44,8 @@ class NoticiaController extends Controller
 
     public function cadastro(Request $request)
     {
-        return view('adm.noticias-cadastrar');
+        $bancos = new Banco();
+        return view('adm.noticias-cadastrar')->withBancos($bancos->all()->toJson());
     }
 
     public function edicao(Request $request, $id = '')
@@ -54,7 +57,9 @@ class NoticiaController extends Controller
         $noticia = new Noticia();
         $noticia = $noticia->findById($id);
 
-        return view('adm.noticias-editar')->withNoticia(json_encode($noticia));
+        $bancos = new Banco();
+
+        return view('adm.noticias-editar')->withNoticia(json_encode($noticia))->withBancos($bancos->all()->toJson());
     }
 
     public function cadastrarNoticia(Request $request)
@@ -65,7 +70,8 @@ class NoticiaController extends Controller
         $noticia->dataLimiteNoDestaque = $request->input('dataLimiteNoDestaque') ? Carbon::createFromFormat('Y-m-d', $request->input('dataLimiteNoDestaque')) : null;
         $noticia->horaLimiteNoDestaque = $request->input('horaLimiteNoDestaque') ? Carbon::createFromFormat('H:i', $request->input('horaLimiteNoDestaque')) : null;
         $noticia->ativo = $request->input('ativarNoticia') == 'true' ? 'S' : 'N';
-        $noticia->ativarNosSindicatos = $request->input('ativarNosSindicatos') ?? '';
+        $noticia->meuBanco = $request->input('idBanco') ?? null;
+        $noticia->ativarNosSindicatos = $request->input('ativarNosSindicatos') ?? null;
         $noticia->videoYoutube = $request->input('videoYoutube') ?? '';
         $noticia->cartola = $request->input('cartola') ?? '';
         $noticia->tags = $request->input('tags') ?? '';
@@ -74,8 +80,9 @@ class NoticiaController extends Controller
         $noticia->texto = $request->input('texto') ?? '';
         $noticia->jornalistaResponsavel = $request->input('jornalistaResponsavel') ?? '';
         $noticia->userIdCreated = Auth::id();
-
+        
         $noticia->save();
+        
         
         $file = new Upload();
         $file->path = 'files/noticias';
@@ -119,7 +126,8 @@ class NoticiaController extends Controller
         $noticia->dataLimiteNoDestaque = $request->input('dataLimiteNoDestaque') ? Carbon::createFromFormat('Y-m-d', $request->input('dataLimiteNoDestaque')) : null;
         $noticia->horaLimiteNoDestaque = $request->input('horaLimiteNoDestaque') ? Carbon::createFromFormat('H:i', $request->input('horaLimiteNoDestaque')) : null;
         $noticia->ativo = $request->input('ativarNoticia') == 'true' ? 'S' : 'N';
-        $noticia->ativarNosSindicatos = $request->input('ativarNosSindicatos') ?? '';
+        $noticia->meuBanco = $request->input('idBanco') ?? null;
+        $noticia->ativarNosSindicatos = $request->input('ativarNosSindicatos') ?? null;
         $noticia->videoYoutube = $request->input('videoYoutube') ?? '';
         $noticia->cartola = $request->input('cartola') ?? '';
         $noticia->tags = $request->input('tags') ?? '';
@@ -129,13 +137,18 @@ class NoticiaController extends Controller
         $noticia->jornalistaResponsavel = $request->input('jornalistaResponsavel') ?? '';
         $noticia->userIdUpdated = Auth::id();
         $noticia->save();
-        
+
+        $creditoBannerDestaque = new File();
+        $creditoBannerDestaque = $creditoBannerDestaque->where( 'id', $noticia->bannerDestaque )->first();
+
         $creditoBannerDestaque = new File();
         if ( $request->file('bannerDestaque') )
         {
             $creditoBannerDestaque = $creditoBannerDestaque->where( 'id', $noticia->bannerDestaque )->first();
-            $creditoBannerDestaque->delete();
 
+            if ($creditoBannerDestaque) {
+                $creditoBannerDestaque->delete();
+            }
 
             $file = new Upload();
             $file->path = 'files/noticias';
@@ -162,7 +175,9 @@ class NoticiaController extends Controller
         if ( $request->file('imagemDestaque') )
         {
             $creditoImagemDestaque = $creditoImagemDestaque->where( 'id', $noticia->imagemDestaque )->first();
-            $creditoImagemDestaque->delete();
+            if ($creditoImagemDestaque) {
+                $creditoImagemDestaque->delete();
+            }
 
             $file = new Upload();
             $file->path = 'files/noticias';
@@ -200,6 +215,14 @@ class NoticiaController extends Controller
             }
         }
     
+        return redirect(url('adm/noticias'));
+    }
+
+    public function deletarNoticia(Request $request)
+    {
+        $noticia = new Noticia();
+        $delete = $noticia->find($request->input('id'));
+        $delete->delete();
         return redirect(url('adm/noticias'));
     }
 }

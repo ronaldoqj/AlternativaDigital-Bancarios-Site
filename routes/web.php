@@ -31,6 +31,23 @@ Route::prefix('adm')->namespace('Adm')->group(function ()
     Route::post('/noticias/cadastro', 'NoticiaController@cadastrarNoticia')->name('adm-noticias-cadastrar');
     Route::get('/noticias/edicao/{id?}', 'NoticiaController@edicao')->name('adm-noticias-edicao');
     Route::post('/noticias/edicao', 'NoticiaController@editarNoticia')->name('adm-noticias-editar');
+    Route::post('/noticias/delete', 'NoticiaController@deletarNoticia')->name('adm-noticias-deletar');
+    
+    Route::get('/editais/cadastro', 'EditalController@cadastro')->name('adm-editais-cadastro');
+    Route::post('/editais/cadastro', 'EditalController@cadastrarEdital')->name('adm-editais-cadastrar');
+    Route::get('/editais/edicao/{id?}', 'EditalController@edicao')->name('adm-editais-edicao');
+    Route::post('/editais/edicao', 'EditalController@editarEdital')->name('adm-editais-editar');
+    
+    Route::get('/acordos-e-convencoes/cadastro', 'AcordoEConvencaoController@cadastro')->name('adm-acordos-e-convencoes-cadastro');
+    Route::post('/acordos-e-convencoes/cadastro', 'AcordoEConvencaoController@cadastrarAcordoEConvencao')->name('adm-acordos-e-convencoes-cadastrar');
+    Route::get('/acordos-e-convencoes/edicao/{id?}', 'AcordoEConvencaoController@edicao')->name('adm-acordos-e-convencoes-edicao');
+    Route::post('/acordos-e-convencoes/edicao', 'AcordoEConvencaoController@editarAcordoEConvencao')->name('adm-acordos-e-convencoes-editar');
+    
+    Route::get('/entidades', 'EntidadeController@index')->name('adm-entidades');
+    Route::post('/entidades/actions', 'EntidadeController@actions')->name('adm-entidades-actions');
+    
+    Route::get('/bancos', 'BancoController@index')->name('adm-bancos');
+    Route::post('/bancos/actions', 'BancoController@actions')->name('adm-bancos-actions');
 
     // Formulários de cadastros do ADM
     // Route::prefix('formularios')->namespace('Formularios')->group(function ()

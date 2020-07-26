@@ -54,8 +54,8 @@
                     <header id="header">
                         <div class="box-left-right">
                             <div class="left">
-                                <div class="title-header"> /Cadastro Notícias/ </div>
-                                <div class="subtitle-header"> /noticias/ </div>
+                                <div class="title-header"> @yield('title') </div>
+                                <div class="subtitle-header"> @yield('subtitle') </div>
                             </div>
                             <div class="right">
                                 <div class="user">
@@ -67,18 +67,22 @@
                                     <p><span>emailuser@user.com.br</span></p>
                                     <p>corporação do usuário</p>
                                 </div>
+
+                                <div class="logout">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                        <img src="/_adm/assets/SVGs/icon-logout.svg" class="img-fluid" onload="SVGInject(this)" />
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
                             </div>
                         </div>
                         @yield('header')
                     </header>
-<!-- <a class="dropdown-item" href="{{ route('logout') }}"
-    onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-    {{ __('Logout') }}
-</a>
-<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-    @csrf
-</form> -->
+
                     @yield('content')
 
                 </main>

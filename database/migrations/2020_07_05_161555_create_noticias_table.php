@@ -18,6 +18,7 @@ class CreateNoticiasTable extends Migration
             
             $table->char('ativo', 1)->default('N');
             $table->string('tipoDaNoticia', 240)->nullable();
+            $table->integer('meuBanco')->nullable();
             $table->string('titulo', 240)->nullable();
             $table->string('subtitulo', 240)->nullable();
             $table->string('cartola', 240)->nullable();
@@ -35,7 +36,7 @@ class CreateNoticiasTable extends Migration
             $table->timestamp('dataLimiteNoDestaque', 0)->nullable();
             $table->time('horaLimiteNoDestaque', 0)->nullable();
             
-            $table->string('ativarNosSindicatos', 240)->nullable();
+            $table->integer('ativarNosSindicatos')->nullable();
             
             $table->integer('userIdCreated')->nullable();
             $table->integer('userIdUpdated')->nullable();

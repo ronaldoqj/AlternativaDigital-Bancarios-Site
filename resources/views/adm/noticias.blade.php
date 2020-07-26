@@ -1,15 +1,17 @@
 @extends('layouts.layout-adm')
 
-
-@section('js')
-@endsection
+    @section('title') /Notícias/ @endsection
+    @section('subtitle') /Notícia/ @endsection
 
 @section('content')
-
 <div class="container-fluid">
     
     <div>
-        <noticias-page prop-noticias="{{ json_encode($return) }}" />
+        <noticias-page
+            action-form="/adm/noticias/delete"
+            prop-noticias="{{ json_encode($return) }}"
+            csrf="{{ csrf_token() }}"
+        />
     </div>
 
 </div>

@@ -11,6 +11,7 @@
         <input type="hidden" name="tipoDaNoticia" :value="btnTipoNoticiaSelecionado" />
         <input type="hidden" name="ativarNoticia" :value="ativarNoticia" />
         <input type="hidden" name="idNoticia" :value="idNoticia" />
+        <input type="hidden" name="idBanco" :value="idBanco" />
 
         <div class="row">
             <div class="col-12">
@@ -116,7 +117,7 @@
                 </v-dialog>
             </div>
 
-            <div class="col-1 switch-ativar-noticia">
+            <div class="col-1 switch-ativar-noticia text-center">
                 <p>Ativar Notícia</p>
                 <v-switch v-model="ativarNoticia" class="ma-4"></v-switch>
             </div>
@@ -131,6 +132,29 @@
                 color="primary"
                 outlined
                 ></v-select>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 col-box-files" :class="borderFields.bancos">
+                            <div class="credito-da-imagem"></div>
+                            <v-combobox
+                            name="banco"
+                            v-model="bancoValue"
+                            :items="bancoItems"
+                            prepend-inner-icon="account_balance"
+                            label="Banco"
+                            placeholder="Selecione um banco"
+                            outlined
+                            ></v-combobox>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -405,14 +429,6 @@
             </div>
         </div> -->
 
-
-
-
-
-
-
-
-
         <input type="hidden" name="texto" v-model="dataInputs.texto" />
 
         <div class="row">
@@ -431,11 +447,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
 
 
         <div class="row inputs-finais-to-all-types">

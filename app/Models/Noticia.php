@@ -28,6 +28,7 @@ class Noticia extends Model
         $list->leftjoin('files as filesBannerDestaque', 'filesBannerDestaque.id', '=', 'noticias.bannerDestaque');
         $list->leftjoin('files as filesImagemDestaque', 'filesImagemDestaque.id', '=', 'noticias.imagemDestaque');
         $list->leftjoin('files as filesFilesPodcasts', 'filesFilesPodcasts.id', '=', 'noticias.filePodcast');
+        $list->whereNull('noticias.deleted_at');
         if ($type != '*') {
             $list->where('noticias.tipoDaNoticia', $type);
         }                         
@@ -36,6 +37,7 @@ class Noticia extends Model
         $listAll = $list->addSelect('noticias.id as id',
                                     'noticias.ativo as ativo',
                                     'noticias.tipoDaNoticia as tipoDaNoticia',
+                                    'noticias.meuBanco as meuBanco',
                                     'noticias.titulo as titulo',
                                     'noticias.subtitulo as subtitulo',
                                     'noticias.cartola as cartola',
@@ -119,6 +121,7 @@ class Noticia extends Model
         $listAll = $list->addSelect('noticias.id as id',
                                     'noticias.ativo as ativo',
                                     'noticias.tipoDaNoticia as tipoDaNoticia',
+                                    'noticias.meuBanco as meuBanco',
                                     'noticias.titulo as titulo',
                                     'noticias.subtitulo as subtitulo',
                                     'noticias.cartola as cartola',

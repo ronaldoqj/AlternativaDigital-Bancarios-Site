@@ -13,71 +13,87 @@ export default {
                   {
                       case 'noticia-destaque':
                         this.borderFields = {
-                            dataDaInclusao: 'requided',
-                            dataLimiteNoDestaque: 'requided',
-                            horaLimiteNoDestaque: 'requided',
-                            bannerDestaque: 'requided',
-                            creditoBannerDestaque: 'requided',
-                            imagemDestaque: 'requided',
-                            creditoImagemDestaque: 'requided',
-                            cartola: 'requided',
-                            tags: 'requided',
-                            tituloDaNoticia: 'requided',
-                            linhaDeApoio: 'requided',
-                            texto: 'requided',
-                            jornalistaResponsavel: 'requided'
+                            dataDaInclusao: 'required',
+                            dataLimiteNoDestaque: 'required',
+                            horaLimiteNoDestaque: 'required',
+                            bancos: 'required',
+                            bannerDestaque: 'required',
+                            creditoBannerDestaque: 'required',
+                            imagemDestaque: 'required',
+                            creditoImagemDestaque: 'required',
+                            cartola: 'required',
+                            tags: 'required',
+                            tituloDaNoticia: 'required',
+                            linhaDeApoio: 'required',
+                            texto: 'required',
+                            jornalistaResponsavel: 'required'
                         }
                         break;
                       case 'noticia-video':
                         this.borderFields = {
-                            dataDaInclusao: 'requided',
-                            videoYoutube: 'requided',
-                            cartola: 'requided',
-                            tags: 'requided',
-                            tituloDaNoticia: 'requided',
-                            linhaDeApoio: 'requided',
-                            texto: 'requided',
-                            jornalistaResponsavel: 'requided'
+                            dataDaInclusao: 'required',
+                            bancos: 'required',
+                            videoYoutube: 'required',
+                            cartola: 'required',
+                            tags: 'required',
+                            tituloDaNoticia: 'required',
+                            linhaDeApoio: 'required',
+                            texto: 'required',
+                            jornalistaResponsavel: 'required'
                         }
                         break;
                       case 'noticia-imagem':
                         this.borderFields = {
-                            dataDaInclusao: 'requided',
-                            imagemDestaque: 'requided',
-                            creditoImagemDestaque: 'requided',
-                            cartola: 'requided',
-                            tags: 'requided',
-                            tituloDaNoticia: 'requided',
-                            linhaDeApoio: 'requided',
-                            texto: 'requided',
-                            jornalistaResponsavel: 'requided'
+                            dataDaInclusao: 'required',
+                            bancos: 'required',
+                            imagemDestaque: 'required',
+                            creditoImagemDestaque: 'required',
+                            cartola: 'required',
+                            tags: 'required',
+                            tituloDaNoticia: 'required',
+                            linhaDeApoio: 'required',
+                            texto: 'required',
+                            jornalistaResponsavel: 'required'
                         }
                         break;
                       case 'noticia-podcast':
                         this.borderFields = {
-                            dataDaInclusao: 'requided',
-                            filePodcast: 'requided',
-                            cartola: 'requided',
-                            tags: 'requided',
-                            tituloDaNoticia: 'requided',
-                            linhaDeApoio: 'requided',
-                            texto: 'requided',
-                            jornalistaResponsavel: 'requided'
+                            dataDaInclusao: 'required',
+                            bancos: 'required',
+                            filePodcast: 'required',
+                            cartola: 'required',
+                            tags: 'required',
+                            tituloDaNoticia: 'required',
+                            linhaDeApoio: 'required',
+                            texto: 'required',
+                            jornalistaResponsavel: 'required'
                         }
                         break;
                       case 'noticia-simples':
                         this.borderFields = {
-                            dataDaInclusao: 'requided',
-                            cartola: 'requided',
-                            tags: 'requided',
-                            tituloDaNoticia: 'requided',
-                            linhaDeApoio: 'requided',
-                            texto: 'requided',
-                            jornalistaResponsavel: 'requided'
+                            dataDaInclusao: 'required',
+                            bancos: 'required',
+                            cartola: 'required',
+                            tags: 'required',
+                            tituloDaNoticia: 'required',
+                            linhaDeApoio: 'required',
+                            texto: 'required',
+                            jornalistaResponsavel: 'required'
                         }
                         break;
                   }
               }, 500);
+        },
+
+        bancoValue(newValue, oldValue)
+        {
+            for (var item in this.bancoItemsObject)
+            {
+                if ( this.bancoValue == this.bancoItemsObject[item].name ) {
+                    this.idBanco = this.bancoItemsObject[item].id;
+                    break;
+                }
+            }
         }
     },
     data () {
@@ -89,6 +105,14 @@ export default {
 
       return {
 
+            /**
+             * Campos Hiden
+             */
+            // tratamento para o compo combobox do banco
+            idBanco: '',
+            bancoValue: '',
+            bancoItems: [],
+            bancoItemsObject: {},
 
             // CkEditor
 
@@ -115,17 +139,26 @@ export default {
           // Switch Ativar Notícia
           ativarNoticia: false,
 
-          // DateTimes
           dataInputs: {
-              creditoBannerDestaque: '',
-              creditoImagemDestaque: '',
-              youtube: '',
-              cartola: '',
-              tags: '',
-              tituloDaNoticia: '',
-              linhaDeApoio: '',
-              texto: '',
-              jornalistaResponsavel: ''
+            creditoBannerDestaque: '',
+            creditoImagemDestaque: '',
+            youtube: '',
+            cartola: '',
+            tags: '',
+            tituloDaNoticia: '',
+            linhaDeApoio: '',
+            texto: '',
+            jornalistaResponsavel: '',
+            banco: {
+                select: null,
+                items: [
+                    'item1',
+                    'item2',
+                    'item3',
+                    'item4',
+                    'item5'
+                ]
+            },
           },
 
           dateTimeInputs: {
@@ -195,10 +228,7 @@ export default {
     },
     components: { btnIconText  },
     methods: {
-
-
         // CKeditor
-        
 
 
         shadowEfectBorderReset: function()
@@ -209,6 +239,7 @@ export default {
                 horaLimiteNoDestaque: '',
                 ativarNoticia: '',
                 ativarNosSindicatos: '',
+                bancos: '',
                 bannerDestaque: '',
                 creditoBannerDestaque: '',
                 imagemDestaque: '',
@@ -382,9 +413,16 @@ export default {
                 break;
             }
 
+
+            
+            // Ronaldo
             // Validações comuns a todos
+            if ( _.isEmpty(this.bancoValue) )
+                this.errorsShow.errors.push({title: 'Banco', description: 'obrigatório'});
+
             if ( _.isEmpty(this.dateTimeInputs.dates.dataDaInclusao.date) )
                 this.errorsShow.errors.push({title: 'Data Inclusão', description: 'obrigatório'});
+            
 
             if ( _.isEmpty(this.dataInputs.cartola) )
                 this.errorsShow.errors.push({title: 'Cartola', description: 'obrigatório'});
@@ -410,11 +448,19 @@ export default {
 
         editStartCompleteFilds (noticia)
         {
-            console.log(noticia);
-
-
             this.idNoticia = noticia.id;
             this.valueBtnSubmit = 'Editar';
+
+            // Started combobox banco
+            this.idBanco = noticia.meuBanco;
+            
+            for (var item in this.bancoItemsObject)
+            {
+                if ( noticia.meuBanco == this.bancoItemsObject[item].id ) {
+                    this.bancoValue = this.bancoItemsObject[item].name;
+                    break;
+                }
+            }
 
             // Seleciona o tipo de noticia
             switch (noticia.tipoDaNoticia)
@@ -460,7 +506,7 @@ export default {
                 texto: noticia.texto,
                 jornalistaResponsavel: noticia.jornalistaResponsavel
             };
-        }
+        },
 
     },
     created()
@@ -472,11 +518,19 @@ export default {
             }
         }
 
+        if (!_.isEmpty(this.banks))
+        {
+            this.bancoItemsObject = JSON.parse(this.banks);
+            for (var item in this.bancoItemsObject)
+            {
+                this.bancoItems.push(this.bancoItemsObject[item].name);
+            }
+        }
+        
         if (!_.isEmpty(this.noticiaEdition)) {
             this.isEdit = true;
             this.editStartCompleteFilds(JSON.parse(this.noticiaEdition));
         }
-        
     },
-    props: ['csrf', 'formAction', 'noticiaEdition'],
+    props: ['csrf', 'formAction', 'noticiaEdition', 'banks'],
 }

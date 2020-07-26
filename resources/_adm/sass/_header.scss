@@ -67,6 +67,57 @@
                 }
             }
 
+            .logout {
+                border-left: solid 1px #707070;
+                margin-left: 40px;
+                
+                a {
+                    padding-left: 12px;
+                    
+                    .icon-cirulo-logout-2 {
+                        stroke: #fe3e3e;
+                    }
+
+                    svg
+                    {
+                        .border-logout,
+                        .icon-cirulo-logout-1,
+                        .icon-cirulo-logout-2,
+                        .text-logout {
+                            transition: $transition-fast;
+                        }
+                    }
+
+                    &:hover
+                    {
+                        svg
+                        {
+                            .border-logout,
+                            .icon-cirulo-logout-1,
+                            .icon-cirulo-logout-2,
+                            .text-logout {
+                                transition: $transition-fast;
+                            }
+
+                            .border-logout {
+                                stroke: $blue-light;
+                            }
+
+                            .icon-cirulo-logout-1 {
+                                fill: $blue-light;
+                            }
+                            .icon-cirulo-logout-2 {
+                                stroke: $blue-light;
+                            }
+                            .text-logout {
+                                fill: $blue-light;
+                            }
+                        }
+                    }
+                }
+                
+            }
+
         }
     }
 }

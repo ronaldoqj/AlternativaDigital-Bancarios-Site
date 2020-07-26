@@ -11513,3 +11513,46 @@ body {
   font-weight: normal;
 }
 
+#header .box-left-right .right .logout {
+  border-left: solid 1px #707070;
+  margin-left: 40px;
+}
+
+#header .box-left-right .right .logout a {
+  padding-left: 12px;
+}
+
+#header .box-left-right .right .logout a .icon-cirulo-logout-2 {
+  stroke: #fe3e3e;
+}
+
+#header .box-left-right .right .logout a svg .border-logout,
+#header .box-left-right .right .logout a svg .icon-cirulo-logout-1,
+#header .box-left-right .right .logout a svg .icon-cirulo-logout-2,
+#header .box-left-right .right .logout a svg .text-logout {
+  transition: 0.3s ease;
+}
+
+#header .box-left-right .right .logout a:hover svg .border-logout,
+#header .box-left-right .right .logout a:hover svg .icon-cirulo-logout-1,
+#header .box-left-right .right .logout a:hover svg .icon-cirulo-logout-2,
+#header .box-left-right .right .logout a:hover svg .text-logout {
+  transition: 0.3s ease;
+}
+
+#header .box-left-right .right .logout a:hover svg .border-logout {
+  stroke: #53A6D8;
+}
+
+#header .box-left-right .right .logout a:hover svg .icon-cirulo-logout-1 {
+  fill: #53A6D8;
+}
+
+#header .box-left-right .right .logout a:hover svg .icon-cirulo-logout-2 {
+  stroke: #53A6D8;
+}
+
+#header .box-left-right .right .logout a:hover svg .text-logout {
+  fill: #53A6D8;
+}
+

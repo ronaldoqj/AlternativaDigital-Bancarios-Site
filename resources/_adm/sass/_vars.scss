@@ -9,6 +9,7 @@ $red-strong: #721B1B;
 
 $gray: #C1C1C1;
 $grey: #C1C1C1;
+$grey-light: #E0E1E3;
 $gray-font: #919191;
 
 $theme-colors: (
@@ -28,8 +29,9 @@ $component-background-color: white;
 
 // Transitions
 
-$transition-normal: 0.4s;
-$transition-slow: 1s;
+$transition-normal: 0.4s ease;
+$transition-fast: 0.3s ease;
+$transition-slow: 1s ease;
 
 
 /**

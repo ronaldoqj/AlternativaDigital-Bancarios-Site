@@ -1,5 +1,7 @@
 @extends('layouts.layout-adm')
 
+    @section('title') /Cadastrar/ @endsection
+    @section('subtitle') /Notícia/ @endsection
 
 @section('js')
     <!-- <script src="/plugins/ckeditor/ckeditor.js"></script> -->
@@ -23,7 +25,7 @@
     
         @csrf
 
-        <noticias-cadastro-page form-action="{{url('adm/noticias/cadastro')}}" method="post" csrf="{{ csrf_token() }}" />
+        <noticias-cadastro-page form-action="{{url('adm/noticias/cadastro')}}" banks="{{ $bancos }}" method="post" csrf="{{ csrf_token() }}" />
     <!-- </form> -->
 
 </div>
