@@ -17,7 +17,8 @@ class CreateAcordosEConvencoesTable extends Migration
             $table->id();
 
             $table->char('ativo', 1)->default('N');
-            $table->string('endidade', 240)->nullable();
+            $table->string('entidade', 240)->nullable();
+            $table->string('cartola', 240)->nullable();
             $table->string('titulo', 240)->nullable();
             $table->string('subtitulo', 240)->nullable();
             $table->string('tags', 240)->nullable();

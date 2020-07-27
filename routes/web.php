@@ -25,19 +25,21 @@ Route::prefix('adm')->namespace('Adm')->group(function ()
     // });
 
     Route::get('/', 'HomeController@index')->name('adm-home');
-    Route::get('/noticias', 'NoticiaController@index')->name('adm-noticias');
     
+    Route::get('/noticias', 'NoticiaController@index')->name('adm-noticias');
     Route::get('/noticias/cadastro', 'NoticiaController@cadastro')->name('adm-noticias-cadastro');
     Route::post('/noticias/cadastro', 'NoticiaController@cadastrarNoticia')->name('adm-noticias-cadastrar');
     Route::get('/noticias/edicao/{id?}', 'NoticiaController@edicao')->name('adm-noticias-edicao');
     Route::post('/noticias/edicao', 'NoticiaController@editarNoticia')->name('adm-noticias-editar');
     Route::post('/noticias/delete', 'NoticiaController@deletarNoticia')->name('adm-noticias-deletar');
     
+    Route::get('/editais', 'EditalController@index')->name('adm-editais');
     Route::get('/editais/cadastro', 'EditalController@cadastro')->name('adm-editais-cadastro');
     Route::post('/editais/cadastro', 'EditalController@cadastrarEdital')->name('adm-editais-cadastrar');
     Route::get('/editais/edicao/{id?}', 'EditalController@edicao')->name('adm-editais-edicao');
     Route::post('/editais/edicao', 'EditalController@editarEdital')->name('adm-editais-editar');
     
+    Route::get('/acordos-e-convencoes', 'AcordoEConvencaoController@index')->name('adm-acordos-e-convencoes');
     Route::get('/acordos-e-convencoes/cadastro', 'AcordoEConvencaoController@cadastro')->name('adm-acordos-e-convencoes-cadastro');
     Route::post('/acordos-e-convencoes/cadastro', 'AcordoEConvencaoController@cadastrarAcordoEConvencao')->name('adm-acordos-e-convencoes-cadastrar');
     Route::get('/acordos-e-convencoes/edicao/{id?}', 'AcordoEConvencaoController@edicao')->name('adm-acordos-e-convencoes-edicao');
