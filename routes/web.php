@@ -35,15 +35,17 @@ Route::prefix('adm')->namespace('Adm')->group(function ()
     
     Route::get('/editais', 'EditalController@index')->name('adm-editais');
     Route::get('/editais/cadastro', 'EditalController@cadastro')->name('adm-editais-cadastro');
-    Route::post('/editais/cadastro', 'EditalController@cadastrarEdital')->name('adm-editais-cadastrar');
+    Route::post('/editais/cadastro', 'EditalController@cadastrar')->name('adm-editais-cadastrar');
     Route::get('/editais/edicao/{id?}', 'EditalController@edicao')->name('adm-editais-edicao');
-    Route::post('/editais/edicao', 'EditalController@editarEdital')->name('adm-editais-editar');
+    Route::post('/editais/edicao', 'EditalController@editar')->name('adm-editais-editar');
+    Route::post('/editais/delete', 'EditalController@deletar')->name('adm-editais-deletar');
     
     Route::get('/acordos-e-convencoes', 'AcordoEConvencaoController@index')->name('adm-acordos-e-convencoes');
     Route::get('/acordos-e-convencoes/cadastro', 'AcordoEConvencaoController@cadastro')->name('adm-acordos-e-convencoes-cadastro');
-    Route::post('/acordos-e-convencoes/cadastro', 'AcordoEConvencaoController@cadastrarAcordoEConvencao')->name('adm-acordos-e-convencoes-cadastrar');
+    Route::post('/acordos-e-convencoes/cadastro', 'AcordoEConvencaoController@cadastrar')->name('adm-acordos-e-convencoes-cadastrar');
     Route::get('/acordos-e-convencoes/edicao/{id?}', 'AcordoEConvencaoController@edicao')->name('adm-acordos-e-convencoes-edicao');
-    Route::post('/acordos-e-convencoes/edicao', 'AcordoEConvencaoController@editarAcordoEConvencao')->name('adm-acordos-e-convencoes-editar');
+    Route::post('/acordos-e-convencoes/edicao', 'AcordoEConvencaoController@editar')->name('adm-acordos-e-convencoes-editar');
+    Route::post('/acordos-e-convencoes/delete', 'AcordoEConvencaoController@deletar')->name('adm-acordos-e-convencoes-deletar');
     
     Route::get('/entidades', 'EntidadeController@index')->name('adm-entidades');
     Route::post('/entidades/actions', 'EntidadeController@actions')->name('adm-entidades-actions');

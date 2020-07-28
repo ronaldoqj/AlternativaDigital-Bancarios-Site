@@ -18,26 +18,23 @@ class AcordoEConvencao extends Model
     }
 
 
-    public function listAllToAdmPageAcordosEConvencoes($type = '*')
+    public function listAllToAdmPageAcordosEConvencoes()
     {
         $list = DB::table('acordos_e_convencoes');
         $list->leftjoin('files as filesBannerDestaque', 'filesBannerDestaque.id', '=', 'acordos_e_convencoes.bannerDestaque');
         $list->leftjoin('files as filesFile', 'filesFile.id', '=', 'acordos_e_convencoes.file');
         $list->whereNull('acordos_e_convencoes.deleted_at');
-        if ($type != '*') {
-            $list->where('acordos_e_convencoes.tipoDaNoticia', $type);
-        }                         
+                          
         $list->orderBy('acordos_e_convencoes.id', 'desc');
 
         $listAll = $list->addSelect('acordos_e_convencoes.id as id',
                                     'acordos_e_convencoes.ativo as ativo',
-                                    'acordos_e_convencoes.endidade as entidade',
+                                    'acordos_e_convencoes.entidade as entidade',
                                     'acordos_e_convencoes.titulo as titulo',
                                     'acordos_e_convencoes.subtitulo as subtitulo',
                                     'acordos_e_convencoes.cartola as cartola',
                                     'acordos_e_convencoes.tags as tags',
                                     'acordos_e_convencoes.linhaDeApoio as linhaDeApoio',
-                                    'acordos_e_convencoes.texto as texto',
                                     'acordos_e_convencoes.jornalistaResponsavel as jornalistaResponsavel',
                                     'acordos_e_convencoes.bannerDestaque as bannerDestaque',
                                     'acordos_e_convencoes.file as file',
@@ -101,7 +98,6 @@ class AcordoEConvencao extends Model
                                     'acordos_e_convencoes.cartola as cartola',
                                     'acordos_e_convencoes.tags as tags',
                                     'acordos_e_convencoes.linhaDeApoio as linhaDeApoio',
-                                    'acordos_e_convencoes.texto as texto',
                                     'acordos_e_convencoes.jornalistaResponsavel as jornalistaResponsavel',
                                     'acordos_e_convencoes.bannerDestaque as bannerDestaque',
                                     'acordos_e_convencoes.file as file',

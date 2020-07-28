@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Adm;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Noticia;
+use App\Models\Entidade;
+use App\Models\AcordoEConvencao;
 use App\Services\Upload;
 use App\Models\File;
 use Illuminate\Support\Facades\Auth;
@@ -29,127 +30,114 @@ class AcordoEConvencaoController extends Controller
     public function index(Request $request)
     {
         $return = [];
-        $noticia = new Noticia();
+        $acordoEConvencao = new AcordoEConvencao();
 
-        $return['noticiaDestaque'] = $noticia->listAllToAdmPageNoticias('noticia-destaque')->get()->toJson();
-        $return['noticiaComImagem'] = $noticia->listAllToAdmPageNoticias('noticia-imagem')->get()->toJson();
-        $return['noticiaComPodcast'] = $noticia->listAllToAdmPageNoticias('noticia-podcast')->get()->toJson();
-        $return['noticiaComVideo'] = $noticia->listAllToAdmPageNoticias('noticia-video')->get()->toJson();
-        $return['noticiaSimples'] = $noticia->listAllToAdmPageNoticias('noticia-simples')->get()->toJson();
+        $return['list'] = $acordoEConvencao->listAllToAdmPageAcordosEConvencoes()->get()->toJson();
 
         return view('adm.acordo-e-convencoes.acordo-e-convencoes')->withReturn($return);
     }
 
     public function cadastro(Request $request)
     {
-        return view('adm.acordo-e-convencoes.acordo-e-convencoes-cadastrar');
+        $entidades = new Entidade();
+        return view('adm.acordo-e-convencoes.acordo-e-convencoes-cadastrar')->withEntidades($entidades->all()->toJson());
     }
 
     public function edicao(Request $request, $id = '')
     {
         if( (int) $id == 0 ) {
-            return redirect('/adm/noticias');
+            return redirect('/adm/acordos-e-convencoes');
         }
         
-        $noticia = new Noticia();
-        $noticia = $noticia->findById($id);
-
-        return view('adm.acordo-e-convencoes.acordo-e-convencoes-editar')->withNoticia(json_encode($noticia));
+        $acordoEConvencao = new AcordoEConvencao();
+        $acordoEConvencao = $acordoEConvencao->findById($id);
+        $entidades = new Entidade();
+        
+        return view('adm.acordo-e-convencoes.acordo-e-convencoes-editar')->withList(json_encode($acordoEConvencao))->withEntidades($entidades->all()->toJson());
     }
 
-    public function cadastrarNoticia(Request $request)
+    public function cadastrar(Request $request)
     {
-        $noticia = new Noticia();
-        $noticia->tipoDaNoticia = $request->input('tipoDaNoticia') ?? '';
-        $noticia->dataInclusao = $request->input('dataInclusao') ? Carbon::createFromFormat('Y-m-d', $request->input('dataInclusao')) : null;
-        $noticia->dataLimiteNoDestaque = $request->input('dataLimiteNoDestaque') ? Carbon::createFromFormat('Y-m-d', $request->input('dataLimiteNoDestaque')) : null;
-        $noticia->horaLimiteNoDestaque = $request->input('horaLimiteNoDestaque') ? Carbon::createFromFormat('H:i', $request->input('horaLimiteNoDestaque')) : null;
-        $noticia->ativo = $request->input('ativarNoticia') == 'true' ? 'S' : 'N';
-        $noticia->ativarNosSindicatos = $request->input('ativarNosSindicatos') ?? '';
-        $noticia->videoYoutube = $request->input('videoYoutube') ?? '';
-        $noticia->cartola = $request->input('cartola') ?? '';
-        $noticia->tags = $request->input('tags') ?? '';
-        $noticia->titulo = $request->input('tituloDaNoticia') ?? '';
-        $noticia->linhaDeApoio = $request->input('linhaDeApoio') ?? '';
-        $noticia->texto = $request->input('texto') ?? '';
-        $noticia->jornalistaResponsavel = $request->input('jornalistaResponsavel') ?? '';
-        $noticia->userIdCreated = Auth::id();
-
-        $noticia->save();
+        $acordoEConvencao = new AcordoEConvencao();
+        $acordoEConvencao->dataInclusao = $request->input('dataInclusao') ? Carbon::createFromFormat('Y-m-d', $request->input('dataInclusao')) : null;
+        $acordoEConvencao->dataLimiteNoDestaque = $request->input('dataLimiteNoDestaque') ? Carbon::createFromFormat('Y-m-d', $request->input('dataLimiteNoDestaque')) : null;
+        $acordoEConvencao->horaLimiteNoDestaque = $request->input('horaLimiteNoDestaque') ? Carbon::createFromFormat('H:i', $request->input('horaLimiteNoDestaque')) : null;
+        $acordoEConvencao->ativo = $request->input('ativar') == 'true' ? 'S' : 'N';
+        $acordoEConvencao->entidade = $request->input('idEntidade') ?? null;
+        $acordoEConvencao->ativarNosSindicatos = $request->input('ativarNosSindicatos') ?? null;
+        $acordoEConvencao->cartola = $request->input('cartola') ?? '';
+        $acordoEConvencao->tags = $request->input('tags') ?? '';
+        $acordoEConvencao->titulo = $request->input('titulo') ?? '';
+        $acordoEConvencao->linhaDeApoio = $request->input('linhaDeApoio') ?? '';
+        $acordoEConvencao->userIdCreated = Auth::id();
+        
+        $acordoEConvencao->save();
         
         $file = new Upload();
-        $file->path = 'files/noticias';
+        $file->path = 'files/acordosEConvencoes';
         $file->creditfile = $request->input('creditoBannerDestaque') ?? null;
         $fileBannerDestaqueStored = $file->addFile( $request->file('bannerDestaque') );
         
         if ( count($fileBannerDestaqueStored) > 0 ) {
-            $noticia->bannerDestaque = $fileBannerDestaqueStored['FileId'];
-            $noticia->save();
-        }
-
-        $file = new Upload();
-        $file->path = 'files/noticias';
-        $file->creditfile = $request->input('creditoImagemDestaque') ?? null;
-        $fileIdImagemDestaqueStored = $file->addFile( $request->file('imagemDestaque') );
-        
-        if ( count($fileIdImagemDestaqueStored) > 0 ) {
-            $noticia->imagemDestaque = $fileIdImagemDestaqueStored['FileId'];
-            $noticia->save();
+            $acordoEConvencao->bannerDestaque = $fileBannerDestaqueStored['FileId'];
+            $acordoEConvencao->save();
         }
         
         $file = new Upload();
-        $file->path = 'files/noticias';
-        $filePodcastStored = $file->addFile( $request->file('filePodcast') );
+        $file->path = 'files/acordosEConvencoes';
+        $fileStored = $file->addFile( $request->file('file') );
 
-        if ( count($filePodcastStored) > 0 ) {
-            $noticia->filePodcast = $filePodcastStored['FileId'];
-            $noticia->save();
+        if ( count($fileStored) > 0 ) {
+            $acordoEConvencao->file = $fileStored['FileId'];
+            $acordoEConvencao->save();
         }
 
-        return redirect(url('adm/noticias'));
+        return redirect(url('adm/acordos-e-convencoes'));
     }
 
-    public function editarNoticia(Request $request)
+    public function editar(Request $request)
     {
-        $noticia = new Noticia();
-        $noticia = $noticia->find($request->input('idNoticia'));
+        $acordoEConvencao = new AcordoEConvencao();
+        $acordoEConvencao = $acordoEConvencao->find($request->input('id'));
         
-        $noticia->tipoDaNoticia = $request->input('tipoDaNoticia') ?? '';
-        $noticia->dataInclusao = $request->input('dataInclusao') ? Carbon::createFromFormat('Y-m-d', $request->input('dataInclusao')) : null;
-        $noticia->dataLimiteNoDestaque = $request->input('dataLimiteNoDestaque') ? Carbon::createFromFormat('Y-m-d', $request->input('dataLimiteNoDestaque')) : null;
-        $noticia->horaLimiteNoDestaque = $request->input('horaLimiteNoDestaque') ? Carbon::createFromFormat('H:i', $request->input('horaLimiteNoDestaque')) : null;
-        $noticia->ativo = $request->input('ativarNoticia') == 'true' ? 'S' : 'N';
-        $noticia->ativarNosSindicatos = $request->input('ativarNosSindicatos') ?? '';
-        $noticia->videoYoutube = $request->input('videoYoutube') ?? '';
-        $noticia->cartola = $request->input('cartola') ?? '';
-        $noticia->tags = $request->input('tags') ?? '';
-        $noticia->titulo = $request->input('tituloDaNoticia') ?? '';
-        $noticia->linhaDeApoio = $request->input('linhaDeApoio') ?? '';
-        $noticia->texto = $request->input('texto') ?? '';
-        $noticia->jornalistaResponsavel = $request->input('jornalistaResponsavel') ?? '';
-        $noticia->userIdUpdated = Auth::id();
-        $noticia->save();
-        
+        $acordoEConvencao->dataInclusao = $request->input('dataInclusao') ? Carbon::createFromFormat('Y-m-d', $request->input('dataInclusao')) : null;
+        $acordoEConvencao->dataLimiteNoDestaque = $request->input('dataLimiteNoDestaque') ? Carbon::createFromFormat('Y-m-d', $request->input('dataLimiteNoDestaque')) : null;
+        $acordoEConvencao->horaLimiteNoDestaque = $request->input('horaLimiteNoDestaque') ? Carbon::createFromFormat('H:i', $request->input('horaLimiteNoDestaque')) : null;
+        $acordoEConvencao->ativo = $request->input('ativar') == 'true' ? 'S' : 'N';
+        $acordoEConvencao->entidade = $request->input('idEntidade') ?? null;
+        $acordoEConvencao->ativarNosSindicatos = $request->input('ativarNosSindicatos') ?? null;
+        $acordoEConvencao->cartola = $request->input('cartola') ?? '';
+        $acordoEConvencao->tags = $request->input('tags') ?? '';
+        $acordoEConvencao->titulo = $request->input('titulo') ?? '';
+        $acordoEConvencao->linhaDeApoio = $request->input('linhaDeApoio') ?? '';
+        $acordoEConvencao->userIdUpdated = Auth::id();
+        $acordoEConvencao->save();
+
+        $creditoBannerDestaque = new File();
+        $creditoBannerDestaque = $creditoBannerDestaque->where( 'id', $acordoEConvencao->bannerDestaque )->first();
+
         $creditoBannerDestaque = new File();
         if ( $request->file('bannerDestaque') )
         {
-            $creditoBannerDestaque = $creditoBannerDestaque->where( 'id', $noticia->bannerDestaque )->first();
-            $creditoBannerDestaque->delete();
+            $creditoBannerDestaque = $creditoBannerDestaque->where( 'id', $acordoEConvencao->bannerDestaque )->first();
 
+            if ($creditoBannerDestaque) {
+                $creditoBannerDestaque->delete();
+            }
 
             $file = new Upload();
-            $file->path = 'files/noticias';
+            $file->path = 'files/acordosEConvencoes';
             $file->creditfile = $request->input('creditoBannerDestaque') ?? null;
             $fileBannerDestaqueStored = $file->addFile( $request->file('bannerDestaque') );
             
             if ( count($fileBannerDestaqueStored) > 0 ) {
-                $noticia->bannerDestaque = $fileBannerDestaqueStored['FileId'];
-                $noticia->save();
+                $acordoEConvencao->bannerDestaque = $fileBannerDestaqueStored['FileId'];
+                $acordoEConvencao->save();
             }
         }
         else
         {
-            $creditoBannerDestaque = $creditoBannerDestaque->where( 'id', $noticia->bannerDestaque )->first();
+            $creditoBannerDestaque = $creditoBannerDestaque->where( 'id', $acordoEConvencao->bannerDestaque )->first();
 
             if ($creditoBannerDestaque) {
                 $creditoBannerDestaque->creditfile = $request->input('creditoBannerDestaque') ?? null;
@@ -157,49 +145,31 @@ class AcordoEConvencaoController extends Controller
             }   
         }
 
-        
-        $creditoImagemDestaque = new File();
-        if ( $request->file('imagemDestaque') )
+
+        if ( $request->file('file') )
         {
-            $creditoImagemDestaque = $creditoImagemDestaque->where( 'id', $noticia->imagemDestaque )->first();
-            $creditoImagemDestaque->delete();
+            $file = new File();
+            $file = $file->where( 'id', $acordoEConvencao->file )->first();
+            $file->delete();
 
             $file = new Upload();
-            $file->path = 'files/noticias';
-            $file->creditfile = $request->input('creditoImagemDestaque') ?? null;
-            $fileIdImagemDestaqueStored = $file->addFile( $request->file('imagemDestaque') );
+            $file->path = 'files/acordosEConvencoes';
+            $fileStored = $file->addFile( $request->file('file') );
             
-            if ( count($fileIdImagemDestaqueStored) > 0 ) {
-                $noticia->imagemDestaque = $fileIdImagemDestaqueStored['FileId'];
-                $noticia->save();
-            }
-        }
-        else
-        {
-            $creditoImagemDestaque = $creditoImagemDestaque->where( 'id', $noticia->imagemDestaque )->first();
-
-            if ($creditoImagemDestaque) {
-                $creditoImagemDestaque->creditfile = $request->input('creditoImagemDestaque') ?? null;
-                $creditoImagemDestaque->save();
-            }   
-        }
-
-        if ( $request->file('filePodcast') )
-        {
-            $filePodcast = new File();
-            $filePodcast = $filePodcast->where( 'id', $noticia->filePodcast )->first();
-            $filePodcast->delete();
-
-            $file = new Upload();
-            $file->path = 'files/noticias';
-            $filePodcastStored = $file->addFile( $request->file('filePodcast') );
-            
-            if ( count($filePodcastStored) > 0 ) {
-                $noticia->filePodcast = $filePodcastStored['FileId'];
-                $noticia->save();
+            if ( count($fileStored) > 0 ) {
+                $acordoEConvencao->file = $fileStored['FileId'];
+                $acordoEConvencao->save();
             }
         }
     
-        return redirect(url('adm/noticias'));
+        return redirect(url('adm/acordos-e-convencoes'));
+    }
+
+    public function deletar(Request $request)
+    {
+        $acordoEConvencao = new AcordoEConvencao();
+        $delete = $acordoEConvencao->find($request->input('id'));
+        $delete->delete();
+        return redirect(url('adm/acordos-e-convencoes'));
     }
 }

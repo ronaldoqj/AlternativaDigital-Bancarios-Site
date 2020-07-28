@@ -66,6 +66,7 @@ class Upload
         //dd($pathDestination);
         // Reduz o tamanho do nome do arquivo caso passe de 120 caracteres        
         $fileNameToRegister = $this->fileName == '' ? $fileOriginalName : $this->fileName;
+        $fileNameToRegister = str_replace(' ', '_', $fileNameToRegister);
         $fileExtension = '.' . ltrim( substr( $fileNameToRegister, strrpos( $fileNameToRegister, '.' ) ), '.' );
         $nameFileWidouthExtension = substr($fileNameToRegister, 0, -strlen($fileExtension));
         $dt = new DateTime();

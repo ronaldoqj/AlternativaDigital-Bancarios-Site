@@ -1,15 +1,18 @@
 @extends('layouts.layout-adm')
 
-
-@section('js')
-@endsection
+    @section('title') /Acordos e Convenções/ @endsection
+    @section('subtitle') /Acordos e Convenções/ @endsection
 
 @section('content')
-
 <div class="container-fluid">
     
     <div>
-        <noticias-page prop-noticias="{{ json_encode($return) }}" />
+        <acordos-e-convencoes-page
+            action-form="/adm/acordos-e-convencoes"
+            page="acordo e convencao"
+            prop-list="{{ json_encode($return) }}"
+            csrf="{{ csrf_token() }}"
+        />
     </div>
 
 </div>

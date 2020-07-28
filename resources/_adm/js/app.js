@@ -33,6 +33,8 @@ Vue.component('errors-component', require('./components/widget/ErrorsComponent.v
 Vue.component('login-component', require('./components/widget/LoginComponent.vue').default);
 Vue.component('noticias-cadastro-page', require('./_pages/noticias-cadastro/NoticiasCadastro.vue').default);
 Vue.component('noticias-page', require('./_pages/noticias/Noticias.vue').default);
+Vue.component('acordos-e-convencoes-page', require('./_pages/acordos-e-convencoes/AcordosEConvencoes.vue').default);
+Vue.component('acordos-e-convencoes-cadastro-page', require('./_pages/acordos-e-convencoes-cadastro/AcordosEConvencoesCadastro.vue').default);
 Vue.component('form-default-combobox', require('./_pages/form-default-combobox/FormDefaultCombobox.vue').default);
 Vue.component('btn-action-widget-component', require('./components/widget/BtnActionComponent.vue').default);
 
