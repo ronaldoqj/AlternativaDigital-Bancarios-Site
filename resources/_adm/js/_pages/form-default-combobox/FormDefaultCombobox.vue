@@ -92,7 +92,7 @@
                 
                 <v-row>
                     <v-col cols="12">
-                        <v-text-field v-model="name" name="name" maxlength="120" :label="nameOfPage.inputName" outlined prepend-icon="domain" counter required></v-text-field>
+                        <v-text-field v-model="name" name="name" maxlength="120" :label="nameOfPage.inputName" outlined prepend-icon="domain" counter required clearable="true"></v-text-field>
                     </v-col>
                 </v-row>
             </v-card-text>

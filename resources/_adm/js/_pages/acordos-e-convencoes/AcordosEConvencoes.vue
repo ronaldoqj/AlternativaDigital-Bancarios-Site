@@ -145,7 +145,7 @@ export default {
             {
                 svg {
                     //transform: rotateY(180deg);
-                    transform: rotate(36mu0deg);
+                    transform: rotate(360deg);
 
                     circle {
                         fill: $blue-light;

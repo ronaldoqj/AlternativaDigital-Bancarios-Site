@@ -36,7 +36,7 @@
                     </template>
                     <v-date-picker v-model="dateTimeInputs.dates.dataDaInclusao.date" scrollable>
                         <v-spacer></v-spacer>
-                        <v-btn text color="primary" @click="dateTimeInputs.dates.dataDaInclusao.modal = false">Cancel</v-btn>
+                        <v-btn text color="primary" @click="dateTimeInputs.dates.dataDaInclusao.modal = false">Cancelar</v-btn>
                         <v-btn text color="primary" @click="$refs.dialog1.save(dateTimeInputs.dates.dataDaInclusao.date)">OK</v-btn>
                     </v-date-picker>
                 </v-dialog>
@@ -61,11 +61,12 @@
                             v-bind="attrs"
                             v-on="on"
                             outlined
+                            clearable="true"
                         ></v-text-field>
                     </template>
                     <v-date-picker v-model="dateTimeInputs.dates.limiteNoDestaque.date" scrollable>
                         <v-spacer></v-spacer>
-                        <v-btn text color="primary" @click="dateTimeInputs.dates.limiteNoDestaque.modal = false">Cancel</v-btn>
+                        <v-btn text color="primary" @click="dateTimeInputs.dates.limiteNoDestaque.modal = false">Cancelar</v-btn>
                         <v-btn text color="primary" @click="$refs.dialog2.save(dateTimeInputs.dates.limiteNoDestaque.date)">OK</v-btn>
                     </v-date-picker>
                 </v-dialog>
@@ -90,6 +91,7 @@
                         v-bind="attrs"
                         v-on="on"
                         outlined
+                        clearable="true"
                     ></v-text-field>
                     </template>
                     <v-time-picker
@@ -98,7 +100,7 @@
                     full-width
                     >
                     <v-spacer></v-spacer>
-                    <v-btn text color="primary" @click="dateTimeInputs.times.limiteDestaque.modal = false">Cancel</v-btn>
+                    <v-btn text color="primary" @click="dateTimeInputs.times.limiteDestaque.modal = false">Cancelar</v-btn>
                     <v-btn text color="primary" @click="$refs.dialog3.save(dateTimeInputs.times.limiteDestaque.time)">OK</v-btn>
                     </v-time-picker>
                 </v-dialog>
@@ -118,6 +120,7 @@
                 dense="dense"
                 color="primary"
                 outlined
+                clearable="true"
                 ></v-select>
             </div>
         </div>
@@ -176,6 +179,7 @@
                                 maxlength="240"
                                 counter="240"
                                 outlined
+                                clearable="true"
                             ></v-text-field>
                         </div>
                     </div>
@@ -199,6 +203,7 @@
                             label="Entidade"
                             placeholder="Selecione uma entidade"
                             outlined
+                            clearable="true"
                             ></v-combobox>
                         </div>
                     </div>
@@ -216,6 +221,7 @@
                     maxlength="240"
                     counter="240"
                     outlined
+                    clearable="true"
                 ></v-text-field>
             </div>
             <div class="col-4" :class="borderFields.tags">
@@ -227,6 +233,7 @@
                     maxlength="240"
                     counter="240"
                     outlined
+                    clearable="true"
                 ></v-text-field>
             </div>
         </div>
@@ -242,6 +249,7 @@
                 maxlength="240"
                 counter="240"
                 outlined
+                clearable="true"
                 ></v-textarea>
             </div>
         </div>
@@ -257,6 +265,7 @@
                 maxlength="240"
                 counter="240"
                 outlined
+                clearable="true"
                 ></v-textarea>
             </div>
         </div>
@@ -309,8 +318,6 @@
 
             </div>
         </div>
-
-
 
         <div class="row mt-5">
             <div class="col-12">

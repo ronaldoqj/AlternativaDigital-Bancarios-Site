@@ -11533,6 +11533,10 @@ body {
   transition: 0.3s ease;
 }
 
+#header .box-left-right .right .logout a:hover {
+  background-color: transparent;
+}
+
 #header .box-left-right .right .logout a:hover svg .border-logout,
 #header .box-left-right .right .logout a:hover svg .icon-cirulo-logout-1,
 #header .box-left-right .right .logout a:hover svg .icon-cirulo-logout-2,
