@@ -163,7 +163,7 @@ export default {
             // Setando campos com os valores já cadastrados
             this.dateTimeInputs.dates.dataDaInclusao.date = moment(String(item.dataInclusao)).format('YYYY-MM-DD');
             this.dateTimeInputs.dates.limiteNoDestaque.date = _.isEmpty(item.dataLimiteNoDestaque) ? '' : moment(String(item.dataLimiteNoDestaque)).format('YYYY-MM-DD');
-            this.dateTimeInputs.times.limiteDestaque.time = _.isEmpty(item.horaLimiteNoDestaque) ? '' : moment(String('2020-01-01 '+item.horaLimiteNoDestaque)).format('h:mm');
+            this.dateTimeInputs.times.limiteDestaque.time = _.isEmpty(item.horaLimiteNoDestaque) ? '' : moment(String('2020-01-01 '+item.horaLimiteNoDestaque)).format('H:mm');
 
             this.ativar = item.ativo == 'S' ? true: false;
 

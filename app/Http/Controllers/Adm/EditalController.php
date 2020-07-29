@@ -57,7 +57,7 @@ class EditalController extends Controller
     {
         $Edital = new Edital();
         $Edital->dataInclusao = $request->input('dataInclusao') ? Carbon::createFromFormat('Y-m-d', $request->input('dataInclusao')) : null;
-        $Edital->dataLimiteNoDestaque = $request->input('dataLimiteNoDestaque') ? Carbon::createFromFormat('Y-m-d', $request->input('dataLimiteNoDestaque')) : null;
+        $Edital->dataLimiteNoDestaque = $request->input('dataLimiteNoDestaque') ? Carbon::createFromFormat('Y-m-d H:i', "{$request->input('dataLimiteNoDestaque')} {$request->input('horaLimiteNoDestaque')}") : null;
         $Edital->horaLimiteNoDestaque = $request->input('horaLimiteNoDestaque') ? Carbon::createFromFormat('H:i', $request->input('horaLimiteNoDestaque')) : null;
         $Edital->ativo = $request->input('ativar') == 'true' ? 'S' : 'N';
         $Edital->ativarNosSindicatos = $request->input('ativarNosSindicatos') ?? null;
@@ -97,7 +97,7 @@ class EditalController extends Controller
         $Edital = $Edital->find($request->input('id'));
         
         $Edital->dataInclusao = $request->input('dataInclusao') ? Carbon::createFromFormat('Y-m-d', $request->input('dataInclusao')) : null;
-        $Edital->dataLimiteNoDestaque = $request->input('dataLimiteNoDestaque') ? Carbon::createFromFormat('Y-m-d', $request->input('dataLimiteNoDestaque')) : null;
+        $Edital->dataLimiteNoDestaque = $request->input('dataLimiteNoDestaque') ? Carbon::createFromFormat('Y-m-d H:i', "{$request->input('dataLimiteNoDestaque')} {$request->input('horaLimiteNoDestaque')}") : null;
         $Edital->horaLimiteNoDestaque = $request->input('horaLimiteNoDestaque') ? Carbon::createFromFormat('H:i', $request->input('horaLimiteNoDestaque')) : null;
         $Edital->ativo = $request->input('ativar') == 'true' ? 'S' : 'N';
         $Edital->ativarNosSindicatos = $request->input('ativarNosSindicatos') ?? null;

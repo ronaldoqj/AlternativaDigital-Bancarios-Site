@@ -67,7 +67,7 @@ class NoticiaController extends Controller
         $noticia = new Noticia();
         $noticia->tipoDaNoticia = $request->input('tipoDaNoticia') ?? '';
         $noticia->dataInclusao = $request->input('dataInclusao') ? Carbon::createFromFormat('Y-m-d', $request->input('dataInclusao')) : null;
-        $noticia->dataLimiteNoDestaque = $request->input('dataLimiteNoDestaque') ? Carbon::createFromFormat('Y-m-d', $request->input('dataLimiteNoDestaque')) : null;
+        $noticia->dataLimiteNoDestaque = $request->input('dataLimiteNoDestaque') ? Carbon::createFromFormat('Y-m-d H:i', "{$request->input('dataLimiteNoDestaque')} {$request->input('horaLimiteNoDestaque')}") : null;
         $noticia->horaLimiteNoDestaque = $request->input('horaLimiteNoDestaque') ? Carbon::createFromFormat('H:i', $request->input('horaLimiteNoDestaque')) : null;
         $noticia->ativo = $request->input('ativarNoticia') == 'true' ? 'S' : 'N';
         $noticia->meuBanco = $request->input('idBanco') ?? null;
@@ -123,7 +123,7 @@ class NoticiaController extends Controller
         
         $noticia->tipoDaNoticia = $request->input('tipoDaNoticia') ?? '';
         $noticia->dataInclusao = $request->input('dataInclusao') ? Carbon::createFromFormat('Y-m-d', $request->input('dataInclusao')) : null;
-        $noticia->dataLimiteNoDestaque = $request->input('dataLimiteNoDestaque') ? Carbon::createFromFormat('Y-m-d', $request->input('dataLimiteNoDestaque')) : null;
+        $noticia->dataLimiteNoDestaque = $request->input('dataLimiteNoDestaque') ? Carbon::createFromFormat('Y-m-d H:i', "{$request->input('dataLimiteNoDestaque')} {$request->input('horaLimiteNoDestaque')}") : null;
         $noticia->horaLimiteNoDestaque = $request->input('horaLimiteNoDestaque') ? Carbon::createFromFormat('H:i', $request->input('horaLimiteNoDestaque')) : null;
         $noticia->ativo = $request->input('ativarNoticia') == 'true' ? 'S' : 'N';
         $noticia->meuBanco = $request->input('idBanco') ?? null;

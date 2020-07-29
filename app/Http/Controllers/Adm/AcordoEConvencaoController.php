@@ -59,8 +59,8 @@ class AcordoEConvencaoController extends Controller
     public function cadastrar(Request $request)
     {
         $acordoEConvencao = new AcordoEConvencao();
-        $acordoEConvencao->dataInclusao = $request->input('dataInclusao') ? Carbon::createFromFormat('Y-m-d', $request->input('dataInclusao')) : null;
-        $acordoEConvencao->dataLimiteNoDestaque = $request->input('dataLimiteNoDestaque') ? Carbon::createFromFormat('Y-m-d', $request->input('dataLimiteNoDestaque')) : null;
+        $acordoEConvencao->dataInclusao = $request->input('dataInclusao') ? Carbon::createFromFormat('Y-m-d', $request->input('dataInclusao')) : null;                    
+        $acordoEConvencao->dataLimiteNoDestaque = $request->input('dataLimiteNoDestaque') ? Carbon::createFromFormat('Y-m-d H:i', "{$request->input('dataLimiteNoDestaque')} {$request->input('horaLimiteNoDestaque')}") : null;
         $acordoEConvencao->horaLimiteNoDestaque = $request->input('horaLimiteNoDestaque') ? Carbon::createFromFormat('H:i', $request->input('horaLimiteNoDestaque')) : null;
         $acordoEConvencao->ativo = $request->input('ativar') == 'true' ? 'S' : 'N';
         $acordoEConvencao->entidade = $request->input('idEntidade') ?? null;
@@ -101,7 +101,7 @@ class AcordoEConvencaoController extends Controller
         $acordoEConvencao = $acordoEConvencao->find($request->input('id'));
         
         $acordoEConvencao->dataInclusao = $request->input('dataInclusao') ? Carbon::createFromFormat('Y-m-d', $request->input('dataInclusao')) : null;
-        $acordoEConvencao->dataLimiteNoDestaque = $request->input('dataLimiteNoDestaque') ? Carbon::createFromFormat('Y-m-d', $request->input('dataLimiteNoDestaque')) : null;
+        $acordoEConvencao->dataLimiteNoDestaque = $request->input('dataLimiteNoDestaque') ? Carbon::createFromFormat('Y-m-d H:i', "{$request->input('dataLimiteNoDestaque')} {$request->input('horaLimiteNoDestaque')}") : null;
         $acordoEConvencao->horaLimiteNoDestaque = $request->input('horaLimiteNoDestaque') ? Carbon::createFromFormat('H:i', $request->input('horaLimiteNoDestaque')) : null;
         $acordoEConvencao->ativo = $request->input('ativar') == 'true' ? 'S' : 'N';
         $acordoEConvencao->entidade = $request->input('idEntidade') ?? null;
