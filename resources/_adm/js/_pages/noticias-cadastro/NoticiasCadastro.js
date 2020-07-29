@@ -16,7 +16,6 @@ export default {
                             dataDaInclusao: 'required',
                             dataLimiteNoDestaque: 'required',
                             horaLimiteNoDestaque: 'required',
-                            bancos: 'required',
                             bannerDestaque: 'required',
                             creditoBannerDestaque: 'required',
                             imagemDestaque: 'required',
@@ -32,7 +31,6 @@ export default {
                       case 'noticia-video':
                         this.borderFields = {
                             dataDaInclusao: 'required',
-                            bancos: 'required',
                             videoYoutube: 'required',
                             cartola: 'required',
                             tags: 'required',
@@ -45,7 +43,6 @@ export default {
                       case 'noticia-imagem':
                         this.borderFields = {
                             dataDaInclusao: 'required',
-                            bancos: 'required',
                             imagemDestaque: 'required',
                             creditoImagemDestaque: 'required',
                             cartola: 'required',
@@ -59,7 +56,6 @@ export default {
                       case 'noticia-podcast':
                         this.borderFields = {
                             dataDaInclusao: 'required',
-                            bancos: 'required',
                             filePodcast: 'required',
                             cartola: 'required',
                             tags: 'required',
@@ -72,7 +68,6 @@ export default {
                       case 'noticia-simples':
                         this.borderFields = {
                             dataDaInclusao: 'required',
-                            bancos: 'required',
                             cartola: 'required',
                             tags: 'required',
                             tituloDaNoticia: 'required',
@@ -412,14 +407,8 @@ export default {
                     }
                 break;
             }
-
-
             
-            // Ronaldo
             // Validações comuns a todos
-            if ( _.isEmpty(this.bancoValue) )
-                this.errorsShow.errors.push({title: 'Banco', description: 'obrigatório'});
-
             if ( _.isEmpty(this.dateTimeInputs.dates.dataDaInclusao.date) )
                 this.errorsShow.errors.push({title: 'Data Inclusão', description: 'obrigatório'});
             

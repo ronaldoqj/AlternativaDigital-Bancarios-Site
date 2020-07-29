@@ -1,3 +1,7 @@
+<?php
+    $noticiaDestaqueFirst = $return['noticiaDestaqueFirst'];
+?>
+
 @extends('layouts.layout')
 @section('css')
     <link href="{{url(mix('/_site/css/pages/home.css'))}}" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -11,7 +15,7 @@
         <div class="row align-items-end">
             <div class="col cols__texts">
 
-                <div class="col-12 col-lg-9 container-text-1">#FETRAFI #coronavirus #bancos</div>
+                <div class="col-12 col-lg-9 container-text-1">#{{ $noticiaDestaqueFirst->cartola }} #{{ $noticiaDestaqueFirst->cartola }}</div>
                 <div class="container-text-2">Fetrafi-RS | 21/05/2020 </div>
                 <div class="col-12 col-lg-9 container-text-3">Fetrafi-RS alerta: bancos estão descumprindo protocolos de combate ao coronavírus</div>
 

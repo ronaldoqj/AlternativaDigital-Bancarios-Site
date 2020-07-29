@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Adm;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Noticia;
+use App\Models\Edital;
 use App\Services\Upload;
 use App\Models\File;
 use Illuminate\Support\Facades\Auth;
@@ -29,13 +29,9 @@ class EditalController extends Controller
     public function index(Request $request)
     {
         $return = [];
-        $noticia = new Noticia();
+        $Edital = new Edital();
 
-        $return['noticiaDestaque'] = $noticia->listAllToAdmPageNoticias('noticia-destaque')->get()->toJson();
-        $return['noticiaComImagem'] = $noticia->listAllToAdmPageNoticias('noticia-imagem')->get()->toJson();
-        $return['noticiaComPodcast'] = $noticia->listAllToAdmPageNoticias('noticia-podcast')->get()->toJson();
-        $return['noticiaComVideo'] = $noticia->listAllToAdmPageNoticias('noticia-video')->get()->toJson();
-        $return['noticiaSimples'] = $noticia->listAllToAdmPageNoticias('noticia-simples')->get()->toJson();
+        $return['list'] = $Edital->listAllToAdmPageEditais()->get()->toJson();
 
         return view('adm.editais.editais')->withReturn($return);
     }
@@ -48,108 +44,95 @@ class EditalController extends Controller
     public function edicao(Request $request, $id = '')
     {
         if( (int) $id == 0 ) {
-            return redirect('/adm/noticias');
+            return redirect('/adm/editais');
         }
         
-        $noticia = new Noticia();
-        $noticia = $noticia->findById($id);
-
-        return view('adm.editais.editais-editar')->withNoticia(json_encode($noticia));
+        $Edital = new Edital();
+        $Edital = $Edital->findById($id);
+        
+        return view('adm.editais.editais-editar')->withList(json_encode($Edital));
     }
 
-    public function cadastrarNoticia(Request $request)
+    public function cadastrar(Request $request)
     {
-        $noticia = new Noticia();
-        $noticia->tipoDaNoticia = $request->input('tipoDaNoticia') ?? '';
-        $noticia->dataInclusao = $request->input('dataInclusao') ? Carbon::createFromFormat('Y-m-d', $request->input('dataInclusao')) : null;
-        $noticia->dataLimiteNoDestaque = $request->input('dataLimiteNoDestaque') ? Carbon::createFromFormat('Y-m-d', $request->input('dataLimiteNoDestaque')) : null;
-        $noticia->horaLimiteNoDestaque = $request->input('horaLimiteNoDestaque') ? Carbon::createFromFormat('H:i', $request->input('horaLimiteNoDestaque')) : null;
-        $noticia->ativo = $request->input('ativarNoticia') == 'true' ? 'S' : 'N';
-        $noticia->ativarNosSindicatos = $request->input('ativarNosSindicatos') ?? '';
-        $noticia->videoYoutube = $request->input('videoYoutube') ?? '';
-        $noticia->cartola = $request->input('cartola') ?? '';
-        $noticia->tags = $request->input('tags') ?? '';
-        $noticia->titulo = $request->input('tituloDaNoticia') ?? '';
-        $noticia->linhaDeApoio = $request->input('linhaDeApoio') ?? '';
-        $noticia->texto = $request->input('texto') ?? '';
-        $noticia->jornalistaResponsavel = $request->input('jornalistaResponsavel') ?? '';
-        $noticia->userIdCreated = Auth::id();
-
-        $noticia->save();
+        $Edital = new Edital();
+        $Edital->dataInclusao = $request->input('dataInclusao') ? Carbon::createFromFormat('Y-m-d', $request->input('dataInclusao')) : null;
+        $Edital->dataLimiteNoDestaque = $request->input('dataLimiteNoDestaque') ? Carbon::createFromFormat('Y-m-d', $request->input('dataLimiteNoDestaque')) : null;
+        $Edital->horaLimiteNoDestaque = $request->input('horaLimiteNoDestaque') ? Carbon::createFromFormat('H:i', $request->input('horaLimiteNoDestaque')) : null;
+        $Edital->ativo = $request->input('ativar') == 'true' ? 'S' : 'N';
+        $Edital->ativarNosSindicatos = $request->input('ativarNosSindicatos') ?? null;
+        $Edital->cartola = $request->input('cartola') ?? '';
+        $Edital->tags = $request->input('tags') ?? '';
+        $Edital->titulo = $request->input('titulo') ?? '';
+        $Edital->linhaDeApoio = $request->input('linhaDeApoio') ?? '';
+        $Edital->userIdCreated = Auth::id();
+        
+        $Edital->save();
         
         $file = new Upload();
-        $file->path = 'files/noticias';
+        $file->path = 'files/editais';
         $file->creditfile = $request->input('creditoBannerDestaque') ?? null;
         $fileBannerDestaqueStored = $file->addFile( $request->file('bannerDestaque') );
         
         if ( count($fileBannerDestaqueStored) > 0 ) {
-            $noticia->bannerDestaque = $fileBannerDestaqueStored['FileId'];
-            $noticia->save();
-        }
-
-        $file = new Upload();
-        $file->path = 'files/noticias';
-        $file->creditfile = $request->input('creditoImagemDestaque') ?? null;
-        $fileIdImagemDestaqueStored = $file->addFile( $request->file('imagemDestaque') );
-        
-        if ( count($fileIdImagemDestaqueStored) > 0 ) {
-            $noticia->imagemDestaque = $fileIdImagemDestaqueStored['FileId'];
-            $noticia->save();
+            $Edital->bannerDestaque = $fileBannerDestaqueStored['FileId'];
+            $Edital->save();
         }
         
         $file = new Upload();
-        $file->path = 'files/noticias';
-        $filePodcastStored = $file->addFile( $request->file('filePodcast') );
+        $file->path = 'files/editais';
+        $fileStored = $file->addFile( $request->file('file') );
 
-        if ( count($filePodcastStored) > 0 ) {
-            $noticia->filePodcast = $filePodcastStored['FileId'];
-            $noticia->save();
+        if ( count($fileStored) > 0 ) {
+            $Edital->file = $fileStored['FileId'];
+            $Edital->save();
         }
 
-        return redirect(url('adm/noticias'));
+        return redirect(url('adm/editais'));
     }
 
-    public function editarNoticia(Request $request)
+    public function editar(Request $request)
     {
-        $noticia = new Noticia();
-        $noticia = $noticia->find($request->input('idNoticia'));
+        $Edital = new Edital();
+        $Edital = $Edital->find($request->input('id'));
         
-        $noticia->tipoDaNoticia = $request->input('tipoDaNoticia') ?? '';
-        $noticia->dataInclusao = $request->input('dataInclusao') ? Carbon::createFromFormat('Y-m-d', $request->input('dataInclusao')) : null;
-        $noticia->dataLimiteNoDestaque = $request->input('dataLimiteNoDestaque') ? Carbon::createFromFormat('Y-m-d', $request->input('dataLimiteNoDestaque')) : null;
-        $noticia->horaLimiteNoDestaque = $request->input('horaLimiteNoDestaque') ? Carbon::createFromFormat('H:i', $request->input('horaLimiteNoDestaque')) : null;
-        $noticia->ativo = $request->input('ativarNoticia') == 'true' ? 'S' : 'N';
-        $noticia->ativarNosSindicatos = $request->input('ativarNosSindicatos') ?? '';
-        $noticia->videoYoutube = $request->input('videoYoutube') ?? '';
-        $noticia->cartola = $request->input('cartola') ?? '';
-        $noticia->tags = $request->input('tags') ?? '';
-        $noticia->titulo = $request->input('tituloDaNoticia') ?? '';
-        $noticia->linhaDeApoio = $request->input('linhaDeApoio') ?? '';
-        $noticia->texto = $request->input('texto') ?? '';
-        $noticia->jornalistaResponsavel = $request->input('jornalistaResponsavel') ?? '';
-        $noticia->userIdUpdated = Auth::id();
-        $noticia->save();
-        
+        $Edital->dataInclusao = $request->input('dataInclusao') ? Carbon::createFromFormat('Y-m-d', $request->input('dataInclusao')) : null;
+        $Edital->dataLimiteNoDestaque = $request->input('dataLimiteNoDestaque') ? Carbon::createFromFormat('Y-m-d', $request->input('dataLimiteNoDestaque')) : null;
+        $Edital->horaLimiteNoDestaque = $request->input('horaLimiteNoDestaque') ? Carbon::createFromFormat('H:i', $request->input('horaLimiteNoDestaque')) : null;
+        $Edital->ativo = $request->input('ativar') == 'true' ? 'S' : 'N';
+        $Edital->ativarNosSindicatos = $request->input('ativarNosSindicatos') ?? null;
+        $Edital->cartola = $request->input('cartola') ?? '';
+        $Edital->tags = $request->input('tags') ?? '';
+        $Edital->titulo = $request->input('titulo') ?? '';
+        $Edital->linhaDeApoio = $request->input('linhaDeApoio') ?? '';
+        $Edital->userIdUpdated = Auth::id();
+        $Edital->save();
+
+        $creditoBannerDestaque = new File();
+        $creditoBannerDestaque = $creditoBannerDestaque->where( 'id', $Edital->bannerDestaque )->first();
+
         $creditoBannerDestaque = new File();
         if ( $request->file('bannerDestaque') )
         {
-            $creditoBannerDestaque = $creditoBannerDestaque->where( 'id', $noticia->bannerDestaque )->first();
-            $creditoBannerDestaque->delete();
+            $creditoBannerDestaque = $creditoBannerDestaque->where( 'id', $Edital->bannerDestaque )->first();
 
+            if ($creditoBannerDestaque) {
+                $creditoBannerDestaque->delete();
+            }
 
             $file = new Upload();
-            $file->path = 'files/noticias';
+            $file->path = 'files/editais';
             $file->creditfile = $request->input('creditoBannerDestaque') ?? null;
             $fileBannerDestaqueStored = $file->addFile( $request->file('bannerDestaque') );
             
             if ( count($fileBannerDestaqueStored) > 0 ) {
-                $noticia->bannerDestaque = $fileBannerDestaqueStored['FileId'];
-                $noticia->save();
+                $Edital->bannerDestaque = $fileBannerDestaqueStored['FileId'];
+                $Edital->save();
             }
         }
         else
         {
-            $creditoBannerDestaque = $creditoBannerDestaque->where( 'id', $noticia->bannerDestaque )->first();
+            $creditoBannerDestaque = $creditoBannerDestaque->where( 'id', $Edital->bannerDestaque )->first();
 
             if ($creditoBannerDestaque) {
                 $creditoBannerDestaque->creditfile = $request->input('creditoBannerDestaque') ?? null;
@@ -157,49 +140,31 @@ class EditalController extends Controller
             }   
         }
 
-        
-        $creditoImagemDestaque = new File();
-        if ( $request->file('imagemDestaque') )
+
+        if ( $request->file('file') )
         {
-            $creditoImagemDestaque = $creditoImagemDestaque->where( 'id', $noticia->imagemDestaque )->first();
-            $creditoImagemDestaque->delete();
+            $file = new File();
+            $file = $file->where( 'id', $Edital->file )->first();
+            $file->delete();
 
             $file = new Upload();
-            $file->path = 'files/noticias';
-            $file->creditfile = $request->input('creditoImagemDestaque') ?? null;
-            $fileIdImagemDestaqueStored = $file->addFile( $request->file('imagemDestaque') );
+            $file->path = 'files/editais';
+            $fileStored = $file->addFile( $request->file('file') );
             
-            if ( count($fileIdImagemDestaqueStored) > 0 ) {
-                $noticia->imagemDestaque = $fileIdImagemDestaqueStored['FileId'];
-                $noticia->save();
-            }
-        }
-        else
-        {
-            $creditoImagemDestaque = $creditoImagemDestaque->where( 'id', $noticia->imagemDestaque )->first();
-
-            if ($creditoImagemDestaque) {
-                $creditoImagemDestaque->creditfile = $request->input('creditoImagemDestaque') ?? null;
-                $creditoImagemDestaque->save();
-            }   
-        }
-
-        if ( $request->file('filePodcast') )
-        {
-            $filePodcast = new File();
-            $filePodcast = $filePodcast->where( 'id', $noticia->filePodcast )->first();
-            $filePodcast->delete();
-
-            $file = new Upload();
-            $file->path = 'files/noticias';
-            $filePodcastStored = $file->addFile( $request->file('filePodcast') );
-            
-            if ( count($filePodcastStored) > 0 ) {
-                $noticia->filePodcast = $filePodcastStored['FileId'];
-                $noticia->save();
+            if ( count($fileStored) > 0 ) {
+                $Edital->file = $fileStored['FileId'];
+                $Edital->save();
             }
         }
     
-        return redirect(url('adm/noticias'));
+        return redirect(url('adm/editais'));
+    }
+
+    public function deletar(Request $request)
+    {
+        $Edital = new Edital();
+        $delete = $Edital->find($request->input('id'));
+        $delete->delete();
+        return redirect(url('adm/editais'));
     }
 }

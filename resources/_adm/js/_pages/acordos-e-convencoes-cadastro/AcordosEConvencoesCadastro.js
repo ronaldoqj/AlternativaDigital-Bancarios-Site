@@ -187,7 +187,7 @@ export default {
             this.id = item.id;
             this.valueBtnSubmit = 'Editar';
 
-            // Started combobox banco
+            // Started combobox entidade
             this.idEntidade = item.entidade;
             
             for (let i in this.entidadeItemsObject)
