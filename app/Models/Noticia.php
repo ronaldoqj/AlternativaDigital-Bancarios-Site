@@ -201,7 +201,7 @@ class Noticia extends Model
     /**
      * Metodos para o site
      */
-    public function listAllToSitePageWelcome($type = '*')
+    public function listAllToSitePageWelcome($type = '*', $id = null, $idbanco = null)
     {
         $list = DB::table('noticias');
         $list->leftjoin('files as filesBannerDestaque', 'filesBannerDestaque.id', '=', 'noticias.bannerDestaque');
@@ -210,10 +210,21 @@ class Noticia extends Model
         $list->whereNull('noticias.deleted_at');
         $list->where('ativo', 'S');
 
+        if ($idbanco) {
+            $list->where('noticias.meuBanco', $idbanco);
+        }
+
+        if ($id) {
+            $list->whereNotIn('noticias.id', [$id]);
+        }
+
         if ($type != '*') {
             $list->where('noticias.tipoDaNoticia', $type);
-        }                         
-        $list->orderBy('noticias.id', 'desc');
+        }
+        
+        
+
+        $list->orderBy('noticias.dataInclusao', 'desc');
 
         $listAll = $list->addSelect('noticias.id as id',
                                     'noticias.ativo as ativo',

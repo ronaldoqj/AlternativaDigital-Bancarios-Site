@@ -37,6 +37,24 @@
 
         @case('noticia-destaque')
 
+        <!-- BLOCO NOTICIA IMAGEM -->
+                
+        <div class="container __separador"><div class="row"><div class="col"><div></div></div></div></div>
+
+        <a href="/noticia/{{$noticia->id}}/{{str_replace(' ', '-', $noticia->titulo)}}">
+        <div class="row COMPONENTE__news--with--image">
+            <div class="col-12 col-lg-5 __news--left">
+                <div style='background-image: url({{asset("/{$noticia->fileImagemDestaque_pathfile}/{$noticia->fileImagemDestaque_namefile}")}}); height: 250px'></div>
+            </div>
+            <div class="col-12 col-lg-7 __news--right">
+                <div class="__text--1">{{ $noticia->cartola }} | {{ \Carbon\Carbon::parse($noticia->dataInclusao)->format('d/m/Y') }} <span>#{{$noticia->tags}}</span></div>
+                <div class="__text--2">{{ $noticia->titulo }}</div>
+                <div class="__text--3">{{ $noticia->linhaDeApoio }}</div>
+            </div>
+        </div>
+        </a>
+
+        <!-- FIM - BLOCO NOTICIA IMAGEM -->
 
         @break
 

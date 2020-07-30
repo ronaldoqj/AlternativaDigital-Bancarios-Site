@@ -27,6 +27,7 @@ class WelcomeController extends Controller
     {
         $return = [];
         $return['bancoSelecionado'] = 'Meu Banco';
+        $idBanco = null;
 
 
         if (is_numeric($request->input('banco')))
@@ -36,6 +37,7 @@ class WelcomeController extends Controller
             
             if ($bancoPesquisa->count()) {
                 $return['bancoSelecionado'] = $bancoPesquisa->name;
+                $idBanco = $request->input('banco');
             }
         }
 
@@ -44,19 +46,8 @@ class WelcomeController extends Controller
         $banco = new Banco();
 
         $return['noticiaDestaqueFirst'] = $noticia->listAllToSitePageWelcome('noticia-destaque')->first();
-        $return['noticiaDestaque'] = $noticia->listAllToSitePageWelcome('noticia-destaque')->get();
-        $return['noticias'] = $noticia->listAllToSitePageWelcome()->get();
-        
-        // $return['bancos'] = $banco->all();
-        
-        // $return['noticiaComImagem'] = $noticia->listAllToSitePageWelcome('noticia-imagem')->get();
-        // $return['noticiaComPodcast'] = $noticia->listAllToSitePageWelcome('noticia-podcast')->get();
-        // $return['noticiaComVideo'] = $noticia->listAllToSitePageWelcome('noticia-video')->get();
-        // $return['noticiaSimples'] = $noticia->listAllToSitePageWelcome('noticia-simples')->get();
-// dump($return['noticiaDestaqueFirst']);
+        $return['noticias'] = $noticia->listAllToSitePageWelcome('*', $return['noticiaDestaqueFirst']->id, $idBanco)->get();
 
-// dump($return['noticiaDestaque']);
-// dd($return['noticias']);
         return view('welcome')->withReturn($return);
     }
 }
