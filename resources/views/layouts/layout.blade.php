@@ -22,9 +22,7 @@
         @yield('css-syndicate')
         @yield('css')
 
-
         <script src="{{ url(mix('/_site/js/svg-inject.min.js')) }}"></script>
-
     </head>
     <body>
         <nav id="sidebar" class="">
@@ -42,13 +40,13 @@
             <ul class="list-unstyled components">
                 <p>Menu</p>
                 <li class="active">
+                    <a href="{{url('/')}}">Página Inicial</a>
+                </li>
+                <li>
                     <a href="{{url('/editais')}}">Editais</a>
                 </li>
                 <li>
                     <a href="{{url('/acordos-e-convencoes')}}">Acordos e Convenções</a>
-                </li>
-                <li>
-                    <a href="#">Meu Banco</a>
                 </li>
                 <li>
                     <a href="{{url('/meu-sindicato')}}">Meu Sindicato</a>
@@ -131,14 +129,25 @@
 
                                         <div class="btn-group combo-box">
                                             <button type="button" id="btn-banco" class="btn btn-secondary dropdown-toggle btn-sm" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
-                                                Meu Banco
+                                                {{ $return['bancoSelecionado'] ?? 'Meu Banco' }}
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">
-                                                <button class="dropdown-item" type="button">Meu Banco</button>
-                                                <button class="dropdown-item" type="button">Itaú</button>
-                                                <button class="dropdown-item" type="button">Bradesco</button>
+
+                                            <button class="dropdown-item" type="button">Meu Banco</button>
+                                            
+                                            @forelse (session()->all()['bancos'] as $sessionBanco)
+
+                                                
+                                                <a href="{{ url('?banco='.$sessionBanco->id) }}"><button class="dropdown-item" type="button">{{$sessionBanco->name}}</button></a>
+
+                                                <!-- <button class="dropdown-item" type="button">Bradesco</button>
                                                 <button class="dropdown-item" type="button">Santander</button>
-                                                <button class="dropdown-item" type="button">Banco do Brasil</button>
+                                                <button class="dropdown-item" type="button">Banco do Brasil</button> -->
+
+                                            @empty
+                                                
+                                            @endforelse
+                                            
                                             </div>
                                         </div>
                                     

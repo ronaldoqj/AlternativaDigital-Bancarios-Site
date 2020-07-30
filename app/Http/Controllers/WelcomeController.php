@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Noticia;
+use App\Models\Banco;
+use Hamcrest\Type\IsNumeric;
 
 class WelcomeController extends Controller
 {
@@ -21,18 +23,40 @@ class WelcomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         $return = [];
-        $noticia = new Noticia();
+        $return['bancoSelecionado'] = 'Meu Banco';
 
-        $return['noticiaDestaqueFirst'] = $noticia->listAllToAdmPageNoticias('noticia-destaque')->first();
-        $return['noticiaDestaque'] = $noticia->listAllToAdmPageNoticias('noticia-destaque')->get()->toJson();
-        $return['noticiaComImagem'] = $noticia->listAllToAdmPageNoticias('noticia-imagem')->get()->toJson();
-        $return['noticiaComPodcast'] = $noticia->listAllToAdmPageNoticias('noticia-podcast')->get()->toJson();
-        $return['noticiaComVideo'] = $noticia->listAllToAdmPageNoticias('noticia-video')->get()->toJson();
-        $return['noticiaSimples'] = $noticia->listAllToAdmPageNoticias('noticia-simples')->get()->toJson();
+
+        if (is_numeric($request->input('banco')))
+        {
+            $bancoPesquisa = new Banco();
+            $bancoPesquisa = $bancoPesquisa->find($request->input('banco'));
+            
+            if ($bancoPesquisa->count()) {
+                $return['bancoSelecionado'] = $bancoPesquisa->name;
+            }
+        }
+
+        
+        $noticia = new Noticia();
+        $banco = new Banco();
+
+        $return['noticiaDestaqueFirst'] = $noticia->listAllToSitePageWelcome('noticia-destaque')->first();
+        $return['noticiaDestaque'] = $noticia->listAllToSitePageWelcome('noticia-destaque')->get();
+        $return['noticias'] = $noticia->listAllToSitePageWelcome()->get();
+        
+        // $return['bancos'] = $banco->all();
+        
+        // $return['noticiaComImagem'] = $noticia->listAllToSitePageWelcome('noticia-imagem')->get();
+        // $return['noticiaComPodcast'] = $noticia->listAllToSitePageWelcome('noticia-podcast')->get();
+        // $return['noticiaComVideo'] = $noticia->listAllToSitePageWelcome('noticia-video')->get();
+        // $return['noticiaSimples'] = $noticia->listAllToSitePageWelcome('noticia-simples')->get();
 // dump($return['noticiaDestaqueFirst']);
+
+// dump($return['noticiaDestaque']);
+// dd($return['noticias']);
         return view('welcome')->withReturn($return);
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Noticia;
+
 
 class NoticiasController extends Controller
 {
@@ -20,9 +22,30 @@ class NoticiasController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request, $id = null, $title = '')
     {
-        return 'index';
+
+        $return = [];
+
+        if (is_numeric($id))
+        {
+            $noticia = new Noticia();
+            $noticia = $noticia->findById($id);
+            
+            if ($noticia) {
+                $return['noticia'] = $noticia;
+
+                $sugestoes = new Noticia();
+                $sugestoes = $sugestoes->sugestoesDeNoticias($id)->get();
+                $return['sugestoes'] = $sugestoes;
+            }
+        }
+
+        if (! count($return)) {
+            return redirect(url('/'));
+        }
+
+        return view('noticia')->withReturn($return);
     }
 
     public function withImageDestaque() {
