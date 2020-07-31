@@ -77,6 +77,7 @@ Route::middleware([TemplateQuerys::class])->group(function()
 {
     Route::get('/', 'WelcomeController@index')->name('welcome');
     Route::get('/editais', 'EditaisController@index')->name('editais');
+    Route::get('/editais/download/{id?}', 'EditaisController@download')->name('editais-download');
     Route::get('/acordos-e-convencoes', 'AcordosEConvencoesController@index')->name('acordos-e-convencoes');
     Route::get('/meu-sindicato', 'MeuSindicatoController@index')->name('meu-sindicato');
     Route::get('/noticia/{id?}/{title?}', 'NoticiasController@index')->name('noticia');
@@ -88,7 +89,7 @@ Route::middleware([TemplateQuerys::class])->group(function()
 
     // Sindicatos
     Route::prefix('sindicato')->namespace('Sindicatos')->group(function () {
-        Route::get('/editais', 'EditaisController@index')->name('sindicato-editais');    
+        Route::get('/editais', 'EditaisController@index')->name('sindicato-editais');
         Route::get('/contato', 'ContatoController@index')->name('sindicato-contato');    
         Route::get('/sindicalize-se', 'SindicalizeSeController@index')->name('sindicato-sindicalize-se');    
     });

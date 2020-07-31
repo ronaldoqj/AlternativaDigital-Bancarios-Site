@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Edital;
 
 class EditaisController extends Controller
 {
@@ -22,17 +23,31 @@ class EditaisController extends Controller
      */
     public function index()
     {
-        //phpinfo();
-        $teste = '';
-        $ronaldo = 'oioi';
-        $teste = 'Ronaldo';
-        $teste .= ' ';
-        $teste .= 'Quionha';
-        $teste .= ' ';
-        $teste .= 'de';
-        $teste .= ' ';
-        $teste .= 'Jesus';
+        $editais = new Edital();
+        $editais = $editais->listAllToSitePageEditais()->get();
 
-        return view('editais');
+        return view('editais')->withEditais($editais);
+    }
+
+    public function download(Request $request, $id = null)
+    {
+        $download = false;
+
+        if (is_numeric($id))
+        {
+            $edital = new Edital();
+            $edital = $edital->findById($id);
+
+            if ($edital)
+            {
+                $download = $edital->file_pathfile . '/' . $edital->file_namefile;
+                return response()->download($download);
+            }
+        }
+
+        if (! $download)
+        {
+            return redirect(url('editais'));
+        }
     }
 }

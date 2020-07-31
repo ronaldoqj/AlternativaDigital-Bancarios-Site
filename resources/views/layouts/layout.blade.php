@@ -133,7 +133,7 @@
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">
 
-                                            <button class="dropdown-item" type="button">Meu Banco</button>
+                                            <a href="{{ url('/') }}"><button class="dropdown-item" type="button"> Todos Bancos </button></a>
                                             
                                             @forelse (session()->all()['bancos'] as $sessionBanco)
 

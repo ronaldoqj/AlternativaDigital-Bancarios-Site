@@ -24,7 +24,6 @@
             
             .__news--content
             {
-    
                 .__text--1
                 {
                     font-family: 'Anton', sans-serif;
@@ -60,7 +59,6 @@
                     }
                 }
             }
-            
         }
 
 
@@ -77,14 +75,12 @@
                     }
                 }
             }
-           
         }
 
         .__icons--editais
         {
             text-align: center;
             margin: 20px auto;
-
 
             /* Button Edital */
             /**
@@ -131,5 +127,11 @@
 
     }
 
-}
+    .emptyRegisters {
+        margin-top: 30px;
+        font-size: 1.7em;
+        color: #125488;
+        font-weight: bold;
+    }
 
+}
