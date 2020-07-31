@@ -38,7 +38,7 @@
                 <div class="clear-fix"></div>
             </div>
         </div>
-    @if($loop->iteration % 2 == 0)
+    @if($loop->iteration % 2 == 0 || $loop->last)
     </div>
     @endif
 
