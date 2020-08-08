@@ -74,7 +74,7 @@
                             v-bind="attrs"
                             v-on="on"
                             outlined
-                            clearable="true"
+                            :clearable="true"
                         ></v-text-field>
                     </template>
                     <v-date-picker v-model="dateTimeInputs.dates.limiteNoDestaque.date" scrollable>
@@ -104,7 +104,7 @@
                         v-bind="attrs"
                         v-on="on"
                         outlined
-                        clearable="true"
+                        :clearable="true"
                     ></v-text-field>
                     </template>
                     <v-time-picker
@@ -133,7 +133,7 @@
                 dense="dense"
                 color="primary"
                 outlined
-                clearable="true"
+                :clearable="true"
                 ></v-select>
             </div>
         </div>
@@ -154,7 +154,7 @@
                             label="Banco"
                             placeholder="Selecione um banco"
                             outlined
-                            clearable="true"
+                            :clearable="true"
                             ></v-combobox>
                         </div>
                     </div>
@@ -216,7 +216,7 @@
                                 maxlength="240"
                                 counter="240"
                                 outlined
-                                clearable="true"
+                                :clearable="true"
                             ></v-text-field>
                         </div>
                     </div>
@@ -277,7 +277,7 @@
                                 maxlength="240"
                                 counter="240"
                                 outlined
-                                clearable="true"
+                                :clearable="true"
                             ></v-text-field>
                         </div>
                     </div>
@@ -352,7 +352,7 @@
                                     maxlength="240"
                                     counter="240"
                                     outlined
-                                    clearable="true"
+                                    :clearable="true"
                                 ></v-text-field>
                                 <div class="youtube-exmaple-code">
                                     https://www.youtube.com/embed/<span>zpORURyy-n8?rel=0</span>
@@ -376,7 +376,7 @@
                     maxlength="240"
                     counter="240"
                     outlined
-                    clearable="true"
+                    :clearable="true"
                 ></v-text-field>
             </div>
             <div class="col-4" :class="borderFields.tags">
@@ -388,7 +388,7 @@
                     maxlength="240"
                     counter="240"
                     outlined
-                    clearable="true"
+                    :clearable="true"
                 ></v-text-field>
             </div>
         </div>
@@ -404,7 +404,7 @@
                 maxlength="240"
                 counter="240"
                 outlined
-                clearable="true"
+                :clearable="true"
                 ></v-textarea>
             </div>
         </div>
@@ -420,7 +420,7 @@
                 maxlength="240"
                 counter="240"
                 outlined
-                clearable="true"
+                :clearable="true"
                 ></v-textarea>
             </div>
         </div>
@@ -470,7 +470,7 @@
                     maxlength="240"
                     counter="240"
                     outlined
-                    clearable="true"
+                    :clearable="true"
                 ></v-text-field>
             </div>
         </div>
