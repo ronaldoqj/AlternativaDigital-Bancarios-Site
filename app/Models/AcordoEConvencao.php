@@ -18,6 +18,11 @@ class AcordoEConvencao extends Model
     }
 
 
+    /**
+     * ADM
+     * Metodos utilizados para o adm
+     */
+
     public function listAllToAdmPageAcordosEConvencoes()
     {
         $list = DB::table('acordos_e_convencoes');
@@ -142,5 +147,28 @@ class AcordoEConvencao extends Model
                                     'filesFile.created_at as file_created_at',
                                     'filesFile.updated_at as file_updated_at')->first();
         return $listAll;
+    }
+
+
+    /**
+     * Site
+     * Metodos utilizados para o site
+     */
+    public function getYears()
+    {
+        $list = DB::table('acordos_e_convencoes');
+        $list->leftjoin('files as filesBannerDestaque', 'filesBannerDestaque.id', '=', 'acordos_e_convencoes.bannerDestaque');
+        $list->orderBy('acordos_e_convencoes.dataInclusao', 'desc');
+        $list->group(DB::raw('acordos_e_convencoes.dataInclusao'));
+
+        //GROUP BY DATE_FORMAT(record_date, '%Y%m')
+
+        $listAll = $list->addSelect('acordos_e_convencoes.id as id',
+                                     DB::raw('acordos_e_convencoes.dataInclusao as data'),
+                                    'acordos_e_convencoes.dataInclusao as dataInclusao');
+        //$list->where('acordos_e_convencoes.id', $id);
+        //dataInclusao
+
+        return $listAll->get();
     }
 }

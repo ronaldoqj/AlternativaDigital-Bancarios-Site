@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\AcordoEConvencao;
 
 class AcordosEConvencoesController extends Controller
 {
@@ -22,16 +23,10 @@ class AcordosEConvencoesController extends Controller
      */
     public function index()
     {
-        //phpinfo();
-        $teste = '';
-        $ronaldo = 'oioi';
-        $teste = 'Ronaldo';
-        $teste .= ' ';
-        $teste .= 'Quionha';
-        $teste .= ' ';
-        $teste .= 'de';
-        $teste .= ' ';
-        $teste .= 'Jesus';
+        $acordoEConvencao = new AcordoEConvencao();
+        // $years = $acordoEConvencao->getYears();
+
+        // dd($years);
 
         return view('acordos-e-convencoes');
     }
