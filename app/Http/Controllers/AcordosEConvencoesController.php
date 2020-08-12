@@ -24,9 +24,9 @@ class AcordosEConvencoesController extends Controller
     public function index()
     {
         $acordoEConvencao = new AcordoEConvencao();
-        // $years = $acordoEConvencao->getYears();
+        $years = $acordoEConvencao->listAllToSiteAcordosEConvencoes();
 
-        // dd($years);
+        //dd($years);
 
         return view('acordos-e-convencoes');
     }
