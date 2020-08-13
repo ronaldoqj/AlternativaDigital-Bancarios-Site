@@ -79,6 +79,7 @@ Route::middleware([TemplateQuerys::class])->group(function()
     Route::get('/editais', 'EditaisController@index')->name('editais');
     Route::get('/editais/download/{id?}', 'EditaisController@download')->name('editais-download');
     Route::get('/acordos-e-convencoes', 'AcordosEConvencoesController@index')->name('acordos-e-convencoes');
+    Route::get('/acordos-e-convencoes/download/{id?}', 'AcordosEConvencoesController@download')->name('acordos-e-convencoes-download');
     Route::get('/meu-sindicato', 'MeuSindicatoController@index')->name('meu-sindicato');
     Route::get('/noticia/{id?}/{title?}', 'NoticiasController@index')->name('noticia');
     // Route::get('/noticia', 'NoticiasController@withImage')->name('noticias-with-image');

@@ -24,10 +24,31 @@ class AcordosEConvencoesController extends Controller
     public function index()
     {
         $acordoEConvencao = new AcordoEConvencao();
-        $years = $acordoEConvencao->listAllToSiteAcordosEConvencoes();
+        $list = $acordoEConvencao->listAllToSiteAcordosEConvencoes();
 
-        //dd($years);
+        return view('acordos-e-convencoes')->withList($list);
+    }
 
-        return view('acordos-e-convencoes');
+
+    public function download(Request $request, $id = null)
+    {
+        $download = false;
+
+        if (is_numeric($id))
+        {
+            $edital = new AcordoEConvencao();
+            $edital = $edital->findById($id);
+
+            if ($edital)
+            {
+                $download = $edital->file_pathfile . '/' . $edital->file_namefile;
+                return response()->download($download);
+            }
+        }
+
+        if (! $download)
+        {
+            return redirect(url('editais'));
+        }
     }
 }

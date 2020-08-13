@@ -219,8 +219,9 @@ class AcordoEConvencao extends Model
     {
         $list = DB::table('acordos_e_convencoes');
         $list->leftjoin('entidades as E', 'E.id', '=', 'acordos_e_convencoes.entidade');
+        $list->leftjoin('files as filesFile', 'filesFile.id', '=', 'acordos_e_convencoes.file');
         $list->whereRaw('YEAR(acordos_e_convencoes.dataInclusao) = ?', $year);
-        $list->whereNull('deleted_at');
+        $list->whereNull('acordos_e_convencoes.deleted_at');
         $list->orderBy('E.name', 'ASC');
         $list->orderBy('acordos_e_convencoes.titulo', 'ASC');
         
@@ -243,9 +244,23 @@ class AcordoEConvencao extends Model
                                     'acordos_e_convencoes.userIdCreated as userIdCreated',
                                     'acordos_e_convencoes.userIdUpdated as userIdUpdated',
                                     'acordos_e_convencoes.created_at as created_at',
-                                    'acordos_e_convencoes.updated_at as updated_at');
+                                    'acordos_e_convencoes.updated_at as updated_at',
+                                    'filesFile.id as file_id',
+                                    'filesFile.category as file_category',
+                                    'filesFile.pathfile as file_pathfile',
+                                    'filesFile.name as file_name',
+                                    'filesFile.namefile as file_namefile',
+                                    'filesFile.creditfile as file_creditfile',
+                                    'filesFile.namefilefull as file_namefilefull',
+                                    'filesFile.mimetype as file_mimetype',
+                                    'filesFile.extension as file_extension',
+                                    'filesFile.size as file_size',
+                                    'filesFile.type as file_type',
+                                    'filesFile.description as file_description',
+                                    'filesFile.alternativeText as file_alternativeText',
+                                    'filesFile.created_at as file_created_at',
+                                    'filesFile.updated_at as file_updated_at');
         return $listAll->get();
     }
-
     
 }
