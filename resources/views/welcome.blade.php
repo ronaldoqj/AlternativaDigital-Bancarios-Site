@@ -5,6 +5,13 @@
 @extends('layouts.layout')
 @section('css')
     <link href="{{url(mix('/_site/css/pages/home.css'))}}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <style>
+        audio {
+            display: none;
+            /*position: absolute;
+            margin-left: 350px;*/
+        }
+    </style>
 @endsection
 @section('content')
 <!-- Banner TOP -->
@@ -128,18 +135,27 @@
                 
             <div class="container __separador"><div class="row"><div class="col"><div></div></div></div></div>
 
-            <a href="/noticia/{{$noticia->id}}/{{str_replace(' ', '-', $noticia->titulo)}}">
+            
             <div class="row COMPONENTE__news--with--audio">
                 <div class="col-12 __news--right">
-                <div class="__text--1">{{ $noticia->cartola }} | {{ \Carbon\Carbon::parse($noticia->dataInclusao)->format('d/m/Y') }} <span>#{{$noticia->tags}}</span></div>
-                    <div class="__text--2">{{ $noticia->titulo }}</div>
-                    <div class="__espectro--audio d-flex align-items-center">
-                    <div></div>
+                    <a href="/noticia/{{$noticia->id}}/{{str_replace(' ', '-', $noticia->titulo)}}">
+                        <div class="__text--1">{{ $noticia->cartola }} | {{ \Carbon\Carbon::parse($noticia->dataInclusao)->format('d/m/Y') }} <span>#{{$noticia->tags}}</span></div>
+                        <div class="__text--2">{{ $noticia->titulo }}</div>
+                        <div class="__espectro--audio d-flex align-items-center">
+                    </a>
+                    <div class="player__audio">
+                        <audio controls rel="stop">
+                            <source src="{{url($noticia->filePodcast_pathfile. '/' .$noticia->filePodcast_namefile)}}" type="{{ $noticia->filePodcast_mimetype }}">
+                            Seu navegador de internet não suporta o elemento do tipo audio.
+                        </audio>
                     </div>
+                </div>
+                <a href="/noticia/{{$noticia->id}}/{{str_replace(' ', '-', $noticia->titulo)}}">
                     <div class="__text--3">{{ $noticia->linhaDeApoio }}</div>
+                </a>
                 </div>
             </div>
-            </a>
+            
 
             <!-- FIM - BLOCO NOTICIA AUDIO -->
 

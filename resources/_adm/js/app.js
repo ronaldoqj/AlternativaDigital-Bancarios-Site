@@ -29,6 +29,7 @@ Vue.component('header-component', require('./components/_template/HeaderComponen
 Vue.component('sidebar-menu-component', require('./components/_template/SidebarmenuComponent.vue').default);
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('home-page', require('./_pages/home/Home.vue').default);
 Vue.component('errors-component', require('./components/widget/ErrorsComponent.vue').default);
 Vue.component('login-component', require('./components/widget/LoginComponent.vue').default);
 Vue.component('noticias-cadastro-page', require('./_pages/noticias-cadastro/NoticiasCadastro.vue').default);

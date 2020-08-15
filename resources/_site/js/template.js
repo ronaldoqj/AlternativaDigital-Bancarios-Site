@@ -44,4 +44,25 @@ $(document).ready(function ()
     });
 
     
+    // Home Player Audio
+    function playerAudio()
+    {
+        $('.player__audio').click(function()
+        {
+            
+            if ( $(this).children('audio').attr('rel') == 'stop' )
+            {
+                $(this).children('audio').attr('rel', 'play');
+                $(this).children('audio')[0].play();
+            }
+            else
+            {
+                $(this).children('audio').attr('rel', 'stop');
+                $(this).children('audio')[0].pause();
+            }
+
+        });
+    }
+
+    playerAudio();
 });
