@@ -1,8 +1,10 @@
 <template>
     <div id="component-template-sidebarmenu">
-        <div class="logo">
-            <img src="/_adm/assets/SVGs/logo-bancarios.svg" class="img-fluid" onload="SVGInject(this)" />
-        </div>
+        <a href="/adm">
+            <div class="logo">
+                <img src="/_adm/assets/SVGs/logo-bancarios.svg" class="img-fluid" onload="SVGInject(this)" />
+            </div>
+        </a>
         <div class="menus">
             
             <div class="title-sections"> Conteúdo Portal </div>

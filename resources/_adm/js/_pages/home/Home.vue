@@ -1,11 +1,6 @@
 
 <template>
     <div class="component-page-home">
-        
-        
-
-
-
 
         <v-expansion-panels
         v-model="panel"
@@ -23,9 +18,11 @@
                 <div class="container-fluid content--panel">
                     <div class="row">
                         <div class="col-12">
-                            
-                            teste col 12
-                            
+                            <div class="box-cards">
+                                <div class="item-card" v-for="item of cards.portalContent">
+                                    <CardHome :params="item"></CardHome>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -43,7 +40,11 @@
                 <div class="container-fluid content--panel">
                     <div class="row">
                         <div class="col-12">
-                            teste col 12
+                            <div class="box-cards">
+                                <div class="item-card" v-for="item of cards.admFunctions">
+                                    <CardHome :params="item"></CardHome>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -51,16 +52,105 @@
             </v-expansion-panel>
 
         </v-expansion-panels>
-
     
     </div>
 </template>  
 
 <script>
+import CardHome from "./components/CardHome"
 export default {
     data: () => {
         return {
+            panel: [0, 1],
 
+            cards: {
+                portalContent: {
+                    noticias: {
+                        icon: '/_adm/assets/SVGs/Home/icon-noticia.svg',
+                        title: 'Notícias',
+                        link: '/adm/noticias',
+                        subItem: {
+                            icon: '/_adm/assets/SVGs/Home/icon-plus.svg',
+                            title: 'Nova Notícia',
+                            link: '/adm/noticias/cadastro',
+                        }
+                    },
+                    editais: {
+                        icon: '/_adm/assets/SVGs/Home/icon-pdf.svg',
+                        title: 'Editais',
+                        link: '/adm/editais',
+                        subItem: {
+                            icon: '/_adm/assets/SVGs/Home/icon-plus.svg',
+                            title: 'Novo Edital',
+                            link: '/adm/editais/cadastro',
+                        }
+                    },
+                    acordosEConvencoes: {
+                        icon: '/_adm/assets/SVGs/Home/icon-pdf.svg',
+                        title: 'Acordos e Convenções',
+                        link: '/adm/acordos-e-convencoes',
+                        subItem: {
+                            icon: '/_adm/assets/SVGs/Home/icon-plus.svg',
+                            title: 'Novo Acordo',
+                            link: '/adm/acordos-e-convencoes/cadastro',
+                        }
+                    },
+                    meuSindicato: {
+                        icon: '/_adm/assets/SVGs/Home/icon-house.svg',
+                        title: 'Meu Sindicato',
+                        link: '#',
+                        subItem: {
+                            icon: '/_adm/assets/SVGs/Home/icon-plus.svg',
+                            title: 'Novo Sindicato',
+                            link: '#',
+                        }
+                    },
+                },
+                admFunctions: {
+                    sindicatos: {
+                        icon: '/_adm/assets/SVGs/Home/icon-users.svg',
+                        title: 'Sindicatos',
+                        link: '#',
+                        subItem: {},
+                    },
+                    contatos: {
+                        icon: '/_adm/assets/SVGs/Home/icon-phone.svg',
+                        title: 'Contatos',
+                        link: '#',
+                        subItem: {},
+                    },
+                    meuBanco: {
+                        icon: '/_adm/assets/SVGs/Home/icon-bank.svg',
+                        title: 'Meu Banco',
+                        link: '/adm/bancos',
+                        subItem: {},
+                    },
+                    entidades: {
+                        icon: '/_adm/assets/SVGs/Home/icon-entidade.svg',
+                        title: 'Entidade',
+                        link: '/adm/entidades',
+                        subItem: {},
+                    },
+                    redesSociais: {
+                        icon: '/_adm/assets/SVGs/Home/icon-social.svg',
+                        title: 'Redes Sociais',
+                        link: '#',
+                        subItem: {},
+                    },
+                    usuariso: {
+                        icon: '/_adm/assets/SVGs/Home/icon-users.svg',
+                        title: 'Usuários',
+                        link: '#',
+                        subItem: {},
+                    },
+                    meuPerfil: {
+                        icon: '/_adm/assets/SVGs/Home/icon-perfil.svg',
+                        title: 'Meu Perfil',
+                        link: '#',
+                        subItem: {},
+                    },
+                }
+            }
         }
     },
     components: {  },
@@ -69,19 +159,19 @@ export default {
         
         
     },
+    components: {CardHome},
     created()
     {
         
     }
 }
-
 </script>
-
 
 <style lang="scss">
 @import '~/../resources/_adm/sass/_vars.scss';
 .component-page-home
 {
+    margin-top: 20px;
 
     .v-expansion-panel-header
     {
@@ -104,14 +194,12 @@ export default {
 
         
         .title {
-            font-size: 2.5em;
-            color: $blue-strong;
+            font-size: 2.5em !important;
+            color: $blue;
             font-weight: bold;
             line-height: 1.1em;
-            white-space: nowrap;
+            white-space: pre;
         }
-
-
 
         > div
         {
@@ -130,85 +218,16 @@ export default {
 
     .content--panel
     {
-        padding-left: 30px;
-
-        .box--noticia
+        .box-cards
         {
-            position: relative;
-            border-bottom: solid 1px $grey-light;
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
 
-            .imagem-noticia {
-                width: 100%;
-                height: 100px;
-                background-size: cover;
-                background-position: center;
+            .item-card {
+                padding: 10px;
             }
-
-            audio {
-                width: 100%;
-                margin: 0px 0 20px;
-            }
-
-            .buttons
-            {
-                display: flex;
-                justify-content: center;
-                margin: -43px 0 0;
-                position: absolute;
-                width: 100%;
-                a
-                {
-                    svg
-                    {
-                        width: 65px;
-                        height: 65px;
-                        margin: 0 3px;
-                        cursor: pointer;
-    
-                        circle {
-                            transition: ease 0.4s;
-                        }
-                    }
-
-                    &:first-child
-                    {    
-                        &:hover svg {
-                            circle {
-                                fill: $blue-strong;
-                            }
-                        }
-                    }
-
-                    &:last-child
-                    {
-                        &:hover svg {
-                            circle {
-                                fill: $red-strong;
-                            }
-                        }
-                    }
-                }
-            }
-
-            .content {
-                color: #125488;
-                line-height: 1.2em;
-                font-size: 0.9em;
-                margin-top: 15px;
-            }
-
-            &.noticia-simples
-            {
-                .buttons {
-                    margin: 0;
-                    position: relative;
-                    margin-top: 20px;
-                }
-                
-            }
-
         }
-        
     }
 
 }
