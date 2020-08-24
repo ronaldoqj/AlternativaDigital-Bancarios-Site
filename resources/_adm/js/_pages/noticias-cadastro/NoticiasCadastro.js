@@ -1,5 +1,7 @@
 import btnIconText from "../../components/btn_icon-text/BtnIconText.vue"
 import moment from 'moment';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 
 export default {
     watch: {
@@ -16,6 +18,7 @@ export default {
                             dataDaInclusao: 'required',
                             dataLimiteNoDestaque: 'required',
                             horaLimiteNoDestaque: 'required',
+                            ativarPortalSindicatos: 'required',
                             bannerDestaque: 'required',
                             creditoBannerDestaque: 'required',
                             imagemDestaque: 'required',
@@ -31,6 +34,7 @@ export default {
                       case 'noticia-video':
                         this.borderFields = {
                             dataDaInclusao: 'required',
+                            ativarPortalSindicatos: 'required',
                             videoYoutube: 'required',
                             cartola: 'required',
                             tags: 'required',
@@ -43,6 +47,7 @@ export default {
                       case 'noticia-imagem':
                         this.borderFields = {
                             dataDaInclusao: 'required',
+                            ativarPortalSindicatos: 'required',
                             imagemDestaque: 'required',
                             creditoImagemDestaque: 'required',
                             cartola: 'required',
@@ -56,6 +61,7 @@ export default {
                       case 'noticia-podcast':
                         this.borderFields = {
                             dataDaInclusao: 'required',
+                            ativarPortalSindicatos: 'required',
                             filePodcast: 'required',
                             cartola: 'required',
                             tags: 'required',
@@ -68,6 +74,7 @@ export default {
                       case 'noticia-simples':
                         this.borderFields = {
                             dataDaInclusao: 'required',
+                            ativarPortalSindicatos: 'required',
                             cartola: 'required',
                             tags: 'required',
                             tituloDaNoticia: 'required',
@@ -93,12 +100,15 @@ export default {
     },
     data () {
 
-      // Variavel do combobox
-      const defaultForm = Object.freeze({
-        selectSindicato: '',
-      })
-
       return {
+          
+          // CkEditor
+          editor: ClassicEditor,
+          editorData: '<p>Content of the editor.</p>',
+          editorConfig: {
+              // The configuration of the editor.
+          },
+
 
             /**
              * Campos Hiden
@@ -109,7 +119,6 @@ export default {
             bancoItems: [],
             bancoItemsObject: {},
 
-            // CkEditor
 
           idNoticia: '',
           valueBtnSubmit: 'Cadastrar',
@@ -128,8 +137,13 @@ export default {
           switch1: false,
 
           // Combobox Sindicatos
-          form: Object.assign({}, defaultForm),
-          sindicatos: [],//['Sindicato1', 'Sindicato2', 'Sindicato3', 'Sindicato4', 'Sindicato5'],
+          sindicatos: {
+                select: [],
+                items: [
+                    'Portal',
+                    'Sindicato de Camaquã'
+                ],
+          },
 
           // Switch Ativar Notícia
           ativarNoticia: false,
@@ -146,13 +160,7 @@ export default {
             jornalistaResponsavel: '',
             banco: {
                 select: null,
-                items: [
-                    'item1',
-                    'item2',
-                    'item3',
-                    'item4',
-                    'item5'
-                ]
+                items: []
             },
           },
 
@@ -223,8 +231,11 @@ export default {
     },
     components: { btnIconText  },
     methods: {
-        // CKeditor
 
+        updateCkeditorViaJquery: function(text)
+        {
+            console.log('Funcionou', text);
+        },
 
         shadowEfectBorderReset: function()
         {
@@ -233,7 +244,7 @@ export default {
                 dataLimiteNoDestaque: '',
                 horaLimiteNoDestaque: '',
                 ativarNoticia: '',
-                ativarNosSindicatos: '',
+                ativarPortalSindicatos: '',
                 bancos: '',
                 bannerDestaque: '',
                 creditoBannerDestaque: '',
@@ -263,6 +274,11 @@ export default {
 
         checkForm: function (e)
         {
+
+            //console.log('CheckFOrmas');
+            //textoCkeditor.setData('Quionha')
+            //console.log(textoCkeditor.getData());
+            this.dataInputs.texto = textoCkeditor.getData();
             this.errorsShow.errors = [];
 
             switch (this.btnTipoNoticiaSelecionado)
@@ -495,6 +511,14 @@ export default {
                 texto: noticia.texto,
                 jornalistaResponsavel: noticia.jornalistaResponsavel
             };
+
+            // Seta a gambiarra do ckeditor
+            // Para funcionar precisa atualizar o conteúdo após 1seg.
+            // Caso contrário o vue não reconhece a variavel criada no JS
+            setTimeout(function(){
+                textoCkeditor.setData(noticia.texto);
+            }, 1500);
+
         },
 
     },
@@ -515,11 +539,12 @@ export default {
                 this.bancoItems.push(this.bancoItemsObject[item].name);
             }
         }
-        
+    },
+    mounted(){
         if (!_.isEmpty(this.noticiaEdition)) {
             this.isEdit = true;
             this.editStartCompleteFilds(JSON.parse(this.noticiaEdition));
         }
     },
-    props: ['csrf', 'formAction', 'noticiaEdition', 'banks'],
+    props: ['csrf', 'formAction', 'noticiaEdition', 'banks', 'textInput'],
 }

@@ -7,6 +7,7 @@ use App\Models\Banco;
 use App\Models\Noticia;
 use App\Services\Upload;
 use App\Models\File;
+use App\Models\PortalSindicato;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 use PHPUnit\Framework\Error\Notice;
@@ -37,6 +38,10 @@ class NoticiaController extends Controller
         $return['noticiaComImagem'] = $noticia->listAllToAdmPageNoticias('noticia-imagem')->get()->toJson();
         $return['noticiaComPodcast'] = $noticia->listAllToAdmPageNoticias('noticia-podcast')->get()->toJson();
         $return['noticiaComVideo'] = $noticia->listAllToAdmPageNoticias('noticia-video')->get()->toJson();
+        $return['noticiaSimples'] = $noticia->listAllToAdmPageNoticias('noticia-simples')->get()->toJson();
+
+        // Fazer a chamada para receber todos
+        $portalSindicato = new PortalSindicato();
         $return['noticiaSimples'] = $noticia->listAllToAdmPageNoticias('noticia-simples')->get()->toJson();
 
         return view('adm.noticias')->withReturn($return);

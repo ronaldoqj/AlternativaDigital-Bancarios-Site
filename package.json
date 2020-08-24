@@ -26,6 +26,9 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-build-classic": "^21.0.0",
+        "@ckeditor/ckeditor5-upload": "^21.0.0",
+        "@ckeditor/ckeditor5-vue": "^1.0.1",
         "@iconfu/svg-inject": "^1.2.3",
         "ckeditor4-vue": "^1.0.1",
         "malihu-custom-scrollbar-plugin": "^3.1.5",

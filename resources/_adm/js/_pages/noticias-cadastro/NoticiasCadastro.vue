@@ -124,17 +124,16 @@
                 <v-switch v-model="ativarNoticia" class="ma-4"></v-switch>
             </div>
 
-            <div class="col-3">
-                <v-select
-                name="ativarNosSindicatos"
-                label="Ativar nos Sindicatos:"
-                v-model="form.selectSindicato"
-                :items="sindicatos"
-                dense="dense"
-                color="primary"
+            <div class="col-3" :class="borderFields.ativarPortalSindicatos">
+                <v-combobox
+                v-model="sindicatos.select"
+                :items="sindicatos.items"
+                label="Ativar no Portal e Sindicatos:"
+                multiple
                 outlined
+                dense
                 :clearable="true"
-                ></v-select>
+                ></v-combobox>
             </div>
         </div>
 
@@ -440,7 +439,7 @@
             </div>
         </div> -->
 
-        <input type="hidden" name="texto" v-model="dataInputs.texto" />
+        <input type="hidden" id="texto" name="texto" v-model="dataInputs.texto" />
 
         <div class="row">
             <div class="col-12">
@@ -448,9 +447,10 @@
                     <div class="row">
                         <div class="col-12 col-box-files" :class="borderFields.texto">
                             <label>Texto</label>
-                            <div class="box-files ckeditor">
-
-                                <ckeditor v-model="dataInputs.texto"></ckeditor>
+                                <!-- <input type="text" :value="textInput" /> -->
+                            <div id="ckeditor" class="box-files ckeditor">
+                                <!-- <ckeditor v-model="dataInputs.texto"></ckeditor> -->
+                                <!-- <ckeditor @fileUploadRequest="onFileUploadRequest($event)" :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor> -->
                                 
                             </div>
                         </div>

@@ -31,9 +31,14 @@
         <script src="{{ asset('_adm/js/app.js') }}" defer></script>
         <script src="{{ asset('_site/js/svg-inject.min.js') }}"></script>
         <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         @yield('js')
     </head>
     <body>
+
+        @yield('beforeDivApp')
+
         <div id="app">
         <v-app id="inspire">
             

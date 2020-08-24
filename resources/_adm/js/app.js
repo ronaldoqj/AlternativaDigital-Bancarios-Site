@@ -10,9 +10,16 @@ window.Vue = require('vue');
 window._ = require('lodash');
 
 import vuetify from './vuetify'
-import CKEditor from 'ckeditor4-vue';
-Vue.use( CKEditor );
 
+
+// import CKEditor from 'ckeditor4-vue';
+// Vue.use( CKEditor );
+
+// import Vue from 'vue';
+// import CKEditor from '@ckeditor/ckeditor5-vue';
+
+
+//Vue.use( CKEditor );
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -49,7 +56,7 @@ Vue.component('btn-action-widget-component', require('./components/widget/BtnAct
 
 //import Login from './components/adm/LoginComponent.vue'
 
-const app = new Vue({
+const vm = new Vue({
     vuetify,
     el: '#app',
     data: {
