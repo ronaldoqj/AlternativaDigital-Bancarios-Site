@@ -137,21 +137,25 @@
 
                 </div>
 
-                <div class="row COMPONENTE__news--with--only-text">
+                <div class="row COMPONENTE__news--with--audio">
                     <div class="col-12 __news--right">
-                        <div class="__text--1">{{ $noticia->cartola }} | {{ \Carbon\Carbon::parse($noticia->dataInclusao)->format('d/m/Y') }} <span>#{{$noticia->tags}}</span></div>
-                        <div class="__text--2">{{ $noticia->titulo }}</div>
-                    </div>
-                </div>
-
-                <div class="container mt-4 mb-4">
-                    <div class="row COMPONENTE__news--with--audio">
-                        <div class="col-12 __news--right" style="padding: 0;">
-                            <div class="__espectro--audio d-flex align-items-center">
-                                <div></div>
+                        <a href="/noticia/{{$noticia->id}}/{{str_replace(' ', '-', $noticia->titulo)}}">
+                            <div class="__text--1">{{ $noticia->cartola }} | {{ \Carbon\Carbon::parse($noticia->dataInclusao)->format('d/m/Y') }} <span>#{{$noticia->tags}}</span></div>
+                            <div class="__text--2">{{ $noticia->titulo }}</div>
+                        </a>
+                        <div class="player__audio">
+                            <div class="__espectro--audio d-flex align-items-center" rel="stop">
+                                <div class="control__play-Pause"></div>
                             </div>
+                            <audio controls >
+                                <source src="{{url($noticia->filePodcast_pathfile. '/' .$noticia->filePodcast_namefile)}}" type="{{ $noticia->filePodcast_mimetype }}">
+                                Seu navegador de internet não suporta o elemento do tipo audio.
+                            </audio>
                         </div>
                     </div>
+                    <a href="/noticia/{{$noticia->id}}/{{str_replace(' ', '-', $noticia->titulo)}}">
+                        <div class="__text--3">{{ $noticia->linhaDeApoio }}</div>
+                    </a>
                 </div>
             @break
             
@@ -261,18 +265,26 @@
             @case('noticia-podcast')
                 <div class="container __separador"><div class="row"><div class="col"><div></div></div></div></div>
 
-                <a href="/noticia/{{$sugestao->id}}/{{str_replace(' ', '-', $sugestao->titulo)}}">
                 <div class="row COMPONENTE__news--with--audio">
                     <div class="col-12 __news--right">
-                    <div class="__text--1">{{ $sugestao->cartola }} | {{ \Carbon\Carbon::parse($sugestao->dataInclusao)->format('d/m/Y') }} <span>#{{$sugestao->tags}}</span></div>
-                        <div class="__text--2">{{ $sugestao->titulo }}</div>
-                        <div class="__espectro--audio d-flex align-items-center">
-                        <div></div>
+                        <a href="/noticia/{{$sugestao->id}}/{{str_replace(' ', '-', $sugestao->titulo)}}">
+                            <div class="__text--1">{{ $sugestao->cartola }} | {{ \Carbon\Carbon::parse($sugestao->dataInclusao)->format('d/m/Y') }} <span>#{{$sugestao->tags}}</span></div>
+                            <div class="__text--2">{{ $sugestao->titulo }}</div>
+                        </a>
+                        <div class="player__audio">
+                            <div class="__espectro--audio d-flex align-items-center" rel="stop">
+                                <div class="control__play-Pause"></div>
+                            </div>
+                            <audio controls >
+                                <source src="{{url($sugestao->filePodcast_pathfile. '/' .$sugestao->filePodcast_namefile)}}" type="{{ $sugestao->filePodcast_mimetype }}">
+                                Seu navegador de internet não suporta o elemento do tipo audio.
+                            </audio>
                         </div>
-                        <div class="__text--3">{{ $sugestao->linhaDeApoio }}</div>
                     </div>
+                    <a href="/noticia/{{$sugestao->id}}/{{str_replace(' ', '-', $sugestao->titulo)}}">
+                        <div class="__text--3">{{ $sugestao->linhaDeApoio }}</div>
+                    </a>
                 </div>
-                </a>
             @break
 
             @case('noticia-simples')

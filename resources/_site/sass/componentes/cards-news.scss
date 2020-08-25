@@ -73,24 +73,47 @@
     }
 }
 
-.COMPONENTE__news--with--audio {
-    .__espectro--audio {
-
-        // background: url(/_site/assets/espectro-de-audio.png) repeat-x;
-        background: url(/_site/assets/SVGs/audio-spectro.svg) repeat-x;
-        height: 95px;
-        margin-bottom: 15px;
-
-        .control__play-Pause.play {
-            //background: url(/_site/assets/player-audio.png) no-repeat;
-            background: url(/_site/assets/SVGs/audio-play.svg) no-repeat;
-            width: 74px;
-            height: 67px;
-        }
-        .control__play-Pause.stop {
-            background: url(/_site/assets/SVGs/audio-pause.svg) no-repeat !important;
-        }
-        
-        
+.COMPONENTE__news--with--audio
+{
+    audio {
+        display: none;
     }
+
+    .player__audio
+    {
+        cursor: pointer;
+
+        .__espectro--audio
+        {
+            // background: url(/_site/assets/espectro-de-audio.png) repeat-x;
+            background: url(/_site/assets/SVGs/audio-spectro-pause.svg) repeat-x;
+            height: 95px;
+            margin-bottom: 15px;
+
+            .control__play-Pause
+            {
+                //background: url(/_site/assets/player-audio.png) no-repeat;
+                background: url(/_site/assets/SVGs/audio-play.svg) no-repeat;
+                width: 74px;
+                height: 67px;    
+            }
+        }
+    
+        &[rel="play"]
+        {
+            .__espectro--audio
+            {
+                // background: url(/_site/assets/espectro-de-audio.png) repeat-x;
+                background: url(/_site/assets/SVGs/audio-spectro-play.svg) repeat-x;
+
+                .control__play-Pause {
+                    background: url(/_site/assets/SVGs/audio-pause.svg) no-repeat !important;
+                }
+
+            }
+
+            
+        }
+    }
+
 }

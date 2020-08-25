@@ -992,19 +992,31 @@ form .btn div::before {
   background-color: yellowgreen;
 }
 
-.COMPONENTE__news--with--audio .__espectro--audio {
-  background: url(/_site/assets/SVGs/audio-spectro.svg) repeat-x;
+.COMPONENTE__news--with--audio audio {
+  display: none;
+}
+
+.COMPONENTE__news--with--audio .player__audio {
+  cursor: pointer;
+}
+
+.COMPONENTE__news--with--audio .player__audio .__espectro--audio {
+  background: url(/_site/assets/SVGs/audio-spectro-pause.svg) repeat-x;
   height: 95px;
   margin-bottom: 15px;
 }
 
-.COMPONENTE__news--with--audio .__espectro--audio .control__play-Pause.play {
+.COMPONENTE__news--with--audio .player__audio .__espectro--audio .control__play-Pause {
   background: url(/_site/assets/SVGs/audio-play.svg) no-repeat;
   width: 74px;
   height: 67px;
 }
 
-.COMPONENTE__news--with--audio .__espectro--audio .control__play-Pause.stop {
+.COMPONENTE__news--with--audio .player__audio[rel=play] .__espectro--audio {
+  background: url(/_site/assets/SVGs/audio-spectro-play.svg) repeat-x;
+}
+
+.COMPONENTE__news--with--audio .player__audio[rel=play] .__espectro--audio .control__play-Pause {
   background: url(/_site/assets/SVGs/audio-pause.svg) no-repeat !important;
 }
 

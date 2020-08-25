@@ -5,13 +5,6 @@
 @extends('layouts.layout')
 @section('css')
     <link href="{{url(mix('/_site/css/pages/home.css'))}}" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <style>
-        audio {
-            display: none;
-            /*position: absolute;
-            margin-left: 350px;*/
-        }
-    </style>
 @endsection
 @section('content')
 <!-- Banner TOP -->
@@ -32,18 +25,13 @@
 </a>
 <!-- Fim Banner TOP -->
 
-
 <section id="news" class="container">
 
-
 @forelse ($return['noticias'] as $noticia)
-    
-
 
     @switch($noticia->tipoDaNoticia)
 
         @case('noticia-destaque')
-
         <!-- BLOCO NOTICIA IMAGEM -->
                 
         <div class="container __separador"><div class="row"><div class="col"><div></div></div></div></div>
@@ -62,12 +50,9 @@
         </a>
 
         <!-- FIM - BLOCO NOTICIA IMAGEM -->
-
         @break
 
-
         @case('noticia-video')
-
             <!-- BLOCO NOTICIA VÍDEO -->
 
             <div class="container __separador"><div class="row"><div class="col"><div></div></div></div></div>
@@ -98,15 +83,9 @@
             </a>
 
             <!--FIM -  BLOCO NOTICIA VÍDEO -->
-
         @break
 
-
-
-
-
         @case('noticia-imagem')
-
             <!-- BLOCO NOTICIA IMAGEM -->
                 
             <div class="container __separador"><div class="row"><div class="col"><div></div></div></div></div>
@@ -125,16 +104,13 @@
             </a>
 
             <!-- FIM - BLOCO NOTICIA IMAGEM -->
-
         @break
 
 
         @case('noticia-podcast')
-
             <!-- BLOCO NOTICIA AUDIO -->
-                
-            <div class="container __separador"><div class="row"><div class="col"><div></div></div></div></div>
 
+            <div class="container __separador"><div class="row"><div class="col"><div></div></div></div></div>
             
             <div class="row COMPONENTE__news--with--audio">
                 <div class="col-12 __news--right">
@@ -156,15 +132,12 @@
                     <div class="__text--3">{{ $noticia->linhaDeApoio }}</div>
                 </a>
             </div>
-            
 
             <!-- FIM - BLOCO NOTICIA AUDIO -->
-
         @break
 
 
         @case('noticia-simples')
-
             <!-- BLOCO NOTICIA NORMAL -->
 
             <div class="container __separador"><div class="row"><div class="col"><div></div></div></div></div>
@@ -180,12 +153,9 @@
             </a>
 
             <!-- FIM - BLOCO NOTICIA NORMAL -->	
-        
         @break
 
     @endswitch
-
-
 
 @empty
     <p>Não foram encontradas notícias cadastradas</p>
