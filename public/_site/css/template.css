@@ -993,15 +993,19 @@ form .btn div::before {
 }
 
 .COMPONENTE__news--with--audio .__espectro--audio {
-  background: url(/_site/assets/espectro-de-audio.png) repeat-x;
-  height: 70px;
+  background: url(/_site/assets/SVGs/audio-spectro.svg) repeat-x;
+  height: 95px;
   margin-bottom: 15px;
 }
 
-.COMPONENTE__news--with--audio .__espectro--audio div {
-  background: url(/_site/assets/player-audio.png) no-repeat;
-  width: 53px;
-  height: 53px;
+.COMPONENTE__news--with--audio .__espectro--audio .control__play-Pause.play {
+  background: url(/_site/assets/SVGs/audio-play.svg) no-repeat;
+  width: 74px;
+  height: 67px;
+}
+
+.COMPONENTE__news--with--audio .__espectro--audio .control__play-Pause.stop {
+  background: url(/_site/assets/SVGs/audio-pause.svg) no-repeat !important;
 }
 
 /* ---------------------------------------------------

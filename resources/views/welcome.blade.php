@@ -141,10 +141,12 @@
                     <a href="/noticia/{{$noticia->id}}/{{str_replace(' ', '-', $noticia->titulo)}}">
                         <div class="__text--1">{{ $noticia->cartola }} | {{ \Carbon\Carbon::parse($noticia->dataInclusao)->format('d/m/Y') }} <span>#{{$noticia->tags}}</span></div>
                         <div class="__text--2">{{ $noticia->titulo }}</div>
-                        <div class="__espectro--audio d-flex align-items-center">
                     </a>
                     <div class="player__audio">
-                        <audio controls rel="stop">
+                        <div class="__espectro--audio d-flex align-items-center" rel="stop">
+                            <div class="control__play-Pause"></div>
+                        </div>
+                        <audio controls >
                             <source src="{{url($noticia->filePodcast_pathfile. '/' .$noticia->filePodcast_namefile)}}" type="{{ $noticia->filePodcast_mimetype }}">
                             Seu navegador de internet não suporta o elemento do tipo audio.
                         </audio>
@@ -153,7 +155,6 @@
                 <a href="/noticia/{{$noticia->id}}/{{str_replace(' ', '-', $noticia->titulo)}}">
                     <div class="__text--3">{{ $noticia->linhaDeApoio }}</div>
                 </a>
-                </div>
             </div>
             
 
