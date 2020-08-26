@@ -127,10 +127,10 @@
                             Seu navegador de internet não suporta o elemento do tipo audio.
                         </audio>
                     </div>
+                    <a href="/noticia/{{$noticia->id}}/{{str_replace(' ', '-', $noticia->titulo)}}">
+                        <div class="__text--3">{{ $noticia->linhaDeApoio }}</div>
+                    </a>
                 </div>
-                <a href="/noticia/{{$noticia->id}}/{{str_replace(' ', '-', $noticia->titulo)}}">
-                    <div class="__text--3">{{ $noticia->linhaDeApoio }}</div>
-                </a>
             </div>
 
             <!-- FIM - BLOCO NOTICIA AUDIO -->

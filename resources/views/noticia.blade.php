@@ -152,10 +152,10 @@
                                 Seu navegador de internet não suporta o elemento do tipo audio.
                             </audio>
                         </div>
+                        <a href="/noticia/{{$noticia->id}}/{{str_replace(' ', '-', $noticia->titulo)}}">
+                            <div class="__text--3">{{ $noticia->linhaDeApoio }}</div>
+                        </a>
                     </div>
-                    <a href="/noticia/{{$noticia->id}}/{{str_replace(' ', '-', $noticia->titulo)}}">
-                        <div class="__text--3">{{ $noticia->linhaDeApoio }}</div>
-                    </a>
                 </div>
             @break
             
@@ -205,7 +205,6 @@
 
 
     <!-- $return['sugestoes'] -->
-
 
     @foreach ($return['sugestoes'] as $sugestao)
 
@@ -280,10 +279,10 @@
                                 Seu navegador de internet não suporta o elemento do tipo audio.
                             </audio>
                         </div>
+                        <a href="/noticia/{{$sugestao->id}}/{{str_replace(' ', '-', $sugestao->titulo)}}">
+                            <div class="__text--3">{{ $sugestao->linhaDeApoio }}</div>
+                        </a>
                     </div>
-                    <a href="/noticia/{{$sugestao->id}}/{{str_replace(' ', '-', $sugestao->titulo)}}">
-                        <div class="__text--3">{{ $sugestao->linhaDeApoio }}</div>
-                    </a>
                 </div>
             @break
 
