@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Noticia;
 use App\Models\Banco;
-use Hamcrest\Type\IsNumeric;
 
 class WelcomeController extends Controller
 {
@@ -28,7 +27,6 @@ class WelcomeController extends Controller
         $return = [];
         $return['bancoSelecionado'] = 'Meu Banco';
         $idBanco = null;
-
 
         if (is_numeric($request->input('banco')))
         {

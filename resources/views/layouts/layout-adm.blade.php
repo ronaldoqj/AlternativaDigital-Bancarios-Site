@@ -48,7 +48,7 @@
             <div id="menu-sidebar" class="">
                 <div id="box-nav">
                     <nav>
-                        <sidebar-menu-component></sidebar-menu-component>
+                        <sidebar-menu-component perfil="{{auth()->user()->perfil}}"></sidebar-menu-component>
                         @yield('menu-sidebar')
                     </nav>
                 </div>
@@ -68,9 +68,9 @@
                                     </div>
                                 </div>
                                 <div class="texts">
-                                    <p>Nome do usuário logado</p>
-                                    <p><span>emailuser@user.com.br</span></p>
-                                    <p>corporação do usuário</p>
+                                    <p>{{auth()->user()->name}}</p>
+                                    <p><span>{{auth()->user()->email}}</span></p>
+                                    <p>{{auth()->user()->perfil}}</p>
                                 </div>
 
                                 <div class="logout">

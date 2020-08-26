@@ -13,26 +13,30 @@
                 <a href="/adm/noticias"><img src="/_adm/assets/SVGs/icon-menu-noticias.svg" class="img-fluid" onload="SVGInject(this)" /></a>
                 <a href="/adm/editais"><img src="/_adm/assets/SVGs/icon-menu-editais.svg" class="img-fluid" onload="SVGInject(this)" /></a>
                 <a href="/adm/acordos-e-convencoes"><img src="/_adm/assets/SVGs/icon-menu-acordos-e-convencoes.svg" class="img-fluid" onload="SVGInject(this)" /></a>
-                <a href="#"><img src="/_adm/assets/SVGs/icon-menu-meu-sindicato.svg" class="img-fluid" onload="SVGInject(this)" /></a>
+                
+                <template v-if="perfil == 'master'">
+                    <a href="#"><img src="/_adm/assets/SVGs/icon-menu-meu-sindicato.svg" class="img-fluid" onload="SVGInject(this)" /></a>
+                </template>
             </div>
+            
+            <template v-if="perfil == 'master'">
+                <div class="title-sections"> Funções ADM </div>
 
-            <div class="title-sections"> Funções ADM </div>
+                <div class="box-menus">
+                    <a href="#"><img src="/_adm/assets/SVGs/icon-menu-sindicatos.svg" class="img-fluid" onload="SVGInject(this)" /></a>
+                    <a href="#"><img src="/_adm/assets/SVGs/icon-menu-contatos.svg" class="img-fluid" onload="SVGInject(this)" /></a>
+                    <a href="/adm/bancos"><img src="/_adm/assets/SVGs/icon-menu-meu-banco.svg" class="img-fluid" onload="SVGInject(this)" /></a>
+                    <a href="/adm/entidades"><img src="/_adm/assets/SVGs/icon-entidades.svg" class="img-fluid" onload="SVGInject(this)" /></a>
+                    <a href="#"><img src="/_adm/assets/SVGs/icon-menu-redes-sociais.svg" class="img-fluid" onload="SVGInject(this)" /></a>
+                    <a href="#"><img src="/_adm/assets/SVGs/icon-menu-usuarios.svg" class="img-fluid" onload="SVGInject(this)" /></a>
+                    <a href="#" class="last-item"><img src="/_adm/assets/SVGs/icon-menu-perfil.svg" class="img-fluid" onload="SVGInject(this)" /></a>
+                </div>
 
-            <div class="box-menus">
-                <a href="#"><img src="/_adm/assets/SVGs/icon-menu-sindicatos.svg" class="img-fluid" onload="SVGInject(this)" /></a>
-                <a href="#"><img src="/_adm/assets/SVGs/icon-menu-contatos.svg" class="img-fluid" onload="SVGInject(this)" /></a>
-                <a href="/adm/bancos"><img src="/_adm/assets/SVGs/icon-menu-meu-banco.svg" class="img-fluid" onload="SVGInject(this)" /></a>
-                <a href="/adm/entidades"><img src="/_adm/assets/SVGs/icon-entidades.svg" class="img-fluid" onload="SVGInject(this)" /></a>
-                <a href="#"><img src="/_adm/assets/SVGs/icon-menu-redes-sociais.svg" class="img-fluid" onload="SVGInject(this)" /></a>
-                <a href="#"><img src="/_adm/assets/SVGs/icon-menu-usuarios.svg" class="img-fluid" onload="SVGInject(this)" /></a>
-                <a href="#" class="last-item"><img src="/_adm/assets/SVGs/icon-menu-perfil.svg" class="img-fluid" onload="SVGInject(this)" /></a>
-            </div>
-
-            <div class="box-menus logo-magia-studio-version">
-                <div></div>
-                <a href="#"><img src="/_adm/assets/SVGs/logo-alternativadigital-mais-versao-do-projeto.svg" class="img-fluid" onload="SVGInject(this)" /></a>
-            </div>
-
+                <div class="box-menus logo-magia-studio-version">
+                    <div></div>
+                    <a href="#"><img src="/_adm/assets/SVGs/logo-alternativadigital-mais-versao-do-projeto.svg" class="img-fluid" onload="SVGInject(this)" /></a>
+                </div>
+            </template>
         </div>
     </div>
 </template>
@@ -41,7 +45,8 @@
     export default {
         mounted() {
             
-        }
+        },
+        props: [ 'perfil' ]
     }
 </script>
 

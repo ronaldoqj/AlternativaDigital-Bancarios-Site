@@ -20,7 +20,15 @@
                         <div class="col-12">
                             <div class="box-cards">
                                 <div class="item-card" v-for="item of cards.portalContent">
-                                    <CardHome :params="item"></CardHome>
+
+                                    <template v-if="perfil != 'master'">
+                                        <template v-if="item.title != 'Meu Sindicato'">  
+                                            <CardHome :params="item"></CardHome>
+                                        </template>
+                                    </template>
+                                    <template v-else>
+                                        <CardHome :params="item"></CardHome>
+                                    </template>
                                 </div>
                             </div>
                         </div>
@@ -29,7 +37,7 @@
                 </v-expansion-panel-content>
             </v-expansion-panel>
 
-            <v-expansion-panel>
+            <v-expansion-panel v-if="perfil == 'master'">
                 <v-expansion-panel-header>
                     <div class="header--panel">
                         <div class="title">Funções ADM</div>
@@ -154,7 +162,7 @@ export default {
         }
     },
     components: {  },
-    props: [ 'csrf' ],
+    props: [ 'perfil', 'csrf' ],
     methods: {
         
         

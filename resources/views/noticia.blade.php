@@ -54,7 +54,7 @@
 
                 <div class="row COMPONENTE__news--with--only-text mb-2">
                     <div class="col-12 __news--right">
-                        <div class="__text--1">{{ $noticia->cartola }} | {{ \Carbon\Carbon::parse($noticia->dataInclusao)->format('d/m/Y') }} <span>#{{$noticia->tags}}</span></div>
+                        <div class="__text--1">{{ $noticia->cartola }} | {{ \Carbon\Carbon::parse($noticia->dataInclusao)->format('d/m/Y') }} <span>{{-- '#'-- }}{{-- $noticia->tags --}}</span></div>
                         <div class="__text--2">{{ $noticia->titulo }}</div>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
 
                 <div class="row COMPONENTE__news--with--only-text">
                     <div class="col-12 __news--right">
-                        <div class="__text--1">{{ $noticia->cartola }} | {{ \Carbon\Carbon::parse($noticia->dataInclusao)->format('d/m/Y') }} <span>#{{$noticia->tags}}</span></div>
+                        <div class="__text--1">{{ $noticia->cartola }} | {{ \Carbon\Carbon::parse($noticia->dataInclusao)->format('d/m/Y') }} <span>{{-- '#'-- }}{{-- $noticia->tags --}}</span></div>
                         <div class="__text--2">{{ $noticia->titulo }}</div>
                     </div>
                 </div>
@@ -111,7 +111,7 @@
 
                 <div class="row COMPONENTE__news--with--only-text">
                     <div class="col-12 __news--right">
-                        <div class="__text--1">{{ $noticia->cartola }} | {{ \Carbon\Carbon::parse($noticia->dataInclusao)->format('d/m/Y') }} <span>#{{$noticia->tags}}</span></div>
+                        <div class="__text--1">{{ $noticia->cartola }} | {{ \Carbon\Carbon::parse($noticia->dataInclusao)->format('d/m/Y') }} <span>{{-- '#'-- }}{{-- $noticia->tags --}}</span></div>
                         <div class="__text--2">{{ $noticia->titulo }}</div>
                     </div>
                 </div>
@@ -140,7 +140,7 @@
                 <div class="row COMPONENTE__news--with--audio">
                     <div class="col-12 __news--right">
                         <a href="/noticia/{{$noticia->id}}/{{str_replace(' ', '-', $noticia->titulo)}}">
-                            <div class="__text--1">{{ $noticia->cartola }} | {{ \Carbon\Carbon::parse($noticia->dataInclusao)->format('d/m/Y') }} <span>#{{$noticia->tags}}</span></div>
+                            <div class="__text--1">{{ $noticia->cartola }} | {{ \Carbon\Carbon::parse($noticia->dataInclusao)->format('d/m/Y') }} <span>{{-- '#'-- }}{{-- $noticia->tags --}}</span></div>
                             <div class="__text--2">{{ $noticia->titulo }}</div>
                         </a>
                         <div class="player__audio">
@@ -182,7 +182,7 @@
 
                 <div class="row COMPONENTE__news--with--only-text mb-2">
                     <div class="col-12 __news--right">
-                        <div class="__text--1">{{ $noticia->cartola }} | {{ \Carbon\Carbon::parse($noticia->dataInclusao)->format('d/m/Y') }} <span>#{{$noticia->tags}}</span></div>
+                        <div class="__text--1">{{ $noticia->cartola }} | {{ \Carbon\Carbon::parse($noticia->dataInclusao)->format('d/m/Y') }} <span>{{-- '#'-- }}{{-- $noticia->tags --}}</span></div>
                         <div class="__text--2">{{ $noticia->titulo }}</div>
                     </div>
                 </div> 
@@ -219,7 +219,7 @@
                     <div style='background-image: url({{asset("/{$sugestao->fileImagemDestaque_pathfile}/{$sugestao->fileImagemDestaque_namefile}")}}); height: 250px'></div>
                 </div>
                 <div class="col-12 col-lg-7 __news--right">
-                    <div class="__text--1">{{ $sugestao->cartola }} | {{ \Carbon\Carbon::parse($sugestao->dataInclusao)->format('d/m/Y') }} <span>#{{$sugestao->tags}}</span></div>
+                    <div class="__text--1">{{ $sugestao->cartola }} | {{ \Carbon\Carbon::parse($sugestao->dataInclusao)->format('d/m/Y') }} <span>{{-- '#'-- }}{{-- $sugestao->tags --}}</span></div>
                     <div class="__text--2">{{ $sugestao->titulo }}</div>
                     <div class="__text--3">{{ $sugestao->linhaDeApoio }}</div>
                 </div>
@@ -236,7 +236,7 @@
                     <iframe width="100%" height="252" src="https://www.youtube.com/embed/{{$sugestao->videoYoutube}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="col-12 col-lg-7 __news--right">
-                    <div class="__text--1">{{ $sugestao->cartola }} | {{ \Carbon\Carbon::parse($sugestao->dataInclusao)->format('d/m/Y') }} <span>#{{$sugestao->tags}}</span></div>
+                    <div class="__text--1">{{ $sugestao->cartola }} | {{ \Carbon\Carbon::parse($sugestao->dataInclusao)->format('d/m/Y') }} <span>{{-- '#'-- }}{{-- $sugestao->tags --}}</span></div>
                     <div class="__text--2">{{ $sugestao->titulo }}</div>
                     <div class="__text--3">{{ $sugestao->linhaDeApoio }}</div>
                 </div>
@@ -253,7 +253,7 @@
                     <div style='background-image: url({{asset("/{$sugestao->fileImagemDestaque_pathfile}/{$sugestao->fileImagemDestaque_namefile}")}}); height: 250px'></div>
                 </div>
                 <div class="col-12 col-lg-7 __news--right">
-                    <div class="__text--1">{{ $sugestao->cartola }} | {{ \Carbon\Carbon::parse($sugestao->dataInclusao)->format('d/m/Y') }} <span>#{{$sugestao->tags}}</span></div>
+                    <div class="__text--1">{{ $sugestao->cartola }} | {{ \Carbon\Carbon::parse($sugestao->dataInclusao)->format('d/m/Y') }} <span>{{-- '#'-- }}{{-- $sugestao->tags --}}</span></div>
                     <div class="__text--2">{{ $sugestao->titulo }}</div>
                     <div class="__text--3">{{ $sugestao->linhaDeApoio }}</div>
                 </div>
@@ -267,7 +267,7 @@
                 <div class="row COMPONENTE__news--with--audio">
                     <div class="col-12 __news--right">
                         <a href="/noticia/{{$sugestao->id}}/{{str_replace(' ', '-', $sugestao->titulo)}}">
-                            <div class="__text--1">{{ $sugestao->cartola }} | {{ \Carbon\Carbon::parse($sugestao->dataInclusao)->format('d/m/Y') }} <span>#{{$sugestao->tags}}</span></div>
+                            <div class="__text--1">{{ $sugestao->cartola }} | {{ \Carbon\Carbon::parse($sugestao->dataInclusao)->format('d/m/Y') }} <span>{{-- '#'-- }}{{-- $sugestao->tags --}}</span></div>
                             <div class="__text--2">{{ $sugestao->titulo }}</div>
                         </a>
                         <div class="player__audio">
@@ -292,7 +292,7 @@
                 <a href="/noticia/{{$sugestao->id}}/{{str_replace(' ', '-', $sugestao->titulo)}}">
                 <div class="row COMPONENTE__news--with--only-text">
                     <div class="col-12 __news--right">
-                        <div class="__text--1">{{ $sugestao->cartola }} | {{ \Carbon\Carbon::parse($sugestao->dataInclusao)->format('d/m/Y') }} <span>#{{$sugestao->tags}}</span></div>
+                        <div class="__text--1">{{ $sugestao->cartola }} | {{ \Carbon\Carbon::parse($sugestao->dataInclusao)->format('d/m/Y') }} <span>{{-- '#'-- }}{{-- $sugestao->tags --}}</span></div>
                         <div class="__text--2">{{ $sugestao->titulo }}</div>
                         <div class="__text--3">{{ $sugestao->linhaDeApoio }}</div>
                     </div>

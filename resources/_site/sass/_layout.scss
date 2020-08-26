@@ -229,8 +229,14 @@ footer {
     width: 100%;
     z-index: 909090;
 
-    section { background-color: #125488; }
-    section:last-child { background-color: #0B3C5E; }
+    section { background-color: #0B3C5E; }
+
+    .box__footer--logos {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+    }
 
     .brand-footer { padding: 10px; }
     .brand-alternativa-digital { padding: 6px; }

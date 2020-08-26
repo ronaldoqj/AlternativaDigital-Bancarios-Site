@@ -193,17 +193,14 @@
             <section>
                 <div class="container">
                     <div class="row">
-                        <div class="col text-center brand-footer">
-                            <img src="/_site/assets/logo.png" class="img-fluid logo" width="150" />
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section>
-                <div class="container">
-                    <div class="row">
-                        <div class="col text-center brand-alternativa-digital">
-                        <img src="/_site/assets/SVGs/Footer/alternativa-digital.svg" class="img-fluid logo" width="200" />
+                        <div class="box__footer--logos">
+                            <div class="col text-center brand-footer">
+                                <img src="/_site/assets/logo.png" class="img-fluid logo" width="150" />
+                            </div>
+
+                            <div class="col text-center brand-alternativa-digital">
+                                <img src="/_site/assets/SVGs/Footer/alternativa-digital.svg" class="img-fluid logo" width="200" />
+                            </div>
                         </div>
                     </div>
                 </div>

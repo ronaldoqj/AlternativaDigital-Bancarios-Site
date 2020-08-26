@@ -263,11 +263,14 @@ footer {
 }
 
 footer section {
-  background-color: #125488;
+  background-color: #0B3C5E;
 }
 
-footer section:last-child {
-  background-color: #0B3C5E;
+footer .box__footer--logos {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
 }
 
 footer .brand-footer {
