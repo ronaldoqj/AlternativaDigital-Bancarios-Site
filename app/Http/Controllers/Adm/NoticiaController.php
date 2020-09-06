@@ -7,8 +7,8 @@ use App\Models\Banco;
 use App\Models\Noticia;
 use App\Services\Upload;
 use App\Models\File;
-use App\Models\PortalSindicato;
-use App\Models\NoticiaHasPortalSindicato;
+use App\Models\Sindicato;
+use App\Models\NoticiaHasSindicato;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 
@@ -41,7 +41,6 @@ class NoticiaController extends Controller
         $return['noticiaSimples'] = $noticia->listAllToAdmPageNoticias('noticia-simples')->get()->toJson();
 
         // Fazer a chamada para receber todos
-        //$portalSindicato = new PortalSindicato();
         $return['noticiaSimples'] = $noticia->listAllToAdmPageNoticias('noticia-simples')->get()->toJson();
 
         return view('adm.noticias')->withReturn($return);
@@ -50,20 +49,25 @@ class NoticiaController extends Controller
     public function cadastro(Request $request)
     {
         $bancos = new Banco();
-        $sindicatos = new PortalSindicato();
+        $sindicatos = new Sindicato();
 
         return view('adm.noticias-cadastrar')->withBancos($bancos->all()->toJson())->withSindicatos($sindicatos->all()->toJson());
     }
 
     public function edicao(Request $request, $id = '')
     {
-        if( (int) $id == 0 ) {
+        if ( (int) $id == 0 ) {
             return redirect('/adm/noticias');
         }
         
         $noticias = new Noticia();
         $noticia = $noticias->findById($id);
-        $sindicatos = new PortalSindicato();
+
+        if ( !$noticia ) {
+            return redirect('/adm/noticias');
+        }
+
+        $sindicatos = new Sindicato();
 
         $noticiasSindicato = new Noticia();
         $sindicatosDaNoticia = $noticiasSindicato->findSindicatosByIdNoticia($id);
@@ -101,11 +105,11 @@ class NoticiaController extends Controller
 
             foreach ( $sindicatos as $item )
             {
-                $noticaHasPortalSindicato = new NoticiaHasPortalSindicato();
-                $noticaHasPortalSindicato->noticia = $noticia->id;
-                $noticaHasPortalSindicato->portalSindicato = $item;
+                $noticaHasSindicato = new NoticiaHasSindicato();
+                $noticaHasSindicato->noticia = $noticia->id;
+                $noticaHasSindicato->Sindicato = $item;
 
-                $noticaHasPortalSindicato->save();
+                $noticaHasSindicato->save();
             }
         }
 
@@ -171,7 +175,7 @@ class NoticiaController extends Controller
          */
         $sindicatos = $request->input('idsSindicatos');
         // Obtem os ids cadastrados para comparar com os novos
-        $getOldIdsSindicatos = new NoticiaHasPortalSindicato();
+        $getOldIdsSindicatos = new NoticiaHasSindicato();
         $resultOldIdsSindicatos = $getOldIdsSindicatos->where('noticia', '=', $request->input('idNoticia'));
         $oldIdsSindicatos = $resultOldIdsSindicatos->get()->toArray();
         
@@ -182,7 +186,7 @@ class NoticiaController extends Controller
             $oldIdsSindicatos = [];
 
             foreach ($auxOldIdsSindicatos as $item) {
-                $oldIdsSindicatos[] = $item['portalSindicato'];
+                $oldIdsSindicatos[] = $item['sindicato'];
             }
 
             $oldIdsSindicatos = implode(",", $oldIdsSindicatos);
@@ -201,11 +205,11 @@ class NoticiaController extends Controller
             // Inseri os novos registros
             foreach ( $sindicatos as $item )
             {
-                $noticaHasPortalSindicato = new NoticiaHasPortalSindicato();
-                $noticaHasPortalSindicato->noticia = $noticia->id;
-                $noticaHasPortalSindicato->portalSindicato = $item;
+                $noticaHasSindicato = new NoticiaHasSindicato();
+                $noticaHasSindicato->noticia = $noticia->id;
+                $noticaHasSindicato->sindicato = $item;
 
-                $noticaHasPortalSindicato->save();
+                $noticaHasSindicato->save();
             }
         }
 

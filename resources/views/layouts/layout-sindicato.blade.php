@@ -54,17 +54,17 @@
                     <div class="col-md-12 col-lg-7 col-texts">
                         <div class="legendas">MENU DO SINDICATO</div>
                         <div class="flex-texts">
-                            <div><a href="{{url('sindicato')}}">HOME</a></div>
+                            <div><a href="{{ route('sindicato-home') }}">HOME</a></div>
                             <div class="separador">&nbsp;</div>
-                            <div><a href="{{url('o-sindicato')}}">O SINDICATO</a></div>
+                            <div><a href="{{ route('sindicato-o-sindicato') }}">O SINDICATO</a></div>
                             <div class="separador">&nbsp;</div>
-                            <div><a href="{{url('servicos')}}">SERVIÇOS</a></div>
+                            <div><a href="{{ route('sindicato-servicos') }}">SERVIÇOS</a></div>
                             <div class="separador">&nbsp;</div>
-                            <div><a href="{{url('sindicato/editais')}}">EDITAIS</a></div>
+                            <div><a href="{{ route('sindicato-editais') }}">EDITAIS</a></div>
                             <div class="separador">&nbsp;</div>
-                            <div><a href="{{url('sindicato/sindicalize-se')}}">SINDICALIZE-SE</a></div>
+                            <div><a href="{{ route('sindicato-sindicalize-se') }}">SINDICALIZE-SE</a></div>
                             <div class="separador">&nbsp;</div>
-                            <div><a href="{{url('sindicato/contato')}}">CONTATO</a></div>
+                            <div><a href="{{ route('sindicato-contato') }}">CONTATO</a></div>
                         </div>
                     </div>
                     

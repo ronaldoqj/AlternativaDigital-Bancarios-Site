@@ -125,7 +125,7 @@
                 <v-switch v-model="ativarNoticia" class="ma-4"></v-switch>
             </div>
 
-            <div class="col-3" :class="borderFields.ativarPortalSindicatos">
+            <div class="col-3" :class="borderFields.ativarSindicatos">
                 <v-combobox
                 name="sindicatos"
                 v-model="dataInputs.sindicatos.selected"

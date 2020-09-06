@@ -18,20 +18,35 @@ class NoticiasController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Noticias
+     * 
+     * OBS: Neste controller é tratada tanto as noticias do Portal quanto dos Sindicatos
+     *      É realizado o compoartilhamento do controller, ambos executam a função "renderizaPagina".
+     *      O método "renderizaPagina" é responsavel por fazer os tratamentos necessários para a
+     *      pesquisa da noticia.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
     public function index(Request $request, $id = null, $title = '')
     {
+        return $this->renderizaPagina($request, $id);
+    }
 
+    public function indexSindicato(Request $request, $id = null, $title = '')
+    {
+        return $this->renderizaPagina($request, $id, true);
+    }
+
+    private function renderizaPagina($request, $id = null, $sindicato = null)
+    {
         $return = [];
 
         if (is_numeric($id))
         {
             $noticia = new Noticia();
             $noticia = $noticia->findById($id);
-            
+
             if ($noticia) {
                 $return['noticia'] = $noticia;
 
@@ -44,10 +59,14 @@ class NoticiasController extends Controller
         if (! count($return)) {
             return redirect(url('/'));
         }
-
-        return view('noticia')->withReturn($return);
+        
+        return view('noticia')->withReturn($return)->withSindicato($sindicato);
     }
 
+
+    /**
+     * Metodos que serão deletados
+     */
     public function withImageDestaque() {
         return view('noticia-with-image-destaque');
     }

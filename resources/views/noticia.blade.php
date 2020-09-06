@@ -1,7 +1,8 @@
 <?php
     $noticia = $return['noticia'];
+    $layout = $sindicato ? 'layouts.layout-sindicato' : 'layouts.layout';
 ?>
-@extends('layouts.layout')
+@extends($layout)
 @section('css')
     <link href="{{url(mix('/_site/css/pages/news.css'))}}" type="text/css" rel="stylesheet" media="screen,projection"/>
 @endsection

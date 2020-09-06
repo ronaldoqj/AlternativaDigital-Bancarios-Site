@@ -16,7 +16,7 @@ export default {
                             dataDaInclusao: 'required',
                             dataLimiteNoDestaque: 'required',
                             horaLimiteNoDestaque: 'required',
-                            ativarPortalSindicatos: 'required',
+                            ativarSindicatos: 'required',
                             bannerDestaque: 'required',
                             creditoBannerDestaque: 'required',
                             imagemDestaque: 'required',
@@ -32,7 +32,7 @@ export default {
                       case 'noticia-video':
                         this.borderFields = {
                             dataDaInclusao: 'required',
-                            ativarPortalSindicatos: 'required',
+                            ativarSindicatos: 'required',
                             videoYoutube: 'required',
                             cartola: 'required',
                             tags: 'required',
@@ -45,7 +45,7 @@ export default {
                       case 'noticia-imagem':
                         this.borderFields = {
                             dataDaInclusao: 'required',
-                            ativarPortalSindicatos: 'required',
+                            ativarSindicatos: 'required',
                             imagemDestaque: 'required',
                             creditoImagemDestaque: 'required',
                             cartola: 'required',
@@ -59,7 +59,7 @@ export default {
                       case 'noticia-podcast':
                         this.borderFields = {
                             dataDaInclusao: 'required',
-                            ativarPortalSindicatos: 'required',
+                            ativarSindicatos: 'required',
                             filePodcast: 'required',
                             cartola: 'required',
                             tags: 'required',
@@ -72,7 +72,7 @@ export default {
                       case 'noticia-simples':
                         this.borderFields = {
                             dataDaInclusao: 'required',
-                            ativarPortalSindicatos: 'required',
+                            ativarSindicatos: 'required',
                             cartola: 'required',
                             tags: 'required',
                             tituloDaNoticia: 'required',
@@ -235,7 +235,7 @@ export default {
                 dataLimiteNoDestaque: '',
                 horaLimiteNoDestaque: '',
                 ativarNoticia: '',
-                ativarPortalSindicatos: '',
+                ativarSindicatos: '',
                 bancos: '',
                 bannerDestaque: '',
                 creditoBannerDestaque: '',
@@ -465,7 +465,7 @@ export default {
                 {
                     let contructSyndicate = {
                         name: registeredSyndicates[item].name,
-                        id: registeredSyndicates[item].portalSindicato,
+                        id: registeredSyndicates[item].sindicato,
                     }
 
                     syndicate.push(contructSyndicate);

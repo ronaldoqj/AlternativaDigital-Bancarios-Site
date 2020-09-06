@@ -32,7 +32,7 @@
             </div>
 
             <div class="sidebar-header">
-                <a href="/">
+                <a href="{{ route('home') }}">
                     <img src="/_site/assets/logo.png" class="img-fluid logo"  />
                 </a>
             </div>
@@ -40,7 +40,7 @@
             <ul class="list-unstyled components">
                 <p>Menu</p>
                 <li class="active">
-                    <a href="{{url('/')}}">Página Inicial</a>
+                    <a href="{{ route('home') }}">Página Inicial</a>
                 </li>
                 <li>
                     <a href="{{url('/editais')}}">Editais</a>
@@ -104,7 +104,7 @@
                             <div id="expand__menu2" class="d-lg-none">
                                 <img src="/_site/assets/expand-menu2.png" class="rounded-circle" />
                             </div>
-                            <a href="/">
+                            <a href="{{ route('home') }}">
                                 <img src="/_site/assets/logo.png" class="img-fluid logo"  />
                             </a>
                         </div>

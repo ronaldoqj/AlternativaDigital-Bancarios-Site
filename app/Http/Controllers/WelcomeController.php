@@ -24,6 +24,35 @@ class WelcomeController extends Controller
      */
     public function index(Request $request)
     {
+        if ($request->session()->has('sindicato'))
+        {
+            return redirect()->route('sindicato-home');
+        }
+        else
+        {
+            return redirect()->route('home');
+        }
+    }
+
+    public function home(Request $request)
+    {
+        return $this->renderizaPagina($request);
+    }
+
+
+    public function indexSindicato(Request $request)
+    {
+        return $this->renderizaPagina($request, true);
+    }
+
+    public function homeSindicato(Request $request)
+    {
+        return $this->renderizaPagina($request, true);
+    }
+
+
+    private function renderizaPagina($request, $sindicato = null)
+    {
         $return = [];
         $return['bancoSelecionado'] = 'Meu Banco';
         $idBanco = null;
@@ -44,8 +73,8 @@ class WelcomeController extends Controller
         $banco = new Banco();
 
         $return['noticiaDestaqueFirst'] = $noticia->listAllToSitePageWelcome('noticia-destaque')->first();
-        $return['noticias'] = $noticia->listAllToSitePageWelcome('*', $return['noticiaDestaqueFirst']->id, $idBanco)->get();
+        $return['noticias'] = $noticia->listAllToSitePageWelcome('*', $return['noticiaDestaqueFirst'] ? $return['noticiaDestaqueFirst']->id : null, $idBanco)->get();
 
-        return view('welcome')->withReturn($return);
+        return view('welcome')->withReturn($return)->withSindicato($sindicato);
     }
 }

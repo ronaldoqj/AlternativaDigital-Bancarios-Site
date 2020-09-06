@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\TemplateQuerys;
+use App\Http\Middleware\CheckSyndicate;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -73,9 +74,10 @@ Route::prefix('adm')->namespace('Adm')->group(function ()
 
 // Portal Bancários
 
-Route::middleware([TemplateQuerys::class])->group(function()
+Route::middleware([TemplateQuerys::class, CheckSyndicate::class])->group(function()
 {
     Route::get('/', 'WelcomeController@index')->name('welcome');
+    Route::get('/pagina-inicial', 'WelcomeController@home')->name('home');
     Route::get('/editais', 'EditaisController@index')->name('editais');
     Route::get('/editais/download/{id?}', 'EditaisController@download')->name('editais-download');
     Route::get('/acordos-e-convencoes', 'AcordosEConvencoesController@index')->name('acordos-e-convencoes');
@@ -90,13 +92,19 @@ Route::middleware([TemplateQuerys::class])->group(function()
 
     // Sindicatos
     Route::prefix('sindicato')->namespace('Sindicatos')->group(function () {
+        Route::get('/', 'SindicatoController@index')->name('sindicato');
+        Route::get('/pagina-inicial', 'SindicatoController@home')->name('sindicato-home');
+        Route::get('/o-sindicato', 'OSindicatoController@index')->name('sindicato-o-sindicato');
+        Route::get('/servicos', 'ServicosController@index')->name('sindicato-servicos');
         Route::get('/editais', 'EditaisController@index')->name('sindicato-editais');
-        Route::get('/contato', 'ContatoController@index')->name('sindicato-contato');    
         Route::get('/sindicalize-se', 'SindicalizeSeController@index')->name('sindicato-sindicalize-se');    
+        Route::get('/contato', 'ContatoController@index')->name('sindicato-contato');    
     });
-    Route::get('/sindicato', 'Sindicatos\SindicatoController@index')->name('sindicato-sindicato');
-    Route::get('/o-sindicato', 'Sindicatos\OSindicatoController@index')->name('sindicato-o-sindicato');
-    Route::get('/servicos', 'Sindicatos\ServicosController@index')->name('sindicato-servicos');
+    
+    // Está enviando para o mesmo controller do portal
+    Route::get('/sindicato/', 'WelcomeController@indexSindicato')->name('sindicato');
+    Route::get('/sindicato/pagina-inicial', 'WelcomeController@homeSindicato')->name('sindicato-home');
+    Route::get('/sindicato/noticia/{id?}/{title?}', 'NoticiasController@indexSindicato')->name('sindicato-noticia');
 
     // Route::fallback(function () {
     //     // rota quando não encontrou no site
