@@ -198,6 +198,23 @@ class Noticia extends Model
     }
 
 
+    public function findSindicatosByIdNoticia($idNoticia)
+    {
+
+        $list = DB::table('noticias_has_portal_sindicatos');
+        $list->join('portal_sindicatos', 'portal_sindicatos.id', '=', 'noticias_has_portal_sindicatos.portalSindicato');
+        $list->where('noticia', $idNoticia);
+
+        $listAll = $list->addSelect('noticias_has_portal_sindicatos.id as id',
+                                    'noticias_has_portal_sindicatos.noticia as noticia',
+                                    'noticias_has_portal_sindicatos.portalSindicato as portalSindicato',
+                                    'portal_sindicatos.name as name');
+
+        return $listAll;
+
+    }
+
+
     /**
      * Metodos para o site
      */

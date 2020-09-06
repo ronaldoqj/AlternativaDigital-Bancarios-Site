@@ -16,7 +16,6 @@ class CreateNoticiasHasPortalSindicatosTable extends Migration
         Schema::create('noticias_has_portal_sindicatos', function (Blueprint $table) {
             $table->id();
 
-            $table->string('name', 240);
             $table->integer('noticia');
             $table->integer('portalSindicato')->nullable();
 

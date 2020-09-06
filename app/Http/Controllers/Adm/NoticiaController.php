@@ -8,9 +8,9 @@ use App\Models\Noticia;
 use App\Services\Upload;
 use App\Models\File;
 use App\Models\PortalSindicato;
+use App\Models\NoticiaHasPortalSindicato;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
-use PHPUnit\Framework\Error\Notice;
 
 class NoticiaController extends Controller
 {
@@ -41,7 +41,7 @@ class NoticiaController extends Controller
         $return['noticiaSimples'] = $noticia->listAllToAdmPageNoticias('noticia-simples')->get()->toJson();
 
         // Fazer a chamada para receber todos
-        $portalSindicato = new PortalSindicato();
+        //$portalSindicato = new PortalSindicato();
         $return['noticiaSimples'] = $noticia->listAllToAdmPageNoticias('noticia-simples')->get()->toJson();
 
         return view('adm.noticias')->withReturn($return);
@@ -50,7 +50,9 @@ class NoticiaController extends Controller
     public function cadastro(Request $request)
     {
         $bancos = new Banco();
-        return view('adm.noticias-cadastrar')->withBancos($bancos->all()->toJson());
+        $sindicatos = new PortalSindicato();
+
+        return view('adm.noticias-cadastrar')->withBancos($bancos->all()->toJson())->withSindicatos($sindicatos->all()->toJson());
     }
 
     public function edicao(Request $request, $id = '')
@@ -59,36 +61,54 @@ class NoticiaController extends Controller
             return redirect('/adm/noticias');
         }
         
-        $noticia = new Noticia();
-        $noticia = $noticia->findById($id);
+        $noticias = new Noticia();
+        $noticia = $noticias->findById($id);
+        $sindicatos = new PortalSindicato();
+
+        $noticiasSindicato = new Noticia();
+        $sindicatosDaNoticia = $noticiasSindicato->findSindicatosByIdNoticia($id);
 
         $bancos = new Banco();
 
-        return view('adm.noticias-editar')->withNoticia(json_encode($noticia))->withBancos($bancos->all()->toJson());
+        return view('adm.noticias-editar')->withNoticia(json_encode($noticia))->withBancos($bancos->all()->toJson())->withRegisteredSyndicates(json_encode($sindicatosDaNoticia->get()))->withSindicatos($sindicatos->all()->toJson());
     }
 
     public function cadastrarNoticia(Request $request)
     {
         $noticia = new Noticia();
-        $noticia->tipoDaNoticia = $request->input('tipoDaNoticia') ?? '';
-        $noticia->dataInclusao = $request->input('dataInclusao') ? Carbon::createFromFormat('Y-m-d', $request->input('dataInclusao')) : null;
-        $noticia->dataLimiteNoDestaque = $request->input('dataLimiteNoDestaque') ? Carbon::createFromFormat('Y-m-d H:i', "{$request->input('dataLimiteNoDestaque')} {$request->input('horaLimiteNoDestaque')}") : null;
-        $noticia->horaLimiteNoDestaque = $request->input('horaLimiteNoDestaque') ? Carbon::createFromFormat('H:i', $request->input('horaLimiteNoDestaque')) : null;
-        $noticia->ativo = $request->input('ativarNoticia') == 'true' ? 'S' : 'N';
-        $noticia->meuBanco = $request->input('idBanco') ?? null;
-        $noticia->ativarNosSindicatos = $request->input('ativarNosSindicatos') ?? null;
-        $noticia->videoYoutube = $request->input('videoYoutube') ?? '';
-        $noticia->cartola = $request->input('cartola') ?? '';
-        $noticia->tags = $request->input('tags') ?? '';
-        $noticia->titulo = $request->input('tituloDaNoticia') ?? '';
-        $noticia->linhaDeApoio = $request->input('linhaDeApoio') ?? '';
-        $noticia->texto = $request->input('texto') ?? '';
-        $noticia->jornalistaResponsavel = $request->input('jornalistaResponsavel') ?? '';
-        $noticia->userIdCreated = Auth::id();
-        
-        $noticia->save();
-        
-        
+        $noticia->tipoDaNoticia         = $request->input('tipoDaNoticia')           ?? '';
+        $noticia->dataInclusao          = $request->input('dataInclusao')            ?  Carbon::createFromFormat('Y-m-d', $request->input('dataInclusao')) : null;
+        $noticia->dataLimiteNoDestaque  = $request->input('dataLimiteNoDestaque')    ?  Carbon::createFromFormat('Y-m-d H:i', "{$request->input('dataLimiteNoDestaque')} {$request->input('horaLimiteNoDestaque')}") : null;
+        $noticia->horaLimiteNoDestaque  = $request->input('horaLimiteNoDestaque')    ?  Carbon::createFromFormat('H:i', $request->input('horaLimiteNoDestaque')) : null;
+        $noticia->ativo                 = $request->input('ativarNoticia') == 'true' ?  'S' : 'N';
+        $noticia->meuBanco              = $request->input('idBanco')                 ?? null;
+        $noticia->ativarNosSindicatos   = $request->input('ativarNosSindicatos')     ?? null;
+        $noticia->videoYoutube          = $request->input('videoYoutube')            ?? '';
+        $noticia->cartola               = $request->input('cartola')                 ?? '';
+        $noticia->tags                  = $request->input('tags')                    ?? '';
+        $noticia->titulo                = $request->input('tituloDaNoticia')         ?? '';
+        $noticia->linhaDeApoio          = $request->input('linhaDeApoio')            ?? '';
+        $noticia->texto                 = $request->input('texto')                   ?? '';
+        $noticia->jornalistaResponsavel = $request->input('jornalistaResponsavel')   ?? '';
+        $noticia->userIdCreated         = Auth::id();
+        $noticia->save();        
+
+        $sindicatos = $request->input('idsSindicatos');
+    
+        if ($sindicatos)
+        {            
+            $sindicatos = explode(',', $sindicatos);
+
+            foreach ( $sindicatos as $item )
+            {
+                $noticaHasPortalSindicato = new NoticiaHasPortalSindicato();
+                $noticaHasPortalSindicato->noticia = $noticia->id;
+                $noticaHasPortalSindicato->portalSindicato = $item;
+
+                $noticaHasPortalSindicato->save();
+            }
+        }
+
         $file = new Upload();
         $file->path = 'files/noticias';
         $file->creditfile = $request->input('creditoBannerDestaque') ?? null;
@@ -121,31 +141,78 @@ class NoticiaController extends Controller
         return redirect(url('adm/noticias'));
     }
 
+
     public function editarNoticia(Request $request)
     {
         $noticia = new Noticia();
         $noticia = $noticia->find($request->input('idNoticia'));
         
-        $noticia->tipoDaNoticia = $request->input('tipoDaNoticia') ?? '';
-        $noticia->dataInclusao = $request->input('dataInclusao') ? Carbon::createFromFormat('Y-m-d', $request->input('dataInclusao')) : null;
-        $noticia->dataLimiteNoDestaque = $request->input('dataLimiteNoDestaque') ? Carbon::createFromFormat('Y-m-d H:i', "{$request->input('dataLimiteNoDestaque')} {$request->input('horaLimiteNoDestaque')}") : null;
-        $noticia->horaLimiteNoDestaque = $request->input('horaLimiteNoDestaque') ? Carbon::createFromFormat('H:i', $request->input('horaLimiteNoDestaque')) : null;
-        $noticia->ativo = $request->input('ativarNoticia') == 'true' ? 'S' : 'N';
-        $noticia->meuBanco = $request->input('idBanco') ?? null;
-        $noticia->ativarNosSindicatos = $request->input('ativarNosSindicatos') ?? null;
-        $noticia->videoYoutube = $request->input('videoYoutube') ?? '';
-        $noticia->cartola = $request->input('cartola') ?? '';
-        $noticia->tags = $request->input('tags') ?? '';
-        $noticia->titulo = $request->input('tituloDaNoticia') ?? '';
-        $noticia->linhaDeApoio = $request->input('linhaDeApoio') ?? '';
-        $noticia->texto = $request->input('texto') ?? '';
-        $noticia->jornalistaResponsavel = $request->input('jornalistaResponsavel') ?? '';
-        $noticia->userIdUpdated = Auth::id();
+        $noticia->tipoDaNoticia         = $request->input('tipoDaNoticia')           ?? '';
+        $noticia->dataInclusao          = $request->input('dataInclusao')            ?  Carbon::createFromFormat('Y-m-d', $request->input('dataInclusao')) : null;
+        $noticia->dataLimiteNoDestaque  = $request->input('dataLimiteNoDestaque')    ?  Carbon::createFromFormat('Y-m-d H:i', "{$request->input('dataLimiteNoDestaque')} {$request->input('horaLimiteNoDestaque')}") : null;
+        $noticia->horaLimiteNoDestaque  = $request->input('horaLimiteNoDestaque')    ?  Carbon::createFromFormat('H:i', $request->input('horaLimiteNoDestaque')) : null;
+        $noticia->ativo                 = $request->input('ativarNoticia') == 'true' ?  'S' : 'N';
+        $noticia->meuBanco              = $request->input('idBanco')                 ?? null;
+        $noticia->ativarNosSindicatos   = $request->input('ativarNosSindicatos')     ?? null;
+        $noticia->videoYoutube          = $request->input('videoYoutube')            ?? '';
+        $noticia->cartola               = $request->input('cartola')                 ?? '';
+        $noticia->tags                  = $request->input('tags')                    ?? '';
+        $noticia->titulo                = $request->input('tituloDaNoticia')         ?? '';
+        $noticia->linhaDeApoio          = $request->input('linhaDeApoio')            ?? '';
+        $noticia->texto                 = $request->input('texto')                   ?? '';
+        $noticia->jornalistaResponsavel = $request->input('jornalistaResponsavel')   ?? '';
+        $noticia->userIdUpdated         = Auth::id();
+
         $noticia->save();
 
-        $creditoBannerDestaque = new File();
-        $creditoBannerDestaque = $creditoBannerDestaque->where( 'id', $noticia->bannerDestaque )->first();
 
+        /**
+         * Update Sindicatos
+         */
+        $sindicatos = $request->input('idsSindicatos');
+        // Obtem os ids cadastrados para comparar com os novos
+        $getOldIdsSindicatos = new NoticiaHasPortalSindicato();
+        $resultOldIdsSindicatos = $getOldIdsSindicatos->where('noticia', '=', $request->input('idNoticia'));
+        $oldIdsSindicatos = $resultOldIdsSindicatos->get()->toArray();
+        
+        // converte array in string
+        if ( count($oldIdsSindicatos) )
+        {
+            $auxOldIdsSindicatos = $oldIdsSindicatos;
+            $oldIdsSindicatos = [];
+
+            foreach ($auxOldIdsSindicatos as $item) {
+                $oldIdsSindicatos[] = $item['portalSindicato'];
+            }
+
+            $oldIdsSindicatos = implode(",", $oldIdsSindicatos);
+        }
+
+        // Atualiza os sindicatos se as strings for diferentes, ou seja se houve alteração
+        if ($sindicatos != $oldIdsSindicatos)
+        {
+            $sindicatos = explode(',', $sindicatos);
+
+            // se existir algo registrado deleta
+            if ( strlen($oldIdsSindicatos) ) {
+                $resultOldIdsSindicatos->delete();
+            }
+
+            // Inseri os novos registros
+            foreach ( $sindicatos as $item )
+            {
+                $noticaHasPortalSindicato = new NoticiaHasPortalSindicato();
+                $noticaHasPortalSindicato->noticia = $noticia->id;
+                $noticaHasPortalSindicato->portalSindicato = $item;
+
+                $noticaHasPortalSindicato->save();
+            }
+        }
+
+
+        /**
+         * Update Banner Destaque
+         */
         $creditoBannerDestaque = new File();
         if ( $request->file('bannerDestaque') )
         {
@@ -175,11 +242,14 @@ class NoticiaController extends Controller
             }   
         }
 
-        
+        /**
+         * Update Imagem Destaque
+         */
         $creditoImagemDestaque = new File();
         if ( $request->file('imagemDestaque') )
         {
             $creditoImagemDestaque = $creditoImagemDestaque->where( 'id', $noticia->imagemDestaque )->first();
+
             if ($creditoImagemDestaque) {
                 $creditoImagemDestaque->delete();
             }
@@ -204,6 +274,9 @@ class NoticiaController extends Controller
             }   
         }
 
+        /**
+         * Update Podcast
+         */
         if ( $request->file('filePodcast') )
         {
             $filePodcast = new File();

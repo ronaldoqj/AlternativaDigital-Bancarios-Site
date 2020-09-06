@@ -1,7 +1,5 @@
 import btnIconText from "../../components/btn_icon-text/BtnIconText.vue"
 import moment from 'moment';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
 
 export default {
     watch: {
@@ -89,7 +87,7 @@ export default {
 
         bancoValue(newValue, oldValue)
         {
-            for (var item in this.bancoItemsObject)
+            for (let item in this.bancoItemsObject)
             {
                 if ( this.bancoValue == this.bancoItemsObject[item].name ) {
                     this.idBanco = this.bancoItemsObject[item].id;
@@ -98,18 +96,8 @@ export default {
             }
         }
     },
-    data () {
-
-      return {
-          
-          // CkEditor
-          editor: ClassicEditor,
-          editorData: '<p>Content of the editor.</p>',
-          editorConfig: {
-              // The configuration of the editor.
-          },
-
-
+    data() {
+        return {
             /**
              * Campos Hiden
              */
@@ -119,119 +107,122 @@ export default {
             bancoItems: [],
             bancoItemsObject: {},
 
+            idNoticia: '',
+            valueBtnSubmit: 'Cadastrar',
 
-          idNoticia: '',
-          valueBtnSubmit: 'Cadastrar',
-
-          // variavel necessária para o component de mensagens de erro
-          errorsShow: {
-            show: false,
-            title: 'Não foi possivel realizar o cadastro!',
-            errors: []
-          },
-
-          isEdit: false,
-          
-          borderFields: {},
-          btnTipoNoticiaSelecionado: '',
-          switch1: false,
-
-          // Combobox Sindicatos
-          sindicatos: {
-                select: [],
-                items: [
-                    'Portal',
-                    'Sindicato de Camaquã'
-                ],
-          },
-
-          // Switch Ativar Notícia
-          ativarNoticia: false,
-
-          dataInputs: {
-            creditoBannerDestaque: '',
-            creditoImagemDestaque: '',
-            youtube: '',
-            cartola: '',
-            tags: '',
-            tituloDaNoticia: '',
-            linhaDeApoio: '',
-            texto: '',
-            jornalistaResponsavel: '',
-            banco: {
-                select: null,
-                items: []
+            // variavel necessária para o component de mensagens de erro
+            errorsShow: {
+                show: false,
+                title: 'Não foi possivel realizar o cadastro!',
+                errors: []
             },
-          },
 
-          dateTimeInputs: {
-              dates: {
-                  dataDaInclusao: {
-                      modal: false,
-                      date: new Date().toISOString().substr(0, 10),
-                  },
-                  limiteNoDestaque: {
-                      modal: false,
-                      date: null,
-                  },
-              },
-              times: {
-                  limiteDestaque: {
-                      modal: false,
-                      time: null,
-                  }
-              }
-          },
+            isEdit: false,
+          
+            borderFields: {},
+            btnTipoNoticiaSelecionado: '',
+            switch1: false,
+           
 
-          // Botões de seleção do tipo de notícias
-          paramsBtnIcons:
-          {
-              btnIconTextDestaque: {
-                type: 'noticia-destaque',
-                text: 'Notícia Destaque',
-                icon: '/_adm/assets/SVGs/noticia-imagem.svg',
-                selected: true
-              },
-              btnIconTextVideo: {
-                type: 'noticia-video',
-                text: 'Notícia Com Video',
-                icon: '/_adm/assets/SVGs/noticia-video.svg',
-                selected: false
-              },
-              btnIconTextImagem: {
-                type: 'noticia-imagem',
-                text: 'Notícia Com Imagem',
-                icon: '/_adm/assets/SVGs/noticia-imagem.svg',
-                selected: false
-              },
-              btnIconTextPodcast: {
-                type: 'noticia-podcast',
-                text: 'Notícia Com Podcast',
-                icon: '/_adm/assets/SVGs/noticia-podcast.svg',
-                selected: false
-              },
-              btnIconTextTexto: {
-                type: 'noticia-simples',
-                text: 'Notícia Simples',
-                icon: '/_adm/assets/SVGs/noticia-texto.svg',
-                selected: false
-              }
-          },
+            // Switch Ativar Notícia
+            ativarNoticia: false,
 
-          // Controle dos files
-          filesBannerDestaque: null,
+            dataInputs: {
+                creditoBannerDestaque: '',
+                creditoImagemDestaque: '',
+                youtube: '',
+                cartola: '',
+                tags: '',
+                tituloDaNoticia: '',
+                linhaDeApoio: '',
+                texto: '',
+                jornalistaResponsavel: '',
+                banco: {
+                    select: null,
+                    items: []
+                },
+                sindicatos: {
+                    selected: [],
+                    items: []
+                }
+            },
+
+            dateTimeInputs: {
+                dates: {
+                    dataDaInclusao: {
+                        modal: false,
+                        date: new Date().toISOString().substr(0, 10),
+                    },
+                    limiteNoDestaque: {
+                        modal: false,
+                        date: null,
+                    },
+                },
+                times: {
+                    limiteDestaque: {
+                        modal: false,
+                        time: null,
+                    }
+                }
+            },
+
+            // Botões de seleção do tipo de notícias
+            paramsBtnIcons:
+            {
+                btnIconTextDestaque: {
+                    type: 'noticia-destaque',
+                    text: 'Notícia Destaque',
+                    icon: '/_adm/assets/SVGs/noticia-imagem.svg',
+                    selected: true
+                },
+                btnIconTextVideo: {
+                    type: 'noticia-video',
+                    text: 'Notícia Com Video',
+                    icon: '/_adm/assets/SVGs/noticia-video.svg',
+                    selected: false
+                },
+                btnIconTextImagem: {
+                    type: 'noticia-imagem',
+                    text: 'Notícia Com Imagem',
+                    icon: '/_adm/assets/SVGs/noticia-imagem.svg',
+                    selected: false
+                },
+                btnIconTextPodcast: {
+                    type: 'noticia-podcast',
+                    text: 'Notícia Com Podcast',
+                    icon: '/_adm/assets/SVGs/noticia-podcast.svg',
+                    selected: false
+                },
+                btnIconTextTexto: {
+                    type: 'noticia-simples',
+                    text: 'Notícia Simples',
+                    icon: '/_adm/assets/SVGs/noticia-texto.svg',
+                    selected: false
+                }
+            },
+
+            // Controle dos files
+            filesBannerDestaque: null,
             fileBannerIsEdit: '',
-          filesImagemDestaque: null,
+            filesImagemDestaque: null,
             fileImagemIsEdit: '',
-          filesPodcast: null,
+            filesPodcast: null,
             filePodcastIsEdit: '',
-
-      }
-
+        }
     },
-    components: { btnIconText  },
+    computed: {
+        idsSindicatos()
+        {
+            let arrayIdsSindicatos = [];
+            this.dataInputs.sindicatos.selected.forEach(function(item, index){
+                arrayIdsSindicatos.push(item.id);
+            });
+            
+            return arrayIdsSindicatos;
+        }
+    },
+    components: { btnIconText },
     methods: {
-
         updateCkeditorViaJquery: function(text)
         {
             console.log('Funcionou', text);
@@ -258,13 +249,13 @@ export default {
                 linhaDeApoio: '',
                 texto: '',
                 jornalistaResponsave: ''
-          }
+            }
         },
 
         clickBtnNoticias: function(btnIcon)
         {
             // select btn clicked and deselect before checked btn
-            for (var key in this.paramsBtnIcons) {
+            for ( let key in this.paramsBtnIcons ) {
                 this.paramsBtnIcons[key].selected = false;
             }
             
@@ -274,10 +265,8 @@ export default {
 
         checkForm: function (e)
         {
-
-            //console.log('CheckFOrmas');
-            //textoCkeditor.setData('Quionha')
-            //console.log(textoCkeditor.getData());
+            //console.log('computed', idsSindicatos);
+            //console.log('selected', this.dataInputs.sindicatos.selected);
             this.dataInputs.texto = textoCkeditor.getData();
             this.errorsShow.errors = [];
 
@@ -285,10 +274,10 @@ export default {
             {
                 case 'noticia-destaque':
                     // Opcionais
-                    if (! _.isEmpty(this.filesPodcast) )
+                    if ( ! _.isEmpty(this.filesPodcast) )
                     {
-                        if (! _.isEmpty(this.filesPodcast)  ) {
-                            if ( this.filesPodcast[0].size >= 20000000) {
+                        if ( ! _.isEmpty(this.filesPodcast) ) {
+                            if ( this.filesPodcast[0].size >= 20000000 ) {
                                 this.errorsShow.errors.push({title: 'Mp3 Podcast', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 20mb) '});
                             }
                         }
@@ -302,7 +291,7 @@ export default {
 
                     if ( _.isEmpty(this.filesBannerDestaque) && this.fileBannerIsEdit == '' )
                         this.errorsShow.errors.push({title: 'Banner Destaque', description: 'obrigatório'});
-                    if (! _.isEmpty(this.filesBannerDestaque) && this.fileBannerIsEdit == ''  ) {
+                    if ( ! _.isEmpty(this.filesBannerDestaque) && this.fileBannerIsEdit == '' ) {
                         if ( this.filesBannerDestaque[0].size >= 1000000) {
                             this.errorsShow.errors.push({title: 'Banner Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
                         }
@@ -312,7 +301,7 @@ export default {
 
                     if ( _.isEmpty(this.filesImagemDestaque) && this.fileImagemIsEdit == '' )
                         this.errorsShow.errors.push({title: 'Imagem Destaque', description: 'obrigatório'});
-                    if (! _.isEmpty(this.filesImagemDestaque) && this.fileImagemIsEdit == ''  ) {
+                    if ( ! _.isEmpty(this.filesImagemDestaque) && this.fileImagemIsEdit == '' ) {
                         if ( this.filesImagemDestaque[0].size >= 1000000) {
                             this.errorsShow.errors.push({title: 'Imagem Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
                         }
@@ -323,20 +312,20 @@ export default {
 
                 case 'noticia-video':
                     // Opcionais
-                    if (! _.isEmpty(this.filesBannerDestaque) )
+                    if ( ! _.isEmpty(this.filesBannerDestaque) )
                     {
-                        if ( this.filesBannerDestaque[0].size >= 1000000) {
+                        if ( this.filesBannerDestaque[0].size >= 1000000 ) {
                             this.errorsShow.errors.push({title: 'Banner Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
                         }
                     }
-                    if (! _.isEmpty(this.filesImagemDestaque)  ) {
+                    if ( ! _.isEmpty(this.filesImagemDestaque) ) {
                         if ( this.filesImagemDestaque[0].size >= 1000000) {
                             this.errorsShow.errors.push({title: 'Imagem Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
                         }
                     }
-                    if (! _.isEmpty(this.filesPodcast) )
+                    if ( ! _.isEmpty(this.filesPodcast) )
                     {
-                        if (! _.isEmpty(this.filesPodcast)  ) {
+                        if ( ! _.isEmpty(this.filesPodcast) ) {
                             if ( this.filesPodcast[0].size >= 20000000) {
                                 this.errorsShow.errors.push({title: 'Mp3 Podcast', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 20mb) '});
                             }
@@ -350,15 +339,15 @@ export default {
 
                 case 'noticia-imagem':
                     // Opcionais
-                    if (! _.isEmpty(this.filesBannerDestaque) )
+                    if ( ! _.isEmpty(this.filesBannerDestaque) )
                     {
-                        if ( this.filesBannerDestaque[0].size >= 1000000) {
+                        if ( this.filesBannerDestaque[0].size >= 1000000 ) {
                             this.errorsShow.errors.push({title: 'Banner Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
                         }
                     }
                     if (! _.isEmpty(this.filesPodcast) )
                     {
-                        if (! _.isEmpty(this.filesPodcast)  ) {
+                        if ( ! _.isEmpty(this.filesPodcast) ) {
                             if ( this.filesPodcast[0].size >= 20000000) {
                                 this.errorsShow.errors.push({title: 'Mp3 Podcast', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 20mb) '});
                             }
@@ -368,7 +357,7 @@ export default {
                     // Validações especificas
                     if ( _.isEmpty(this.filesImagemDestaque) && this.fileImagemIsEdit == '' )
                         this.errorsShow.errors.push({title: 'Imagem Destaque', description: 'obrigatório'});
-                    if (! _.isEmpty(this.filesImagemDestaque && this.fileImagemIsEdit == '')  ) {
+                    if ( ! _.isEmpty(this.filesImagemDestaque && this.fileImagemIsEdit == '') ) {
                         if ( this.filesImagemDestaque[0].size >= 1000000) {
                             this.errorsShow.errors.push({title: 'Imagem Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
                         }
@@ -379,14 +368,14 @@ export default {
 
                 case 'noticia-podcast':
                     // Opcionais
-                    if (! _.isEmpty(this.filesBannerDestaque) )
+                    if ( ! _.isEmpty(this.filesBannerDestaque) )
                     {
-                        if ( this.filesBannerDestaque[0].size >= 1000000) {
+                        if ( this.filesBannerDestaque[0].size >= 1000000 ) {
                             this.errorsShow.errors.push({title: 'Banner Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
                         }
                     }
-                    if (! _.isEmpty(this.filesImagemDestaque)  ) {
-                        if ( this.filesImagemDestaque[0].size >= 1000000) {
+                    if ( ! _.isEmpty(this.filesImagemDestaque) ) {
+                        if ( this.filesImagemDestaque[0].size >= 1000000 ) {
                             this.errorsShow.errors.push({title: 'Imagem Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
                         }
                     }
@@ -394,29 +383,29 @@ export default {
                     // Validações especificas
                     if ( _.isEmpty(this.filesPodcast) && this.filePodcastIsEdit == '' )
                         this.errorsShow.errors.push({title: 'Mp3 Podcast', description: 'obrigatório'});
-                    if (! _.isEmpty(this.filesPodcast) && this.filePodcastIsEdit == '' ) {
-                        if ( this.filesPodcast[0].size >= 20000000) {
+                    if ( ! _.isEmpty(this.filesPodcast) && this.filePodcastIsEdit == '' ) {
+                        if ( this.filesPodcast[0].size >= 20000000 ) {
                             this.errorsShow.errors.push({title: 'Mp3 Podcast', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 20mb) '});
                         }
                     }
                 break;
                 case 'noticia-simples':
                     // Opcionais
-                    if (! _.isEmpty(this.filesBannerDestaque) )
+                    if ( ! _.isEmpty(this.filesBannerDestaque) )
                     {
                         if ( this.filesBannerDestaque[0].size >= 1000000) {
                             this.errorsShow.errors.push({title: 'Banner Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
                         }
                     }
-                    if (! _.isEmpty(this.filesImagemDestaque)  ) {
+                    if ( ! _.isEmpty(this.filesImagemDestaque) ) {
                         if ( this.filesImagemDestaque[0].size >= 1000000) {
                             this.errorsShow.errors.push({title: 'Imagem Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
                         }
                     }
-                    if (! _.isEmpty(this.filesPodcast) )
+                    if ( ! _.isEmpty(this.filesPodcast) )
                     {
-                        if (! _.isEmpty(this.filesPodcast)  ) {
-                            if ( this.filesPodcast[0].size >= 20000000) {
+                        if ( ! _.isEmpty(this.filesPodcast) ) {
+                            if ( this.filesPodcast[0].size >= 20000000 ) {
                                 this.errorsShow.errors.push({title: 'Mp3 Podcast', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 20mb) '});
                             }
                         }
@@ -427,7 +416,6 @@ export default {
             // Validações comuns a todos
             if ( _.isEmpty(this.dateTimeInputs.dates.dataDaInclusao.date) )
                 this.errorsShow.errors.push({title: 'Data Inclusão', description: 'obrigatório'});
-            
 
             if ( _.isEmpty(this.dataInputs.cartola) )
                 this.errorsShow.errors.push({title: 'Cartola', description: 'obrigatório'});
@@ -443,7 +431,7 @@ export default {
                 this.errorsShow.errors.push({title: 'Jornalista Responsável', description: 'obrigatório'});
 
 
-            if (this.errorsShow.errors.length > 0)
+            if ( this.errorsShow.errors.length > 0 )
             {
                 this.errorsShow.show = true;
                 e.preventDefault();
@@ -451,7 +439,7 @@ export default {
             
         },
 
-        editStartCompleteFilds (noticia)
+        editStartCompleteFilds( noticia )
         {
             this.idNoticia = noticia.id;
             this.valueBtnSubmit = 'Editar';
@@ -459,7 +447,7 @@ export default {
             // Started combobox banco
             this.idBanco = noticia.meuBanco;
             
-            for (var item in this.bancoItemsObject)
+            for ( let item in this.bancoItemsObject )
             {
                 if ( noticia.meuBanco == this.bancoItemsObject[item].id ) {
                     this.bancoValue = this.bancoItemsObject[item].name;
@@ -467,8 +455,27 @@ export default {
                 }
             }
 
+            // Started combobox syndicates
+            if ( ! _.isEmpty(this.registeredSyndicates) )
+            {
+                let registeredSyndicates = JSON.parse(this.registeredSyndicates);
+                //console.log( registeredSyndicates );
+                let syndicate = [];
+                for ( let item in registeredSyndicates )
+                {
+                    let contructSyndicate = {
+                        name: registeredSyndicates[item].name,
+                        id: registeredSyndicates[item].portalSindicato,
+                    }
+
+                    syndicate.push(contructSyndicate);
+                }
+
+                this.dataInputs.sindicatos.selected = syndicate;
+            }
+
             // Seleciona o tipo de noticia
-            switch (noticia.tipoDaNoticia)
+            switch ( noticia.tipoDaNoticia )
             {
                 case 'noticia-destaque':
                     this.clickBtnNoticias('btnIconTextDestaque');
@@ -488,29 +495,27 @@ export default {
             }
 
             // Setando campos com os valores já cadastrados
-            this.dateTimeInputs.dates.dataDaInclusao.date = moment(String(noticia.dataInclusao)).format('YYYY-MM-DD');
+            this.dateTimeInputs.dates.dataDaInclusao.date   = moment(String(noticia.dataInclusao)).format('YYYY-MM-DD');
             this.dateTimeInputs.dates.limiteNoDestaque.date = _.isEmpty(noticia.dataLimiteNoDestaque) ? '' : moment(String(noticia.dataLimiteNoDestaque)).format('YYYY-MM-DD');
-            this.dateTimeInputs.times.limiteDestaque.time = _.isEmpty(noticia.horaLimiteNoDestaque) ? '' : moment(String('2020-01-01 '+noticia.horaLimiteNoDestaque)).format('H:mm');
+            this.dateTimeInputs.times.limiteDestaque.time   = _.isEmpty(noticia.horaLimiteNoDestaque) ? '' : moment(String('2020-01-01 '+noticia.horaLimiteNoDestaque)).format('H:mm');
 
             this.ativarNoticia = noticia.ativo == 'S' ? true: false;
 
             // Controle para mostrar os files ignorando a regra atual de validação (CONTEM VALOR DO TIPO STRING)
             // Ou manter a mesma logica que é quando o formulário está realizando cadastro (VAZIO DO TIPO STRING) 
-            this.fileBannerIsEdit = noticia.fileBannerDestaque_id > 0 ? `/${noticia.fileBannerDestaque_pathfile}/${noticia.fileBannerDestaque_namefile}` : '';
-            this.fileImagemIsEdit = noticia.fileImagemDestaque_id > 0 ? `/${noticia.fileImagemDestaque_pathfile}/${noticia.fileImagemDestaque_namefile}` : '';
-            this.filePodcastIsEdit = noticia.filePodcast_id > 0 ? `/${noticia.filePodcast_pathfile}/${noticia.filePodcast_namefile}` : '';
-
-            this.dataInputs = {
-                creditoBannerDestaque: noticia.fileBannerDestaque_creditfile,
-                creditoImagemDestaque: noticia.fileImagemDestaque_creditfile,
-                youtube: noticia.videoYoutube,
-                cartola: noticia.cartola,
-                tags: noticia.tags,
-                tituloDaNoticia: noticia.titulo,
-                linhaDeApoio: noticia.linhaDeApoio,
-                texto: noticia.texto,
-                jornalistaResponsavel: noticia.jornalistaResponsavel
-            };
+            this.fileBannerIsEdit  = noticia.fileBannerDestaque_id > 0 ? `/${noticia.fileBannerDestaque_pathfile}/${noticia.fileBannerDestaque_namefile}` : '';
+            this.fileImagemIsEdit  = noticia.fileImagemDestaque_id > 0 ? `/${noticia.fileImagemDestaque_pathfile}/${noticia.fileImagemDestaque_namefile}` : '';
+            this.filePodcastIsEdit = noticia.filePodcast_id > 0        ? `/${noticia.filePodcast_pathfile}/${noticia.filePodcast_namefile}` : '';
+            
+            this.dataInputs.creditoBannerDestaque = noticia.fileBannerDestaque_creditfile;
+            this.dataInputs.creditoImagemDestaque = noticia.fileImagemDestaque_creditfile;
+            this.dataInputs.youtube = noticia.videoYoutube;
+            this.dataInputs.cartola = noticia.cartola;
+            this.dataInputs.tags = noticia.tags;
+            this.dataInputs.tituloDaNoticia = noticia.titulo;
+            this.dataInputs.linhaDeApoio = noticia.linhaDeApoio;
+            this.dataInputs.texto = noticia.texto;
+            this.dataInputs.jornalistaResponsavel = noticia.jornalistaResponsavel;
 
             // Seta a gambiarra do ckeditor
             // Para funcionar precisa atualizar o conteúdo após 1seg.
@@ -524,27 +529,59 @@ export default {
     },
     created()
     {
-        for (var key in this.paramsBtnIcons)
+        for ( let key in this.paramsBtnIcons )
         {
-            if (this.paramsBtnIcons[key].selected == true) {
+            if ( this.paramsBtnIcons[key].selected == true ) {
                 this.btnTipoNoticiaSelecionado = this.paramsBtnIcons[key].type;
             }
         }
 
-        if (!_.isEmpty(this.banks))
+        if ( !_.isEmpty(this.banks) )
         {
             this.bancoItemsObject = JSON.parse(this.banks);
-            for (var item in this.bancoItemsObject)
+            for ( let item in this.bancoItemsObject )
             {
                 this.bancoItems.push(this.bancoItemsObject[item].name);
             }
         }
-    },
-    mounted(){
-        if (!_.isEmpty(this.noticiaEdition)) {
-            this.isEdit = true;
-            this.editStartCompleteFilds(JSON.parse(this.noticiaEdition));
+        
+        if ( ! _.isEmpty(this.syndicates) )
+        {
+            //syndicate
+            this.syndicateItemsObject = JSON.parse(this.syndicates);
+            for ( let item in this.syndicateItemsObject )
+            {
+                let syndicate = {
+                    name: this.syndicateItemsObject[item].name,
+                    id: this.syndicateItemsObject[item].id
+                };
+
+                this.dataInputs.sindicatos.items.push(syndicate);
+            }
         }
     },
-    props: ['csrf', 'formAction', 'noticiaEdition', 'banks', 'textInput'],
+    mounted()
+    {
+        if ( ! _.isEmpty(this.noticiaEdition) ) {
+            this.isEdit = true;
+            this.editStartCompleteFilds(JSON.parse(this.noticiaEdition));
+        } else {
+            let syndicates = JSON.parse(this.syndicates);
+            let syndicate = {
+                name: syndicates[0].name,
+                id: syndicates[0].id
+            };
+
+            this.dataInputs.sindicatos.selected.push(syndicate);
+        }
+    },
+    props: [
+        'csrf',
+        'formAction',
+        'noticiaEdition',
+        'banks',
+        'syndicates',
+        'textInput',
+        'registeredSyndicates'
+    ],
 }

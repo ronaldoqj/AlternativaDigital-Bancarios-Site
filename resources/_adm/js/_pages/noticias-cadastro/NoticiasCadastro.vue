@@ -12,6 +12,7 @@
         <input type="hidden" name="ativarNoticia" :value="ativarNoticia" />
         <input type="hidden" name="idNoticia" :value="idNoticia" />
         <input type="hidden" name="idBanco" :value="idBanco" />
+        <input type="hidden" name="idsSindicatos" :value="idsSindicatos" />
 
         <div class="row">
             <div class="col-12">
@@ -126,8 +127,12 @@
 
             <div class="col-3" :class="borderFields.ativarPortalSindicatos">
                 <v-combobox
-                v-model="sindicatos.select"
-                :items="sindicatos.items"
+                name="sindicatos"
+                v-model="dataInputs.sindicatos.selected"
+                item-text="name"
+                item-value="id"
+                :items="dataInputs.sindicatos.items"
+                :auto-select-first="true"
                 label="Ativar no Portal e Sindicatos:"
                 multiple
                 outlined
@@ -424,21 +429,6 @@
             </div>
         </div>
 
-        <!-- <div class="row inputs-finais-to-all-types">
-            <div class="col-12" :class="borderFields.texto">
-                <v-textarea
-                v-model="dataInputs.texto"
-                name="texto"
-                label="Texto:"
-                dense="dense"
-                counter="240"
-                outlined
-                ></v-textarea>
-
-                <ckeditor v-model="dataInputs.texto"></ckeditor>
-            </div>
-        </div> -->
-
         <input type="hidden" id="texto" name="texto" v-model="dataInputs.texto" />
 
         <div class="row">
@@ -447,18 +437,14 @@
                     <div class="row">
                         <div class="col-12 col-box-files" :class="borderFields.texto">
                             <label>Texto</label>
-                                <!-- <input type="text" :value="textInput" /> -->
                             <div id="ckeditor" class="box-files ckeditor">
                                 <!-- <ckeditor v-model="dataInputs.texto"></ckeditor> -->
-                                <!-- <ckeditor @fileUploadRequest="onFileUploadRequest($event)" :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor> -->
-                                
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
 
         <div class="row inputs-finais-to-all-types">
             <div class="col-12" :class="borderFields.jornalistaResponsavel">

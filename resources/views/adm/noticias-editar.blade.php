@@ -33,26 +33,11 @@
 </script>
 @endsection
 
+
 @section('content')
-
-
 <div class="container-fluid">
     
-    <!-- <div class="row">
-        <div class="col-12">
-            <textarea id="texto" name="texto"></textarea>
-            <script type="text/javascript">
-                CKEDITOR.replace('texto');
-            </script>
-        </div>
-    </div> -->
-    
-    <!-- <form action="{{url('adm/formularios/noticia')}}" method="post" > -->
-    
-        @csrf
-
-        <noticias-cadastro-page form-action="{{url('adm/noticias/edicao')}}" banks="{{ $bancos }}" method="post" csrf="{{ csrf_token() }}" noticia-edition="{{$noticia}}" />
-    <!-- </form> -->
+    <noticias-cadastro-page ref="cadastro" form-action="{{url('adm/noticias/edicao')}}" banks="{{ $bancos }}" syndicates="{{ $sindicatos }}" method="post" csrf="{{ csrf_token() }}" noticia-edition="{{$noticia}}" registered-syndicates="{{$registeredSyndicates}}"/>
 
 </div>
 @endsection
