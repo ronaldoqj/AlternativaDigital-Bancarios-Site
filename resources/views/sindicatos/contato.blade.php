@@ -25,13 +25,13 @@
                         <div class="icons">
                             <img src="{{asset('/_site/assets/SVGs/icon-telefone.svg')}}" onload="SVGInject(this)" />
                         </div>
-                        <div class="text">51. 3345 2565</div>
+                        <div class="text">51. 3671 1974</div>
                     </div>
                     <div class="d-flex flex-nowrap align-items-center">
                         <div class="icons">
                             <img src="{{asset('/_site/assets/SVGs/icon-caracter-arroba.svg')}}" onload="SVGInject(this)" />
                         </div>
-                        <div class="text">CIDADE.LINDA@BANCARIOSRS.COM.BR</div>
+                        <div class="text">SEEBCQ@TERRA.COM.BR</div>
                     </div>
                 </div>
 
@@ -42,12 +42,12 @@
         <div class="col-md-12 col-lg-8 offset-lg-2">
             <div class="legendas">REDES SOCIAIS DO SINDICATO</div>
             <div class="flex-icons">
-                <div> <a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/facebook.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
-                <div> <a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/twitter.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
-                <div> <a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
-                <div> <a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/whatsapp.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
-                <div> <a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/podcasts.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
-                <div> <a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/youtube.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                <div> <a target="blank" href="https://www.facebook.com/seeb.camaqua"><img src="{{asset('/_site/assets/SVGs/Brancos/facebook.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                <div> <a target="blank" href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/twitter.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                <div> <a target="blank" href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                <div> <a target="blank" href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/whatsapp.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                <div> <a target="blank" href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/podcasts.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                <div> <a target="blank" href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/youtube.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
             </div>
         </div>
 

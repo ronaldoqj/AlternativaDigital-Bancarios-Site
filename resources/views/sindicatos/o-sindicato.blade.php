@@ -10,14 +10,17 @@
 <section id="o-sindicato">
 
     <div class="container">
-        <div class="title-page">
+        <div class="title-page mt-5 mb-5">
             O Sindicato
         </div>
 
-        <h1>Sindicato Cidade Linda</h1>
+        <div class="mt-4"></div>
+
+        <h1>Sindicato de Camaquã</h1>
         
+        <div class="mt-3 mb-3"></div>
         <p>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+            O Sindicato dos Trabalhadores em Instituições Financeiras de Camaquã (Sindbancários Camaquã) foi fundado em 06 de agosto de 1988 com a denominação de Sindicato dos Empregados em Estabelecimentos Bancários de Camaquã, abrangendo - inicialmente - os municípios de Camaquã, Dom Feliciano, São Lourenço do Sul e Tapes. Em 2017 foi feita anexação de base e incluído os municípios de Amaral Ferrador, Arambaré, Cerro Grande do Sul, Chuvisca, Cristal, Mariana Pimentel e Sentinela do Sul.
         </p>
     </div>
 
@@ -28,15 +31,15 @@
 
     <div class="container">
         <p>
-            Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+            O primeiro Presidente da entidade foi Joel Pacheco de Abreu, funcionário de Banco do Brasil.
         </p>
 
         <p>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+            O Sindicato sempre prestou sua contribuição a eterna luta Trabalho x Capital. Do período de fundação até hoje, a entidade teve vários momentos históricos importantes, como as grandes greves da categoria bancária, a primeira eleição direta pós-ditadura, o Fora Collor, as greves gerais, Marchas dos Sem, os atos a favor da Democracia, Fora Cunha, Fora Temer, Contra a Reforma Trabalhista do Temer e Contra a Reforma da Previdência do Bolsonaro. 
         </p>
 
         <p>
-            Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+            O Sindbancários Camaquã orgulha-se de ter ajudado a eleger e reeleger o primeiro Presidente Operário do País, e a primeira Mulher Presidenta, nunca deixando de fazer a crítica quando ela foi necessária, sem adesismos inconsequentes e disputando os espaços democráticos que estiveram ao seu alcance. A entidade também coloca acima de tudo a autonomia, característica do sindicalismo combativo.
         </p>
     </div>
     

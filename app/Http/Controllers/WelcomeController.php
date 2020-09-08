@@ -24,7 +24,7 @@ class WelcomeController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->session()->has('sindicato'))
+        if (session()->has('sindicato'))
         {
             return redirect()->route('sindicato-home');
         }
@@ -36,17 +36,20 @@ class WelcomeController extends Controller
 
     public function home(Request $request)
     {
+        session()->flash('typeNoticia', ['autorNoticia' => 'portal']);
         return $this->renderizaPagina($request);
     }
 
 
     public function indexSindicato(Request $request)
     {
+        session()->flash('typeNoticia', ['autorNoticia' => 'sindicato']);
         return $this->renderizaPagina($request, true);
     }
 
     public function homeSindicato(Request $request)
     {
+        session()->flash('typeNoticia', ['autorNoticia' => 'sindicato']);
         return $this->renderizaPagina($request, true);
     }
 

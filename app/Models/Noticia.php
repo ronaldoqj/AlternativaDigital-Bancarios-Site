@@ -200,7 +200,6 @@ class Noticia extends Model
 
     public function findSindicatosByIdNoticia($idNoticia)
     {
-
         $list = DB::table('noticias_has_sindicatos');
         $list->join('sindicatos', 'sindicatos.id', '=', 'noticias_has_sindicatos.sindicato');
         $list->where('noticia', $idNoticia);
@@ -211,7 +210,6 @@ class Noticia extends Model
                                     'sindicatos.name as name');
 
         return $listAll;
-
     }
 
 
@@ -224,6 +222,28 @@ class Noticia extends Model
         $list->leftjoin('files as filesBannerDestaque', 'filesBannerDestaque.id', '=', 'noticias.bannerDestaque');
         $list->leftjoin('files as filesImagemDestaque', 'filesImagemDestaque.id', '=', 'noticias.imagemDestaque');
         $list->leftjoin('files as filesFilesPodcasts', 'filesFilesPodcasts.id', '=', 'noticias.filePodcast');
+
+        if (session()->has('typeNoticia'))
+        {
+            switch (session()->get('typeNoticia')['autorNoticia'])
+            {
+                case 'portal':
+                    $list->join('noticias_has_sindicatos', function($join)
+                    {
+                        $join->on('noticias_has_sindicatos.noticia', '=', 'noticias.id')
+                            ->where('noticias_has_sindicatos.sindicato', '=', 1);
+                    });
+                    break;
+                case 'sindicato':
+                    $list->join('noticias_has_sindicatos', function($join)
+                    {
+                        $join->on('noticias_has_sindicatos.noticia', '=', 'noticias.id')
+                            ->where('noticias_has_sindicatos.sindicato', '=', session()->get('sindicato')['id']);
+                    });
+                    break;
+            }
+        }
+
         $list->whereNull('noticias.deleted_at');
         $list->where('ativo', 'S');
 
@@ -238,7 +258,6 @@ class Noticia extends Model
         if ($type != '*') {
             $list->where('noticias.tipoDaNoticia', $type);
         }
-        
         
 
         $list->orderBy('noticias.dataInclusao', 'desc');

@@ -7,7 +7,7 @@
         <!-- Banner TOP -->
         <a href="/sindicato">
         <section id="top-banner">
-            <div id="box-top-sindicato" class="container-fluid" style="background-image: url(/_site/assets/_Sindicatos/top_sindicato.jpg); height: 250px;">
+            <div id="box-top-sindicato" class="container-fluid" style="background-image: url(/_site/assets/_Excluir/background-camaqua.jpg); height: 250px;">
                 <div class="container">
                 <div class="row align-items-center">
                     <div class="col cols__texts--sindicato">
@@ -16,14 +16,15 @@
 
                             <tr>
                                 <td>
-                                    <div class="arrow__left--sindicato">
-                                        <img src="{{asset('/_site/assets/SVGs/Sindicato/arrow-left-sindicato.svg')}}" class="img-fluid" onload="SVGInject(this)" />
+                                    <div class="arrow__left--sindicato with-image">
+                                        <!-- <img src="{{asset('/_site/assets/SVGs/Sindicato/arrow-left-sindicato.svg')}}" class="img-fluid" onload="SVGInject(this)" /> -->
+                                        <img src="{{asset('/_site/assets/_Excluir/logo-camaqua.svg')}}" class="img-fluid" onload="SVGInject(this)" />
                                     </div>
                                 </td>
-                                <td class="texts--sindicato">
+                                <!-- <td class="texts--sindicato">
                                     <div><span>CIDADE</span><br/></div>
                                     <div><span>RS</span></div>
-                                </td>
+                                </td> -->
                             </tr>
 
                         </table>
@@ -71,7 +72,7 @@
                     <div class="col-md-12 col-lg-5">
                         <div class="legendas">REDES SOCIAIS DO SINDICATO</div>
                         <div class="flex-icons">
-                            <div> <a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/facebook.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                            <div> <a href="https://www.facebook.com/seeb.camaqua"><img src="{{asset('/_site/assets/SVGs/Brancos/facebook.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                             <div> <a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/twitter.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                             <div> <a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                             <div> <a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/whatsapp.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>

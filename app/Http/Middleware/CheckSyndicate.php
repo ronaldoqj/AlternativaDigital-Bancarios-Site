@@ -19,6 +19,10 @@ class CheckSyndicate
      */
     public function handle($request, Closure $next)
     {
+        if (session()->has('sindicato'))
+        {
+            session()->forget('sindicato');
+        }
 
         $subdomain = $this->getSubDomain();
         
@@ -26,7 +30,7 @@ class CheckSyndicate
         {
             $sindicato = new Sindicato();
             $sindicato = $sindicato->whereNotNull('subdomain')->get();
-        
+            
             $arraySubdomains = [];
 
             if ( $sindicato->count() ) {
@@ -35,7 +39,7 @@ class CheckSyndicate
                 }
             }
 
-            $keyArraySearch = array_search('camaquã', $arraySubdomains);
+            $keyArraySearch = array_search($subdomain, $arraySubdomains);
 
             if ( is_numeric($keyArraySearch) )
             {
@@ -57,7 +61,7 @@ class CheckSyndicate
         $domain = $this->removeBar( strtolower( env('APP_URL_DOMAIN') ) );
         $environment = env('APP_ENV') ?? '';
         $subdomain = '';
-        if ( strtolower($environment) === 'local' && env('APP_URL_SIMULATION', '') != '' )
+        if ( strtolower($environment) === 'local' && env('APP_URL_SIMULATION') != '' )
         {
             $subdomain = $this->removeBar( strtolower(env('APP_URL_SIMULATION')) );
         }

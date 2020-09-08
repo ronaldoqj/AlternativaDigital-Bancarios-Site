@@ -191,6 +191,10 @@ class NoticiaController extends Controller
 
             $oldIdsSindicatos = implode(",", $oldIdsSindicatos);
         }
+        else
+        {
+            $oldIdsSindicatos = '';
+        }
 
         // Atualiza os sindicatos se as strings for diferentes, ou seja se houve alteração
         if ($sindicatos != $oldIdsSindicatos)

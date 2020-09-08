@@ -16,9 +16,9 @@ class SindicatosSeeder extends Seeder
             'name' => 'Portal',
             'created_at' => Carbon::now()
         ]);
-        DB::table('sindicatos')->insert([
-            'name' => 'Sindicato de Camaquã',
-            'created_at' => Carbon::now()
-        ]);
+        // DB::table('sindicatos')->insert([
+        //     'name' => 'Sindicato de Camaquã',
+        //     'created_at' => Carbon::now()
+        // ]);
     }
 }

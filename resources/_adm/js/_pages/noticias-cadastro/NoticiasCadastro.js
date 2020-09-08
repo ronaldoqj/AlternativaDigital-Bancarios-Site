@@ -265,8 +265,6 @@ export default {
 
         checkForm: function (e)
         {
-            //console.log('computed', idsSindicatos);
-            //console.log('selected', this.dataInputs.sindicatos.selected);
             this.dataInputs.texto = textoCkeditor.getData();
             this.errorsShow.errors = [];
 
@@ -416,6 +414,8 @@ export default {
             // Validações comuns a todos
             if ( _.isEmpty(this.dateTimeInputs.dates.dataDaInclusao.date) )
                 this.errorsShow.errors.push({title: 'Data Inclusão', description: 'obrigatório'});
+            if ( this.dataInputs.sindicatos.selected.length == 0 )
+                this.errorsShow.errors.push({title: 'Ativar no Portal e Sindicatos', description: 'obrigatório'});
 
             if ( _.isEmpty(this.dataInputs.cartola) )
                 this.errorsShow.errors.push({title: 'Cartola', description: 'obrigatório'});
