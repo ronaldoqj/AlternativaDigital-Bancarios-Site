@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
 
-class SindicatosSeeder extends Seeder
+class SindicatoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
