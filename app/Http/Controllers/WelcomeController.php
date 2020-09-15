@@ -30,7 +30,7 @@ class WelcomeController extends Controller
         }
         else
         {
-            return redirect()->route('home');
+            return redirect()->route('home', ['banco' => $request->input('banco') ?? null]);
         }
     }
 
@@ -54,11 +54,10 @@ class WelcomeController extends Controller
     }
 
 
-    private function renderizaPagina($request, $sindicato = null)
+    private function renderizaPagina($request, $sindicato = null, $idBanco = null)
     {
         $return = [];
         $return['bancoSelecionado'] = 'Meu Banco';
-        $idBanco = null;
 
         if (is_numeric($request->input('banco')))
         {
