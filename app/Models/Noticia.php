@@ -235,11 +235,24 @@ class Noticia extends Model
                     });
                     break;
                 case 'sindicato':
-                    $list->join('noticias_has_sindicatos', function($join)
+
+                    
+                    if (session()->has('sindicato')) {
+                        $list->join('noticias_has_sindicatos', function($join)
+                        {
+                                $join->on('noticias_has_sindicatos.noticia', '=', 'noticias.id')
+                                    ->where('noticias_has_sindicatos.sindicato', '=', session()->get('sindicato')['id']);
+                        });
+                    }
+                    else
                     {
-                        $join->on('noticias_has_sindicatos.noticia', '=', 'noticias.id')
-                            ->where('noticias_has_sindicatos.sindicato', '=', session()->get('sindicato')['id']);
-                    });
+                        $list->join('noticias_has_sindicatos', function($join)
+                        {
+                                $join->on('noticias_has_sindicatos.noticia', '=', 'noticias.id')
+                                    ->where('noticias_has_sindicatos.sindicato', '<>', 1);
+                        });
+                    }
+                    
                     break;
             }
         }

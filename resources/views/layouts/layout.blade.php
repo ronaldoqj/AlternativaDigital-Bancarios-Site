@@ -33,7 +33,7 @@
 
             <div class="sidebar-header">
                 <a href="{{ route('home') }}">
-                    <img src="/_site/assets/logo.png" class="img-fluid logo"  />
+                    <img src="/_site/assets/bancariosrs.svg" class="img-fluid logo" onload="SVGInject(this)" width="220" />
                 </a>
             </div>
 
@@ -85,6 +85,18 @@
                     </div>
                 </div>
             </ul>
+            
+            
+            <ul class="list-unstyled components">
+                <p>Entidades Parceiras</p>
+                
+                <div class="contato">
+                    <div class="d-flex">
+                        <div style="width: 25%;"><img src="{{asset('/_site/assets/SVGs/logo-cut.svg')}}" class="img-fluid" /></div>
+                        <div style="width: 55%;"><img src="{{asset('/_site/assets/SVGs/logo-contraf.svg')}}" class="img-fluid" /></div>
+                    </div>
+                </div>
+            </ul>
 
         </nav>
 
@@ -105,7 +117,7 @@
                                 <img src="/_site/assets/expand-menu2.png" class="rounded-circle" />
                             </div>
                             <a href="{{ route('home') }}">
-                                <img src="/_site/assets/logo.png" class="img-fluid logo"  />
+                                <img src="/_site/assets/bancariosrs.svg" class="img-fluid logo" onload="SVGInject(this)"  />
                             </a>
                         </div>
                         <div id="menus" class="col-12 col-lg-6 offset-lg-2 order-1 order-lg-3">
@@ -195,11 +207,11 @@
                     <div class="row">
                         <div class="box__footer--logos">
                             <div class="col text-center brand-footer">
-                                <img src="/_site/assets/logo.png" class="img-fluid logo" width="150" />
+                                <img src="/_site/assets/fetrafirs.svg" class="img-fluid" onload="SVGInject(this)" height="30"/>
                             </div>
 
                             <div class="col text-center brand-alternativa-digital">
-                                <img src="/_site/assets/SVGs/Footer/alternativa-digital.svg" class="img-fluid logo" width="200" />
+                                <img src="/_site/assets/SVGs/Footer/alternativa-digital.svg" class="img-fluid " width="200" />
                             </div>
                         </div>
                     </div>

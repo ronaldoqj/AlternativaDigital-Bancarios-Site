@@ -19,7 +19,7 @@
     @endif
         <div class="col-12 col-md-6 __news--box">
             <div class="__news--content">
-                <div class="__text--1">{{ $item->cartola }} | {{ \Carbon\Carbon::parse($item->dataInclusao)->format('d/m/Y') }} <span>#{{$item->tags}}</span></div>
+                <div class="__text--1">{{ $item->cartola }} | {{ \Carbon\Carbon::parse($item->dataInclusao)->format('d/m/Y') }} <!--span>#{{$item->tags}}</span--></div>
                 <div class="__text--2">{{ $item->titulo }}</div>
                 <div class="__text--3">{{ $item->linhaDeApoio }}</div>
 
