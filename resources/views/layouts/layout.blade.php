@@ -135,7 +135,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+                                <form action="{{route('search')}}" method="POST">
+                                @csrf
                                 <div id="filters" class="row mx-md-n6">
                                     <div class="col-12 col-sm-6 order-2 order-sm-1">
 
@@ -144,46 +145,28 @@
                                                 {{ $return['bancoSelecionado'] ?? 'Meu Banco' }}
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">
-
-                                            <a href="{{ url('/') }}"><button class="dropdown-item" type="button"> Todos Bancos </button></a>
-                                            
-                                            @forelse (session()->all()['bancos'] as $sessionBanco)
-
-                                                
-                                                <a href="{{ url('?banco='.$sessionBanco->id) }}"><button class="dropdown-item" type="button">{{$sessionBanco->name}}</button></a>
-
-                                                <!-- <button class="dropdown-item" type="button">Bradesco</button>
-                                                <button class="dropdown-item" type="button">Santander</button>
-                                                <button class="dropdown-item" type="button">Banco do Brasil</button> -->
-
-                                            @empty
-                                                
-                                            @endforelse
-                                            
+                                                <a href="{{ url('/') }}"><button class="dropdown-item" type="button"> Todos Bancos </button></a>
+                                                @forelse (session()->all()['bancos'] as $sessionBanco)
+                                                    <a href="{{ url('?banco='.$sessionBanco->id) }}"><button class="dropdown-item" type="button">{{$sessionBanco->name}}</button></a>
+                                                @empty
+                                                @endforelse
                                             </div>
                                         </div>
-                                    
-
-                                        <!-- <div class="form-group">
-                                            <select class="form-control form-control-sm" id="exampleFormControlSelect1">
-                                                <option>Meu Banco</option>    
-                                                <option>Itaú</option>
-                                                <option>Bradesco</option>
-                                                <option>Santander</option>
-                                                <option>Banco do Brasil</option>
-                                            </select>
-                                        </div> -->
                                     </div>
-
+                                    
                                     <div class="col-12 col-sm-6 order-1 order-sm-2">
                                         <div class="input-group input-group-sm input-busca">
-                                            <input type="text" class="form-control" placeholder="Busca" aria-label="Recipient's username" aria-describedby="button-addon2">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-outline-secondary" type="button" id="button-addon2">BUSCAR</button>
-                                            </div>
+                                            
+                                                
+                                                <input type="text" class="form-control" name="search" placeholder="Busca" aria-label="Recipient's username" aria-describedby="button-addon2">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">BUSCAR</button>
+                                                </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
+                                </form>
                             </nav>
                         </div>
 

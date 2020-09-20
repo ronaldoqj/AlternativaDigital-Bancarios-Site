@@ -20,7 +20,7 @@
 
         </div> -->
 
-        <form>
+        <form class="fieldsRounded">
             <div class="row mb-3">
                 <div class="col-12 col-md-12">
                     
