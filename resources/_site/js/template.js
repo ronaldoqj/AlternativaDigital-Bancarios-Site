@@ -55,6 +55,7 @@ $(document).ready(function ()
 
 
     playerAudio();
+    eventSocialNetworks();
 });
 
 function aumentaDiminui (aumentaDiminui, classOrDiv)
@@ -89,3 +90,38 @@ function playerAudio()
 
     });
 }
+
+
+function eventSocialNetworks()
+{
+      $('.btSocialNetwork').click(function()
+      {
+          var url = $(this).attr('href');
+          var title = $(this).attr('title');
+
+          switch( $(this).attr('title') )
+          {
+              case 'Facebook':
+                  var w = 630;
+                  var h = 360;
+                  var left = screen.width/2 - 630/2;
+                  var top = screen.height/2 - 360/2;
+  
+                  window.open('http://www.facebook.com/sharer.php?u='+url, 'Compartilhar no facebook', 'toolbar=no, location=no, directories=no, status=no, ' + 'menubar=no, scrollbars=yes, resizable=no, copyhistory=no, width='+w+ ', height=' + h + ', top=' + top + ', left=' + left);
+                  break;
+              case 'Twitter':
+                  var ulrSN = "http://twitter.com/home?status="+url;
+                  window.open(ulrSN,'ADverso', 'toolbar=0, status=0, width=650, height=450');
+                  break;
+              case 'Whatsapp':
+                  // code block
+                  break;
+          }
+  
+          return false;
+      });
+  
+      $('.modal-close').click(function(){
+          instanceAlert.close();
+      });
+  }
