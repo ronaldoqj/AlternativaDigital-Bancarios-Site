@@ -41,7 +41,6 @@ class Noticia extends Model
         $listAll = $list->addSelect('noticias.id as id',
                                     'noticias.ativo as ativo',
                                     'noticias.tipoDaNoticia as tipoDaNoticia',
-                                    'noticias.meuBanco as meuBanco',
                                     'noticias.titulo as titulo',
                                     'noticias.subtitulo as subtitulo',
                                     'noticias.cartola as cartola',
@@ -127,7 +126,6 @@ class Noticia extends Model
         $listAll = $list->addSelect('noticias.id as id',
                                     'noticias.ativo as ativo',
                                     'noticias.tipoDaNoticia as tipoDaNoticia',
-                                    'noticias.meuBanco as meuBanco',
                                     'noticias.titulo as titulo',
                                     'noticias.subtitulo as subtitulo',
                                     'noticias.cartola as cartola',
@@ -212,6 +210,20 @@ class Noticia extends Model
 
         return $listAll;
     }
+    
+    public function findBancosByIdNoticia($idNoticia)
+    {
+        $list = DB::table('noticias_has_bancos');
+        $list->join('bancos', 'bancos.id', '=', 'noticias_has_bancos.banco');
+        $list->where('noticia', $idNoticia);
+
+        $listAll = $list->addSelect('noticias_has_bancos.id as id',
+                                    'noticias_has_bancos.noticia as noticia',
+                                    'noticias_has_bancos.banco as banco',
+                                    'bancos.name as name');
+
+        return $listAll;
+    }
 
 
     /**
@@ -236,8 +248,6 @@ class Noticia extends Model
                     });
                     break;
                 case 'sindicato':
-
-                    
                     if (session()->has('sindicato')) {
                         $list->join('noticias_has_sindicatos', function($join)
                         {
@@ -261,9 +271,31 @@ class Noticia extends Model
         $list->whereNull('noticias.deleted_at');
         $list->where('ativo', 'S');
 
-        if ($idbanco) {
-            $list->where('noticias.meuBanco', $idbanco);
+        
+        if ( is_numeric( $idbanco ) )
+        {
+            $list->join('noticias_has_bancos as noticiasHasBancos', 'noticiasHasBancos.noticia', '=', 'noticias.id');
+
+            if ($idbanco) {
+                $list->where('noticiasHasBancos.banco', $idbanco);
+
+                /**
+                 * Pode ser realizado desta maneira
+                 */
+                // $list->join('noticias_has_bancos as noticiasHasBancos', 'noticiasHasBancos.noticia', '=', 'noticias.id');
+                // $list->where('noticiasHasBancos.banco', $idbanco);
+                
+                /**
+                 * Ou assim
+                 */
+                // $list->join('noticias_has_bancos', function($join) use ( $idbanco )
+                // {
+                //     $join->on('noticias_has_bancos.noticia', '=', 'noticias.id')
+                //         ->where('noticias_has_bancos.banco', '=', $idbanco);
+                // });
+            }
         }
+        
 
         if ($id) {
             $list->whereNotIn('noticias.id', [$id]);
@@ -279,7 +311,6 @@ class Noticia extends Model
         $listAll = $list->addSelect('noticias.id as id',
                                     'noticias.ativo as ativo',
                                     'noticias.tipoDaNoticia as tipoDaNoticia',
-                                    'noticias.meuBanco as meuBanco',
                                     'noticias.titulo as titulo',
                                     'noticias.subtitulo as subtitulo',
                                     'noticias.cartola as cartola',
@@ -375,7 +406,6 @@ class Noticia extends Model
         $listAll = $list->addSelect('noticias.id as id',
                                     'noticias.ativo as ativo',
                                     'noticias.tipoDaNoticia as tipoDaNoticia',
-                                    'noticias.meuBanco as meuBanco',
                                     'noticias.titulo as titulo',
                                     'noticias.subtitulo as subtitulo',
                                     'noticias.cartola as cartola',
@@ -464,7 +494,6 @@ class Noticia extends Model
         $listAll = $list->addSelect('noticias.id as id',
                                     'noticias.ativo as ativo',
                                     'noticias.tipoDaNoticia as tipoDaNoticia',
-                                    'noticias.meuBanco as meuBanco',
                                     'noticias.titulo as titulo',
                                     'noticias.subtitulo as subtitulo',
                                     'noticias.cartola as cartola',

@@ -145,7 +145,7 @@
                                                 {{ $return['bancoSelecionado'] ?? 'Meu Banco' }}
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">
-                                                <a href="{{ url('/') }}"><button class="dropdown-item" type="button"> Todos Bancos </button></a>
+                                                <a href="{{ url('/?banco=0') }}"><button class="dropdown-item" type="button"> Todos Bancos </button></a>
                                                 @forelse (session()->all()['bancos'] as $sessionBanco)
                                                     <a href="{{ url('?banco='.$sessionBanco->id) }}"><button class="dropdown-item" type="button">{{$sessionBanco->name}}</button></a>
                                                 @empty

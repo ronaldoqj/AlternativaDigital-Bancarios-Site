@@ -85,28 +85,12 @@ export default {
               }, 500);
         },
 
-        bancoValue(newValue, oldValue)
-        {
-            for (let item in this.bancoItemsObject)
-            {
-                if ( this.bancoValue == this.bancoItemsObject[item].name ) {
-                    this.idBanco = this.bancoItemsObject[item].id;
-                    break;
-                }
-            }
-        }
     },
     data() {
         return {
             /**
              * Campos Hiden
              */
-            // tratamento para o compo combobox do banco
-            idBanco: '',
-            bancoValue: '',
-            bancoItems: [],
-            bancoItemsObject: {},
-
             idNoticia: '',
             valueBtnSubmit: 'Cadastrar',
 
@@ -137,8 +121,8 @@ export default {
                 linhaDeApoio: '',
                 texto: '',
                 jornalistaResponsavel: '',
-                banco: {
-                    select: null,
+                bancos: {
+                    selected: [],
                     items: []
                 },
                 sindicatos: {
@@ -219,6 +203,15 @@ export default {
             });
             
             return arrayIdsSindicatos;
+        },
+        idsBancos()
+        {
+            let arrayIdsBancos = [];
+            this.dataInputs.bancos.selected.forEach(function(item, index){
+                arrayIdsBancos.push(item.id);
+            });
+            
+            return arrayIdsBancos;
         }
     },
     components: { btnIconText },
@@ -410,7 +403,7 @@ export default {
                     }
                 break;
             }
-            
+
             // Validações comuns a todos
             if ( _.isEmpty(this.dateTimeInputs.dates.dataDaInclusao.date) )
                 this.errorsShow.errors.push({title: 'Data Inclusão', description: 'obrigatório'});
@@ -444,22 +437,30 @@ export default {
             this.idNoticia = noticia.id;
             this.valueBtnSubmit = 'Editar';
 
+
+
             // Started combobox banco
-            this.idBanco = noticia.meuBanco;
-            
-            for ( let item in this.bancoItemsObject )
+            if ( ! _.isEmpty(this.registeredBanks) )
             {
-                if ( noticia.meuBanco == this.bancoItemsObject[item].id ) {
-                    this.bancoValue = this.bancoItemsObject[item].name;
-                    break;
+                let registeredBanks = JSON.parse(this.registeredBanks);
+                let bank = [];
+                for ( let item in registeredBanks )
+                {
+                    let contructBank = {
+                        name: registeredBanks[item].name,
+                        id: registeredBanks[item].banco,
+                    }
+
+                    bank.push(contructBank);
                 }
+
+                this.dataInputs.bancos.selected = bank;
             }
 
             // Started combobox syndicates
             if ( ! _.isEmpty(this.registeredSyndicates) )
             {
                 let registeredSyndicates = JSON.parse(this.registeredSyndicates);
-                //console.log( registeredSyndicates );
                 let syndicate = [];
                 for ( let item in registeredSyndicates )
                 {
@@ -536,15 +537,22 @@ export default {
             }
         }
 
-        if ( !_.isEmpty(this.banks) )
+        
+        if ( ! _.isEmpty(this.banks) )
         {
-            this.bancoItemsObject = JSON.parse(this.banks);
-            for ( let item in this.bancoItemsObject )
+            //bank
+            this.bankItemsObject = JSON.parse(this.banks);
+            for ( let item in this.bankItemsObject )
             {
-                this.bancoItems.push(this.bancoItemsObject[item].name);
+                let bank = {
+                    name: this.bankItemsObject[item].name,
+                    id: this.bankItemsObject[item].id
+                };
+
+                this.dataInputs.bancos.items.push(bank);
             }
         }
-        
+
         if ( ! _.isEmpty(this.syndicates) )
         {
             //syndicate
@@ -582,6 +590,7 @@ export default {
         'banks',
         'syndicates',
         'textInput',
-        'registeredSyndicates'
+        'registeredSyndicates',
+        'registeredBanks'
     ],
 }

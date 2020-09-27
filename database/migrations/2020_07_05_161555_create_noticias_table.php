@@ -18,7 +18,6 @@ class CreateNoticiasTable extends Migration
             
             $table->char('ativo', 1)->default('N');
             $table->string('tipoDaNoticia', 240)->nullable();
-            $table->integer('meuBanco')->nullable();
             $table->string('titulo', 240)->nullable();
             $table->string('subtitulo', 240)->nullable();
             $table->string('cartola', 240)->nullable();

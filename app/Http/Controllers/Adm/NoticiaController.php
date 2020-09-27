@@ -9,6 +9,7 @@ use App\Services\Upload;
 use App\Models\File;
 use App\Models\Sindicato;
 use App\Models\NoticiaHasSindicato;
+use App\Models\NoticiaHasBanco;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 
@@ -51,7 +52,7 @@ class NoticiaController extends Controller
         $bancos = new Banco();
         $sindicatos = new Sindicato();
 
-        return view('adm.noticias-cadastrar')->withBancos($bancos->all()->toJson())->withSindicatos($sindicatos->all()->toJson());
+        return view('adm.noticias-cadastrar')->withBancos($bancos->all()->toJson())->withSindicatos($sindicatos->all()->toJson())->withBancos($bancos->all()->toJson());
     }
 
     public function edicao(Request $request, $id = '')
@@ -72,9 +73,13 @@ class NoticiaController extends Controller
         $noticiasSindicato = new Noticia();
         $sindicatosDaNoticia = $noticiasSindicato->findSindicatosByIdNoticia($id);
 
+
         $bancos = new Banco();
 
-        return view('adm.noticias-editar')->withNoticia(json_encode($noticia))->withBancos($bancos->all()->toJson())->withRegisteredSyndicates(json_encode($sindicatosDaNoticia->get()))->withSindicatos($sindicatos->all()->toJson());
+        $noticiasBancos = new Noticia();
+        $bancosDaNoticia = $noticiasBancos->findBancosByIdNoticia($id);
+
+        return view('adm.noticias-editar')->withNoticia(json_encode($noticia))->withRegisteredBanks(json_encode($bancosDaNoticia->get()))->withBancos($bancos->all()->toJson())->withRegisteredSyndicates(json_encode($sindicatosDaNoticia->get()))->withSindicatos($sindicatos->all()->toJson());
     }
 
     public function cadastrarNoticia(Request $request)
@@ -85,7 +90,6 @@ class NoticiaController extends Controller
         $noticia->dataLimiteNoDestaque  = $request->input('dataLimiteNoDestaque')    ?  Carbon::createFromFormat('Y-m-d H:i', "{$request->input('dataLimiteNoDestaque')} {$request->input('horaLimiteNoDestaque')}") : null;
         $noticia->horaLimiteNoDestaque  = $request->input('horaLimiteNoDestaque')    ?  Carbon::createFromFormat('H:i', $request->input('horaLimiteNoDestaque')) : null;
         $noticia->ativo                 = $request->input('ativarNoticia') == 'true' ?  'S' : 'N';
-        $noticia->meuBanco              = $request->input('idBanco')                 ?? null;
         $noticia->ativarNosSindicatos   = $request->input('ativarNosSindicatos')     ?? null;
         $noticia->videoYoutube          = $request->input('videoYoutube')            ?? '';
         $noticia->cartola               = $request->input('cartola')                 ?? '';
@@ -96,6 +100,24 @@ class NoticiaController extends Controller
         $noticia->jornalistaResponsavel = $request->input('jornalistaResponsavel')   ?? '';
         $noticia->userIdCreated         = Auth::id();
         $noticia->save();        
+
+
+        $bancos = $request->input('idsBancos');
+    
+        if ($bancos)
+        {            
+            $bancos = explode(',', $bancos);
+
+            foreach ( $bancos as $item )
+            {
+                $noticaHasBanco = new NoticiaHasBanco();
+                $noticaHasBanco->noticia = $noticia->id;
+                $noticaHasBanco->banco = $item;
+
+                $noticaHasBanco->save();
+            }
+        }
+
 
         $sindicatos = $request->input('idsSindicatos');
     
@@ -112,6 +134,8 @@ class NoticiaController extends Controller
                 $noticaHasSindicato->save();
             }
         }
+        
+        
 
         $file = new Upload();
         $file->path = 'files/noticias';
@@ -156,7 +180,6 @@ class NoticiaController extends Controller
         $noticia->dataLimiteNoDestaque  = $request->input('dataLimiteNoDestaque')    ?  Carbon::createFromFormat('Y-m-d H:i', "{$request->input('dataLimiteNoDestaque')} {$request->input('horaLimiteNoDestaque')}") : null;
         $noticia->horaLimiteNoDestaque  = $request->input('horaLimiteNoDestaque')    ?  Carbon::createFromFormat('H:i', $request->input('horaLimiteNoDestaque')) : null;
         $noticia->ativo                 = $request->input('ativarNoticia') == 'true' ?  'S' : 'N';
-        $noticia->meuBanco              = $request->input('idBanco')                 ?? null;
         $noticia->ativarNosSindicatos   = $request->input('ativarNosSindicatos')     ?? null;
         $noticia->videoYoutube          = $request->input('videoYoutube')            ?? '';
         $noticia->cartola               = $request->input('cartola')                 ?? '';
@@ -168,6 +191,57 @@ class NoticiaController extends Controller
         $noticia->userIdUpdated         = Auth::id();
 
         $noticia->save();
+
+
+        /**
+         * Update Bancos
+         */
+        $bancos = $request->input('idsBancos');
+
+        // Obtem os ids cadastrados para comparar com os novos
+        $getOldIdsBancos = new NoticiaHasBanco();
+        $resultOldIdsBancos = $getOldIdsBancos->where('noticia', '=', $request->input('idNoticia'));
+        $oldIdsBancos = $resultOldIdsBancos->get()->toArray();
+        
+        // converte array in string
+        if ( count($oldIdsBancos) )
+        {
+            $auxOldIdsBancos = $oldIdsBancos;
+            $oldIdsBancos = [];
+
+            foreach ($auxOldIdsBancos as $item) {
+                $oldIdsBancos[] = $item['banco'];
+            }
+
+            $oldIdsBancos = implode(",", $oldIdsBancos);
+        }
+        else
+        {
+            $oldIdsBancos = '';
+        }
+        
+        // Atualiza os bancos se as strings for diferentes, ou seja se houve alteração
+        if ($bancos != $oldIdsBancos)
+        {
+            //dd($bancos);
+            $bancosArray = explode(',', $bancos);
+            // se existir algo registrado deleta
+            if ( strlen($oldIdsBancos) ) {
+                $resultOldIdsBancos->delete();
+            }
+            
+            // Inseri os novos registros
+            if ($bancos) {
+                foreach ( $bancosArray as $item )
+                {
+                    $noticaHasBanco = new NoticiaHasBanco();
+                    $noticaHasBanco->noticia = $noticia->id;
+                    $noticaHasBanco->banco = $item;
+    
+                    $noticaHasBanco->save();
+                }
+            }
+        }
 
 
         /**
@@ -199,7 +273,7 @@ class NoticiaController extends Controller
         // Atualiza os sindicatos se as strings for diferentes, ou seja se houve alteração
         if ($sindicatos != $oldIdsSindicatos)
         {
-            $sindicatos = explode(',', $sindicatos);
+            $sindicatosArray = explode(',', $sindicatos);
 
             // se existir algo registrado deleta
             if ( strlen($oldIdsSindicatos) ) {
@@ -207,13 +281,15 @@ class NoticiaController extends Controller
             }
 
             // Inseri os novos registros
-            foreach ( $sindicatos as $item )
-            {
-                $noticaHasSindicato = new NoticiaHasSindicato();
-                $noticaHasSindicato->noticia = $noticia->id;
-                $noticaHasSindicato->sindicato = $item;
-
-                $noticaHasSindicato->save();
+            if ($sindicatos) {
+                foreach ( $sindicatosArray as $item )
+                {
+                    $noticaHasSindicato = new NoticiaHasSindicato();
+                    $noticaHasSindicato->noticia = $noticia->id;
+                    $noticaHasSindicato->sindicato = $item;
+    
+                    $noticaHasSindicato->save();
+                }
             }
         }
 

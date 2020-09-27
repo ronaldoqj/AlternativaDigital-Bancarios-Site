@@ -61,18 +61,31 @@ class WelcomeController extends Controller
 
         if (is_numeric($request->input('banco')))
         {
-            $bancoPesquisa = new Banco();
-            $bancoPesquisa = $bancoPesquisa->find($request->input('banco'));
             
-            if ($bancoPesquisa->count()) {
-                $return['bancoSelecionado'] = $bancoPesquisa->name;
-                $idBanco = $request->input('banco');
-            }
+            
+                $bancoPesquisa = new Banco();
+                $bancoPesquisa = $bancoPesquisa->find($request->input('banco'));
+                if ($bancoPesquisa) {
+                    if ($bancoPesquisa->count()) {
+                        $return['bancoSelecionado'] = $bancoPesquisa->name;
+                        $idBanco = $request->input('banco');
+                    }
+                }
+                else
+                {
+                    if ($request->input('banco') == 0) {
+                        $return['bancoSelecionado'] = 'Todos Bancos';
+                    }
+                }
+            
         }
-
         
         $noticia = new Noticia();
         $banco = new Banco();
+
+        if ($request->input('banco') == 0) {
+            $idBanco = $request->input('banco');
+        }
 
         $return['noticiaDestaqueFirst'] = $noticia->listAllToSitePageWelcome('noticia-destaque')->first();
         $return['noticias'] = $noticia->listAllToSitePageWelcome('*', $return['noticiaDestaqueFirst'] ? $return['noticiaDestaqueFirst']->id : null, $idBanco)->get();

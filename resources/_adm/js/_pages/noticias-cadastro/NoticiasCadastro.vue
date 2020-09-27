@@ -11,7 +11,7 @@
         <input type="hidden" name="tipoDaNoticia" :value="btnTipoNoticiaSelecionado" />
         <input type="hidden" name="ativarNoticia" :value="ativarNoticia" />
         <input type="hidden" name="idNoticia" :value="idNoticia" />
-        <input type="hidden" name="idBanco" :value="idBanco" />
+        <input type="hidden" name="idsBancos" :value="idsBancos" />
         <input type="hidden" name="idsSindicatos" :value="idsSindicatos" />
 
         <div class="row">
@@ -144,6 +144,7 @@
 
         <hr>
 
+        <!-- Bancos -->
         <div class="row">
             <div class="col-12">
                 <div class="container-fluid">
@@ -151,12 +152,14 @@
                         <div class="col-12 col-box-files" :class="borderFields.bancos">
                             <div class="credito-da-imagem"></div>
                             <v-combobox
-                            name="banco"
-                            v-model="bancoValue"
-                            :items="bancoItems"
+                            name="bancos"
+                            v-model="dataInputs.bancos.selected"
+                            :items="dataInputs.bancos.items"
+                            item-text="name"
                             prepend-inner-icon="account_balance"
                             label="Banco"
                             placeholder="Selecione um banco"
+                            multiple
                             outlined
                             :clearable="true"
                             ></v-combobox>
