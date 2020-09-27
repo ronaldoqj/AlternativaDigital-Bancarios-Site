@@ -35,7 +35,7 @@
                     <v-expansion-panel-content>
                     <div class="container-fluid content--panel">
                         <div class="row">
-                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in noticias.destaques">
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in noticias.destaques" :key="item.id">
                                 
                                 <div class="box--noticia">
                                     <div class="imagem-noticia" :style="{ backgroundImage: `url(/${item.fileBannerDestaque_pathfile}/${item.fileBannerDestaque_namefile})` }"></div>
@@ -80,7 +80,7 @@
                     <v-expansion-panel-content>
                     <div class="container-fluid content--panel">
                         <div class="row">
-                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in noticias.comVideo">
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in noticias.comVideo" :key="item.id">
                                 <div class="box--noticia">
                                     <div class="embed-responsive embed-responsive-16by9">
                                         <iframe class="embed-responsive-item" :src="'https://www.youtube.com/embed/' + item.videoYoutube" allowfullscreen></iframe>
@@ -125,7 +125,7 @@
                     <v-expansion-panel-content>
                     <div class="container-fluid content--panel">
                         <div class="row">
-                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in noticias.comImagem">
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in noticias.comImagem" :key="item.id">
                                 
                                 <div class="box--noticia">
                                     <div class="imagem-noticia" :style="{ backgroundImage: `url(/${item.fileImagemDestaque_pathfile}/${item.fileImagemDestaque_namefile})` }"></div>
@@ -168,7 +168,7 @@
                     <v-expansion-panel-content>
                     <div class="container-fluid content--panel">
                         <div class="row">
-                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in noticias.comPodcast">
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in noticias.comPodcast" :key="item.id">
                                 
                                 <div class="box--noticia">
 
@@ -217,7 +217,7 @@
                     <div class="container-fluid content--panel">
                         <div class="row">
                             
-                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in noticias.simples">
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in noticias.simples" :key="item.id">
                                 
                                 <div class="box--noticia noticia-simples">
                                     <div class="buttons">
@@ -327,7 +327,7 @@ export default {
         clickExcluir(item)
         {
             this.id = item.id;
-            this.modal.action = 'excluir';
+            this.action = 'excluir';
         },
         formExcluirEnviar() {
             this.$refs.formDelete.submit();
@@ -340,6 +340,8 @@ export default {
         this.noticias.comPodcast = JSON.parse(JSON.parse(this.propNoticias).noticiaComPodcast);
         this.noticias.comVideo = JSON.parse(JSON.parse(this.propNoticias).noticiaComVideo);
         this.noticias.simples = JSON.parse(JSON.parse(this.propNoticias).noticiaSimples);
+
+        console.log('teste', this.noticias);
     }
 }
 

@@ -78,6 +78,7 @@ Route::middleware([TemplateQuerys::class, CheckSyndicate::class])->group(functio
 {
     Route::get('/', 'WelcomeController@index')->name('welcome');
     Route::get('/pagina-inicial', 'WelcomeController@home')->name('home');
+    Route::get('/fetrafi', 'WelcomeController@home')->name('fetrafi');
     Route::match(['get', 'post'], '/busca', 'SearchController@index')->name('search');
     Route::get('/editais', 'EditaisController@index')->name('editais');
     Route::get('/editais/download/{id?}', 'EditaisController@download')->name('editais-download');

@@ -273,12 +273,17 @@ footer .box__footer--logos {
   align-items: center;
 }
 
+footer .box__footer--logos .brand-footer svg {
+  width: 70px;
+  height: 50px;
+}
+
 footer .brand-footer {
-  padding: 10px;
+  padding: 4px 0;
 }
 
 footer .brand-alternativa-digital {
-  padding: 6px;
+  padding: 0;
 }
 
 /* ----------------------------------------------------------------- */

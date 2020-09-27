@@ -43,13 +43,16 @@
                     <a href="{{ route('home') }}">Página Inicial</a>
                 </li>
                 <li>
-                    <a href="{{url('/editais')}}">Editais</a>
+                    <a href="{{route('editais')}}">Editais</a>
                 </li>
                 <li>
-                    <a href="{{url('/acordos-e-convencoes')}}">Acordos e Convenções</a>
+                    <a href="{{route('acordos-e-convencoes')}}">Acordos e Convenções</a>
                 </li>
                 <li>
-                    <a href="{{url('/meu-sindicato')}}">Meu Sindicato</a>
+                    <a href="{{route('meu-sindicato')}}">Meu Sindicato</a>
+                </li>
+                <li>
+                    <a href="{{route('fetrafi')}}">Fetrafi</a>
                 </li>
             </ul>
 
@@ -58,9 +61,9 @@
 
                 <div class="redes-sociais">
                     <div class="d-flex justify-content-between">                        
-                        <div ><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/facebook.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                        <div ><a href="https://www.facebook.com/portalbancariosrs"><img src="{{asset('/_site/assets/SVGs/Brancos/facebook.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
                         <div ><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/twitter.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
-                        <div ><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                        <div ><a href="https://www.instagram.com/bancariosrs"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
                     </div>
                     <div class="d-flex justify-content-between">
                         <div ><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/whatsapp.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
@@ -126,9 +129,9 @@
                                 <div id="social-buttons" class="container-fluid">
                                     <div class="row">
                                         <div class="col">
-                                            <div ><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/facebook.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                                            <div ><a href="https://www.facebook.com/portalbancariosrs"><img src="{{asset('/_site/assets/SVGs/Brancos/facebook.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
                                             <div ><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/twitter.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
-                                            <div ><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                                            <div ><a href="https://www.instagram.com/bancariosrs"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
                                             <div ><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/whatsapp.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
                                             <div ><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/podcasts.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
                                             <div ><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/youtube.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
@@ -189,12 +192,16 @@
                 <div class="container">
                     <div class="row">
                         <div class="box__footer--logos">
-                            <div class="col text-center brand-footer">
-                                <img src="/_site/assets/fetrafirs.svg" class="img-fluid" onload="SVGInject(this)" height="30"/>
+                            <div class="col brand-footer">
+                                <a href="{{route('fetrafi')}}" target="_self">
+                                    <img src="/_site/assets/fetrafirs.svg" class="img-fluid" onload="SVGInject(this)" height="30"/>
+                                </a>
                             </div>
 
-                            <div class="col text-center brand-alternativa-digital">
-                                <img src="/_site/assets/SVGs/Footer/alternativa-digital.svg" class="img-fluid " width="200" />
+                            <div class="col text-right brand-alternativa-digital">
+                                <a href="http://alternativadigital.com.br/" target="_blank">
+                                    <img src="/_site/assets/SVGs/Footer/alternativa-digital.svg" class="img-fluid " width="200" />
+                                </a>
                             </div>
                         </div>
                     </div>

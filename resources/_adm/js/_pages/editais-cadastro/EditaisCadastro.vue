@@ -60,7 +60,7 @@
                             v-bind="attrs"
                             v-on="on"
                             outlined
-                            clearable="true"
+                            clearable
                         ></v-text-field>
                     </template>
                     <v-date-picker v-model="dateTimeInputs.dates.limiteNoDestaque.date" scrollable>
@@ -90,7 +90,7 @@
                         v-bind="attrs"
                         v-on="on"
                         outlined
-                        clearable="true"
+                        clearable
                     ></v-text-field>
                     </template>
                     <v-time-picker
@@ -119,7 +119,7 @@
                 dense="dense"
                 color="primary"
                 outlined
-                clearable="true"
+                clearable
                 ></v-select>
             </div>
         </div>
@@ -178,7 +178,7 @@
                                 maxlength="240"
                                 counter="240"
                                 outlined
-                                clearable="true"
+                                clearable
                             ></v-text-field>
                         </div>
                     </div>
@@ -198,7 +198,7 @@
                     maxlength="240"
                     counter="240"
                     outlined
-                    clearable="true"
+                    clearable
                 ></v-text-field>
             </div>
             <div class="col-4" :class="borderFields.tags">
@@ -210,7 +210,7 @@
                     maxlength="240"
                     counter="240"
                     outlined
-                    clearable="true"
+                    clearable
                 ></v-text-field>
             </div>
         </div>
@@ -226,7 +226,7 @@
                 maxlength="240"
                 counter="240"
                 outlined
-                clearable="true"
+                clearable
                 ></v-textarea>
             </div>
         </div>
@@ -242,7 +242,7 @@
                 maxlength="240"
                 counter="240"
                 outlined
-                clearable="true"
+                clearable
                 ></v-textarea>
             </div>
         </div>

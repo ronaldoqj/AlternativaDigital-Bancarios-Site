@@ -236,10 +236,17 @@ footer {
         justify-content: space-between;
         width: 100%;
         align-items: center;
+
+        .brand-footer {
+            svg {
+                width: 70px;
+                height: 50px;
+            }
+        }
     }
 
-    .brand-footer { padding: 10px; }
-    .brand-alternativa-digital { padding: 6px; }
+    .brand-footer { padding: 4px 0; }
+    .brand-alternativa-digital { padding: 0; }
 }
 
 
