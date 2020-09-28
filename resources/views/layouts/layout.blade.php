@@ -43,6 +43,12 @@
                     <a href="{{ route('home') }}">Página Inicial</a>
                 </li>
                 <li>
+                    <a href="{{route('fetrafi-rs')}}">Fetrafi-RS</a>
+                </li>
+                <li>
+                    <a href="#">Área Restrita</a>
+                </li>
+                <li>
                     <a href="{{route('editais')}}">Editais</a>
                 </li>
                 <li>
@@ -52,7 +58,7 @@
                     <a href="{{route('meu-sindicato')}}">Meu Sindicato</a>
                 </li>
                 <li>
-                    <a href="{{route('fetrafi')}}">Fetrafi</a>
+                    <a href="{{route('entidades-parceiras')}}">Entidades Parceiras</a>
                 </li>
             </ul>
 
@@ -193,7 +199,7 @@
                     <div class="row">
                         <div class="box__footer--logos">
                             <div class="col brand-footer">
-                                <a href="{{route('fetrafi')}}" target="_self">
+                                <a href="{{route('fetrafi-rs')}}" target="_self">
                                     <img src="/_site/assets/fetrafirs.svg" class="img-fluid" onload="SVGInject(this)" height="30"/>
                                 </a>
                             </div>

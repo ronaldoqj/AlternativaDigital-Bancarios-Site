@@ -35,12 +35,12 @@ Route::prefix('adm')->namespace('Adm')->group(function ()
     Route::post('/noticias/edicao', 'NoticiaController@editarNoticia')->name('adm-noticias-editar');
     Route::post('/noticias/delete', 'NoticiaController@deletarNoticia')->name('adm-noticias-deletar');
     
-    Route::get('/editais', 'EditalController@index')->name('adm-editais');
-    Route::get('/editais/cadastro', 'EditalController@cadastro')->name('adm-editais-cadastro');
-    Route::post('/editais/cadastro', 'EditalController@cadastrar')->name('adm-editais-cadastrar');
-    Route::get('/editais/edicao/{id?}', 'EditalController@edicao')->name('adm-editais-edicao');
-    Route::post('/editais/edicao', 'EditalController@editar')->name('adm-editais-editar');
-    Route::post('/editais/delete', 'EditalController@deletar')->name('adm-editais-deletar');
+    Route::get('/entidades-parceiras', 'EntidadeParceiraController@index')->name('adm-entidades-parceiras');
+    Route::get('/entidades-parceiras/cadastro', 'EntidadeParceiraController@cadastro')->name('adm-entidades-parceiras-cadastro');
+    Route::post('/entidades-parceiras/cadastro', 'EntidadeParceiraController@cadastrar')->name('adm-entidades-parceiras-cadastrar');
+    Route::get('/entidades-parceiras/edicao/{id?}', 'EntidadeParceiraController@edicao')->name('adm-entidades-parceiras-edicao');
+    Route::post('/entidades-parceiras/edicao', 'EntidadeParceiraController@editar')->name('adm-entidades-parceiras-editar');
+    Route::post('/entidades-parceiras/delete', 'EntidadeParceiraController@deletar')->name('adm-entidades-parceiras-deletar');
     
     Route::get('/acordos-e-convencoes', 'AcordoEConvencaoController@index')->name('adm-acordos-e-convencoes');
     Route::get('/acordos-e-convencoes/cadastro', 'AcordoEConvencaoController@cadastro')->name('adm-acordos-e-convencoes-cadastro');
@@ -78,7 +78,8 @@ Route::middleware([TemplateQuerys::class, CheckSyndicate::class])->group(functio
 {
     Route::get('/', 'WelcomeController@index')->name('welcome');
     Route::get('/pagina-inicial', 'WelcomeController@home')->name('home');
-    Route::get('/fetrafi', 'WelcomeController@home')->name('fetrafi');
+    Route::get('/fetrafi-rs', 'WelcomeController@home')->name('fetrafi-rs');
+    Route::get('/entidades-parceiras', 'EntidadesParceirasController@index')->name('entidades-parceiras');
     Route::match(['get', 'post'], '/busca', 'SearchController@index')->name('search');
     Route::get('/editais', 'EditaisController@index')->name('editais');
     Route::get('/editais/download/{id?}', 'EditaisController@download')->name('editais-download');

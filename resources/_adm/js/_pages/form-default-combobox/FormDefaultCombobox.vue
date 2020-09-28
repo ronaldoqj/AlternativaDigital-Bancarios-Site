@@ -26,7 +26,7 @@
 
             <div class="row">
                 <template v-if="this.list.length">
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in list">
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in list" :key="item.id">
                         <v-hover>
                         <template v-slot="{ hover }">
                         <div class="box--items mx-auto pa-3 transition-swing" :class="`elevation-${hover ? 6 : 4}`">

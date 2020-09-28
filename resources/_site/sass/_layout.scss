@@ -31,6 +31,10 @@ header#top-of-site {
         text-align: center;
         margin: 25px 0;
         height: 50px;
+
+        svg {
+            height: 50px;
+        }
         //margin-top: 8px; /* correção do espaço que seria o padding top */
     }
 
@@ -98,7 +102,7 @@ header#top-of-site {
 
 #expand__menu2 {
     position: absolute;
-    margin-top: -30px;
+    margin-top: -25px;
     left: 50%;
     transform: translateX(-50%);
 
@@ -444,11 +448,15 @@ section#top-banner
         }
 
         #logo {
-            margin: 15px 0 !important;
+            margin: 0 !important;
             height: auto !important;
 
+            svg {
+                height: 40px !important;
+            }
+
             img {
-                height: 33px;
+                height: 40px;
                 transition: 0.3s;
             }
         }
@@ -466,7 +474,7 @@ section#top-banner
             }
             #expand__menu2 {
                 transform: rotate(180deg);
-                margin-top: -35px;
+                margin-top: -28px;
                 margin-left: -10px;
             }
         }

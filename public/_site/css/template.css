@@ -43,6 +43,10 @@ header#top-of-site #logo {
   height: 50px;
 }
 
+header#top-of-site #logo svg {
+  height: 50px;
+}
+
 header#top-of-site .hamburguer {
   cursor: pointer;
   margin: 25px 0;
@@ -104,7 +108,7 @@ header#top-of-site #menus #social-buttons a:hover svg tspan {
 
 #expand__menu2 {
   position: absolute;
-  margin-top: -30px;
+  margin-top: -25px;
   left: 50%;
   transform: translateX(-50%);
   color: white;
@@ -449,12 +453,16 @@ section#top-banner .container-text-1--sindicato .texts--sindicato span {
   }
 
   #top-of-site #logo {
-    margin: 15px 0 !important;
+    margin: 0 !important;
     height: auto !important;
   }
 
+  #top-of-site #logo svg {
+    height: 40px !important;
+  }
+
   #top-of-site #logo img {
-    height: 33px;
+    height: 40px;
     transition: 0.3s;
   }
 
@@ -474,7 +482,7 @@ section#top-banner .container-text-1--sindicato .texts--sindicato span {
 
   #top-of-site.showMenu2 #expand__menu2 {
     transform: rotate(180deg);
-    margin-top: -35px;
+    margin-top: -28px;
     margin-left: -10px;
   }
 }
@@ -884,6 +892,7 @@ form.fieldsRounded .btn div::before {
   text-transform: uppercase;
   margin-top: 30px;
   margin-left: 10px;
+  margin-right: -20px;
   transition: 0.4s;
 }
 

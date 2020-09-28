@@ -13,6 +13,7 @@
                 <a href="/adm/noticias"><img src="/_adm/assets/SVGs/icon-menu-noticias.svg" class="img-fluid" onload="SVGInject(this)" /></a>
                 <a href="/adm/editais"><img src="/_adm/assets/SVGs/icon-menu-editais.svg" class="img-fluid" onload="SVGInject(this)" /></a>
                 <a href="/adm/acordos-e-convencoes"><img src="/_adm/assets/SVGs/icon-menu-acordos-e-convencoes.svg" class="img-fluid" onload="SVGInject(this)" /></a>
+                <a href="/adm/entidades-parceiras"><img src="/_adm/assets/SVGs/icon-entidades-parceiras.svg" class="img-fluid" onload="SVGInject(this)" /></a>
                 
                 <template v-if="perfil == 'master'">
                     <a href="#"><img src="/_adm/assets/SVGs/icon-menu-meu-sindicato.svg" class="img-fluid" onload="SVGInject(this)" /></a>
