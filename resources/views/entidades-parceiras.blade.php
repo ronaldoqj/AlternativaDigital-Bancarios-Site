@@ -13,14 +13,8 @@
 </div>
 
 
-
-
-
-
 <div class="box-items">
     <div class="row">
-       
-    
 
         @forelse($return as $item)
 
@@ -30,7 +24,7 @@
                 <div class="content">
                     <div class="edit">
                         <a href="{{$item->link}}" target="_blank">
-                            <img src="{{url($item->file_pathfile . '/' . $item->file_namefile)}}" class="img-fluid" />
+                            <div class="imagem-entidade-parceira" style="background-image: url({{url($item->file_pathfile . '/' . $item->file_namefile)}})"></div>
                         </a>
                     </div>
                 </div>
@@ -46,10 +40,6 @@
             <hr>
         </div>
         @endforelse
-
-
-
-        
         
     </div>
 
