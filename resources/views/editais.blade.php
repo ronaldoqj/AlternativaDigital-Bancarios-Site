@@ -1,5 +1,11 @@
 @extends('layouts.layout')
 
+
+@section('metatags')
+
+@endsection
+
+
 @section('css')
 <link href="{{asset('/_site/css/pages/editais.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
 @endsection
@@ -29,10 +35,10 @@
 
                 <div class="titulo-btns">Compartilhar</div>
                 <div class="SHARED__icons__socials--midia">
-                    <div> <a href="#"><img src="{{asset('/_site/assets/SVGs/Facebook-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
-                    <div> <a href="#"><img src="{{asset('/_site/assets/SVGs/Twitter-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
-                    <div> <a href="#"><img src="{{asset('/_site/assets/SVGs/Instagram-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
-                    <div> <a href="#"><img src="{{asset('/_site/assets/SVGs/Whatsapp-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                    <div> <a href="{{url('editais#')}}" title="Facebook" class="btSocialNetwork"><img src="{{asset('/_site/assets/SVGs/Facebook-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                    <div> <a href="{{url('editais#')}}" title="Twitter" class="btSocialNetwork"><img src="{{asset('/_site/assets/SVGs/Twitter-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                    <!-- <div> <a href="#"><img src="{{asset('/_site/assets/SVGs/Instagram-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div> -->
+                    <div> <a href='{{ "whatsapp://send?text=$item->titulo - " . url("noticia") }}' title="Whatsapp" class="btSocialNetwork"><img src="{{asset('/_site/assets/SVGs/Whatsapp-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                 </div>
 
                 <div class="clear-fix"></div>
