@@ -46,7 +46,7 @@
                     <a href="{{route('fetrafi-rs')}}">Fetrafi-RS</a>
                 </li>
                 <li>
-                    <a href="#">Área Restrita</a>
+                    <a href="http://www.fetrafirs.org.br/intranet/" target="_blank">Área Restrita</a>
                 </li>
                 <li>
                     <a href="{{route('editais')}}">Editais</a>
