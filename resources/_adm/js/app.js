@@ -47,6 +47,8 @@ Vue.component('editais-page', require('./_pages/editais/Editais.vue').default);
 Vue.component('editais-cadastro-page', require('./_pages/editais-cadastro/EditaisCadastro.vue').default);
 Vue.component('entidades-parceiras-page', require('./_pages/entidades-parceiras/EntidadesParceiras.vue').default);
 Vue.component('entidades-parceiras-cadastro-page', require('./_pages/entidades-parceiras-cadastro/EntidadesParceirasCadastro.vue').default);
+Vue.component('usuarios-page', require('./_pages/usuarios/Usuarios.vue').default);
+Vue.component('usuarios-cadastro-page', require('./_pages/usuarios/UsuariosCadastro.vue').default);
 Vue.component('form-default-combobox', require('./_pages/form-default-combobox/FormDefaultCombobox.vue').default);
 Vue.component('btn-action-widget-component', require('./components/widget/BtnActionComponent.vue').default);
 
@@ -74,7 +76,6 @@ const vm = new Vue({
             required: value => !!value || 'Required.',
             min: v => v.length >= 6 || 'Minimo de 6 caracteres'
         },
-
 
     }
     //render: h => h(Login),

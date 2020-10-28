@@ -59,6 +59,10 @@ Route::prefix('adm')->namespace('Adm')->group(function ()
     Route::get('/entidades', 'EntidadeController@index')->name('adm-entidades');
     Route::post('/entidades/actions', 'EntidadeController@actions')->name('adm-entidades-actions');
     
+    Route::get('/usuarios', 'UsuarioController@index')->name('adm-usuarios');
+    Route::get('/usuarios/cadastro', 'UsuarioController@cadastro')->name('adm-usuarios-cadastro');
+    Route::post('/usuarios/cadastro', 'UsuarioController@cadastrar')->name('adm-usuarios-cadastrar');
+    
     Route::get('/bancos', 'BancoController@index')->name('adm-bancos');
     Route::post('/bancos/actions', 'BancoController@actions')->name('adm-bancos-actions');
 
