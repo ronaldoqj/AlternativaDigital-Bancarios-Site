@@ -36,6 +36,10 @@ $(document).ready(function ()
     $('#expand__menu--sindicato').on('click', function () {
         $('#menu-sindicato').toggleClass('show');
     });
+    
+    $('#expand__menu--fetrafi-rs').on('click', function () {
+        $('#menu-fetrafi-rs').toggleClass('show');
+    });
 
     // Atribui valor para o buttom banco
     $('#filters .dropdown-menu .dropdown-item').on('click', function(){

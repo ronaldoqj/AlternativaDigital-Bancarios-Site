@@ -1,12 +1,17 @@
 .title-page
 {
+    --colorTitle:  #125488;
+    &.fetrafi-rs {
+        --colorTitle: #13695A;
+    }
+    
     font-size: 2.9rem;
-    color: #125488;
+    color: var(--colorTitle);
     font-family: 'Anton', sans-serif;
     text-transform: uppercase;
     margin-top: 30px;
     margin-left: 10px;
-    margin-right: -20px;
+    margin-right: -15px;
 
     transition: 0.4s;
 
@@ -21,8 +26,8 @@
         margin-top: -5px;
         width: 20px;
         height: 20px;
-        border-top: solid 3px #125488;
-        border-left: solid 3px #125488;
+        border-top: solid 3px var(--colorTitle);
+        border-left: solid 3px var(--colorTitle);
         position: absolute;
         transition: 0.4s;
     }
@@ -33,8 +38,8 @@
         content: "";
         width: 20px;
         height: 20px;
-        border-right: solid 3px #125488;
-        border-bottom: solid 3px #125488;
+        border-right: solid 3px var(--colorTitle);
+        border-bottom: solid 3px var(--colorTitle);
         display: inline-table;
         transition: 0.4s;
     }

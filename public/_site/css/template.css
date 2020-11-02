@@ -275,6 +275,7 @@ footer .box__footer--logos {
   justify-content: space-between;
   width: 100%;
   align-items: center;
+  padding: 0 15px;
 }
 
 footer .box__footer--logos .brand-footer svg {
@@ -316,8 +317,37 @@ section#top-banner .container .cols__texts div {
 }
 
 section#top-banner .container .cols__texts--sindicato div {
-  padding-left: 15px;
+  padding: 15px;
   font-family: "Anton", sans-serif;
+}
+
+section#top-banner .container .cols__texts--fetrafi-rs {
+  display: flex;
+  justify-content: space-between;
+  height: inherit;
+  align-items: center;
+}
+
+section#top-banner .container .cols__texts--fetrafi-rs div {
+  font-family: "Anton", sans-serif;
+  padding: 15px;
+  background-color: rgba(8, 90, 76, 0.87);
+}
+
+section#top-banner .container .cols__texts--fetrafi-rs div:first-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  margin-right: 5px;
+}
+
+section#top-banner .container .cols__texts--fetrafi-rs div:nth-child(2) {
+  display: flex;
+  margin-left: 5px;
+  height: 100%;
+}
+
+section#top-banner .container .cols__texts--fetrafi-rs div a {
+  display: flex;
 }
 
 section#top-banner .container-text-1 {
@@ -371,27 +401,27 @@ section#top-banner .text1--sindicato span {
   padding-right: 20px;
 }
 
-section#top-banner .container-text-1--sindicato {
-  margin-left: 20px;
-}
-
-section#top-banner .container-text-1--sindicato .arrow__left--sindicato {
+section#top-banner .container-text-1--sindicato .arrow__left--sindicato,
+section#top-banner .container-text-1--fetrafi-rs .arrow__left--sindicato {
   background-color: rgba(0, 0, 0, 0.6);
   padding-right: 10px;
 }
 
-section#top-banner .container-text-1--sindicato .texts--sindicato {
+section#top-banner .container-text-1--sindicato .texts--sindicato,
+section#top-banner .container-text-1--fetrafi-rs .texts--sindicato {
   font-size: 2.3em;
   line-height: 1.2em;
   padding-left: 0 !important;
 }
 
-section#top-banner .container-text-1--sindicato .texts--sindicato div {
+section#top-banner .container-text-1--sindicato .texts--sindicato div,
+section#top-banner .container-text-1--fetrafi-rs .texts--sindicato div {
   clear: both;
   margin-left: -16px;
 }
 
-section#top-banner .container-text-1--sindicato .texts--sindicato span {
+section#top-banner .container-text-1--sindicato .texts--sindicato span,
+section#top-banner .container-text-1--fetrafi-rs .texts--sindicato span {
   color: white;
   background-color: rgba(0, 0, 0, 0.6);
   padding-right: 20px;
@@ -437,6 +467,10 @@ section#top-banner .container-text-1--sindicato .texts--sindicato span {
   }
 
   .container > col {
+    padding: 0;
+  }
+
+  #box-top-fetrafi-rs {
     padding: 0;
   }
 }
@@ -886,14 +920,19 @@ form.fieldsRounded .btn div::before {
 }
 
 .title-page {
+  --colorTitle: #125488;
   font-size: 2.9rem;
-  color: #125488;
+  color: var(--colorTitle);
   font-family: "Anton", sans-serif;
   text-transform: uppercase;
   margin-top: 30px;
   margin-left: 10px;
-  margin-right: -20px;
+  margin-right: -15px;
   transition: 0.4s;
+}
+
+.title-page.fetrafi-rs {
+  --colorTitle: #13695A;
 }
 
 .title-page span:last-child {
@@ -906,8 +945,8 @@ form.fieldsRounded .btn div::before {
   margin-top: -5px;
   width: 20px;
   height: 20px;
-  border-top: solid 3px #125488;
-  border-left: solid 3px #125488;
+  border-top: solid 3px var(--colorTitle);
+  border-left: solid 3px var(--colorTitle);
   position: absolute;
   transition: 0.4s;
 }
@@ -917,8 +956,8 @@ form.fieldsRounded .btn div::before {
   content: "";
   width: 20px;
   height: 20px;
-  border-right: solid 3px #125488;
-  border-bottom: solid 3px #125488;
+  border-right: solid 3px var(--colorTitle);
+  border-bottom: solid 3px var(--colorTitle);
   display: inline-table;
   transition: 0.4s;
 }

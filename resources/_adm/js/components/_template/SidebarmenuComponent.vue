@@ -29,7 +29,8 @@
                     <a href="/adm/bancos"><img src="/_adm/assets/SVGs/icon-menu-meu-banco.svg" class="img-fluid" onload="SVGInject(this)" /></a>
                     <a href="/adm/entidades"><img src="/_adm/assets/SVGs/icon-entidades.svg" class="img-fluid" onload="SVGInject(this)" /></a>
                     <a href="#"><img src="/_adm/assets/SVGs/icon-menu-redes-sociais.svg" class="img-fluid" onload="SVGInject(this)" /></a>
-                    <a href="/adm/usuarios"><img src="/_adm/assets/SVGs/icon-menu-usuarios.svg" class="img-fluid" onload="SVGInject(this)" /></a>
+                    <!-- <a href="/adm/usuarios"><img src="/_adm/assets/SVGs/icon-menu-usuarios.svg" class="img-fluid" onload="SVGInject(this)" /></a> -->
+                    <a href="#"><img src="/_adm/assets/SVGs/icon-menu-usuarios.svg" class="img-fluid" onload="SVGInject(this)" /></a>
                     <a href="#" class="last-item"><img src="/_adm/assets/SVGs/icon-menu-perfil.svg" class="img-fluid" onload="SVGInject(this)" /></a>
                 </div>
 

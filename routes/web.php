@@ -90,7 +90,7 @@ Route::middleware([TemplateQuerys::class, CheckSyndicate::class])->group(functio
     Route::get('/acordos-e-convencoes', 'AcordosEConvencoesController@index')->name('acordos-e-convencoes');
     Route::get('/acordos-e-convencoes/download/{id?}', 'AcordosEConvencoesController@download')->name('acordos-e-convencoes-download');
     Route::get('/meu-sindicato', 'MeuSindicatoController@index')->name('meu-sindicato');
-    Route::get('/noticia/{id?}/{title?}', 'NoticiasController@index')->name('noticia');
+    Route::get('/noticia/{id?}/{title?}', 'NoticiasController@index')->name('noticia')->where('title', '.*');
     // Route::get('/noticia', 'NoticiasController@withImage')->name('noticias-with-image');
     Route::get('/noticia-destaque', 'NoticiasController@withImageDestaque')->name('noticias-with-image-destaque');
     Route::get('/noticia-video', 'NoticiasController@withVideo')->name('noticias-with-video');
@@ -108,10 +108,19 @@ Route::middleware([TemplateQuerys::class, CheckSyndicate::class])->group(functio
         Route::get('/contato', 'ContatoController@index')->name('sindicato-contato');    
     });
     
+    // Sindicatos
+    Route::prefix('fetrafi-rs')->namespace('FetrafiRS')->group(function () {
+        //Route::get('/', 'FetrafiRSController@index')->name('fetrafi-rs');
+        Route::get('/', 'FederacaoController@index')->name('fetrafi-rs');
+        Route::get('/federacao', 'FederacaoController@index')->name('fetrafi-rs-federacao');
+        Route::get('/servicos', 'ServicosController@index')->name('fetrafi-rs-servicos');
+        Route::get('/contato', 'ContatoController@index')->name('fetrafi-rs-contato');    
+    });
+    
     // Está enviando para o mesmo controller do portal
     Route::get('/sindicato/', 'WelcomeController@indexSindicato')->name('sindicato');
     Route::get('/sindicato/pagina-inicial', 'WelcomeController@homeSindicato')->name('sindicato-home');
-    Route::get('/sindicato/noticia/{id?}/{title?}', 'NoticiasController@indexSindicato')->name('sindicato-noticia');
+    Route::get('/sindicato/noticia/{id?}/{title?}', 'NoticiasController@indexSindicato')->name('sindicato-noticia')->where('title', '.*');
 
     // Route::fallback(function () {
     //     // rota quando não encontrou no site

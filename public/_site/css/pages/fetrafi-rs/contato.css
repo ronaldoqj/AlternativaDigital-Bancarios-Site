@@ -1,0 +1,82 @@
+/* ----------------------------------------------------------------- */
+
+/*               File of global functions (mixin)                    */
+
+/* ----------------------------------------------------------------- */
+
+#content-syndicate #contato .description-of-page {
+  padding: 10px 0 15px;
+}
+
+#content-syndicate #contato .description-of-page p {
+  font-size: 1.4em;
+  line-height: 1.2em;
+}
+
+#content-syndicate #contato .dados-contato {
+  font-family: "Anton", sans-serif;
+  color: #707070;
+  font-size: 2em;
+  transition: 0.4s;
+}
+
+@media (min-width: 575.98px) {
+  #content-syndicate #contato .dados-contato {
+    margin-left: 40px;
+  }
+}
+
+#content-syndicate #contato .icons {
+  margin-top: -8px;
+  margin-right: 10px;
+}
+
+#content-syndicate #contato .icons svg {
+  width: 30px;
+  height: 30px;
+}
+
+#content-syndicate #contato .text {
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+#content-syndicate #contato svg {
+  white-space: nowrap;
+}
+
+#content-syndicate #contato svg tspan,
+#content-syndicate #contato svg fill,
+#content-syndicate #contato svg path {
+  fill: #707070;
+  transition: 0.4s;
+}
+
+#content-syndicate #contato svg path[data-name=path-SVG-download-5] {
+  fill: transparent;
+}
+
+#content-syndicate #contato svg:hover tspan,
+#content-syndicate #contato svg:hover fill,
+#content-syndicate #contato svg:hover path {
+  fill: #0B3C5E;
+  transition: 0.4s;
+}
+
+#content-syndicate #contato .legendas {
+  font-family: "Anton", sans-serif;
+  color: #707070;
+  font-size: 1.5em;
+  text-align: center;
+  margin: 25px 0;
+}
+
+#content-syndicate #contato .flex-icons {
+  display: flex;
+  justify-content: space-between;
+}
+
+#content-syndicate #contato form {
+  margin-top: 30px;
+}
+

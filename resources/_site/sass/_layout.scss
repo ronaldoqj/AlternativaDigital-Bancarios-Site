@@ -240,6 +240,7 @@ footer {
         justify-content: space-between;
         width: 100%;
         align-items: center;
+        padding: 0 15px;
 
         .brand-footer {
             svg {
@@ -259,6 +260,8 @@ footer {
 /*                           top-banner                              */
 /* ----------------------------------------------------------------- */
 
+
+
 section#top-banner
 {
     .container {
@@ -274,8 +277,38 @@ section#top-banner
         }
 
         .cols__texts--sindicato div {
-            padding-left: 15px;
+            padding: 15px;
             font-family: 'Anton', sans-serif;
+        }
+        
+        .cols__texts--fetrafi-rs
+        {
+            display: flex;
+            justify-content: space-between;
+            height: inherit;
+            align-items: center;
+
+            div {
+                font-family: 'Anton', sans-serif;
+                padding: 15px;
+                background-color: rgba(8, 90, 76, 0.87);
+
+                &:first-child {
+                    border-top-right-radius: 10px;
+                    border-bottom-right-radius: 10px;
+                    margin-right: 5px;
+                }
+
+                &:nth-child(2) {
+                    display: flex;
+                    margin-left: 5px;
+                    height: 100%;
+                }
+
+                a {
+                    display: flex;
+                }
+            }
         }
     }
 
@@ -328,8 +361,7 @@ section#top-banner
 
 
 
-    .container-text-1--sindicato {
-        margin-left: 20px;
+    .container-text-1--sindicato, .container-text-1--fetrafi-rs {
 
         .arrow__left--sindicato {
             background-color: rgba(0, 0, 0, 0.6);
@@ -417,6 +449,10 @@ section#top-banner
         &> col {
             padding: 0;
         }
+    }
+
+    #box-top-fetrafi-rs {
+        padding: 0;
     }
 
     // #top-of-site {

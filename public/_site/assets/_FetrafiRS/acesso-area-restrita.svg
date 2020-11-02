@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="136" viewBox="0 0 110 136">
+  <g id="Grupo_1105" data-name="Grupo 1105" transform="translate(15892 20551)">
+    <g id="Grupo_1104" data-name="Grupo 1104" transform="translate(-16743 -20766)">
+      <rect id="Retângulo_923" data-name="Retângulo 923" width="103" height="136" rx="7" transform="translate(855 215)" fill="rgba(5,55,47,0.87)"/>
+      <g id="Grupo_1070" data-name="Grupo 1070" transform="translate(851.043 232.342)">
+        <text id="ACESSO_ÁREA_RESTRITA" data-name="ACESSO
+ÁREA RESTRITA" transform="translate(-0.043 75.66)" fill="#fff" font-size="12" font-family="Anton-Regular, Anton" letter-spacing="0.028em"><tspan x="37.486" y="14">ACESSO</tspan><tspan x="20.44" y="28">ÁREA RESTRITA</tspan></text>
+        <g id="Grupo_1069" data-name="Grupo 1069" transform="translate(24.885 0)">
+          <path id="Caminho_407" data-name="Caminho 407" d="M167.573,220.074H158.7a1.246,1.246,0,1,0,0,2.492h8.876a1.246,1.246,0,1,0,0-2.492Z" transform="translate(-130.623 -173.796)" fill="#fff"/>
+          <path id="Caminho_408" data-name="Caminho 408" d="M138.012,198.591h-.305a1.246,1.246,0,0,0,0,2.492h.305a1.246,1.246,0,0,0,0-2.492Z" transform="translate(-114.047 -156.83)" fill="#fff"/>
+          <path id="Caminho_409" data-name="Caminho 409" d="M138.012,220.074h-.305a1.246,1.246,0,1,0,0,2.492h.305a1.246,1.246,0,1,0,0-2.492Z" transform="translate(-114.047 -173.796)" fill="#fff"/>
+          <path id="Caminho_410" data-name="Caminho 410" d="M138.012,177.1h-.305a1.247,1.247,0,0,0,0,2.493h.305a1.247,1.247,0,0,0,0-2.493Z" transform="translate(-114.047 -139.86)" fill="#fff"/>
+          <path id="Caminho_411" data-name="Caminho 411" d="M90.317,11.433C77.831,11.433,68.265,7.865,60.177,0,52.089,7.865,42.524,11.433,30.039,11.433c0,20.483-4.238,49.824,30.137,61.74C94.555,61.257,90.317,31.915,90.317,11.433Zm-39.1,17.731a8.965,8.965,0,1,1,17.93,0v3.042H65.82V29.164a5.642,5.642,0,1,0-11.284,0h0v3.042H51.212ZM72.639,51.313a1.667,1.667,0,0,1-1.662,1.662h-21.6a1.667,1.667,0,0,1-1.661-1.662V34.7a1.666,1.666,0,0,1,1.661-1.661h21.6A1.666,1.666,0,0,1,72.639,34.7Z" transform="translate(-29.873)" fill="#fff"/>
+          <path id="Caminho_412" data-name="Caminho 412" d="M167.573,177.1H158.7a1.247,1.247,0,0,0,0,2.493h8.876a1.247,1.247,0,1,0,0-2.493Z" transform="translate(-130.623 -139.86)" fill="#fff"/>
+          <path id="Caminho_413" data-name="Caminho 413" d="M167.573,198.591H158.7a1.246,1.246,0,1,0,0,2.492h8.876a1.246,1.246,0,1,0,0-2.492Z" transform="translate(-130.623 -156.83)" fill="#fff"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

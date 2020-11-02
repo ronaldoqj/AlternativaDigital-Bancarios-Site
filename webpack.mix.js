@@ -25,14 +25,21 @@ mix.js('resources/_adm/js/app.js', 'public/_adm/js/app.js')
     .sass('resources/_site/sass/pages/acordos-e-convencoes.scss', 'public/_site/css/pages/acordos-e-convencoes.scss')
     .sass('resources/_site/sass/pages/meu-sindicato.scss', 'public/_site/css/pages/meu-sindicato.css')
 
+    .sass('resources/_site/sass/componentes/menu-sindicato.scss', 'public/_site/css/pages/menu-sindicato.css')
     .sass('resources/_site/sass/pages/sindicatos/sindicato.scss', 'public/_site/css/pages/sindicatos/sindicato.css')
     .sass('resources/_site/sass/pages/sindicatos/o-sindicato.scss', 'public/_site/css/pages/sindicatos/o-sindicato.css')
     .sass('resources/_site/sass/pages/sindicatos/servicos.scss', 'public/_site/css/pages/sindicatos/servicos.css')
     .sass('resources/_site/sass/pages/sindicatos/editais.scss', 'public/_site/css/pages/sindicatos/editais.css')
     .sass('resources/_site/sass/pages/sindicatos/contato.scss', 'public/_site/css/pages/sindicatos/contato.css')
     .sass('resources/_site/sass/pages/sindicatos/sindicalize-se.scss', 'public/_site/css/pages/sindicatos/sindicalize-se.css')
-
-    .sass('resources/_site/sass/componentes/menu-sindicato.scss', 'public/_site/css/pages/menu-sindicato.css')
+    
+    .sass('resources/_site/sass/componentes/menu-fetrafi-rs.scss', 'public/_site/css/pages/menu-fetrafi-rs.css')
+    .sass('resources/_site/sass/pages/fetrafi-rs/fetrafi-rs.scss', 'public/_site/css/pages/fetrafi-rs/fetrafi-rs.css')
+    .sass('resources/_site/sass/pages/fetrafi-rs/o-fetrafi-rs.scss', 'public/_site/css/pages/fetrafi-rs/o-fetrafi-rs.css')
+    .sass('resources/_site/sass/pages/fetrafi-rs/servicos.scss', 'public/_site/css/pages/fetrafi-rs/servicos.css')
+    .sass('resources/_site/sass/pages/fetrafi-rs/editais.scss', 'public/_site/css/pages/fetrafi-rs/editais.css')
+    .sass('resources/_site/sass/pages/fetrafi-rs/contato.scss', 'public/_site/css/pages/fetrafi-rs/contato.css')
+    .sass('resources/_site/sass/pages/fetrafi-rs/sindicalize-se.scss', 'public/_site/css/pages/fetrafi-rs/sindicalize-se.css')
     
     .styles('node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css', 'public/_site/css/mCustomScrollbar.css')
     .scripts([
