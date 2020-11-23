@@ -944,23 +944,47 @@ form.fieldsRounded
 /* Modal */
 .modal {
     z-index: 90909090;
+    background: rgba(0,0,0,0.8);
 
     .img__modal--campanhas {
-        height: 350px;
-        background-size: cover;
-        background-position: center;
+
+        // .close {
+        //     margin-top: -60px;
+        //     font-size: 4em;
+        //     margin-right: -20px;
+        //     color: white;
+        //     opacity: 1;
+        //     transition: ease 0.3s;
+
+        //     &:hover {
+        //         color: #0B3C5E;
+        //     }
+        // }
+
+    }
+    .modal-content {
+        background: transparent;
+        border: 0;
+    }
+    .modal-header {
+        padding: 0;
+        display: flex;
+        justify-content: flex-end;
 
         .close {
-            margin-top: -60px;
-            font-size: 4em;
-            margin-right: -20px;
+            padding: 0;
+            margin: 0;
             color: white;
             opacity: 1;
             transition: ease 0.3s;
+            font-size: 5rem;
 
             &:hover {
                 color: #0B3C5E;
             }
         }
+    }
+    .modal-body {
+        padding: 0;
     }
 }

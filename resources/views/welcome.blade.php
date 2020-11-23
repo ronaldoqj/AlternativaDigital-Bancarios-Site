@@ -22,15 +22,36 @@
 
 @if ($campanha)
 <!-- Modal -->
-<div class="modal fade" id="campanhaModal" tabindex="-1" aria-labelledby="campanhaModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="campanhaModal" tabindex="-1" aria-labelledby="campanhaModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-xl">
     <div class="modal-content">
       
       <a href="{{$campanha->link}}">
-      <div class="modal-body img__modal--campanhas" style='background-image: url( {{asset("/{$campanha->file_pathfile}/{$campanha->file_namefile}")}} );'>
+      <div class="modal-body img__modal--campanhas">
+        <img class="img-fluid" src='{{asset("/{$campanha->file_pathfile}/{$campanha->file_namefile}")}}' />
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
+      </div>
+      </a>
+    </div>
+  </div>
+</div> -->
+
+<div class="modal fade" id="campanhaModal" tabindex="-1" aria-labelledby="campanhaModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <a href="{{$campanha->link}}">
+      <div class="modal-body">
+        <img class="img-fluid" src='{{asset("/{$campanha->file_pathfile}/{$campanha->file_namefile}")}}' />
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button> -->
       </div>
       </a>
     </div>
