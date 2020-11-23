@@ -9,9 +9,9 @@
 
         @yield('metatags')
 
-        <title>{{ config('app.name', 'Bancários') }}</title>
+        <title>{{ config('app.name', 'Portal Bancários RS') }}</title>
 
-        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <link rel="icon" type="image/x-icon" href="ico_portal.svg">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" type="text/css" href="{{ url(mix('/_site/css/plugins.css')) }}" />
         <link rel="stylesheet" type="text/css" href="{{ url(mix('/_site/css/mCustomScrollbar.css')) }}" />
@@ -67,12 +67,12 @@
 
                 <div class="redes-sociais">
                     <div class="d-flex justify-content-between">                        
-                        <div ><a href="https://www.facebook.com/portalbancariosrs"><img src="{{asset('/_site/assets/SVGs/Brancos/facebook.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                        <div ><a target="_blank" href="https://www.facebook.com/portalbancariosrs"><img src="{{asset('/_site/assets/SVGs/Brancos/facebook.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
                         <div ><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/twitter.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
-                        <div ><a href="https://www.instagram.com/bancariosrs"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                        <div ><a target="_blank" href="https://www.instagram.com/bancariosrs"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <div ><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/whatsapp.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                        <div class="d-block d-lg-none"><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/whatsapp.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
                         <div ><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/podcasts.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
                         <div ><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/youtube.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
                     </div>
@@ -96,7 +96,7 @@
             </ul>
             
             
-            <ul class="list-unstyled components">
+            <!-- <ul class="list-unstyled components">
                 <p>Entidades Parceiras</p>
                 
                 <div class="contato">
@@ -105,7 +105,7 @@
                         <div style="width: 55%;"><img src="{{asset('/_site/assets/SVGs/logo-contraf.svg')}}" class="img-fluid" /></div>
                     </div>
                 </div>
-            </ul>
+            </ul> -->
 
         </nav>
 
@@ -135,10 +135,10 @@
                                 <div id="social-buttons" class="container-fluid">
                                     <div class="row">
                                         <div class="col">
-                                            <div ><a href="https://www.facebook.com/portalbancariosrs"><img src="{{asset('/_site/assets/SVGs/Brancos/facebook.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                                            <div ><a target="_blank" href="https://www.facebook.com/portalbancariosrs"><img src="{{asset('/_site/assets/SVGs/Brancos/facebook.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
                                             <div ><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/twitter.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
-                                            <div ><a href="https://www.instagram.com/bancariosrs"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
-                                            <div ><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/whatsapp.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                                            <div ><a target="_blank" href="https://www.instagram.com/bancariosrs"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                                            <div class="d-block d-lg-none"><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/whatsapp.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
                                             <div ><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/podcasts.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
                                             <div ><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/youtube.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
                                         </div>

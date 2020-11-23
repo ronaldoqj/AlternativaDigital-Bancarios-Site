@@ -33,6 +33,7 @@
                     <!-- <a href="/adm/usuarios"><img src="/_adm/assets/SVGs/icon-menu-usuarios.svg" class="img-fluid" onload="SVGInject(this)" /></a> -->
                     <a href="#"><img src="/_adm/assets/SVGs/icon-menu-usuarios.svg" class="img-fluid" onload="SVGInject(this)" /></a>
                     <a href="#" class="last-item"><img src="/_adm/assets/SVGs/icon-menu-perfil.svg" class="img-fluid" onload="SVGInject(this)" /></a>
+                    <!-- <a href="#"><img src="/_adm/assets/SVGs/icon-fetrafi-rs.svg" class="img-fluid" onload="SVGInject(this)" /></a> -->
                 </div>
 
                 <div class="box-menus logo-magia-studio-version">

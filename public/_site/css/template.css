@@ -335,8 +335,7 @@ section#top-banner .container .cols__texts--fetrafi-rs div {
 }
 
 section#top-banner .container .cols__texts--fetrafi-rs div:first-child {
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-radius: 10px;
   margin-right: 5px;
 }
 

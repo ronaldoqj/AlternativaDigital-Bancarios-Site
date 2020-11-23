@@ -22,6 +22,14 @@
 @endsection
 
 @section('content')
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) return;
+js = d.createElement(s); js.id = id;
+js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 <!-- Banner TOP -->
 <section id="top-banner">
@@ -55,7 +63,7 @@
                             <div> <div class="titulo-btns">Compartilhar</div> <a title="Facebook" class="btSocialNetwork" href="{{ $linkSocialMediaFacebook }}"><img src="{{asset('/_site/assets/SVGs/Facebook-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                             <div> <a title="Twitter" class="btSocialNetwork" href="{{ $linkSocialMediaTwitter }}"><img src="{{asset('/_site/assets/SVGs/Twitter-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                             <!-- <div> <a class="btSocialNetwork" href="#"><img src="{{asset('/_site/assets/SVGs/Instagram-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div> -->
-                            <div> <a title="Whatsapp" class="btSocialNetwork" href="{{ $linkSocialMediaWhatsapp }}"><img src="{{asset('/_site/assets/SVGs/Whatsapp-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                            <div class="d-block d-lg-none"> <a title="Whatsapp" class="btSocialNetwork" href="{{ $linkSocialMediaWhatsapp }}"><img src="{{asset('/_site/assets/SVGs/Whatsapp-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                             
                             <div class="ml-auto"> <div class="titulo-btns">Ampliar fonte</div> <a href="#" class="btn-menos" rel="#noticias"><img src="{{asset('/_site/assets/SVGs/Diminuir.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                             <div> <a href="#" class="btn-mais" rel="#noticias"><img src="{{asset('/_site/assets/SVGs/Aumentar.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
@@ -85,7 +93,7 @@
                             <div> <div class="titulo-btns">Compartilhar</div> <a title="Facebook" class="btSocialNetwork" href="{{ $linkSocialMediaFacebook }}"><img src="{{asset('/_site/assets/SVGs/Facebook-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                             <div> <a title="Twitter" class="btSocialNetwork" href="{{ $linkSocialMediaTwitter }}"><img src="{{asset('/_site/assets/SVGs/Twitter-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                             <!-- <div> <a class="btSocialNetwork" href="#"><img src="{{asset('/_site/assets/SVGs/Instagram-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div> -->
-                            <div> <a title="Whatsapp" class="btSocialNetwork" href="{{ $linkSocialMediaWhatsapp }}"><img src="{{asset('/_site/assets/SVGs/Whatsapp-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                            <div class="d-block d-lg-none"> <a title="Whatsapp" class="btSocialNetwork" href="{{ $linkSocialMediaWhatsapp }}"><img src="{{asset('/_site/assets/SVGs/Whatsapp-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                             
                             <div class="ml-auto"> <div class="titulo-btns">Ampliar fonte</div> <a href="#" class="btn-menos" rel="#noticias"><img src="{{asset('/_site/assets/SVGs/Diminuir.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                             <div> <a href="#" class="btn-mais" rel="#noticias"><img src="{{asset('/_site/assets/SVGs/Aumentar.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
@@ -113,7 +121,7 @@
                             <div> <div class="titulo-btns">Compartilhar</div> <a title="Facebook" class="btSocialNetwork" href="{{ $linkSocialMediaFacebook }}"><img src="{{asset('/_site/assets/SVGs/Facebook-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                             <div> <a title="Twitter" class="btSocialNetwork" href="{{ $linkSocialMediaTwitter }}"><img src="{{asset('/_site/assets/SVGs/Twitter-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                             <!-- <div> <a class="btSocialNetwork" href="#"><img src="{{asset('/_site/assets/SVGs/Instagram-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div> -->
-                            <div> <a title="Whatsapp" class="btSocialNetwork" href="{{ $linkSocialMediaWhatsapp }}"><img src="{{asset('/_site/assets/SVGs/Whatsapp-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                            <div class="d-block d-lg-none"> <a title="Whatsapp" class="btSocialNetwork" href="{{ $linkSocialMediaWhatsapp }}"><img src="{{asset('/_site/assets/SVGs/Whatsapp-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                             
                             <div class="ml-auto"> <div class="titulo-btns">Ampliar fonte</div> <a href="#" class="btn-menos" rel="#noticias"><img src="{{asset('/_site/assets/SVGs/Diminuir.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                             <div> <a href="#" class="btn-mais" rel="#noticias"><img src="{{asset('/_site/assets/SVGs/Aumentar.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
@@ -141,7 +149,7 @@
                             <div> <div class="titulo-btns">Compartilhar</div> <a title="Facebook" class="btSocialNetwork" href="{{ $linkSocialMediaFacebook }}"><img src="{{asset('/_site/assets/SVGs/Facebook-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                             <div> <a title="Twitter" class="btSocialNetwork" href="{{ $linkSocialMediaTwitter }}"><img src="{{asset('/_site/assets/SVGs/Twitter-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                             <!-- <div> <a class="btSocialNetwork" href="#"><img src="{{asset('/_site/assets/SVGs/Instagram-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div> -->
-                            <div> <a title="Whatsapp" class="btSocialNetwork" href="{{ $linkSocialMediaWhatsapp }}"><img src="{{asset('/_site/assets/SVGs/Whatsapp-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                            <div class="d-block d-lg-none"> <a title="Whatsapp" class="btSocialNetwork" href="{{ $linkSocialMediaWhatsapp }}"><img src="{{asset('/_site/assets/SVGs/Whatsapp-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                             
                             <div class="ml-auto"> <div class="titulo-btns">Ampliar fonte</div> <a href="#" class="btn-menos" rel="#noticias"><img src="{{asset('/_site/assets/SVGs/Diminuir.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                             <div> <a href="#" class="btn-mais" rel="#noticias"><img src="{{asset('/_site/assets/SVGs/Aumentar.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
@@ -183,7 +191,7 @@
                             <div> <div class="titulo-btns">Compartilhar</div> <a title="Facebook" class="btSocialNetwork" href="{{ $linkSocialMediaFacebook }}"><img src="{{asset('/_site/assets/SVGs/Facebook-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                             <div> <a title="Twitter" class="btSocialNetwork" href="{{ $linkSocialMediaTwitter }}"><img src="{{asset('/_site/assets/SVGs/Twitter-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                             <!-- <div> <a class="btSocialNetwork" href="#"><img src="{{asset('/_site/assets/SVGs/Instagram-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div> -->
-                            <div> <a title="Whatsapp" class="btSocialNetwork" href="{{ $linkSocialMediaWhatsapp }}"><img src="{{asset('/_site/assets/SVGs/Whatsapp-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                            <div class="d-block d-lg-none"> <a title="Whatsapp" class="btSocialNetwork" href="{{ $linkSocialMediaWhatsapp }}"><img src="{{asset('/_site/assets/SVGs/Whatsapp-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                             
                             <div class="ml-auto"> <div class="titulo-btns">Ampliar fonte</div> <a href="#" class="btn-menos" rel="#noticias"><img src="{{asset('/_site/assets/SVGs/Diminuir.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                             <div> <a href="#" class="btn-mais" rel="#noticias"><img src="{{asset('/_site/assets/SVGs/Aumentar.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>

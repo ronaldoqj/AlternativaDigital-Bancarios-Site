@@ -73,6 +73,9 @@ Route::prefix('adm')->namespace('Adm')->group(function ()
     Route::get('/bancos', 'BancoController@index')->name('adm-bancos');
     Route::post('/bancos/actions', 'BancoController@actions')->name('adm-bancos-actions');
 
+    Route::get('/fetrafi-rs/cadastro', 'FetrafiRsController@cadastro')->name('adm-fetrafi-rs-cadastro');
+    Route::post('/fetrafi-rs/cadastro', 'FetrafiRsController@cadastrar')->name('adm-fetrafi-rs-cadastrar');
+
     // Formulários de cadastros do ADM
     // Route::prefix('formularios')->namespace('Formularios')->group(function ()
     // {

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="210" height="210" viewBox="0 0 210 210">
+  <defs>
+    <clipPath id="clip-path">
+      <circle id="Elipse_76" data-name="Elipse 76" cx="105" cy="105" r="105" transform="translate(-18276 -23013)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#39607e"/>
+      <stop offset="1" stop-color="#071c3b"/>
+    </linearGradient>
+  </defs>
+  <g id="Grupo_1245" data-name="Grupo 1245" transform="translate(18276 23013)">
+    <g id="Grupo_de_máscara_23" data-name="Grupo de máscara 23" clip-path="url(#clip-path)">
+      <rect id="Retângulo_1023" data-name="Retângulo 1023" width="229" height="210" transform="translate(-18286 -23013)" fill="url(#linear-gradient)"/>
+    </g>
+    <g id="Grupo_1244" data-name="Grupo 1244" transform="translate(-18217 -22991.533)">
+      <path id="Caminho_11" data-name="Caminho 11" d="M113.358,293.68,179.737,227.3a7.232,7.232,0,0,0,0-10.236h0a7.236,7.236,0,0,0-10.23,0L92.892,293.68a7.232,7.232,0,0,0,0,10.236l76.615,76.615a7.236,7.236,0,0,0,10.23,0h0a7.232,7.232,0,0,0,0-10.236l-66.379-66.379A7.243,7.243,0,0,1,113.358,293.68Z" transform="translate(-90.769 -214.947)" fill="#fff"/>
+    </g>
+  </g>
+</svg>
