@@ -13,6 +13,7 @@ const mix = require('laravel-mix');
 
 //mix.js('resources/js/app.js', 'public/js')
 mix.js('resources/_adm/js/app.js', 'public/_adm/js/app.js')
+    .js('resources/_site/js/app.js', 'public/_site/js/app.js')
     .sass('resources/sass/app.scss', 'public/css')
 
     .sass('resources/_site/sass/plugins.scss', 'public/_site/css/plugins.css')
@@ -46,9 +47,11 @@ mix.js('resources/_adm/js/app.js', 'public/_adm/js/app.js')
         //'node_modules/jquery/dist/jquery.min.js',
         'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',
         'node_modules/bootstrap/dist/js/bootstrap.min.js.js',
-        'node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.js'
+        'node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.js',
+        'public/plugins/jQuery-Mask-Plugin-master/dist/jquery.mask.min.js'
     ], 'public/_site/js/plugins.js')
     .scripts('node_modules/@iconfu/svg-inject/dist/svg-inject.min.js', 'public/_site/js/svg-inject.min.js')
+    .scripts('resources/_site/js/pages/sindicalize-se.js', 'public/_site/js/pages/sindicalize-se.js')
     .scripts('resources/_site/js/template.js', 'public/_site/js/template.js');
 
 mix.sass('resources/_adm/sass/app.scss', 'public/_adm/css/app.css');

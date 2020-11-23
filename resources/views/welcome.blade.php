@@ -1,5 +1,6 @@
 <?php
     $noticiaDestaqueFirst = $return['noticiaDestaqueFirst'];
+    $campanha = $return['campanha'];
     $layout = $sindicato ? 'layouts.layout-sindicato' : 'layouts.layout';
     $linkComplemento = $sindicato ? 'sindicato/' : '';
 ?>
@@ -8,7 +9,34 @@
 @section('css')
     <link href="{{url(mix('/_site/css/pages/home.css'))}}" type="text/css" rel="stylesheet" media="screen,projection"/>
 @endsection
+
+@section('js')
+@if ($campanha)
+    <script>
+        $('#campanhaModal').modal('show')
+    </script>
+@endif
+@endsection
+
 @section('content')
+
+@if ($campanha)
+<!-- Modal -->
+<div class="modal fade" id="campanhaModal" tabindex="-1" aria-labelledby="campanhaModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      
+      <a href="{{$campanha->link}}">
+      <div class="modal-body img__modal--campanhas" style='background-image: url( {{asset("/{$campanha->file_pathfile}/{$campanha->file_namefile}")}} );'>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      </a>
+    </div>
+  </div>
+</div>
+@endif
 
 @if ( $noticiaDestaqueFirst )
 <!-- Banner TOP -->

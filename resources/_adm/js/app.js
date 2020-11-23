@@ -47,6 +47,8 @@ Vue.component('editais-page', require('./_pages/editais/Editais.vue').default);
 Vue.component('editais-cadastro-page', require('./_pages/editais-cadastro/EditaisCadastro.vue').default);
 Vue.component('entidades-parceiras-page', require('./_pages/entidades-parceiras/EntidadesParceiras.vue').default);
 Vue.component('entidades-parceiras-cadastro-page', require('./_pages/entidades-parceiras-cadastro/EntidadesParceirasCadastro.vue').default);
+Vue.component('campanhas-page', require('./_pages/campanhas/Campanhas.vue').default);
+Vue.component('campanhas-cadastro-page', require('./_pages/campanhas-cadastro/CampanhasCadastro.vue').default);
 Vue.component('usuarios-page', require('./_pages/usuarios/Usuarios.vue').default);
 Vue.component('usuarios-cadastro-page', require('./_pages/usuarios/UsuariosCadastro.vue').default);
 Vue.component('form-default-combobox', require('./_pages/form-default-combobox/FormDefaultCombobox.vue').default);

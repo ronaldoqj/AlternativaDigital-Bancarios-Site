@@ -10,6 +10,7 @@
             <div class="title-sections"> Conteúdo Portal </div>
 
             <div class="box-menus">
+                <a href="/adm/campanhas"><img src="/_adm/assets/SVGs/icon-campanhas.svg" class="img-fluid" onload="SVGInject(this)" /></a>
                 <a href="/adm/noticias"><img src="/_adm/assets/SVGs/icon-menu-noticias.svg" class="img-fluid" onload="SVGInject(this)" /></a>
                 <a href="/adm/editais"><img src="/_adm/assets/SVGs/icon-menu-editais.svg" class="img-fluid" onload="SVGInject(this)" /></a>
                 <a href="/adm/acordos-e-convencoes"><img src="/_adm/assets/SVGs/icon-menu-acordos-e-convencoes.svg" class="img-fluid" onload="SVGInject(this)" /></a>

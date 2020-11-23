@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Noticia;
 use App\Models\Banco;
+use App\Models\Campanha;
 
 class WelcomeController extends Controller
 {
@@ -82,6 +83,7 @@ class WelcomeController extends Controller
         
         $noticia = new Noticia();
         $banco = new Banco();
+        $campanha = new Campanha();
 
         if ($request->input('banco') == 0) {
             $idBanco = $request->input('banco');
@@ -89,6 +91,8 @@ class WelcomeController extends Controller
 
         $return['noticiaDestaqueFirst'] = $noticia->listAllToSitePageWelcome('noticia-destaque')->first();
         $return['noticias'] = $noticia->listAllToSitePageWelcome('*', $return['noticiaDestaqueFirst'] ? $return['noticiaDestaqueFirst']->id : null, $idBanco)->get();
+        $return['campanha'] = $campanha->returnCampanhaVigente();
+        
 
         return view('welcome')->withReturn($return)->withSindicato($sindicato);
     }

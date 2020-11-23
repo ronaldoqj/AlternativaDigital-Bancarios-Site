@@ -26,8 +26,10 @@
     "/_site/css/pages/fetrafi-rs/sindicalize-se.css": "/_site/css/pages/fetrafi-rs/sindicalize-se.css",
     "/_adm/css/app.css": "/_adm/css/app.css",
     "/_adm/css/auth.css": "/_adm/css/auth.css",
+    "/_site/js/app.js": "/_site/js/app.js",
     "/_site/css/mCustomScrollbar.css": "/_site/css/mCustomScrollbar.css",
     "/_site/js/plugins.js": "/_site/js/plugins.js",
     "/_site/js/svg-inject.min.js": "/_site/js/svg-inject.min.js",
+    "/_site/js/pages/sindicalize-se.js": "/_site/js/pages/sindicalize-se.js",
     "/_site/js/template.js": "/_site/js/template.js"
 }

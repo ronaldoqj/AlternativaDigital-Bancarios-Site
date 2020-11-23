@@ -21,7 +21,7 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         @yield('css-syndicate')
         @yield('css')
-
+        @yield('js-before')
         <script src="{{ url(mix('/_site/js/svg-inject.min.js')) }}"></script>
     </head>
     <body>
@@ -220,14 +220,14 @@
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+        
         <!-- Plugins -->
         <script src="{{ url(mix('/_site/js/plugins.js')) }}"></script>
         
-
+        
         <!-- Scripts -->
         <script src="{{ url(mix('/_site/js/template.js')) }}"></script>
-
+        
         @yield('js')
 
     </body>

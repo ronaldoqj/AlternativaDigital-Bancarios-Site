@@ -42,6 +42,13 @@ Route::prefix('adm')->namespace('Adm')->group(function ()
     Route::post('/entidades-parceiras/edicao', 'EntidadeParceiraController@editar')->name('adm-entidades-parceiras-editar');
     Route::post('/entidades-parceiras/delete', 'EntidadeParceiraController@deletar')->name('adm-entidades-parceiras-deletar');
     
+    Route::get('/campanhas', 'CampanhaController@index')->name('adm-campanhas');
+    Route::get('/campanhas/cadastro', 'CampanhaController@cadastro')->name('adm-campanhas-cadastro');
+    Route::post('/campanhas/cadastro', 'CampanhaController@cadastrar')->name('adm-campanhas-cadastrar');
+    Route::get('/campanhas/edicao/{id?}', 'CampanhaController@edicao')->name('adm-campanhas-edicao');
+    Route::post('/campanhas/edicao', 'CampanhaController@editar')->name('adm-campanhas-editar');
+    Route::post('/campanhas/delete', 'CampanhaController@deletar')->name('adm-campanhas-deletar');
+    
     Route::get('/acordos-e-convencoes', 'AcordoEConvencaoController@index')->name('adm-acordos-e-convencoes');
     Route::get('/acordos-e-convencoes/cadastro', 'AcordoEConvencaoController@cadastro')->name('adm-acordos-e-convencoes-cadastro');
     Route::post('/acordos-e-convencoes/cadastro', 'AcordoEConvencaoController@cadastrar')->name('adm-acordos-e-convencoes-cadastrar');

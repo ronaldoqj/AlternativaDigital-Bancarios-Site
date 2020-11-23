@@ -4,16 +4,174 @@
 
 /* ----------------------------------------------------------------- */
 
-#content-syndicate #sindicalize-se .description-of-page {
-  padding: 10px 0 15px;
+#sindicalize-se .fieldsRounded .form-group label {
+  margin-left: 6px;
+  margin-bottom: 0;
 }
 
-#content-syndicate #sindicalize-se .description-of-page p {
-  font-size: 1.4em;
-  line-height: 1.2em;
+#sindicalize-se .titles-of-section label {
+  color: #53A6D8;
+  font-size: 1.5em;
+  font-weight: normal;
+  margin: 0 !important;
 }
 
-#content-syndicate #sindicalize-se form {
-  margin-top: 30px;
+#sindicalize-se .subtitles-of-section label {
+  font-size: 1.6em;
+  font-weight: normal;
+  margin: 0 !important;
+}
+
+#sindicalize-se .terms-of-condictions {
+  border: solid 1px #707070;
+  padding: 15px;
+  height: 140px;
+  overflow-y: auto;
+  border-radius: 9px;
+}
+
+#sindicalize-se .options-of-comunication {
+  display: flex;
+  justify-content: space-between;
+}
+
+#sindicalize-se .options-of-comunication .container-checkbox {
+  color: #919191;
+  margin-bottom: 0.2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+#sindicalize-se .privacity-and-terms {
+  display: flex;
+}
+
+#sindicalize-se .privacity-and-terms label {
+  margin-right: 25px;
+}
+
+#sindicalize-se .checkboxes-sindicalize-se {
+  /* The container */
+}
+
+#sindicalize-se .checkboxes-sindicalize-se .box-checkbox {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  height: 29px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* On mouse-over, add a grey background color */
+  /* Hide the browser's default checkbox */
+  /* Create a custom checkbox */
+}
+
+#sindicalize-se .checkboxes-sindicalize-se .box-checkbox:hover input ~ .checkmark {
+  background-color: #707070;
+}
+
+#sindicalize-se .checkboxes-sindicalize-se .box-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+  /* When the checkbox is checked, add a blue background */
+}
+
+#sindicalize-se .checkboxes-sindicalize-se .box-checkbox input:checked ~ .checkmark {
+  background-color: #707070;
+  /* Show the checkmark when checked */
+}
+
+#sindicalize-se .checkboxes-sindicalize-se .box-checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+#sindicalize-se .checkboxes-sindicalize-se .box-checkbox .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 29px;
+  height: 29px;
+  background-color: #eee;
+  border-radius: 9px;
+  box-shadow: 0px 4px 5px #B4B4B460;
+  border: solid 1px #707070;
+  transition: ease 0.3s;
+  /* Create the checkmark/indicator (hidden when not checked) */
+  /* Style the checkmark/indicator */
+}
+
+#sindicalize-se .checkboxes-sindicalize-se .box-checkbox .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  opacity: 1;
+  left: 9px;
+  top: 4px;
+  width: 8px;
+  height: 15px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+  transition: ease 0.3s;
+}
+
+#sindicalize-se .checkboxes-sindicalize-se .box-checkbox p {
+  line-height: 1em;
+}
+
+#sindicalize-se .checkboxes-sindicalize-se .box-checkbox.green {
+  /* On mouse-over, add a grey background color */
+  /* When the checkbox is checked, add a blue background */
+  /* Create a custom checkbox */
+}
+
+#sindicalize-se .checkboxes-sindicalize-se .box-checkbox.green p {
+  color: #025A1F;
+}
+
+#sindicalize-se .checkboxes-sindicalize-se .box-checkbox.green:hover input ~ .checkmark {
+  background-color: #62CB85;
+}
+
+#sindicalize-se .checkboxes-sindicalize-se .box-checkbox.green input:checked ~ .checkmark {
+  background-color: #62CB85;
+}
+
+#sindicalize-se .checkboxes-sindicalize-se .box-checkbox.green .checkmark {
+  border: solid 1px #025A1F;
+}
+
+#sindicalize-se .checkboxes-sindicalize-se .box-checkbox.red {
+  /* On mouse-over, add a grey background color */
+  /* When the checkbox is checked, add a blue background */
+  /* Create a custom checkbox */
+}
+
+#sindicalize-se .checkboxes-sindicalize-se .box-checkbox.red p {
+  color: #FF1414;
+}
+
+#sindicalize-se .checkboxes-sindicalize-se .box-checkbox.red .box-checkbox {
+  color: #FF6060;
+}
+
+#sindicalize-se .checkboxes-sindicalize-se .box-checkbox.red:hover input ~ .checkmark {
+  background-color: #FF6060;
+}
+
+#sindicalize-se .checkboxes-sindicalize-se .box-checkbox.red input:checked ~ .checkmark {
+  background-color: #FF6060;
+}
+
+#sindicalize-se .checkboxes-sindicalize-se .box-checkbox.red .checkmark {
+  border: solid 1px #FF1414;
 }
 
