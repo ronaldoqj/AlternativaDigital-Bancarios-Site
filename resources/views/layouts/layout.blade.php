@@ -23,6 +23,29 @@
         @yield('css')
         @yield('js-before')
         <script src="{{ url(mix('/_site/js/svg-inject.min.js')) }}"></script>
+        
+        <!-- Facebook SDK -->
+        <script>
+            window.fbAsyncInit = function() {
+                FB.init({
+                appId            : '419848051455948',
+                autoLogAppEvents : true,
+                xfbml            : true,
+                version          : 'v9.0'
+                });
+            };
+        </script>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-3YEGYVT5X6"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-3YEGYVT5X6');
+        </script>
     </head>
     <body>
         <nav id="sidebar" class="">
@@ -45,9 +68,9 @@
                 <li>
                     <a href="{{route('fetrafi-rs')}}">Fetrafi-RS</a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="http://www.fetrafirs.org.br/intranet/" target="_blank">Área Restrita</a>
-                </li>
+                </li> -->
                 <li>
                     <a href="{{route('editais')}}">Editais</a>
                 </li>
@@ -67,38 +90,35 @@
 
                 <div class="redes-sociais">
                     <div class="d-flex justify-content-between">                        
-                        <div ><a target="_blank" href="https://www.facebook.com/portalbancariosrs"><img src="{{asset('/_site/assets/SVGs/Brancos/facebook.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
-                        <div ><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/twitter.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
-                        <div ><a target="_blank" href="https://www.instagram.com/bancariosrs"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                        <div ><a target="_blank" href="https://www.facebook.com/FetrafiRS"><img src="{{asset('/_site/assets/SVGs/Brancos/facebook.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                        <div ><a target="_blank" href="https://twitter.com/fetrafi_rs"><img src="{{asset('/_site/assets/SVGs/Brancos/twitter.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                        <div ><a target="_blank" href="https://www.instagram.com/fetrafirs"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
                     </div>
                     <div class="d-flex justify-content-between">
                         <div class="d-block d-lg-none"><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/whatsapp.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
-                        <div ><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/podcasts.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
-                        <div ><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/youtube.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                        <div ><a target="_blank" href="https://open.spotify.com/show/6gm0A7W6h2kUhZ4Cg5uGF6?si=7ldUyy_ZS2a4Rsnf6wwnhQ"><img src="{{asset('/_site/assets/SVGs/Brancos/podcasts.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                        <div ><a target="_blank" href="https://www.youtube.com/channel/UCh5dGGhvFO-TlfZVsJ8TM5w"><img src="{{asset('/_site/assets/SVGs/Brancos/youtube.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
                     </div>
                 </div>
             </ul>
 
-
             <ul class="list-unstyled components">
-                <p>Contato</p>
-                
+                <p>Contato</p>                
                 <div class="contato">
                     <div class="d-flex ">
                         <div><img src="{{asset('/_site/assets/SVGs/icon-telefone.svg')}}" class="img-fluid" /></div>
-                        <div>51. 3345 2565</div>
+                        <div>(51) 3224-2000</div>
                     </div>
                     <div class="d-flex ">
                         <div><img src="{{asset('/_site/assets/SVGs/icon-caracter-arroba.svg')}}" class="img-fluid" /></div>
-                        <div>CONTATO@BANCARIOSRS.COM.BR</div>
+                        <div>FETRAFIRS@FETRAFIRS.ORG.BR</div>
                     </div>
                 </div>
             </ul>
-            
-            
+
             <!-- <ul class="list-unstyled components">
                 <p>Entidades Parceiras</p>
-                
+
                 <div class="contato">
                     <div class="d-flex">
                         <div style="width: 25%;"><img src="{{asset('/_site/assets/SVGs/logo-cut.svg')}}" class="img-fluid" /></div>
@@ -106,9 +126,7 @@
                     </div>
                 </div>
             </ul> -->
-
         </nav>
-
 
         <main>
             <!-- showMenu2 -->
@@ -135,12 +153,12 @@
                                 <div id="social-buttons" class="container-fluid">
                                     <div class="row">
                                         <div class="col">
-                                            <div ><a target="_blank" href="https://www.facebook.com/portalbancariosrs"><img src="{{asset('/_site/assets/SVGs/Brancos/facebook.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
-                                            <div ><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/twitter.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
-                                            <div ><a target="_blank" href="https://www.instagram.com/bancariosrs"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                                            <div ><a target="_blank" href="https://www.facebook.com/FetrafiRS"><img src="{{asset('/_site/assets/SVGs/Brancos/facebook.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                                            <div ><a target="_blank" href="https://twitter.com/fetrafi_rs"><img src="{{asset('/_site/assets/SVGs/Brancos/twitter.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                                            <div ><a target="_blank" href="https://www.instagram.com/fetrafirs"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
                                             <div class="d-block d-lg-none"><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/whatsapp.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
-                                            <div ><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/podcasts.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
-                                            <div ><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/youtube.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                                            <div ><a target="_blank" href="https://open.spotify.com/show/6gm0A7W6h2kUhZ4Cg5uGF6?si=7ldUyy_ZS2a4Rsnf6wwnhQ"><img src="{{asset('/_site/assets/SVGs/Brancos/podcasts.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                                            <div ><a target="_blank" href="https://www.youtube.com/channel/UCh5dGGhvFO-TlfZVsJ8TM5w"><img src="{{asset('/_site/assets/SVGs/Brancos/youtube.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -166,11 +184,10 @@
                                     <div class="col-12 col-sm-6 order-1 order-sm-2">
                                         <div class="input-group input-group-sm input-busca">
                                             
-                                                
-                                                <input type="text" class="form-control" name="search" placeholder="Busca" aria-label="Recipient's username" aria-describedby="button-addon2">
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">BUSCAR</button>
-                                                </div>
+                                            <input type="text" class="form-control" name="search" placeholder="Busca" aria-label="Recipient's username" aria-describedby="button-addon2">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">BUSCAR</button>
+                                            </div>
                                             
                                         </div>
                                     </div>

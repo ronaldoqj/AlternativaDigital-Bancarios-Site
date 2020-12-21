@@ -1,20 +1,29 @@
 <?php
     $noticia = $return['noticia'];
     $layout = $sindicato ? 'layouts.layout-sindicato' : 'layouts.layout';
+    $linkSocialMediaFacebook = url('noticia/' . $noticia->id . '/' . Str::slug($noticia->titulo, '-'));
+    $linkSocialMediaTwitter = $noticia->titulo . '&url=' . url('noticia/' . $noticia->id . '/' . Str::slug($noticia->titulo, '-'));
+    $linkSocialMediaWhatsapp = "whatsapp://send?text={Str::slug($noticia->titulo, '-')} - " . url("/noticia/{$noticia->id}");
 
-    $linkSocialMediaFacebook = url('noticia/' . $noticia->id . '/' . str_replace(' ', '-', $noticia->titulo));
-    $linkSocialMediaTwitter = url('noticia/' . $noticia->id);
-    $linkSocialMediaWhatsapp = "whatsapp://send?text={$noticia->titulo} - " . url("/noticia/{$noticia->id}");
+    $urlImage = url("{$noticia->fileImagemDestaque_pathfile}/{$noticia->fileImagemDestaque_namefile}");
 ?>
 @extends($layout)
 
 
 @section('metatags')
-<meta property="og:url"         content="{{url("/noticia/{$noticia->id}/{$noticia->titulo}")}}" />
+<meta property="og:url"         content="{{$linkSocialMediaFacebook}}" />
 <meta property="og:type"        content="website" />
 <meta property="og:title"       content="{{$noticia->titulo}}" />
 <meta property="og:description" content="{{$noticia->subtitulo}}" />
-<meta property="og:image"       content="{{url("{$noticia->fileImagemDestaque_pathfile}/{$noticia->fileImagemDestaque_namefile}")}}" />
+<meta property="og:image"       content="{{$urlImage}}" />
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@fetrafi_rs">
+<meta name="twitter:description" content="{{$noticia->cartola}}">
+<meta name="twitter:domain" content="Portal Bancários RS">
+<meta name="twitter:image" content="{{$urlImage}}">
+<meta name="twitter:site" content="@fetrafi_rs">
+<meta name="twitter:title" content="{{str_replace(' ', '-', $noticia->titulo)}}">
 @endsection
 
 @section('css')
@@ -234,7 +243,7 @@ fjs.parentNode.insertBefore(js, fjs);
             @case('noticia-destaque')
             <div class="container __separador"><div class="row"><div class="col"><div></div></div></div></div>
 
-            <a href="/noticia/{{$sugestao->id}}/{{str_replace(' ', '-', $sugestao->titulo)}}">
+            <a href="/noticia/{{$sugestao->id}}/{{Str::slug($sugestao->titulo, '-')}}">
             <div class="row COMPONENTE__news--with--image">
                 <div class="col-12 col-lg-5 __news--left">
                     <div style='background-image: url({{asset("/{$sugestao->fileImagemDestaque_pathfile}/{$sugestao->fileImagemDestaque_namefile}")}}); height: 250px'></div>
@@ -251,7 +260,7 @@ fjs.parentNode.insertBefore(js, fjs);
             @case('noticia-video')
             <div class="container __separador"><div class="row"><div class="col"><div></div></div></div></div>
 
-            <a href="/noticia/{{$sugestao->id}}/{{str_replace(' ', '-', $sugestao->titulo)}}">
+            <a href="/noticia/{{$sugestao->id}}/{{Str::slug($sugestao->titulo, '-')}}">
             <div class="row COMPONENTE__news--with--video">
                 <div class="col-12 col-lg-5 __news--left">
                     <iframe width="100%" height="252" src="https://www.youtube.com/embed/{{$sugestao->videoYoutube}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -268,7 +277,7 @@ fjs.parentNode.insertBefore(js, fjs);
             @case('noticia-imagem')
             <div class="container __separador"><div class="row"><div class="col"><div></div></div></div></div>
 
-            <a href="/noticia/{{$sugestao->id}}/{{str_replace(' ', '-', $sugestao->titulo)}}">
+            <a href="/noticia/{{$sugestao->id}}/{{Str::slug($sugestao->titulo, '-')}}">
             <div class="row COMPONENTE__news--with--image">
                 <div class="col-12 col-lg-5 __news--left">
                     <div style='background-image: url({{asset("/{$sugestao->fileImagemDestaque_pathfile}/{$sugestao->fileImagemDestaque_namefile}")}}); height: 250px'></div>
@@ -287,7 +296,7 @@ fjs.parentNode.insertBefore(js, fjs);
 
                 <div class="row COMPONENTE__news--with--audio">
                     <div class="col-12 __news--right">
-                        <a href="/noticia/{{$sugestao->id}}/{{str_replace(' ', '-', $sugestao->titulo)}}">
+                        <a href="/noticia/{{$sugestao->id}}/{{Str::slug($sugestao->titulo, '-')}}">
                             <div class="__text--1">{{ $sugestao->cartola }} | {{ \Carbon\Carbon::parse($sugestao->dataInclusao)->format('d/m/Y') }} <span>{{-- '#'-- }}{{-- $sugestao->tags --}}</span></div>
                             <div class="__text--2">{{ $sugestao->titulo }}</div>
                         </a>
@@ -300,7 +309,7 @@ fjs.parentNode.insertBefore(js, fjs);
                                 Seu navegador de internet não suporta o elemento do tipo audio.
                             </audio>
                         </div>
-                        <a href="/noticia/{{$sugestao->id}}/{{str_replace(' ', '-', $sugestao->titulo)}}">
+                        <a href="/noticia/{{$sugestao->id}}/{{Str::slug($sugestao->titulo, '-')}}">
                             <div class="__text--3">{{ $sugestao->linhaDeApoio }}</div>
                         </a>
                     </div>
@@ -310,7 +319,7 @@ fjs.parentNode.insertBefore(js, fjs);
             @case('noticia-simples')
                 <div class="container __separador"><div class="row"><div class="col"><div></div></div></div></div>
                 
-                <a href="/noticia/{{$sugestao->id}}/{{str_replace(' ', '-', $sugestao->titulo)}}">
+                <a href="/noticia/{{$sugestao->id}}/{{Str::slug($sugestao->titulo, '-')}}">
                 <div class="row COMPONENTE__news--with--only-text">
                     <div class="col-12 __news--right">
                         <div class="__text--1">{{ $sugestao->cartola }} | {{ \Carbon\Carbon::parse($sugestao->dataInclusao)->format('d/m/Y') }} <span>{{-- '#'-- }}{{-- $sugestao->tags --}}</span></div>

@@ -25,7 +25,7 @@
                 <div class="title-sections"> Funções ADM </div>
 
                 <div class="box-menus">
-                    <a href="#"><img src="/_adm/assets/SVGs/icon-menu-sindicatos.svg" class="img-fluid" onload="SVGInject(this)" /></a>
+                    <a href="/adm/sindicatos"><img src="/_adm/assets/SVGs/icon-menu-sindicatos.svg" class="img-fluid" onload="SVGInject(this)" /></a>
                     <a href="#"><img src="/_adm/assets/SVGs/icon-menu-contatos.svg" class="img-fluid" onload="SVGInject(this)" /></a>
                     <a href="/adm/bancos"><img src="/_adm/assets/SVGs/icon-menu-meu-banco.svg" class="img-fluid" onload="SVGInject(this)" /></a>
                     <a href="/adm/entidades"><img src="/_adm/assets/SVGs/icon-entidades.svg" class="img-fluid" onload="SVGInject(this)" /></a>

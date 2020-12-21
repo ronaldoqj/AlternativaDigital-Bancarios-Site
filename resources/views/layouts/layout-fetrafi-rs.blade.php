@@ -15,7 +15,7 @@
 
 
                         <div><a href="/fetrafi-rs"><img src="{{asset('/_site/assets/_Excluir/logo-fetrafi-rs.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
-                        <div><a href="#"><img src="{{asset('/_site/assets/_FetrafiRS/acesso-area-restrita.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                        <div><a href="http://www.fetrafirs.org.br/intranet/" target="_blank"><img src="{{asset('/_site/assets/_FetrafiRS/acesso-area-restrita.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
 
 
                         <!-- <table class="container-text-1--fetrafi-rs">
@@ -62,9 +62,9 @@
                         <div class="flex-texts">
                             <div><a href="{{ route('fetrafi-rs-federacao') }}">A FEDERAÇÃO</a></div>
                             <div class="separador">&nbsp;</div>
-                            <div><a href="{{ route('fetrafi-rs-servicos') }}">SERVIÇOS</a></div>
+                            <!-- <div><a href="{{ route('fetrafi-rs-servicos') }}">SERVIÇOS</a></div> -->
                             <div class="separador">&nbsp;</div>
-                            <div><a href="#">ÁREA RESTRITA</a></div>
+                            <div><a href="http://www.fetrafirs.org.br/intranet/" target="_blank">ÁREA RESTRITA</a></div>
                             <div class="separador">&nbsp;</div>
                             <div><a href="{{ route('fetrafi-rs-contato') }}">CONTATO</a></div>
                         </div>

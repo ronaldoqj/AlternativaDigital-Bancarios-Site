@@ -95,7 +95,6 @@ function playerAudio()
     });
 }
 
-
 function eventSocialNetworks()
 {
       $('.btSocialNetwork').click(function()
@@ -114,7 +113,7 @@ function eventSocialNetworks()
                   window.open('http://www.facebook.com/sharer.php?u='+url, 'Compartilhar no facebook', 'toolbar=no, location=no, directories=no, status=no, ' + 'menubar=no, scrollbars=yes, resizable=no, copyhistory=no, width='+w+ ', height=' + h + ', top=' + top + ', left=' + left);
                   break;
               case 'Twitter':
-                  var ulrSN = "http://twitter.com/home?status="+url;
+                  var ulrSN = "https://twitter.com/intent/tweet?text="+url;
                   window.open(ulrSN,'ADverso', 'toolbar=0, status=0, width=650, height=450');
                   break;
               case 'Whatsapp':

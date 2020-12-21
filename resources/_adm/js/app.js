@@ -49,6 +49,8 @@ Vue.component('entidades-parceiras-page', require('./_pages/entidades-parceiras/
 Vue.component('entidades-parceiras-cadastro-page', require('./_pages/entidades-parceiras-cadastro/EntidadesParceirasCadastro.vue').default);
 Vue.component('campanhas-page', require('./_pages/campanhas/Campanhas.vue').default);
 Vue.component('campanhas-cadastro-page', require('./_pages/campanhas-cadastro/CampanhasCadastro.vue').default);
+Vue.component('sindicatos-page', require('./_pages/sindicatos/Sindicatos.vue').default);
+Vue.component('sindicatos-cadastro-page', require('./_pages/sindicatos-cadastro/SindicatosCadastro.vue').default);
 Vue.component('usuarios-page', require('./_pages/usuarios/Usuarios.vue').default);
 Vue.component('usuarios-cadastro-page', require('./_pages/usuarios/UsuariosCadastro.vue').default);
 Vue.component('form-default-combobox', require('./_pages/form-default-combobox/FormDefaultCombobox.vue').default);

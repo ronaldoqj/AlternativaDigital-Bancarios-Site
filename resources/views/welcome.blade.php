@@ -10,6 +10,14 @@
     <link href="{{url(mix('/_site/css/pages/home.css'))}}" type="text/css" rel="stylesheet" media="screen,projection"/>
 @endsection
 
+@section('metatags')
+<meta property="og:url"           content="{{url('/')}}" />
+<meta property="og:type"          content="website" />
+<meta property="og:title"         content="Portal Bancários RS" />
+<meta property="og:description"   content="A FEDERAÇÃO DOS TRABALHADORES E TRABALHADORAS EM INSTITUIÇÕES FINANCEIRAS DO RIO GRANDE DO SUL utiliza a sigla FETRAFI-RS e foi fundada em 1º de Maio de 1943. Trata-se de uma entidade que representa 38 sindicatos filiados, integrantes da categoria profissional dos Trabalhadores e Trabalhadoras em Instituições Financeiras, sem fins lucrativos, com abrangência em todo o território do Rio Grande do Sul, com sede e foro em Porto Alegre/RS." />
+<meta property="og:image"         content="{{url('/bancariosrs.png')}}"/>
+@endsection
+
 @section('js')
 @if ($campanha)
     <script>
@@ -42,13 +50,16 @@
 
 @if ( $noticiaDestaqueFirst )
 <!-- Banner TOP -->
-<a href="/{{$linkComplemento}}noticia/{{$noticiaDestaqueFirst->id}}/{{str_replace(' ', '-', $noticiaDestaqueFirst->titulo)}}">
+<?php
+    $link = "/{$linkComplemento}noticia/{$noticiaDestaqueFirst->id}/" . Str::slug($noticiaDestaqueFirst->titulo, '-');
+?>
+<a href="{{url($link)}}">
 <section id="top-banner">
     <div class="container" style='background-image: url({{asset("/{$noticiaDestaqueFirst->fileImagemDestaque_pathfile}/{$noticiaDestaqueFirst->fileImagemDestaque_namefile}")}}); height: 350px;'>
         <div class="row align-items-end">
             <div class="col cols__texts">
 
-                <div class="col-12 col-lg-9 container-text-1">#{{ $noticiaDestaqueFirst->tags }}</div>
+                <!-- <div class="col-12 col-lg-9 container-text-1">#{{ $noticiaDestaqueFirst->tags }}</div> -->
                 <div class="container-text-2">{{ $noticiaDestaqueFirst->cartola }} | {{ \Carbon\Carbon::parse($noticiaDestaqueFirst->dataInclusao)->format('d/m/Y') }} </div>
                 <div class="col-12 col-lg-9 container-text-3">{{ $noticiaDestaqueFirst->titulo }}</div>
 
@@ -68,10 +79,13 @@
 
         @case('noticia-destaque')
         <!-- BLOCO NOTICIA IMAGEM -->
-                
+
         <div class="container __separador"><div class="row"><div class="col"><div></div></div></div></div>
 
-        <a href="/{{$linkComplemento}}noticia/{{$noticia->id}}/{{str_replace(' ', '-', $noticia->titulo)}}">
+        <?php
+            $link = "/{$linkComplemento}noticia/{$noticia->id}/" . Str::slug($noticia->titulo, '-');
+        ?>
+        <a href="{{url($link)}}">
         <div class="row COMPONENTE__news--with--image">
             <div class="col-12 col-lg-5 __news--left">
                 <div style='background-image: url({{asset("/{$noticia->fileImagemDestaque_pathfile}/{$noticia->fileImagemDestaque_namefile}")}}); height: 250px'></div>
@@ -91,8 +105,10 @@
             <!-- BLOCO NOTICIA VÍDEO -->
 
             <div class="container __separador"><div class="row"><div class="col"><div></div></div></div></div>
-
-            <a href="/{{$linkComplemento}}noticia/{{$noticia->id}}/{{str_replace(' ', '-', $noticia->titulo)}}">
+            <?php
+                $link = "/{$linkComplemento}noticia/{$noticia->id}/" . Str::slug($noticia->titulo, '-');
+            ?>
+            <a href="{{url($link)}}">
             <div class="row COMPONENTE__news--with--video">
                 <div class="col-12 col-lg-5 __news--left">
                     <!-- <iframe width="100%" height="252" src="https://www.youtube.com/embed/LcTqbMFVars" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
@@ -124,8 +140,11 @@
             <!-- BLOCO NOTICIA IMAGEM -->
                 
             <div class="container __separador"><div class="row"><div class="col"><div></div></div></div></div>
-
-            <a href="/{{$linkComplemento}}noticia/{{$noticia->id}}/{{str_replace(' ', '-', $noticia->titulo)}}">
+            <?php
+                $link = "/{$linkComplemento}noticia/{$noticia->id}/" . Str::slug($noticia->titulo, '-');
+            ?>
+            <!-- <a href="/{{$linkComplemento}}noticia/{{$noticia->id}}/{{str_replace(' ', '-', $noticia->titulo)}}"> -->
+            <a href="{{url($link)}}">
             <div class="row COMPONENTE__news--with--image">
                 <div class="col-12 col-lg-5 __news--left">
                     <div style='background-image: url({{asset("/{$noticia->fileImagemDestaque_pathfile}/{$noticia->fileImagemDestaque_namefile}")}}); height: 250px'></div>
@@ -149,7 +168,10 @@
             
             <div class="row COMPONENTE__news--with--audio">
                 <div class="col-12 __news--right">
-                    <a href="/{{$linkComplemento}}noticia/{{$noticia->id}}/{{str_replace(' ', '-', $noticia->titulo)}}">
+                    <?php
+                        $link = "/{$linkComplemento}noticia/{$noticia->id}/" . Str::slug($noticia->titulo, '-');
+                    ?>
+                    <a href="{{url($link)}}">
                         <div class="__text--1">{{ $noticia->cartola }} | {{ \Carbon\Carbon::parse($noticia->dataInclusao)->format('d/m/Y') }} <span>{{-- '#' --}}{{-- $noticia->tags --}}</span></div>
                         <div class="__text--2">{{ $noticia->titulo }}</div>
                     </a>
@@ -176,8 +198,10 @@
             <!-- BLOCO NOTICIA NORMAL -->
 
             <div class="container __separador"><div class="row"><div class="col"><div></div></div></div></div>
-                
-            <a href="/{{$linkComplemento}}noticia/{{$noticia->id}}/{{str_replace(' ', '-', $noticia->titulo)}}">
+            <?php
+                $link = "/{$linkComplemento}noticia/{$noticia->id}/" . Str::slug($noticia->titulo, '-');
+            ?>
+            <a href="{{url($link)}}">  
             <div class="row COMPONENTE__news--with--only-text">
                 <div class="col-12 __news--right">
                     <div class="__text--1">{{ $noticia->cartola }} | {{ \Carbon\Carbon::parse($noticia->dataInclusao)->format('d/m/Y') }} <span>{{-- '#' --}}{{-- $noticia->tags --}}</span></div>
