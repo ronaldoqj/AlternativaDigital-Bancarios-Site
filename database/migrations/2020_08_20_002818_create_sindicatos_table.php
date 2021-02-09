@@ -15,15 +15,30 @@ class CreateSindicatosTable extends Migration
     {
         Schema::create('sindicatos', function (Blueprint $table) {
             $table->id();
+            $table->char('ativo', 1)->default('N');
             $table->string('name', 240);
             $table->string('subdomain', 240)->nullable();
-            $table->integer('logo')->nullable();
-            $table->integer('imagem')->nullable();
             $table->integer('banner')->nullable();
-            $table->string('titulo', 240)->nullable();
-            $table->string('subtitulo', 240)->nullable();
-            $table->string('descricao', 240)->nullable();
-            $table->text('texto')->nullable();
+            $table->integer('logo')->nullable();
+            $table->string('fone', 20)->nullable();
+            $table->string('fone2', 20)->nullable();
+            $table->string('email', 240)->nullable();
+            $table->string('facebook', 240)->nullable();
+            $table->string('twitter', 240)->nullable();
+            $table->string('instagram', 240)->nullable();
+            $table->string('whatsapp', 240)->nullable();
+            $table->string('podcast', 240)->nullable();
+            $table->string('youtube', 240)->nullable();
+            $table->string('cep', 14)->nullable();
+            $table->string('endereco', 240)->nullable();
+            $table->string('numero', 30)->nullable();
+            $table->string('complemento', 240)->nullable();
+            $table->string('bairro', 240)->nullable();
+            $table->string('cidade', 240)->nullable();
+            $table->string('uf', 240)->nullable();
+            $table->softDeletes();
+            $table->integer('userIdCreated')->nullable();
+            $table->integer('userIdUpdated')->nullable();
             $table->timestamps();
         });
     }

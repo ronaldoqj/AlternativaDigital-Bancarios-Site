@@ -6,7 +6,7 @@
 @section('content')
 
 <div class="container-fluid">
-    <sindicatos-cadastro-page form-action="{{url('adm/sindicatos/cadastro')}}" method="post" csrf="{{ csrf_token() }}" />
+    <sindicatos-cadastro-page form-action="{{url('adm/sindicatos/cadastro')}}" method="post" csrf="{{ csrf_token() }}" estados="{{$estados}}" />
 </div>
 
 @endsection

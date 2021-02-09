@@ -1,14 +1,12 @@
-
 <template>
     <div class="sindicatos">
-        
         <div class="row">
             <div class="col-12">
                 <div class="box-btns-sindicatos">
                     <a :href="actionForm + '/cadastro'">
                         <div class="box__buttons--access">
                             <img src="/_adm/assets/SVGs/icon-mais.svg" class="img-fluid" onload="SVGInject(this)" />
-                            <p>nova sindicato</p>
+                            <p>novo sindicato</p>
                         </div>
                     </a>
                 </div>
@@ -22,16 +20,10 @@
                 
             <div class="container-fluid content--panel">
                 <div class="row">
-
                     <template v-if="this.list.length">    
                         <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in list" :key="item.id">
-                            
                             <div class="box--sindicato sindicato">
-                                
-                                
-                                <div class="imagem-sindicato" :style="{ backgroundImage: `url(/${item.file_pathfile}/${item.file_namefile})` }"></div>
-                                
-                                
+                                <div class="imagem-sindicato" :style="{ backgroundImage: `url(/${item.logo_pathfile}/${item.logo_namefile})` }"></div>
                                 <div class="buttons">
                                     <a :href="`${actionForm}/edicao/${item.id}`"><img src="/_adm/assets/SVGs/editar.svg" class="img-fluid" onload="SVGInject(this)" /></a>
                                     <v-menu :close-on-content-click="true" :nudge-width="150" offset-x>
@@ -56,7 +48,6 @@
                             </div>
                         </div>
                     </template>
-
                     <template v-else>
                         <div class="col-12">
                             <div class="box--sindicato">
@@ -66,12 +57,9 @@
                             </div>
                         </div>
                     </template>
-
                 </div>
             </div>
-
         </form>
-    
     </div>
 </template>  
 
@@ -79,7 +67,6 @@
 export default {
     data: () => {
         return {
-
             // inputs Hidden
             id: '',
             action: '',
@@ -89,15 +76,12 @@ export default {
                 backgroundImage: 'url(/files/noticias/be6e7ee47196117d743e38015197ecdf924d2ec4bc0fbff5d69ec24b67b828c2-20200707_183027-777950.jpg)'
             },
 
-            list: null,
+            list: null
         }
     },
-    components: {  },
     props: [ 'csrf', 'page', 'actionForm', 'propList' ],
     methods: {
-        
-        clickExcluir(item)
-        {
+        clickExcluir(item) {
             this.id = item.id;
         },
         formExcluirEnviar() {
@@ -106,18 +90,15 @@ export default {
     },
     created()
     {
-        this.list = JSON.parse(JSON.parse(this.propList).list);
+        this.list = JSON.parse(this.propList);
     }
 }
-
 </script>
-
 
 <style lang="scss">
 @import '~/../resources/_adm/sass/_vars.scss';
 .sindicatos
 {
-
     .box-btns-sindicatos {
         margin: 10px 0;
         display: flex;
@@ -144,26 +125,18 @@ export default {
                     transition: $transition-normal;
                 }
             }
-
             &:hover
             {
                 svg {
-                    //transform: rotateY(180deg);
                     transform: rotate(360deg);
 
-                    circle {
-                        fill: $blue-light;
-                    }
+                    circle { fill: $blue-light; }
                 }
 
-                p {
-                    color: $blue-light;
-                }
+                p { color: $blue-light; }
             }
         }
-
     }
-
 
     .box--sindicato
     {
@@ -193,26 +166,18 @@ export default {
                     margin: 0 3px;
                     cursor: pointer;
 
-                    circle {
-                        transition: ease 0.4s;
-                    }
+                    circle { transition: ease 0.4s; }
                 }
-
                 &:first-child
                 {    
                     &:hover svg {
-                        circle {
-                            fill: $blue-strong;
-                        }
+                        circle { fill: $blue-strong; }
                     }
                 }
-
                 &:last-child
                 {
                     &:hover svg {
-                        circle {
-                            fill: $red-strong;
-                        }
+                        circle { fill: $red-strong; }
                     }
                 }
             }
@@ -224,14 +189,8 @@ export default {
             font-size: 0.9em;
             margin-top: 25px;
 
-            p {
-                text-align: center;
-                margin: 4px 0;
-            }
+            p { text-align: center; margin: 4px 0; }
         }
-
     }
-        
 }
-
 </style>

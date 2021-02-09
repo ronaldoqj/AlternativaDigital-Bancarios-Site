@@ -314,14 +314,12 @@ export default {
                             this.errorsShow.errors.push({title: 'Imagem Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
                         }
                     }
-                    if ( ! _.isEmpty(this.filesPodcast) )
-                    {
-                        if ( ! _.isEmpty(this.filesPodcast) ) {
-                            if ( this.filesPodcast[0].size >= 20000000) {
-                                this.errorsShow.errors.push({title: 'Mp3 Podcast', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 20mb) '});
-                            }
+                    if ( ! _.isEmpty(this.filesPodcast) ) {
+                        if ( this.filesPodcast[0].size >= 20000000) {
+                            this.errorsShow.errors.push({title: 'Mp3 Podcast', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 20mb) '});
                         }
                     }
+                    
 
                     // Validações especificas
                     if ( _.isEmpty(this.dataInputs.youtube) )
@@ -336,14 +334,12 @@ export default {
                             this.errorsShow.errors.push({title: 'Banner Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
                         }
                     }
-                    if (! _.isEmpty(this.filesPodcast) )
-                    {
-                        if ( ! _.isEmpty(this.filesPodcast) ) {
-                            if ( this.filesPodcast[0].size >= 20000000) {
-                                this.errorsShow.errors.push({title: 'Mp3 Podcast', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 20mb) '});
-                            }
+                    if ( ! _.isEmpty(this.filesPodcast) ) {
+                        if ( this.filesPodcast[0].size >= 20000000) {
+                            this.errorsShow.errors.push({title: 'Mp3 Podcast', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 20mb) '});
                         }
                     }
+                    
 
                     // Validações especificas
                     if ( _.isEmpty(this.filesImagemDestaque) && this.fileImagemIsEdit == '' )
@@ -393,12 +389,9 @@ export default {
                             this.errorsShow.errors.push({title: 'Imagem Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
                         }
                     }
-                    if ( ! _.isEmpty(this.filesPodcast) )
-                    {
-                        if ( ! _.isEmpty(this.filesPodcast) ) {
-                            if ( this.filesPodcast[0].size >= 20000000 ) {
-                                this.errorsShow.errors.push({title: 'Mp3 Podcast', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 20mb) '});
-                            }
+                    if ( ! _.isEmpty(this.filesPodcast) ) {
+                        if ( this.filesPodcast[0].size >= 20000000 ) {
+                            this.errorsShow.errors.push({title: 'Mp3 Podcast', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 20mb) '});
                         }
                     }
                 break;

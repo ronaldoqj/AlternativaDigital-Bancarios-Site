@@ -1,0 +1,42 @@
+<template>
+    <svg id="Grupo_1218" data-name="Grupo 1218" xmlns="http://www.w3.org/2000/svg" width="27.164" height="24.791" viewBox="0 0 27.164 24.791">
+        <path id="Caminho_24" data-name="Caminho 24" d="M151.251,133.142a6.973,6.973,0,0,0,2.058-4.966.75.75,0,0,0-1.5,0,5.524,5.524,0,0,1-5.525,5.525H146.2a5.524,5.524,0,0,1-5.526-5.525.749.749,0,1,0-1.5,0,7.025,7.025,0,0,0,6.315,6.989v5.123h-3.331a.75.75,0,0,0,0,1.5h8.16a.75.75,0,1,0,0-1.5h-3.33v-5.123A6.971,6.971,0,0,0,151.251,133.142Z" transform="translate(-132.634 -116.996)" fill="#919191"/>
+        <path id="Caminho_25" data-name="Caminho 25" d="M145.5,119.733h-.081a4.04,4.04,0,0,0-4.04,4.04v7.139a4.04,4.04,0,0,0,4.04,4.04h.081a4.04,4.04,0,0,0,4.04-4.04v-7.139A4.04,4.04,0,0,0,145.5,119.733Zm-3.156,8.229a.359.359,0,1,1,.359-.359A.36.36,0,0,1,142.346,127.962Zm0-1.483a.359.359,0,1,1,.359-.359A.359.359,0,0,1,142.346,126.479Zm0-1.482a.359.359,0,1,1,.359-.359A.36.36,0,0,1,142.346,125Zm0-1.482a.359.359,0,1,1,.359-.359A.36.36,0,0,1,142.346,123.515Zm.793,3.728a.359.359,0,1,1,.361-.359A.36.36,0,0,1,143.139,127.244Zm0-1.483a.359.359,0,1,1,.361-.359A.359.359,0,0,1,143.139,125.761Zm0-1.482a.359.359,0,1,1,.361-.359A.36.36,0,0,1,143.139,124.279Zm0-1.482a.359.359,0,1,1,.361-.359A.36.36,0,0,1,143.139,122.8Zm.765,5.165a.359.359,0,1,1,.359-.359A.359.359,0,0,1,143.9,127.962Zm0-1.483a.359.359,0,1,1,.359-.359A.358.358,0,0,1,143.9,126.479Zm0-1.482a.359.359,0,1,1,.359-.359A.359.359,0,0,1,143.9,125Zm0-1.482a.359.359,0,1,1,.359-.359A.359.359,0,0,1,143.9,123.515Zm0-1.483a.359.359,0,1,1,.359-.359A.358.358,0,0,1,143.9,122.032Zm.793,5.211a.359.359,0,1,1,.359-.359A.36.36,0,0,1,144.7,127.244Zm0-1.483a.359.359,0,1,1,.359-.359A.359.359,0,0,1,144.7,125.761Zm0-1.482a.359.359,0,1,1,.359-.359A.36.36,0,0,1,144.7,124.279Zm0-1.482a.359.359,0,1,1,.359-.359A.36.36,0,0,1,144.7,122.8Zm0-1.483a.359.359,0,1,1,.359-.359A.359.359,0,0,1,144.7,121.314Zm.763,6.648a.359.359,0,1,1,.359-.359A.36.36,0,0,1,145.46,127.962Zm0-1.483a.359.359,0,1,1,.359-.359A.359.359,0,0,1,145.46,126.479Zm0-1.482a.359.359,0,1,1,.359-.359A.36.36,0,0,1,145.46,125Zm0-1.482a.359.359,0,1,1,.359-.359A.36.36,0,0,1,145.46,123.515Zm0-1.483a.359.359,0,1,1,.359-.359A.359.359,0,0,1,145.46,122.032Zm.794,5.211a.359.359,0,1,1,.359-.359A.359.359,0,0,1,146.255,127.244Zm0-1.483a.359.359,0,1,1,.359-.359A.358.358,0,0,1,146.255,125.761Zm0-1.482a.359.359,0,1,1,.359-.359A.359.359,0,0,1,146.255,124.279Zm0-1.482a.359.359,0,1,1,.359-.359A.359.359,0,0,1,146.255,122.8Zm0-1.483a.359.359,0,1,1,.359-.359A.358.358,0,0,1,146.255,121.314Zm.763,6.648a.359.359,0,1,1,.359-.359A.359.359,0,0,1,147.018,127.962Zm0-1.483a.359.359,0,1,1,.359-.359A.358.358,0,0,1,147.018,126.479Zm0-1.482a.359.359,0,1,1,.359-.359A.359.359,0,0,1,147.018,125Zm0-1.482a.359.359,0,1,1,.359-.359A.359.359,0,0,1,147.018,123.515Zm0-1.483a.359.359,0,1,1,.359-.359A.358.358,0,0,1,147.018,122.032Zm.793,5.211a.359.359,0,1,1,.359-.359A.36.36,0,0,1,147.811,127.244Zm0-1.483a.359.359,0,1,1,.359-.359A.359.359,0,0,1,147.811,125.761Zm0-1.482a.359.359,0,1,1,.359-.359A.36.36,0,0,1,147.811,124.279Zm0-1.482a.359.359,0,1,1,.359-.359A.36.36,0,0,1,147.811,122.8Zm.763,5.165a.359.359,0,1,1,.359-.359A.36.36,0,0,1,148.574,127.962Zm0-1.483a.359.359,0,1,1,.359-.359A.359.359,0,0,1,148.574,126.479Zm0-1.482a.359.359,0,1,1,.359-.359A.36.36,0,0,1,148.574,125Zm0-1.482a.359.359,0,1,1,.359-.359A.36.36,0,0,1,148.574,123.515Z" transform="translate(-131.851 -119.733)" fill="#919191"/>
+        <g id="Grupo_21" data-name="Grupo 21" transform="translate(19.807 0.68)">
+            <g id="Grupo_20" data-name="Grupo 20">
+            <rect id="Retângulo_40" data-name="Retângulo 40" width="0.241" height="0.774" transform="translate(7.117 4.641)" fill="#919191"/>
+            <rect id="Retângulo_41" data-name="Retângulo 41" width="0.241" height="1.169" transform="translate(6.567 4.349)" fill="#919191"/>
+            <rect id="Retângulo_42" data-name="Retângulo 42" width="0.241" height="1.667" transform="translate(6.017 4.194)" fill="#919191"/>
+            <rect id="Retângulo_43" data-name="Retângulo 43" width="0.241" height="2.063" transform="translate(5.467 3.971)" fill="#919191"/>
+            <rect id="Retângulo_44" data-name="Retângulo 44" width="0.241" height="2.458" transform="translate(4.934 3.765)" fill="#919191"/>
+            <rect id="Retângulo_45" data-name="Retângulo 45" width="0.241" height="2.768" transform="translate(4.384 3.644)" fill="#919191"/>
+            <rect id="Retângulo_46" data-name="Retângulo 46" width="0.241" height="2.458" transform="translate(3.833 3.748)" fill="#919191"/>
+            <rect id="Retângulo_47" data-name="Retângulo 47" width="0.241" height="3.868" transform="translate(3.283 3.111)" fill="#919191"/>
+            <rect id="Retângulo_48" data-name="Retângulo 48" width="0.241" height="3.49" transform="translate(2.733 3.249)" fill="#919191"/>
+            <rect id="Retângulo_49" data-name="Retângulo 49" width="0.241" height="2.407" transform="translate(2.183 3.782)" fill="#919191"/>
+            <rect id="Retângulo_50" data-name="Retângulo 50" width="0.241" height="8.217" transform="translate(1.633 0.877)" fill="#919191"/>
+            <rect id="Retângulo_51" data-name="Retângulo 51" width="0.241" height="9.988" transform="translate(1.1)" fill="#919191"/>
+            <rect id="Retângulo_52" data-name="Retângulo 52" width="0.241" height="7.581" transform="translate(0.55 1.186)" fill="#919191"/>
+            <rect id="Retângulo_53" data-name="Retângulo 53" width="0.241" height="8.217" transform="translate(0 0.98)" fill="#919191"/>
+            </g>
+        </g>
+        <g id="Grupo_23" data-name="Grupo 23" transform="translate(0 0.68)">
+            <g id="Grupo_22" data-name="Grupo 22">
+            <rect id="Retângulo_54" data-name="Retângulo 54" width="0.241" height="0.774" transform="translate(0 4.573)" fill="#919191"/>
+            <rect id="Retângulo_55" data-name="Retângulo 55" width="0.241" height="1.169" transform="translate(0.55 4.47)" fill="#919191"/>
+            <rect id="Retângulo_56" data-name="Retângulo 56" width="0.241" height="1.667" transform="translate(1.1 4.126)" fill="#919191"/>
+            <rect id="Retângulo_57" data-name="Retângulo 57" width="0.241" height="2.063" transform="translate(1.65 3.954)" fill="#919191"/>
+            <rect id="Retângulo_58" data-name="Retângulo 58" width="0.241" height="2.458" transform="translate(2.183 3.765)" fill="#919191"/>
+            <rect id="Retângulo_59" data-name="Retângulo 59" width="0.241" height="2.768" transform="translate(2.733 3.576)" fill="#919191"/>
+            <rect id="Retângulo_60" data-name="Retângulo 60" width="0.241" height="2.458" transform="translate(3.283 3.782)" fill="#919191"/>
+            <rect id="Retângulo_61" data-name="Retângulo 61" width="0.241" height="3.868" transform="translate(3.833 3.008)" fill="#919191"/>
+            <rect id="Retângulo_62" data-name="Retângulo 62" width="0.241" height="3.49" transform="translate(4.384 3.249)" fill="#919191"/>
+            <rect id="Retângulo_63" data-name="Retângulo 63" width="0.241" height="2.407" transform="translate(4.934 3.799)" fill="#919191"/>
+            <rect id="Retângulo_64" data-name="Retângulo 64" width="0.241" height="8.217" transform="translate(5.484 0.894)" fill="#919191"/>
+            <rect id="Retângulo_65" data-name="Retângulo 65" width="0.241" height="9.988" transform="translate(6.017)" fill="#919191"/>
+            <rect id="Retângulo_66" data-name="Retângulo 66" width="0.241" height="7.581" transform="translate(6.567 1.221)" fill="#919191"/>
+            <rect id="Retângulo_67" data-name="Retângulo 67" width="0.241" height="8.217" transform="translate(7.117 0.791)" fill="#919191"/>
+            </g>
+        </g>
+    </svg>
+</template>

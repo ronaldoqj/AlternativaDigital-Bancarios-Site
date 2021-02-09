@@ -10,7 +10,8 @@ window.Vue = require('vue');
 window._ = require('lodash');
 
 import vuetify from './vuetify'
-
+import mask from 'vuejs-mask'
+Vue.use(mask)
 
 // import CKEditor from 'ckeditor4-vue';
 // Vue.use( CKEditor );
