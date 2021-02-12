@@ -1,176 +1,57 @@
 
 <template>
     <div class="component-page-home">
+        <div class="container-fluid content--panel">
+            <div class="row">
+                <div class="col-12">
 
-        <v-expansion-panels
-        v-model="panel"
-        multiple
-        flat
-        >
-            <v-expansion-panel>
-                <v-expansion-panel-header>
-                    <div class="header--panel">
-                        <div class="title">Conteúdo Portal</div>
-                        <div></div>
-                    </div>
-                </v-expansion-panel-header>
-                <v-expansion-panel-content>
-                <div class="container-fluid content--panel">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="box-cards">
-                                <div class="item-card" v-for="item of cards.portalContent">
-
-                                    <template v-if="perfil != 'master'">
-                                        <template v-if="item.title != 'Meu Sindicato'">  
-                                            <CardHome :params="item"></CardHome>
-                                        </template>
-                                    </template>
-                                    <template v-else>
-                                        <CardHome :params="item"></CardHome>
-                                    </template>
-                                </div>
-                            </div>
+                    <div class="box-cards">
+                        <!-- Portal -->
+                        <div class="item-card" v-if="perfil == 'master'">
+                            <CardHome :params="cards.entities.portal"></CardHome>
+                        </div>
+                        <!-- Sindicatos -->
+                        <div class="item-card" v-for="sindicate in sindicates" :key="sindicate.id">
+                            <CardHome @click="clickCard(sindicate.id)" :params="{link:'/adm/dashboard/'+sindicate.id, title: sindicate.name, icon:'/_adm/assets/SVGs/Home/icon-sindicatos.svg', subItem:{}}"></CardHome>
                         </div>
                     </div>
-                </div>
-                </v-expansion-panel-content>
-            </v-expansion-panel>
 
-            <v-expansion-panel v-if="perfil == 'master'">
-                <v-expansion-panel-header>
-                    <div class="header--panel">
-                        <div class="title">Funções ADM</div>
-                        <div></div>
-                    </div>
-                </v-expansion-panel-header>
-                <v-expansion-panel-content>
-                <div class="container-fluid content--panel">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="box-cards">
-                                <div class="item-card" v-for="item of cards.admFunctions">
-                                    <CardHome :params="item"></CardHome>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                </v-expansion-panel-content>
-            </v-expansion-panel>
-
-        </v-expansion-panels>
-    
+            </div>
+        </div>    
     </div>
 </template>  
 
 <script>
 import CardHome from "./components/CardHome"
 export default {
+    components: {CardHome},
+    props: [ 'perfil', 'csrf', 'listSindicates' ],
     data: () => {
         return {
             panel: [0, 1],
-
             cards: {
-                portalContent: {
-                    noticias: {
-                        icon: '/_adm/assets/SVGs/Home/icon-noticia.svg',
-                        title: 'Notícias',
-                        link: '/adm/noticias',
-                        subItem: {
-                            icon: '/_adm/assets/SVGs/Home/icon-plus.svg',
-                            title: 'Nova Notícia',
-                            link: '/adm/noticias/cadastro',
-                        }
-                    },
-                    editais: {
-                        icon: '/_adm/assets/SVGs/Home/icon-pdf.svg',
-                        title: 'Editais',
-                        link: '/adm/editais',
-                        subItem: {
-                            icon: '/_adm/assets/SVGs/Home/icon-plus.svg',
-                            title: 'Novo Edital',
-                            link: '/adm/editais/cadastro',
-                        }
-                    },
-                    acordosEConvencoes: {
-                        icon: '/_adm/assets/SVGs/Home/icon-pdf.svg',
-                        title: 'Acordos e Convenções',
-                        link: '/adm/acordos-e-convencoes',
-                        subItem: {
-                            icon: '/_adm/assets/SVGs/Home/icon-plus.svg',
-                            title: 'Novo Acordo',
-                            link: '/adm/acordos-e-convencoes/cadastro',
-                        }
-                    },
-                    meuSindicato: {
+                entities: {
+                    portal:{
                         icon: '/_adm/assets/SVGs/Home/icon-house.svg',
-                        title: 'Meu Sindicato',
-                        link: '#',
-                        subItem: {
-                            icon: '/_adm/assets/SVGs/Home/icon-plus.svg',
-                            title: 'Novo Sindicato',
-                            link: '#',
-                        }
-                    },
-                },
-                admFunctions: {
-                    sindicatos: {
-                        icon: '/_adm/assets/SVGs/Home/icon-users.svg',
-                        title: 'Sindicatos',
-                        link: '#',
-                        subItem: {},
-                    },
-                    contatos: {
-                        icon: '/_adm/assets/SVGs/Home/icon-phone.svg',
-                        title: 'Contatos',
-                        link: '#',
-                        subItem: {},
-                    },
-                    meuBanco: {
-                        icon: '/_adm/assets/SVGs/Home/icon-bank.svg',
-                        title: 'Meu Banco',
-                        link: '/adm/bancos',
-                        subItem: {},
-                    },
-                    entidades: {
-                        icon: '/_adm/assets/SVGs/Home/icon-entidade.svg',
-                        title: 'Entidade',
-                        link: '/adm/entidades',
-                        subItem: {},
-                    },
-                    redesSociais: {
-                        icon: '/_adm/assets/SVGs/Home/icon-social.svg',
-                        title: 'Redes Sociais',
-                        link: '#',
-                        subItem: {},
-                    },
-                    usuariso: {
-                        icon: '/_adm/assets/SVGs/Home/icon-users.svg',
-                        title: 'Usuários',
-                        link: '#',
-                        subItem: {},
-                    },
-                    meuPerfil: {
-                        icon: '/_adm/assets/SVGs/Home/icon-perfil.svg',
-                        title: 'Meu Perfil',
-                        link: '#',
-                        subItem: {},
-                    },
+                        title: 'Portal',
+                        link: '/adm/dashboard/0',
+                        subItem: {}
+                    }
                 }
             }
         }
     },
-    components: {  },
-    props: [ 'perfil', 'csrf' ],
-    methods: {
-        
-        
+    computed: {
+        sindicates() {
+            return JSON.parse(this.listSindicates);
+        }
     },
-    components: {CardHome},
-    created()
-    {
-        
+    methods: {
+    },
+    mounted() {
+        console.log('Sindicatos', this.sindicates);
+        console.log('Cards PortalContent', this.cards.portalContent);
     }
 }
 </script>
@@ -179,8 +60,6 @@ export default {
 @import '~/../resources/_adm/sass/_vars.scss';
 .component-page-home
 {
-    margin-top: 20px;
-
     .v-expansion-panel-header
     {
         padding: 0;

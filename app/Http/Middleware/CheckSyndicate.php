@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\Models\Sindicato;
+use App\Models\File;
 use Illuminate\Support\Str;
 
 class CheckSyndicate
@@ -43,7 +44,15 @@ class CheckSyndicate
 
             if ( is_numeric($keyArraySearch) )
             {
-                session(['sindicato' => $sindicato[$keyArraySearch]->getAttributes()]);
+                $banner = new File();
+                $banner = $banner->find($sindicato[$keyArraySearch]->getAttributes()['banner']);
+                $logo = new File();
+                $logo = $logo->find($sindicato[$keyArraySearch]->getAttributes()['logo']);
+
+                $sessionSindicato = $sindicato[$keyArraySearch]->getAttributes();
+                $sessionSindicato['banner_file'] = $banner->toArray();
+                $sessionSindicato['logo_file'] = $logo->toArray();
+                session(['sindicato' => $sessionSindicato]);
             }
         }
 

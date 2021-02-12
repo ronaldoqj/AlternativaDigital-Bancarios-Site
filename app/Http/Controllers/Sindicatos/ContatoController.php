@@ -23,6 +23,11 @@ class ContatoController extends Controller
      */
     public function index()
     {
+        /**
+         * Redireciona para o Portal caso não exista o subdominio acessado
+         */
+        if ( ! session()->has('sindicato') ) { return redirect(env('APP_URL')); }
+
         return view('sindicatos.contato');
     }
 }

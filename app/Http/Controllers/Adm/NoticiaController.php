@@ -44,7 +44,7 @@ class NoticiaController extends Controller
         // Fazer a chamada para receber todos
         $return['noticiaSimples'] = $noticia->listAllToAdmPageNoticias('noticia-simples')->get()->toJson();
 
-        return view('adm.noticias')->withReturn($return);
+        return view('adm.noticias.noticias')->withReturn($return);
     }
 
     public function cadastro(Request $request)
@@ -52,7 +52,7 @@ class NoticiaController extends Controller
         $bancos = new Banco();
         $sindicatos = new Sindicato();
 
-        return view('adm.noticias-cadastrar')->withBancos($bancos->all()->toJson())->withSindicatos($sindicatos->all()->toJson())->withBancos($bancos->all()->toJson());
+        return view('adm.noticias.noticia-cadastrar')->withBancos($bancos->all()->toJson())->withSindicatos($sindicatos->all()->toJson())->withBancos($bancos->all()->toJson());
     }
 
     public function edicao(Request $request, $id = '')
@@ -79,7 +79,7 @@ class NoticiaController extends Controller
         $noticiasBancos = new Noticia();
         $bancosDaNoticia = $noticiasBancos->findBancosByIdNoticia($id);
 
-        return view('adm.noticias-editar')->withNoticia(json_encode($noticia))->withRegisteredBanks(json_encode($bancosDaNoticia->get()))->withBancos($bancos->all()->toJson())->withRegisteredSyndicates(json_encode($sindicatosDaNoticia->get()))->withSindicatos($sindicatos->all()->toJson());
+        return view('adm.noticias.noticia-editar')->withNoticia(json_encode($noticia))->withRegisteredBanks(json_encode($bancosDaNoticia->get()))->withBancos($bancos->all()->toJson())->withRegisteredSyndicates(json_encode($sindicatosDaNoticia->get()))->withSindicatos($sindicatos->all()->toJson());
     }
 
     public function cadastrarNoticia(Request $request)

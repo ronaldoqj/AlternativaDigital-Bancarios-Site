@@ -1,18 +1,17 @@
 
 <template>
 <div class="form-default-combobox">
-        
-    <div class="row">
-        <div class="col-12">
-            <div class="box-btns-items">
+
+    <pages-menu-bar :btns-top-bar="makeBtnsBarTop()">
+        <img src="/_adm/assets/SVGs/icon-arrow-right.svg" class="img-fluid" onload="SVGInject(this)" />
+        <a href="#" >
+            <div class="box__buttons--access">
                 <div @click="openCadastrar">
                     <btn-action-widget-component :title="nameOfPage.btnAdicionar" link="#" action="adicionar"></btn-action-widget-component>
                 </div>
             </div>
-        </div>
-    </div>
- 
-
+        </a>
+    </pages-menu-bar>
 
     <form ref="formDelete" :action="actionForm" method="post">
         <input type="hidden" name="_token" :value="csrf">
@@ -20,7 +19,6 @@
         <input type="hidden" name="action" :value="modal.action">
 
         <div class="container-fluid content--panel">
-            
             <h6 class="pt-6">{{ nameOfPage.tituloListagem }}</h6>
             <v-divider></v-divider>
 
@@ -43,7 +41,6 @@
                                         <template v-slot:activator="{ on, attrs }">
                                             <a @click="clickExcluir(item)" v-bind="attrs" v-on="on"><img src="/_adm/assets/SVGs/excluir.svg" class="img-fluid" onload="SVGInject(this)" /></a>
                                         </template>
-                                        
                                         <v-card>
                                             <v-list-item> <v-list-item-title>Deseja excluir o registro?</v-list-item-title> </v-list-item>
                                             <v-btn x-small class="ma-2" text @click="menu = false">Cancelar</v-btn>
@@ -54,13 +51,11 @@
                                     </v-menu>
                                 </div>
                             </div>
-
                         </div>
                         </template>
                         </v-hover>
                     </div>
                 </template>
-
                 <template v-else>
                     <div class="col-12">
                         <div class="box--noticia">
@@ -71,7 +66,6 @@
                     </div>
                 </template>
             </div>
-
         </div>
     </form>
 
@@ -114,6 +108,7 @@
 
 <script>
 export default {
+    props: [ 'propGetParams', 'csrf', 'actionForm', 'page' ],
     data: () => {
         return {
             // Registros da DB
@@ -141,13 +136,6 @@ export default {
             }
         }
     },
-    components: {  },
-    watch: {
-        name(newValue, oldValue)
-        {
-            this.name.length > 3 ? this.disabledBtnCadastrar = false : this.disabledBtnCadastrar = true;
-        }
-    },
     methods: {
         checkForm(e)
         {
@@ -160,7 +148,6 @@ export default {
 
         checkFormDelete(e)
         {
-            console.log('submit do form delete');
             e.preventDefault()
         },
         
@@ -186,9 +173,31 @@ export default {
         },
         formExcluirEnviar() {
             this.$refs.formDelete.submit();
+        },
+
+        makeBtnsBarTop() {
+            const btnsBarTop = {
+                home: {
+                    title: 'Home',
+                    link: '/adm/',
+                    icon: '/_adm/assets/SVGs/Home/icon-house.svg'
+                },
+                dashboard: {
+                    title: 'Dashboard',
+                    link: '/adm/dashboard',
+                    icon: '/_adm/assets/SVGs/icon-dashboard.svg'
+                }
+            }
+
+            return btnsBarTop;
         }
     },
-    props: [ 'propGetParams', 'csrf', 'actionForm', 'page' ],
+    watch: {
+        name(newValue, oldValue)
+        {
+            this.name.length > 3 ? this.disabledBtnCadastrar = false : this.disabledBtnCadastrar = true;
+        }
+    },
     created()
     {
         this.list = JSON.parse(this.propGetParams);
@@ -196,7 +205,7 @@ export default {
         switch (this.page) {
         case 'entidades':
             this.nameOfPage = {
-                btnAdicionar: 'Nova entidade',
+                btnAdicionar: 'Nova Entidade',
                 tituloListagem: 'Entidades cadastradas',
                 inputName: 'Nome da entidade',
                 formTitulo: 'entidade'
@@ -204,7 +213,7 @@ export default {
             break;
         case 'bancos':
             this.nameOfPage = {
-                btnAdicionar: 'Novo banco',
+                btnAdicionar: 'Novo Banco',
                 tituloListagem: 'Bancos cadastrados',
                 inputName: 'Nome do banco',
                 formTitulo: 'banco'
@@ -213,30 +222,13 @@ export default {
         }
     }
 }
-
 </script>
-
 
 <style lang="scss">
 @import '~/../resources/_adm/sass/_vars.scss';
 .form-default-combobox
 {
-    .box-btns-items {
-        margin: 10px 0;
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        border: solid 1px $grey;
-        padding: 10px 40px;
-        border-radius: 40px;
-        background-color: $blue;
-
-    }
-
-    .title-items {
-        padding: 0 10px;
-    }
-
+    .title-items { padding: 0 10px; }
     .box--items
     {
         .header {
@@ -250,8 +242,7 @@ export default {
             display: flex;
             justify-content: center;
 
-            a
-            {
+            a {
                 svg
                 {
                     width: 65px;
@@ -259,50 +250,29 @@ export default {
                     margin: 0 3px;
                     cursor: pointer;
 
-                    circle {
-                        transition: ease 0.4s;
-                    }
+                    circle { transition: ease 0.4s; }
                 }
 
                 &:first-child
                 {    
                     &:hover svg {
-                        circle {
-                            fill: $red-strong;
-                        }
+                        circle { fill: $red-strong; }
                     }
                 }
 
                 &:last-child
                 {
                     &:hover svg {
-                        circle {
-                            fill: $blue-strong;
-                        }
+                        circle { fill: $blue-strong; }
                     }
                 }
             }
         }
-        
     }
-
-
 }
 
-
-.modal-title {
-    text-transform: capitalize;
-}
-
-.v-dialog>.v-card>.v-card__subtitle, .v-dialog>.v-card>.v-card__text {
-    padding: 35px 24px 20px;
-}
-
-hr.hr-line-modal {
-    margin: 0;
-}
-
-.v-text-field .v-input__control, .v-text-field .v-input__slot, .v-text-field fieldset {
-    margin: 0;
-}
+.modal-title { text-transform: capitalize; }
+.v-dialog>.v-card>.v-card__subtitle, .v-dialog>.v-card>.v-card__text { padding: 35px 24px 20px; }
+hr.hr-line-modal { margin: 0; }
+.v-text-field .v-input__control, .v-text-field .v-input__slot, .v-text-field fieldset { margin: 0; }
 </style>

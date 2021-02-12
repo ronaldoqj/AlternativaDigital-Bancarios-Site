@@ -11,6 +11,15 @@ section#top-banner #box-top-sindicato {
   background-size: cover !important;
 }
 
+section#top-banner #box-top-sindicato .box-logo {
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.6);
+  max-width: 250px;
+  max-height: 130px;
+  border-radius: 3px;
+  float: left;
+}
+
 #menu-sindicato {
   transition: 0.4s;
   background-color: #0B3C5E;

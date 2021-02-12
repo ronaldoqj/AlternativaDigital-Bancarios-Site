@@ -1,3 +1,11 @@
+<?php
+    $bannerFile = session()->get('sindicato')['banner_file']['pathfile'];
+    $bannerPahtfile = session()->get('sindicato')['banner_file']['namefile'];
+    $bannerLink = "/{$bannerFile}/{$bannerPahtfile}";
+    $logoFile = session()->get('sindicato')['logo_file']['pathfile'];
+    $logoPahtfile = session()->get('sindicato')['logo_file']['namefile'];
+    $logoLink = "/{$logoFile}/{$logoPahtfile}";
+?>
 @extends('layouts.layout')
     @section('css-syndicate')
         <link href="{{url(mix('/_site/css/pages/menu-sindicato.css'))}}" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -6,52 +14,25 @@
     @section('top-syndicate')
         <!-- Banner TOP -->
         <a href="/sindicato">
-        <section id="top-banner">
-            <div id="box-top-sindicato" class="container-fluid" style="background-image: url(/_site/assets/_Excluir/background-camaqua.jpg); height: 250px;">
-                <div class="container">
-                <div class="row align-items-center">
-                    <div class="col cols__texts--sindicato">
-
-                        <table class="container-text-1--sindicato">
-
-                            <tr>
-                                <td>
-                                    <div class="arrow__left--sindicato with-image">
-                                        <!-- <img src="{{asset('/_site/assets/SVGs/Sindicato/arrow-left-sindicato.svg')}}" class="img-fluid" onload="SVGInject(this)" /> -->
-                                        <img src="{{asset('/_site/assets/_Excluir/logo-camaqua.svg')}}" class="img-fluid" onload="SVGInject(this)" />
-                                    </div>
-                                </td>
-                                <!-- <td class="texts--sindicato">
-                                    <div><span>CIDADE</span><br/></div>
-                                    <div><span>RS</span></div>
-                                </td> -->
-                            </tr>
-
-                        </table>
-
-                        <div class="col-12 col-lg-9 col__text--sindicato">
-                            <!-- <div class="flex-texts container-text-1--sindicato">
-                                <div class="arrow__left--sindicato">
-                                    <img src="{{asset('/_site/assets/SVGs/Sindicato/arrow-left-sindicato.svg')}}" class="img-fluid" onload="SVGInject(this)" />
+            <section id="top-banner">
+                <div id="box-top-sindicato" class="container-fluid" style="background-image: url({{$bannerLink}}); height: 250px;">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <div class="box-logo">
+                                    <img src="{{asset($logoLink)}}" height="100" />
                                 </div>
-                                <div class="text1--sindicato">
-                                    <div><span>CIDADE</span></div>
-                                    <div><span>RS</span></div>
-                                </div>
-                            </div> -->
+                            </div>
                         </div>
-
                     </div>
                 </div>
-                </div>
-            </div>
-        </section>
+            </section>
         </a>
 
         <div id="menu-sindicato" class="container-fluid">
             <div class="container">
                 <div class="row container-menus-sindicatos">
-                
+
                     <div class="col-md-12 col-lg-7 col-texts">
                         <div class="legendas">MENU DO SINDICATO</div>
                         <div class="flex-texts">

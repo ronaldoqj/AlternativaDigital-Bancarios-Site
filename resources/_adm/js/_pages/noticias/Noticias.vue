@@ -1,19 +1,7 @@
 
 <template>
     <div class="noticias-list">
-        
-        <div class="row">
-            <div class="col-12">
-                <div class="box-btns-noticias">
-                    <a href="/adm/noticias/cadastro">
-                        <div class="box__buttons--access">
-                            <img src="/_adm/assets/SVGs/icon-mais.svg" class="img-fluid" onload="SVGInject(this)" />
-                            <p>nova noticia</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
+        <pages-menu-bar :btns-top-bar="makeBtnsBarTop()"></pages-menu-bar>
 
         <form ref="formDelete" :action="actionForm" method="post">
             <input type="hidden" name="_token" :value="csrf">
@@ -252,13 +240,10 @@
 
             </v-expansion-panels>
         </form>
-
     </div>
 </template>  
 
 <script>
-
-
 import btnIconText from "../../components/btn_icon-text/BtnIconText.vue"
 export default {
     data: () => {
@@ -323,7 +308,6 @@ export default {
     components: { btnIconText },
     props: [ 'csrf', 'actionForm', 'propNoticias' ],
     methods: {
-        
         clickExcluir(item)
         {
             this.id = item.id;
@@ -331,6 +315,28 @@ export default {
         },
         formExcluirEnviar() {
             this.$refs.formDelete.submit();
+        },
+
+        makeBtnsBarTop() {
+            const btnsBarTop = {
+                home: {
+                    title: 'Home',
+                    link: '/adm/',
+                    icon: '/_adm/assets/SVGs/Home/icon-house.svg'
+                },
+                dashboard: {
+                    title: 'Dashboard',
+                    link: '/adm/dashboard',
+                    icon: '/_adm/assets/SVGs/icon-dashboard.svg'
+                },
+                cadastro: {
+                    title: 'Nova Notícia',
+                    link: '/adm/noticias/cadastro',
+                    icon: '/_adm/assets/SVGs/icon-mais.svg'
+                }
+            }
+
+            return btnsBarTop;
         }
     },
     created()
@@ -352,54 +358,6 @@ export default {
 @import '~/../resources/_adm/sass/_vars.scss';
 .noticias-list
 {
-
-    .box-btns-noticias {
-        margin: 10px 0;
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        border: solid 1px $grey;
-        padding: 10px 40px;
-        border-radius: 40px;
-        background-color: $blue;
-   
-
-        a
-        {
-            .box__buttons--access
-            {
-                text-align: center;
-                svg {
-                    transition: $transition-normal;
-                }
-    
-                p {
-                    font-size: 0.7em;
-                    color: $grey;
-                    margin: 0;
-                    transition: $transition-normal;
-                }
-            }
-
-            &:hover
-            {
-                svg {
-                    //transform: rotateY(180deg);
-                    transform: rotate(360deg);
-
-                    circle {
-                        fill: $blue-light;
-                    }
-                }
-
-                p {
-                    color: $blue-light;
-                }
-            }
-        }
-
-    }
-
     .v-expansion-panel-header
     {
         padding: 0;

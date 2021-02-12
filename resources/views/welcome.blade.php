@@ -11,11 +11,11 @@
 @endsection
 
 @section('metatags')
-<meta property="og:url"           content="{{url('/')}}" />
-<meta property="og:type"          content="website" />
-<meta property="og:title"         content="Portal Bancários RS" />
-<meta property="og:description"   content="A FEDERAÇÃO DOS TRABALHADORES E TRABALHADORAS EM INSTITUIÇÕES FINANCEIRAS DO RIO GRANDE DO SUL utiliza a sigla FETRAFI-RS e foi fundada em 1º de Maio de 1943. Trata-se de uma entidade que representa 38 sindicatos filiados, integrantes da categoria profissional dos Trabalhadores e Trabalhadoras em Instituições Financeiras, sem fins lucrativos, com abrangência em todo o território do Rio Grande do Sul, com sede e foro em Porto Alegre/RS." />
-<meta property="og:image"         content="{{url('/bancariosrs.png')}}"/>
+<meta property="og:url"         content="{{url('/')}}" />
+<meta property="og:type"        content="website" />
+<meta property="og:title"       content="Portal Bancários RS" />
+<meta property="og:description" content="A FEDERAÇÃO DOS TRABALHADORES E TRABALHADORAS EM INSTITUIÇÕES FINANCEIRAS DO RIO GRANDE DO SUL utiliza a sigla FETRAFI-RS e foi fundada em 1º de Maio de 1943. Trata-se de uma entidade que representa 38 sindicatos filiados, integrantes da categoria profissional dos Trabalhadores e Trabalhadoras em Instituições Financeiras, sem fins lucrativos, com abrangência em todo o território do Rio Grande do Sul, com sede e foro em Porto Alegre/RS." />
+<meta property="og:image"       content="{{url('/bancariosrs.png')}}"/>
 @endsection
 
 @section('js')
@@ -27,7 +27,6 @@
 @endsection
 
 @section('content')
-
 @if ($campanha)
 <!-- Modal -->
 <div class="modal fade" id="campanhaModal" tabindex="-1" aria-labelledby="campanhaModalLabel" aria-hidden="true">
@@ -48,7 +47,7 @@
 </div>
 @endif
 
-@if ( $noticiaDestaqueFirst )
+@if ( $noticiaDestaqueFirst && session()->get('typeNoticia')['autorNoticia'] == 'portal' )
 <!-- Banner TOP -->
 <?php
     $link = "/{$linkComplemento}noticia/{$noticiaDestaqueFirst->id}/" . Str::slug($noticiaDestaqueFirst->titulo, '-');
@@ -58,11 +57,9 @@
     <div class="container" style='background-image: url({{asset("/{$noticiaDestaqueFirst->fileImagemDestaque_pathfile}/{$noticiaDestaqueFirst->fileImagemDestaque_namefile}")}}); height: 350px;'>
         <div class="row align-items-end">
             <div class="col cols__texts">
-
                 <!-- <div class="col-12 col-lg-9 container-text-1">#{{ $noticiaDestaqueFirst->tags }}</div> -->
                 <div class="container-text-2">{{ $noticiaDestaqueFirst->cartola }} | {{ \Carbon\Carbon::parse($noticiaDestaqueFirst->dataInclusao)->format('d/m/Y') }} </div>
                 <div class="col-12 col-lg-9 container-text-3">{{ $noticiaDestaqueFirst->titulo }}</div>
-
             </div>
         </div>
     </div>
@@ -72,14 +69,10 @@
 @endif
 
 <section id="news" class="container">
-
 @forelse ($return['noticias'] as $noticia)
-
     @switch($noticia->tipoDaNoticia)
-
         @case('noticia-destaque')
         <!-- BLOCO NOTICIA IMAGEM -->
-
         <div class="container __separador"><div class="row"><div class="col"><div></div></div></div></div>
 
         <?php
@@ -97,7 +90,6 @@
             </div>
         </div>
         </a>
-
         <!-- FIM - BLOCO NOTICIA IMAGEM -->
         @break
 
@@ -132,13 +124,11 @@
                 </div>
             </div>
             </a>
-
             <!--FIM -  BLOCO NOTICIA VÍDEO -->
         @break
 
         @case('noticia-imagem')
             <!-- BLOCO NOTICIA IMAGEM -->
-                
             <div class="container __separador"><div class="row"><div class="col"><div></div></div></div></div>
             <?php
                 $link = "/{$linkComplemento}noticia/{$noticia->id}/" . Str::slug($noticia->titulo, '-');
@@ -156,14 +146,11 @@
                 </div>
             </div>
             </a>
-
             <!-- FIM - BLOCO NOTICIA IMAGEM -->
         @break
 
-
         @case('noticia-podcast')
             <!-- BLOCO NOTICIA AUDIO -->
-
             <div class="container __separador"><div class="row"><div class="col"><div></div></div></div></div>
             
             <div class="row COMPONENTE__news--with--audio">
@@ -189,14 +176,11 @@
                     </a>
                 </div>
             </div>
-
             <!-- FIM - BLOCO NOTICIA AUDIO -->
         @break
 
-
         @case('noticia-simples')
             <!-- BLOCO NOTICIA NORMAL -->
-
             <div class="container __separador"><div class="row"><div class="col"><div></div></div></div></div>
             <?php
                 $link = "/{$linkComplemento}noticia/{$noticia->id}/" . Str::slug($noticia->titulo, '-');
@@ -210,17 +194,11 @@
                 </div>
             </div>
             </a>
-
             <!-- FIM - BLOCO NOTICIA NORMAL -->	
         @break
-
     @endswitch
-
 @empty
     <p>Não foram encontradas notícias cadastradas</p>
 @endforelse
-
-	
 </section>
-
 @endsection

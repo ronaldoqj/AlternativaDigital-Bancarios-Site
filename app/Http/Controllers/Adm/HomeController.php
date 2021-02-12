@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Adm;
 use App\Http\Controllers\Controller;
+use App\Models\Sindicato;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -21,8 +22,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('adm.home');
+        $sindicates = new Sindicato();
+        return view('adm.home')->withSindicates($sindicates->all()->toArray());
     }
 }

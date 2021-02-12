@@ -12,7 +12,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col">
-            <home-page perfil="{{auth()->user()->perfil}}" csrf="{{ csrf_token() }}"></home-page>
+            <home-page perfil="{{auth()->user()->perfil}}" csrf="{{ csrf_token() }}" list-sindicates="{{json_encode($sindicates)}}"></home-page>
         </div>
     </div>
 </div>

@@ -35,23 +35,27 @@ Vue.use(mask)
 // Componentes do template
 Vue.component('header-component', require('./components/_template/HeaderComponent.vue').default);
 Vue.component('sidebar-menu-component', require('./components/_template/SidebarmenuComponent.vue').default);
+Vue.component('pages-menu-bar', require('./components/widget/PagesMenuBar.vue').default);
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('home-page', require('./_pages/home/Home.vue').default);
+Vue.component('dashboard-page', require('./_pages/home/Dashboard.vue').default);
 Vue.component('errors-component', require('./components/widget/ErrorsComponent.vue').default);
 Vue.component('login-component', require('./components/widget/LoginComponent.vue').default);
-Vue.component('noticias-cadastro-page', require('./_pages/noticias-cadastro/NoticiasCadastro.vue').default);
-Vue.component('noticias-page', require('./_pages/noticias/Noticias.vue').default);
-Vue.component('acordos-e-convencoes-page', require('./_pages/acordos-e-convencoes/AcordosEConvencoes.vue').default);
-Vue.component('acordos-e-convencoes-cadastro-page', require('./_pages/acordos-e-convencoes-cadastro/AcordosEConvencoesCadastro.vue').default);
-Vue.component('editais-page', require('./_pages/editais/Editais.vue').default);
-Vue.component('editais-cadastro-page', require('./_pages/editais-cadastro/EditaisCadastro.vue').default);
-Vue.component('entidades-parceiras-page', require('./_pages/entidades-parceiras/EntidadesParceiras.vue').default);
-Vue.component('entidades-parceiras-cadastro-page', require('./_pages/entidades-parceiras-cadastro/EntidadesParceirasCadastro.vue').default);
+
 Vue.component('campanhas-page', require('./_pages/campanhas/Campanhas.vue').default);
-Vue.component('campanhas-cadastro-page', require('./_pages/campanhas-cadastro/CampanhasCadastro.vue').default);
+Vue.component('campanhas-cadastro-page', require('./_pages/campanhas/CampanhasCadastro.vue').default);
+
+Vue.component('noticias-page', require('./_pages/noticias/Noticias.vue').default);
+Vue.component('noticias-cadastro-page', require('./_pages/noticias/NoticiasCadastro.vue').default);
+Vue.component('acordos-e-convencoes-page', require('./_pages/acordos-e-convencoes/AcordosEConvencoes.vue').default);
+Vue.component('acordos-e-convencoes-cadastro-page', require('./_pages/acordos-e-convencoes/AcordosEConvencoesCadastro.vue').default);
+Vue.component('editais-page', require('./_pages/editais/Editais.vue').default);
+Vue.component('editais-cadastro-page', require('./_pages/editais/EditaisCadastro.vue').default);
+Vue.component('entidades-parceiras-page', require('./_pages/entidades-parceiras/EntidadesParceiras.vue').default);
+Vue.component('entidades-parceiras-cadastro-page', require('./_pages/entidades-parceiras/EntidadesParceirasCadastro.vue').default);
 Vue.component('sindicatos-page', require('./_pages/sindicatos/Sindicatos.vue').default);
-Vue.component('sindicatos-cadastro-page', require('./_pages/sindicatos-cadastro/SindicatosCadastro.vue').default);
+Vue.component('sindicatos-cadastro-page', require('./_pages/sindicatos/SindicatosCadastro.vue').default);
 Vue.component('usuarios-page', require('./_pages/usuarios/Usuarios.vue').default);
 Vue.component('usuarios-cadastro-page', require('./_pages/usuarios/UsuariosCadastro.vue').default);
 Vue.component('form-default-combobox', require('./_pages/form-default-combobox/FormDefaultCombobox.vue').default);

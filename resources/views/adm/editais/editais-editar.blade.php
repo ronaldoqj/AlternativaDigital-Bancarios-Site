@@ -6,9 +6,7 @@
 @section('content')
 
 <div class="container-fluid">
-    
-    @csrf
-    <editais-cadastro-page form-action="{{url('adm/editais/edicao')}}" method="post" csrf="{{ csrf_token() }}" form-edition="{{$list}}" />
-
+    <editais-cadastro-page action-form="{{url('adm/editais')}}" method-url="/edicao" method="post" csrf="{{ csrf_token() }}" form-edition="{{$list}}" />
 </div>
+
 @endsection

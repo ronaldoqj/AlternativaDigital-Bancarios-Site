@@ -1,17 +1,6 @@
 <template>
-    <div class="sindicatos">
-        <div class="row">
-            <div class="col-12">
-                <div class="box-btns-sindicatos">
-                    <a :href="actionForm + '/cadastro'">
-                        <div class="box__buttons--access">
-                            <img src="/_adm/assets/SVGs/icon-mais.svg" class="img-fluid" onload="SVGInject(this)" />
-                            <p>novo sindicato</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
+    <div class="page-sindicatos">
+        <pages-menu-bar :btns-top-bar="makeBtnsBarTop()"></pages-menu-bar>
 
         <form ref="formDelete" :action="actionForm + '/delete'" method="post">
             <input type="hidden" name="_token" :value="csrf">
@@ -86,6 +75,28 @@ export default {
         },
         formExcluirEnviar() {
             this.$refs.formDelete.submit();
+        },
+
+        makeBtnsBarTop() {
+            const btnsBarTop = {
+                home: {
+                    title: 'Home',
+                    link: '/adm/',
+                    icon: '/_adm/assets/SVGs/Home/icon-house.svg'
+                },
+                dashboard: {
+                    title: 'Dashboard',
+                    link: '/adm/dashboard',
+                    icon: '/_adm/assets/SVGs/icon-dashboard.svg'
+                },
+                cadastro: {
+                    title: 'Novo Sindicato',
+                    link: '/adm/sindicatos/cadastro',
+                    icon: '/_adm/assets/SVGs/icon-mais.svg'
+                }
+            }
+
+            return btnsBarTop;
         }
     },
     created()
@@ -97,47 +108,8 @@ export default {
 
 <style lang="scss">
 @import '~/../resources/_adm/sass/_vars.scss';
-.sindicatos
+.page-sindicatos
 {
-    .box-btns-sindicatos {
-        margin: 10px 0;
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        border: solid 1px $grey;
-        padding: 10px 40px;
-        border-radius: 40px;
-        background-color: $blue;
-
-        a
-        {
-            .box__buttons--access
-            {
-                text-align: center;
-                svg {
-                    transition: $transition-normal;
-                }
-    
-                p {
-                    font-size: 0.7em;
-                    color: $grey;
-                    margin: 0;
-                    transition: $transition-normal;
-                }
-            }
-            &:hover
-            {
-                svg {
-                    transform: rotate(360deg);
-
-                    circle { fill: $blue-light; }
-                }
-
-                p { color: $blue-light; }
-            }
-        }
-    }
-
     .box--sindicato
     {
         position: relative;
