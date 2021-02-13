@@ -27,11 +27,12 @@ class InstituicaoController extends Controller
     {
         $type = $this->checkEntity();
         $search = $this->searchInstituicao($type);
+
         if (! $search) {
             $search = $this->saveInstituicao($type);
         }
 
-        return view('adm.instituicoes')->withInstituicao($search);
+        return view('adm.instituicoes')->withData($search);
     }
 
     public function edicao(Request $request)

@@ -116,25 +116,27 @@ export default {
                     meuSindicato: {
                         icon: '/_adm/assets/SVGs/Home/icon-house.svg',
                         title: 'Meu Sindicato',
-                        link: '#',
-                        subItem: {
-                            icon: '/_adm/assets/SVGs/Home/icon-plus.svg',
-                            title: 'Novo Sindicato',
-                            link: '#',
-                        }
+                        link: '/adm/o-sindicato',
+                        subItem: {}
+                    },
+                    servicos: {
+                        icon: '/_adm/assets/SVGs/icon-paginas.svg',
+                        title: 'Serviços',
+                        link: '/adm/servicos',
+                        subItem: {}
+                    },
+                    contatos: {
+                        icon: '/_adm/assets/SVGs/icon-contatos.svg',
+                        title: 'Contatos',
+                        link: '/adm/contatos',
+                        subItem: {}
                     },
                 },
                 admFunctions: {
                     sindicatos: {
-                        icon: '/_adm/assets/SVGs/Home/icon-users.svg',
+                        icon: '/_adm/assets/SVGs/Home/icon-sindicatos.svg',
                         title: 'Sindicatos',
-                        link: '#',
-                        subItem: {},
-                    },
-                    contatos: {
-                        icon: '/_adm/assets/SVGs/Home/icon-phone.svg',
-                        title: 'Contatos',
-                        link: '#',
+                        link: '/adm/sindicatos',
                         subItem: {},
                     },
                     meuBanco: {
@@ -145,8 +147,14 @@ export default {
                     },
                     entidades: {
                         icon: '/_adm/assets/SVGs/Home/icon-entidade.svg',
-                        title: 'Entidade',
+                        title: 'Entidades',
                         link: '/adm/entidades',
+                        subItem: {},
+                    },
+                    entidadesParceiras: {
+                        icon: '/_adm/assets/SVGs/icon-entidades-parceiras.svg',
+                        title: 'Entidades Parceiras',
+                        link: '/adm/entidades-parceiras',
                         subItem: {},
                     },
                     redesSociais: {

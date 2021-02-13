@@ -189,7 +189,7 @@ export default {
                 cadastro: {
                     title: 'Entidades Parceiras',
                     link: '/adm/entidades-parceiras',
-                    icon: '/_adm/assets/SVGs/icon-entidades-parceiras-only-icon.svg'
+                    icon: '/_adm/assets/SVGs/icon-entidades-parceiras.svg'
                 }
             }
 

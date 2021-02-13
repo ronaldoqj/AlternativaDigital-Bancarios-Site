@@ -61,7 +61,13 @@ Vue.component('usuarios-cadastro-page', require('./_pages/usuarios/UsuariosCadas
 Vue.component('form-default-combobox', require('./_pages/form-default-combobox/FormDefaultCombobox.vue').default);
 Vue.component('btn-action-widget-component', require('./components/widget/BtnActionComponent.vue').default);
 
-Vue.component('instituicoes-page', require('./_pages/instituicoes/Instituicoes.vue').default);
+/**
+ * Componente responsavel pelas páginas:
+ *      Serviços,
+ *      Contato,
+ *      Instituição(o sindicato, a fetrafi etc).
+ */
+Vue.component('form-default-texts-ckeditor-page', require('./_pages/form-default-texts-ckeditor/FormDefaultTextsCkeditor.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

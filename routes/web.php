@@ -88,6 +88,10 @@ Route::prefix('adm')->namespace('Adm')->group(function ()
 
         Route::get('/o-sindicato', 'InstituicaoController@index')->name('adm-instituicao');
         Route::post('/o-sindicato', 'InstituicaoController@edicao')->name('adm-instituicao-edicao');
+        Route::get('/servicos', 'ServicoController@index')->name('adm-servicos');
+        Route::post('/servicos', 'ServicoController@edicao')->name('adm-servicos-edicao');
+        Route::get('/contatos', 'ContatoController@index')->name('adm-contatos');
+        Route::post('/contatos', 'ContatoController@edicao')->name('adm-contatos-edicao');
     });
 
     // Formulários de cadastros do ADM

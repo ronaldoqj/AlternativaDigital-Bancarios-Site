@@ -35,12 +35,12 @@
 
 @section('content')
 <div class="container-fluid">
-    <instituicoes-page
+    <form-default-texts-ckeditor-page
         ref="cadastro"
         form-action="{{url('adm/o-sindicato')}}"
         csrf="{{ csrf_token() }}"
         entity="{{session()->get('configAdm')['entity']}}"
-        data="{{json_encode($instituicao)}}"
+        data="{{json_encode($data)}}"
     />
 </div>
 @endsection
