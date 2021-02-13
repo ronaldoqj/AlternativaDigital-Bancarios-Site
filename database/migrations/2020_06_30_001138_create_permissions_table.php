@@ -16,9 +16,9 @@ class CreatePermissionsTable extends Migration
         Schema::create('permissions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->string('name')->nullable();
-            $table->string('modulo')->nullable();
-            $table->string('functionality')->nullable();
+            $table->string('name', 240)->nullable();
+            $table->string('modulo', 240)->nullable();
+            $table->string('functionality', 240)->nullable();
             $table->smallInteger('weight')->default(27)->comment('[ denied = 0,
                                                                     view = 1,
                                                                     insert = 5,

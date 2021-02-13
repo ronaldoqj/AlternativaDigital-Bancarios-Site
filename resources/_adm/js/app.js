@@ -61,6 +61,8 @@ Vue.component('usuarios-cadastro-page', require('./_pages/usuarios/UsuariosCadas
 Vue.component('form-default-combobox', require('./_pages/form-default-combobox/FormDefaultCombobox.vue').default);
 Vue.component('btn-action-widget-component', require('./components/widget/BtnActionComponent.vue').default);
 
+Vue.component('instituicoes-page', require('./_pages/instituicoes/Instituicoes.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

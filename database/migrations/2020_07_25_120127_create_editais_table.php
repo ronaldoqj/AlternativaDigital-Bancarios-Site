@@ -15,8 +15,10 @@ class CreateEditaisTable extends Migration
     {
         Schema::create('editais', function (Blueprint $table) {
             $table->id();
-
+            
             $table->char('ativo', 1)->default('N');
+            $table->integer('sindicatoAutor')->nullable();
+            
             $table->string('cartola', 240)->nullable();
             $table->string('titulo', 240)->nullable();
             $table->string('subtitulo', 240)->nullable();

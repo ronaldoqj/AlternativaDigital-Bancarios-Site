@@ -17,7 +17,7 @@
                 <a href="/adm/entidades-parceiras"><img src="/_adm/assets/SVGs/icon-entidades-parceiras.svg" class="img-fluid" onload="SVGInject(this)" /></a>
                 
                 <template v-if="perfil == 'master'">
-                    <a href="#"><img src="/_adm/assets/SVGs/icon-menu-meu-sindicato.svg" class="img-fluid" onload="SVGInject(this)" /></a>
+                    <a href="/adm/o-sindicato"><img src="/_adm/assets/SVGs/icon-menu-meu-sindicato.svg" class="img-fluid" onload="SVGInject(this)" /></a>
                 </template>
             </div>
             

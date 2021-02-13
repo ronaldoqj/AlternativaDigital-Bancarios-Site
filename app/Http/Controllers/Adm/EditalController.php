@@ -30,8 +30,10 @@ class EditalController extends Controller
     {
         $return = [];
         $Edital = new Edital();
+        $entity = session()->get('configAdm')['entity'];
+        
 
-        $return['list'] = $Edital->listAllToAdmPageEditais()->get()->toJson();
+        $return['list'] = $Edital->listAllToAdmPageEditais($entity)->get()->toJson();
 
         return view('adm.editais.editais')->withReturn($return);
     }
@@ -55,11 +57,14 @@ class EditalController extends Controller
 
     public function cadastrar(Request $request)
     {
+        $entity = session()->get('configAdm')['entity'];
+
         $Edital = new Edital();
+        $Edital->ativo = $request->input('ativar') == 'true' ? 'S' : 'N';
+        $Edital->sindicatoAutor = $entity ? $entity : Null;
         $Edital->dataInclusao = $request->input('dataInclusao') ? Carbon::createFromFormat('Y-m-d', $request->input('dataInclusao')) : null;
         $Edital->dataLimiteNoDestaque = $request->input('dataLimiteNoDestaque') ? Carbon::createFromFormat('Y-m-d H:i', "{$request->input('dataLimiteNoDestaque')} {$request->input('horaLimiteNoDestaque')}") : null;
         $Edital->horaLimiteNoDestaque = $request->input('horaLimiteNoDestaque') ? Carbon::createFromFormat('H:i', $request->input('horaLimiteNoDestaque')) : null;
-        $Edital->ativo = $request->input('ativar') == 'true' ? 'S' : 'N';
         $Edital->ativarNosSindicatos = $request->input('ativarNosSindicatos') ?? null;
         $Edital->cartola = $request->input('cartola') ?? '';
         $Edital->tags = $request->input('tags') ?? '';
@@ -96,10 +101,10 @@ class EditalController extends Controller
         $Edital = new Edital();
         $Edital = $Edital->find($request->input('id'));
         
+        $Edital->ativo = $request->input('ativar') == 'true' ? 'S' : 'N';
         $Edital->dataInclusao = $request->input('dataInclusao') ? Carbon::createFromFormat('Y-m-d', $request->input('dataInclusao')) : null;
         $Edital->dataLimiteNoDestaque = $request->input('dataLimiteNoDestaque') ? Carbon::createFromFormat('Y-m-d H:i', "{$request->input('dataLimiteNoDestaque')} {$request->input('horaLimiteNoDestaque')}") : null;
         $Edital->horaLimiteNoDestaque = $request->input('horaLimiteNoDestaque') ? Carbon::createFromFormat('H:i', $request->input('horaLimiteNoDestaque')) : null;
-        $Edital->ativo = $request->input('ativar') == 'true' ? 'S' : 'N';
         $Edital->ativarNosSindicatos = $request->input('ativarNosSindicatos') ?? null;
         $Edital->cartola = $request->input('cartola') ?? '';
         $Edital->tags = $request->input('tags') ?? '';

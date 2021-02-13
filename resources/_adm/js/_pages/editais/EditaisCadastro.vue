@@ -1,11 +1,11 @@
 <template>
-    <div id="page-editais-cadastro" class="container-fluid mt-10">
+    <div id="page-editais-cadastro" class="container-fluid">
         <pages-menu-bar :btns-top-bar="makeBtnsBarTop()"></pages-menu-bar>
         <errors-component :objErrorsShow="errorsShow" @showErrorsChange="errorsShow.show = $event"></errors-component>
 
         <form :action="actionForm + methodUrl" method="post" @submit="checkForm" enctype="multipart/form-data">
             <input type="hidden" name="_token" :value="csrf">
-            <input type="hidden" name="ativar" :value="ativar" />
+            <input type="hidden" name="ativar" :value="dataInputs.ativar" />
             <input type="hidden" name="id" :value="id" />
 
             <div class="row">
@@ -104,21 +104,24 @@
                 </div>
                 <!-- Aticar Notícia -->
                 <div class="col-1 switch-ativar-noticia text-center">
-                    <p>Ativar Notícia</p>
-                    <v-switch v-model="ativar" class="ma-4"></v-switch>
+                    <p>Ativar Edital</p>
+                    <v-switch v-model="dataInputs.ativar" class="ma-4"></v-switch>
                 </div>
                 <!-- Ativar nos Sindicatos -->
                 <div class="col-3">
-                    <v-select
+                    <v-combobox
                     name="ativarNosSindicatos"
                     label="Ativar nos Sindicatos:"
-                    v-model="form.selectSindicato"
-                    :items="sindicatos"
+                    v-model="dataInputs.sindicatos.selected"
+                    item-text="name"
+                    item-value="id"
+                    :items="dataInputs.sindicatos.items"
                     dense="dense"
                     color="primary"
                     outlined
                     clearable
-                    ></v-select>
+                    :disabled="dataInputs.sindicatos.disabled"
+                    ></v-combobox>
                 </div>
             </div>
 
@@ -315,13 +318,8 @@
 import moment from 'moment';
 
 export default {
-    props: ['csrf', 'actionForm', 'formEdition', 'methodUrl'],
+    props: ['csrf', 'actionForm', 'formEdition', 'methodUrl', 'entity'],
     data () {
-        // Variavel do combobox
-        const defaultForm = Object.freeze({
-            selectSindicato: ''
-        })
-
         return {
             /**
              * Campos Hiden
@@ -352,21 +350,18 @@ export default {
                 linhaDeApoio: 'required',
             },
 
-            switch1: false,
-
-            // Combobox Sindicatos
-            form: Object.assign({}, defaultForm),
-            sindicatos: [],//['Sindicato1', 'Sindicato2', 'Sindicato3', 'Sindicato4', 'Sindicato5'],
-
-            // Switch Ativar Notícia
-            ativar: false,
-
             dataInputs: {
+                ativar: false,
                 creditoBannerDestaque: '',
                 cartola: '',
                 tags: '',
                 titulo: '',
-                linhaDeApoio: ''
+                linhaDeApoio: '',
+                sindicatos: {
+                    items: [],
+                    selected: null,
+                    disabled: false
+                },
             },
 
             dateTimeInputs: {
@@ -466,7 +461,7 @@ export default {
             this.dateTimeInputs.dates.limiteNoDestaque.date = _.isEmpty(item.dataLimiteNoDestaque) ? '' : moment(String(item.dataLimiteNoDestaque)).format('YYYY-MM-DD');
             this.dateTimeInputs.times.limiteDestaque.time = _.isEmpty(item.horaLimiteNoDestaque) ? '' : moment(String('2020-01-01 '+item.horaLimiteNoDestaque)).format('H:mm');
 
-            this.ativar = item.ativo == 'S' ? true: false;
+            this.dataInputs.ativar = item.ativo == 'S' ? true: false;
 
             // Controle para mostrar os files ignorando a regra atual de validação (CONTEM VALOR DO TIPO STRING)
             // Ou manter a mesma logica que é quando o formulário está realizando cadastro (VAZIO DO TIPO STRING) 
@@ -475,13 +470,11 @@ export default {
             this.fileFileIsEdit = item.file_id > 0 ? `/${item.file_pathfile}/${item.file_namefile}` : '';
             this.fileFileName = item.file_namefile;
 
-            this.dataInputs = {
-                creditoBannerDestaque: item.fileBannerDestaque_creditfile,
-                cartola: item.cartola,
-                tags: item.tags,
-                titulo: item.titulo,
-                linhaDeApoio: item.linhaDeApoio,
-            };
+            this.dataInputs.creditoBannerDestaque = item.fileBannerDestaque_creditfile;
+            this.dataInputs.cartola = item.cartola;
+            this.dataInputs.tags = item.tags;
+            this.dataInputs.titulo = item.titulo;
+            this.dataInputs.linhaDeApoio = item.linhaDeApoio;
         },
 
         makeBtnsBarTop() {
@@ -508,6 +501,17 @@ export default {
     },
     created()
     {
+        /**
+         * Caso a entidade for um sindicato, então não poderá
+         * escolhar um sindicado para compartilhar o edital
+         */
+        if (this.entity > 0) {
+            this.dataInputs.sindicatos.disabled = true;
+        }
+
+        /**
+         * Verifica se é o modo de edição para setar os campos
+         */
         if (!_.isEmpty(this.formEdition)) {
             this.isEdit = true;
             this.editStartCompleteFilds(JSON.parse(this.formEdition));
@@ -520,21 +524,7 @@ export default {
 @import '~/../resources/_adm/sass/_vars.scss';
 
 #page-editais-cadastro
-{
-    .box-btns-noticias {
-        margin: 10px 0;
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        border: solid 1px $grey;
-        padding: 20px 20px 10px;
-        border-radius: 20px;
-    
-        > div {
-            margin-bottom: 10px;
-        }
-    }
-    
+{    
     .switch-ativar-noticia {
         p {
             font-size: 0.7em;

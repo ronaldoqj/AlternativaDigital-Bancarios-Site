@@ -19,14 +19,23 @@ class Edital extends Model
 
 
     /**
-     * Adm 
+     * Adm
+     * 
+     * @param number|Null $entity Caso seja ZERO ou NULL é assimido que
+     *                            se trata do Portal, caso contrario é um sindicato.
      */
-    public function listAllToAdmPageEditais()
+    public function listAllToAdmPageEditais($entity = null)
     {
         $list = DB::table('editais');
         $list->leftjoin('files as filesBannerDestaque', 'filesBannerDestaque.id', '=', 'editais.bannerDestaque');
         $list->leftjoin('files as filesFile', 'filesFile.id', '=', 'editais.file');
         $list->whereNull('editais.deleted_at');
+
+        if ($entity) {
+            $list->where('editais.sindicatoAutor', $entity);
+        } else {
+            $list->whereNull('editais.sindicatoAutor');
+        }
                           
         $list->orderBy('editais.dataInclusao', 'desc');
 

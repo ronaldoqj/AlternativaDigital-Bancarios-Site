@@ -133,12 +133,12 @@
                 <div class="col-3" :class="borderFields.ativarSindicatos">
                     <v-combobox
                     name="sindicatos"
+                    label="Ativar no Portal e Sindicatos:"
                     v-model="dataInputs.sindicatos.selected"
                     item-text="name"
                     item-value="id"
                     :items="dataInputs.sindicatos.items"
                     :auto-select-first="true"
-                    label="Ativar no Portal e Sindicatos:"
                     multiple
                     outlined
                     dense

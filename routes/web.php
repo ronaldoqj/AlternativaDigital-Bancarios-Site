@@ -76,8 +76,8 @@ Route::prefix('adm')->namespace('Adm')->group(function ()
         Route::get('/bancos', 'BancoController@index')->name('adm-bancos');
         Route::post('/bancos/actions', 'BancoController@actions')->name('adm-bancos-actions');
     
-        Route::get('/fetrafi-rs/cadastro', 'FetrafiRsController@cadastro')->name('adm-fetrafi-rs-cadastro');
-        Route::post('/fetrafi-rs/cadastro', 'FetrafiRsController@cadastrar')->name('adm-fetrafi-rs-cadastrar');
+        // Route::get('/fetrafi-rs/cadastro', 'FetrafiRsController@cadastro')->name('adm-fetrafi-rs-cadastro');
+        // Route::post('/fetrafi-rs/cadastro', 'FetrafiRsController@cadastrar')->name('adm-fetrafi-rs-cadastrar');
         
         Route::get('/sindicatos', 'SindicatoController@index')->name('adm-sindicatos');
         Route::get('/sindicatos/cadastro', 'SindicatoController@cadastro')->name('adm-sindicatos-cadastro');
@@ -85,6 +85,9 @@ Route::prefix('adm')->namespace('Adm')->group(function ()
         Route::get('/sindicatos/edicao/{id?}', 'SindicatoController@edicao')->name('adm-sindicatos-edicao');
         Route::post('/sindicatos/edicao', 'SindicatoController@editar')->name('adm-sindicatos-editar');
         Route::post('/sindicatos/delete', 'SindicatoController@deletar')->name('adm-sindicatos-deletar');
+
+        Route::get('/o-sindicato', 'InstituicaoController@index')->name('adm-instituicao');
+        Route::post('/o-sindicato', 'InstituicaoController@edicao')->name('adm-instituicao-edicao');
     });
 
     // Formulários de cadastros do ADM
