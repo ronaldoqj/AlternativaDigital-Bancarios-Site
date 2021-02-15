@@ -18,12 +18,12 @@
         <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
 
         <!-- Fonts -->
-        <link rel="dns-prefetch" href="//fonts.gstatic.com">    
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined">
+        <!-- <link rel="dns-prefetch" href="//fonts.gstatic.com">    
+	    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined"> -->
+        <!-- MaterialDesignIcons imported from vuetify folder -->
 
         <!-- Icons -->
         <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
         @yield('css-syndicate')
         @yield('css')
 
@@ -32,7 +32,8 @@
         <script src="{{ asset('_site/js/svg-inject.min.js') }}"></script>
         <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+        <script src="/_adm/js/_plugins/jquery/jquery.min.js"></script>
         @yield('js')
     </head>
     <body>

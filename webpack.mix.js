@@ -43,6 +43,8 @@ mix.js('resources/_adm/js/app.js', 'public/_adm/js/app.js')
     .sass('resources/_site/sass/pages/fetrafi-rs/sindicalize-se.scss', 'public/_site/css/pages/fetrafi-rs/sindicalize-se.css')
     
     .styles('node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css', 'public/_site/css/mCustomScrollbar.css')
+
+    .scripts('resources/_adm/js/_plugins/jquery/jquery.min.js', 'public/_adm/js/_plugins/jquery/jquery.min.js')
     .scripts([
         //'node_modules/jquery/dist/jquery.min.js',
         'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',
