@@ -46,12 +46,6 @@ export default {
         sindicates() {
             return JSON.parse(this.listSindicates);
         }
-    },
-    methods: {
-    },
-    mounted() {
-        console.log('Sindicatos', this.sindicates);
-        console.log('Cards PortalContent', this.cards.portalContent);
     }
 }
 </script>

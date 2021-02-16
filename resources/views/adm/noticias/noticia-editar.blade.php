@@ -35,6 +35,16 @@
 
 @section('content')
 <div class="container-fluid">
-    <noticias-cadastro-page ref="cadastro" form-action="{{url('adm/noticias/edicao')}}" banks="{{ $bancos }}" syndicates="{{ $sindicatos }}" method="post" csrf="{{ csrf_token() }}" noticia-edition="{{$noticia}}" registered-syndicates="{{$registeredSyndicates}}" registered-banks="{{$registeredBanks}}" />
+    <noticias-cadastro-page
+        ref="cadastro"
+        form-action="{{url('adm/noticias/edicao')}}"
+        banks="{{ $bancos }}"
+        syndicates="{{ $sindicatos }}"
+        method="post"
+        csrf="{{ csrf_token() }}"
+        noticia-edition="{{$noticia}}"
+        registered-syndicates="{{$registeredSyndicates}}"
+        registered-banks="{{$registeredBanks}}"
+    />
 </div>
 @endsection

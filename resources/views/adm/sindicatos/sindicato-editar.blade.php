@@ -7,7 +7,13 @@
 
 <div class="container-fluid">
 
-    <sindicatos-cadastro-page form-action="{{url('adm/sindicatos/edicao')}}" method="post" csrf="{{ csrf_token() }}" form-edition="{{$list}}" estados="{{$estados}}" />
+    <sindicatos-cadastro-page
+        form-action="{{url('adm/sindicatos/edicao')}}"
+        method="post"
+        form-edition="{{$list}}"
+        estados="{{$estados}}"
+        csrf="{{ csrf_token() }}"
+    />
 
 </div>
 @endsection

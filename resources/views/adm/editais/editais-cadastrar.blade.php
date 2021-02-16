@@ -6,7 +6,13 @@
 @section('content')
 
 <div class="container-fluid">
-    <editais-cadastro-page action-form="{{url('adm/editais')}}" method-url="/cadastro" method="post" csrf="{{ csrf_token() }}" entity="{{session()->get('configAdm')['entity']}}" />
+    <editais-cadastro-page
+        action-form="{{url('adm/editais')}}"
+        method-url="/cadastro"
+        entity="{{session()->get('configAdm')['entity']}}"
+        sindicatos="{{ json_encode($sindicatos) }}"
+        csrf="{{ csrf_token() }}"
+    />
 </div>
 
 @endsection

@@ -75,7 +75,6 @@ export default {
         },
         editStartCompleteFilds( data )
         {
-            console.log('testestess', data);
             this.entity = data.id;
             this.fetrafi = data.fetrafi;
 
@@ -105,7 +104,7 @@ export default {
     },
     mounted()
     {
-        this.editStartCompleteFilds( JSON.parse(this.data));
+        this.editStartCompleteFilds( JSON.parse(this.data) );
     }
 }
 </script>

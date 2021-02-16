@@ -33,7 +33,7 @@ class CreateEditaisTable extends Migration
             $table->timestamp('dataLimiteNoDestaque', 0)->nullable();
             $table->time('horaLimiteNoDestaque', 0)->nullable();
             
-            $table->integer('ativarNosSindicatos')->nullable();
+            $table->string('ativarNosSindicatos', 240)->nullable();
             
             $table->integer('userIdCreated')->nullable();
             $table->integer('userIdUpdated')->nullable();

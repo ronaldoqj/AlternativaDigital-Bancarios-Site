@@ -7,6 +7,7 @@
             <input type="hidden" name="_token" :value="csrf">
             <input type="hidden" name="ativar" :value="dataInputs.ativar" />
             <input type="hidden" name="id" :value="id" />
+            <input type="hidden" name="idsSindicatos" :value="idsSindicatos" />
 
             <div class="row">
                 <!-- Data Inclusão -->
@@ -113,11 +114,12 @@
                     name="ativarNosSindicatos"
                     label="Ativar nos Sindicatos:"
                     v-model="dataInputs.sindicatos.selected"
+                    multiple
                     item-text="name"
                     item-value="id"
                     :items="dataInputs.sindicatos.items"
-                    dense="dense"
                     color="primary"
+                    dense="dense"
                     outlined
                     clearable
                     :disabled="dataInputs.sindicatos.disabled"
@@ -318,7 +320,14 @@
 import moment from 'moment';
 
 export default {
-    props: ['csrf', 'actionForm', 'formEdition', 'methodUrl', 'entity'],
+    props: [
+        'actionForm',
+        'methodUrl',
+        'formEdition',
+        'entity',
+        'sindicatos',
+        'csrf'
+    ],
     data () {
         return {
             /**
@@ -389,6 +398,21 @@ export default {
             filesFile: null,
             fileFileIsEdit: '',
             fileFileName: '',
+        }
+    },
+    computed: {
+        idsSindicatos()
+        {
+            let arrayIdsSindicatos = null;
+            if (this.dataInputs.sindicatos.selected) {
+                arrayIdsSindicatos = [];
+
+                this.dataInputs.sindicatos.selected.forEach(function(item) {
+                    arrayIdsSindicatos.push(item.id);
+                });
+            }
+            
+            return arrayIdsSindicatos;
         }
     },
     methods: {
@@ -465,7 +489,6 @@ export default {
 
             // Controle para mostrar os files ignorando a regra atual de validação (CONTEM VALOR DO TIPO STRING)
             // Ou manter a mesma logica que é quando o formulário está realizando cadastro (VAZIO DO TIPO STRING) 
-            console.log('now', item.file_id);
             this.fileBannerIsEdit = item.fileBannerDestaque_id > 0 ? `/${item.fileBannerDestaque_pathfile}/${item.fileBannerDestaque_namefile}` : '';
             this.fileFileIsEdit = item.file_id > 0 ? `/${item.file_pathfile}/${item.file_namefile}` : '';
             this.fileFileName = item.file_namefile;
@@ -475,6 +498,31 @@ export default {
             this.dataInputs.tags = item.tags;
             this.dataInputs.titulo = item.titulo;
             this.dataInputs.linhaDeApoio = item.linhaDeApoio;
+
+            /**
+             * Só faz a validação se "item.ativarNosSindicatos" for diferente de NULL
+             */
+            if (item.ativarNosSindicatos)
+            {
+                // Seleciona os sindicatos que estão cadastrados
+                const arraySelected = item.ativarNosSindicatos.split(",")
+                                                              .map(function(item) {
+                                                                  return parseInt(item, 10);
+                                                              });
+                JSON.parse(this.sindicatos).forEach( item =>
+                {
+                    if ( arraySelected.indexOf(item.id) >= 0 )
+                    {
+                        // Caso a variavel this.dataInputs.sindicatos.selected seja null, é alterada para array
+                        if (!this.dataInputs.sindicatos.selected)
+                        {
+                            this.dataInputs.sindicatos.selected = [];
+                        }
+
+                        this.dataInputs.sindicatos.selected.push(item);
+                    }
+                });
+            }
         },
 
         makeBtnsBarTop() {
@@ -507,6 +555,11 @@ export default {
          */
         if (this.entity > 0) {
             this.dataInputs.sindicatos.disabled = true;
+        } else {
+            /**
+             * Caso contrário é populado o combobox dos sindicatos
+             */
+            this.dataInputs.sindicatos.items = JSON.parse(this.sindicatos);
         }
 
         /**
