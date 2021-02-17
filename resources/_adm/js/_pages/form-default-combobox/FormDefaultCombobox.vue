@@ -44,9 +44,8 @@
                                         <v-card>
                                             <v-list-item> <v-list-item-title>Deseja excluir o registro?</v-list-item-title> </v-list-item>
                                             <v-btn x-small class="ma-2" text @click="menu = false">Cancelar</v-btn>
-                                            <v-btn small class="ma-2" tile outlined color="error" @click="formExcluirEnviar()">
-                                                <!-- <v-icon left>delete_outline</v-icon> -->
-                                                Excluir
+                                            <v-btn small tile color="error" class="ma-2 white--text" outlined @click="formExcluirEnviar()">
+                                                Excluir <v-icon right dark> mdi-delete </v-icon>
                                             </v-btn>
                                         </v-card>
                                     </v-menu>
@@ -95,9 +94,8 @@
             <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn color="blue darken-1" text @click="modal.show = false">Cancelar</v-btn>
-                <v-btn class="ma-2" tile outlined color="success" @click="checkForm" :disabled="disabledBtnCadastrar">
-                    <!-- <v-icon left>done_outline</v-icon> -->
-                    {{modal.btnName}}
+                <v-btn color="success" tile class="ma-2" outlined @click="checkForm" :disabled="disabledBtnCadastrar">
+                    {{modal.btnName}} <v-icon right dark> done </v-icon>
                 </v-btn>
             </v-card-actions>
             </v-card>

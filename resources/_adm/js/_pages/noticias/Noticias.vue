@@ -39,8 +39,8 @@
                                                 <v-list-item> <v-list-item-title>Deseja excluir o registro?</v-list-item-title> </v-list-item>
                                                 
                                                 <v-btn x-small class="ma-2" text @click="menu = false">Cancelar</v-btn>
-                                                <v-btn small class="ma-2" tile outlined color="error" @click="formExcluirEnviar()">
-                                                    <v-icon left>delete_outline</v-icon> Excluir
+                                                <v-btn small tile color="error" class="ma-2 white--text" outlined @click="formExcluirEnviar()">
+                                                    Excluir <v-icon right dark> mdi-delete </v-icon>
                                                 </v-btn>
                                             </v-card>
                                         </v-menu>
@@ -85,8 +85,8 @@
                                                 <v-list-item> <v-list-item-title>Deseja excluir o registro?</v-list-item-title> </v-list-item>
                                                 
                                                 <v-btn x-small class="ma-2" text @click="menu = false">Cancelar</v-btn>
-                                                <v-btn small class="ma-2" tile outlined color="error" @click="formExcluirEnviar()">
-                                                    <v-icon left>delete_outline</v-icon> Excluir
+                                                <v-btn small tile color="error" class="ma-2 white--text" outlined @click="formExcluirEnviar()">
+                                                    Excluir <v-icon right dark> mdi-delete </v-icon>
                                                 </v-btn>
                                             </v-card>
                                         </v-menu>
@@ -128,8 +128,8 @@
                                                 <v-list-item> <v-list-item-title>Deseja excluir o registro?</v-list-item-title> </v-list-item>
                                                 
                                                 <v-btn x-small class="ma-2" text @click="menu = false">Cancelar</v-btn>
-                                                <v-btn small class="ma-2" tile outlined color="error" @click="formExcluirEnviar()">
-                                                    <v-icon left>delete_outline</v-icon> Excluir
+                                                <v-btn small tile color="error" class="ma-2 white--text" outlined @click="formExcluirEnviar()">
+                                                    Excluir <v-icon right dark> mdi-delete </v-icon>
                                                 </v-btn>
                                             </v-card>
                                         </v-menu>
@@ -176,8 +176,8 @@
                                                 <v-list-item> <v-list-item-title>Deseja excluir o registro?</v-list-item-title> </v-list-item>
                                                 
                                                 <v-btn x-small class="ma-2" text @click="menu = false">Cancelar</v-btn>
-                                                <v-btn small class="ma-2" tile outlined color="error" @click="formExcluirEnviar()">
-                                                    <v-icon left>delete_outline</v-icon> Excluir
+                                                <v-btn small tile color="error" class="ma-2 white--text" outlined @click="formExcluirEnviar()">
+                                                    Excluir <v-icon right dark> mdi-delete </v-icon>
                                                 </v-btn>
                                             </v-card>
                                         </v-menu>
@@ -219,8 +219,8 @@
                                                 <v-list-item> <v-list-item-title>Deseja excluir o registro?</v-list-item-title> </v-list-item>
                                                 
                                                 <v-btn x-small class="ma-2" text @click="menu = false">Cancelar</v-btn>
-                                                <v-btn small class="ma-2" tile outlined color="error" @click="formExcluirEnviar()">
-                                                    <v-icon left>delete_outline</v-icon> Excluir
+                                                <v-btn small tile color="error" class="ma-2 white--text" outlined @click="formExcluirEnviar()">
+                                                    Excluir <v-icon right dark> mdi-delete </v-icon>
                                                 </v-btn>
                                             </v-card>
                                         </v-menu>
@@ -236,7 +236,6 @@
                     </div>
                     </v-expansion-panel-content>
                 </v-expansion-panel>
-
 
             </v-expansion-panels>
         </form>
@@ -256,7 +255,6 @@ export default {
             // controle dos acordeões
             panel: [0, 1, 2, 3, 4],
             
-
             size: {
                 height: '250px',
                 backgroundImage: 'url(/files/noticias/be6e7ee47196117d743e38015197ecdf924d2ec4bc0fbff5d69ec24b67b828c2-20200707_183027-777950.jpg)'
