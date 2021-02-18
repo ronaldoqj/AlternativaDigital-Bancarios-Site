@@ -197,7 +197,7 @@
                                             label="Banner Destaque:"
                                             placeholder="Procurar Imagem"
                                             prepend-icon=""
-                                            prepend-inner-icon="add_photo_alternate"
+                                            prepend-inner-icon="image"
                                             dense="dense"
                                             color="primary"
                                             counter

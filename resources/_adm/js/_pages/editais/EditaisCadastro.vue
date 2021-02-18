@@ -11,7 +11,7 @@
 
             <div class="row">
                 <!-- Data Inclusão -->
-                <div class="col-3" :class="borderFields.dataDaInclusao">
+                <div class="col-4" :class="borderFields.dataDaInclusao">
                     <v-dialog
                         ref="dialog1"
                         v-model="dateTimeInputs.dates.dataDaInclusao.modal"
@@ -40,7 +40,7 @@
                     </v-dialog>
                 </div>
                 <!-- Data Limite no Destaque -->
-                <div class="col-3" :class="borderFields.dataLimiteNoDestaque">
+                <div class="col-4" :class="borderFields.dataLimiteNoDestaque">
                     <v-dialog
                         ref="dialog2"
                         v-model="dateTimeInputs.dates.limiteNoDestaque.modal"
@@ -70,7 +70,7 @@
                     </v-dialog>
                 </div>
                 <!-- Hora Limite no Destaque -->
-                <div class="col-2" :class="borderFields.horaLimiteNoDestaque">
+                <div class="col-3" :class="borderFields.horaLimiteNoDestaque">
                     <v-dialog
                         ref="dialog3"
                         v-model="dateTimeInputs.times.limiteDestaque.modal"
@@ -109,7 +109,8 @@
                     <v-switch v-model="dataInputs.ativar" class="ma-4"></v-switch>
                 </div>
                 <!-- Ativar nos Sindicatos -->
-                <div class="col-3">
+                <!-- Campo removido. Até o momento não é para ter essa funcionalidade -->
+                <div class="col-3" v-if="false" >
                     <v-combobox
                     name="ativarNosSindicatos"
                     label="Ativar nos Sindicatos:"
@@ -150,11 +151,10 @@
                                             label="Banner Destaque:"
                                             placeholder="Procurar Imagem"
                                             prepend-icon=""
-                                            prepend-inner-icon="add_photo_alternate"
+                                            prepend-inner-icon="image"
                                             dense="dense"
                                             color="primary"
                                             counter
-                                            multiple
                                             accept="image/png, image/jpeg, image/bmp"
                                             outlined
                                             :show-size="1000"

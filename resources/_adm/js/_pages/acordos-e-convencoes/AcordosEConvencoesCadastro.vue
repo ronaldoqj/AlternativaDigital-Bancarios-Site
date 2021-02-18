@@ -13,7 +13,7 @@
 
             <div class="row">
                 <!-- Data Inclusão -->
-                <div class="col-3" :class="borderFields.dataDaInclusao">
+                <div class="col-4" :class="borderFields.dataDaInclusao">
                     <v-dialog
                         ref="dialog1"
                         v-model="dateTimeInputs.dates.dataDaInclusao.modal"
@@ -43,7 +43,7 @@
                 </div>
 
                 <!-- Limite No Destaque -->
-                <div class="col-3" :class="borderFields.dataLimiteNoDestaque">
+                <div class="col-4" :class="borderFields.dataLimiteNoDestaque">
                     <v-dialog
                         ref="dialog2"
                         v-model="dateTimeInputs.dates.limiteNoDestaque.modal"
@@ -74,7 +74,7 @@
                 </div>
 
                 <!-- Limite Hora -->
-                <div class="col-2" :class="borderFields.horaLimiteNoDestaque">
+                <div class="col-3" :class="borderFields.horaLimiteNoDestaque">
                     <v-dialog
                         ref="dialog3"
                         v-model="dateTimeInputs.times.limiteDestaque.modal"
@@ -115,7 +115,8 @@
                 </div>
 
                 <!-- Ativar nos Sindicatos -->
-                <div class="col-3">
+                <!-- Campo removido. Até o momento não é para ter essa funcionalidade -->
+                <div class="col-3" v-if="false">
                     <v-select
                     name="ativarNosSindicatos"
                     label="Ativar nos Sindicatos:"
@@ -152,7 +153,7 @@
                                             label="Banner Destaque:"
                                             placeholder="Procurar Imagem"
                                             prepend-icon=""
-                                            prepend-inner-icon="add_photo_alternate"
+                                            prepend-inner-icon="image"
                                             dense="dense"
                                             color="primary"
                                             counter
