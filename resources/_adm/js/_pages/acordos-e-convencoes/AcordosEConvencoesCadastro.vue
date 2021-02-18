@@ -1,6 +1,6 @@
 
 <template>
-    <div id="page-noticias-cadastro" class="container-fluid">
+    <div id="page-acordos-e-convencoes" class="container-fluid">
         <pages-menu-bar :btns-top-bar="makeBtnsBarTop()"></pages-menu-bar>
 
         <errors-component :objErrorsShow="errorsShow" @showErrorsChange="errorsShow.show = $event"></errors-component>
@@ -11,9 +11,9 @@
             <input type="hidden" name="id" :value="id" />
             <input type="hidden" name="idEntidade" :value="idEntidade" />
 
-            <div class="row">
+            <div class="row mt-4">
                 <!-- Data Inclusão -->
-                <div class="col-4" :class="borderFields.dataDaInclusao">
+                <div class="col-6 col-sm-4 col-lg-3" :class="borderFields.dataDaInclusao">
                     <v-dialog
                         ref="dialog1"
                         v-model="dateTimeInputs.dates.dataDaInclusao.modal"
@@ -43,7 +43,8 @@
                 </div>
 
                 <!-- Limite No Destaque -->
-                <div class="col-4" :class="borderFields.dataLimiteNoDestaque">
+                <!-- Campo removido. Funcionalidade removida -->
+                <div v-if="false" class="col-4" :class="borderFields.dataLimiteNoDestaque">
                     <v-dialog
                         ref="dialog2"
                         v-model="dateTimeInputs.dates.limiteNoDestaque.modal"
@@ -74,7 +75,8 @@
                 </div>
 
                 <!-- Limite Hora -->
-                <div class="col-3" :class="borderFields.horaLimiteNoDestaque">
+                <!-- Campo removido. Funcionalidade removida -->
+                <div v-if="false" class="col-3" :class="borderFields.horaLimiteNoDestaque">
                     <v-dialog
                         ref="dialog3"
                         v-model="dateTimeInputs.times.limiteDestaque.modal"
@@ -109,9 +111,13 @@
                 </div>
 
                 <!-- Ativar Notícia -->
-                <div class="col-1 switch-ativar-noticia text-center">
-                    <p>Ativar Notícia</p>
-                    <v-switch v-model="ativar" class="ma-4"></v-switch>
+                <div class="col-6 col-sm-8 col-lg-9">
+                    <v-switch
+                        v-model="ativar"
+                        class="float-right m-0 mr-1"
+                        label="Ativar Acordo e Conv."
+                        hide-details
+                    ></v-switch>
                 </div>
 
                 <!-- Ativar nos Sindicatos -->
@@ -129,72 +135,123 @@
                     ></v-select>
                 </div>
             </div>
+            
+            <v-card class="mx-auto mb-4" outlined>
+                <v-card-text>
 
-            <hr>
+                    <div class="row">
+                        <!-- Banner Destaque, Credito da Imagem -->
+                        <div class="col-12">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <!-- Banner Destaque -->
+                                    <div class="col-8 col-box-files" :class="borderFields.bannerDestaque">
+                                        <label>Banner Destaque</label>
+                                        <div class="box-files">
 
-            <div class="row">
-                <div class="col-12">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <!-- Banner Destaque -->
-                            <div class="col-8 col-box-files" :class="borderFields.bannerDestaque">
-                                <label>Banner Destaque</label>
-                                <div class="box-files">
-
-                                    <template v-if="fileBannerIsEdit != ''">
-                                        <div class="box-image">
-                                            <img :src="fileBannerIsEdit" class="img-fluid" alt="">
-                                            <p><v-btn depressed small color="error" @click="fileBannerIsEdit = ''">Excluir</v-btn></p>
-                                        </div>
-                                    </template>
-                                    <template v-else>
-                                        <v-file-input name="bannerDestaque"
-                                            v-model="filesBannerDestaque"
-                                            label="Banner Destaque:"
-                                            placeholder="Procurar Imagem"
-                                            prepend-icon=""
-                                            prepend-inner-icon="image"
-                                            dense="dense"
-                                            color="primary"
-                                            counter
-                                            multiple
-                                            accept="image/png, image/jpeg, image/bmp"
-                                            outlined
-                                            :show-size="1000"
-                                        >
-                                            <template v-slot:selection="{ index, text }">
-                                            <v-chip v-if="index < 2" color="primary" dark label small>
-                                                {{ text }}
-                                            </v-chip>
-                                            <span v-else-if="index === 2" class="overline grey--text text--darken-3 mx-2" >
-                                                +{{ files.length - 2 }} File(s)
-                                            </span>
+                                            <template v-if="fileBannerIsEdit != ''">
+                                                <div class="box-image">
+                                                    <img :src="fileBannerIsEdit" class="img-fluid" alt="">
+                                                    <p><v-btn depressed small color="error" @click="fileBannerIsEdit = ''">Excluir</v-btn></p>
+                                                </div>
                                             </template>
-                                        </v-file-input>
-                                    </template>
+                                            <template v-else>
+                                                <v-file-input name="bannerDestaque"
+                                                    v-model="filesBannerDestaque"
+                                                    label="Banner Destaque:"
+                                                    placeholder="Procurar Imagem"
+                                                    prepend-icon=""
+                                                    prepend-inner-icon="image"
+                                                    dense="dense"
+                                                    color="primary"
+                                                    counter
+                                                    accept="image/png, image/jpeg, image/bmp"
+                                                    outlined
+                                                    :show-size="1000"
+                                                >
+                                                    <template v-slot:selection="{ index, text }">
+                                                    <v-chip v-if="index < 2" color="primary" dark label small>
+                                                        {{ text }}
+                                                    </v-chip>
+                                                    <span v-else-if="index === 2" class="overline grey--text text--darken-3 mx-2" >
+                                                        +{{ files.length - 2 }} File(s)
+                                                    </span>
+                                                    </template>
+                                                </v-file-input>
+                                            </template>
+                                        </div>
+                                    </div>
+                                    <!-- Credito da Imagem -->
+                                    <div class="col-4" :class="borderFields.creditoBannerDestaque">
+                                        <div class="credito-da-imagem"></div>
+                                        <v-text-field
+                                            v-model="dataInputs.creditoBannerDestaque"
+                                            name="creditoBannerDestaque"
+                                            label="Crédito da Imagem:"
+                                            placeholder="Crédito da Imagem"
+                                            dense="dense"
+                                            maxlength="240"
+                                            counter="240"
+                                            outlined
+                                            clearable
+                                        ></v-text-field>
+                                    </div>
                                 </div>
                             </div>
-                            <!-- Credito da Imagem -->
-                            <div class="col-4" :class="borderFields.creditoBannerDestaque">
-                                <div class="credito-da-imagem"></div>
-                                <v-text-field
-                                    v-model="dataInputs.creditoBannerDestaque"
-                                    name="creditoBannerDestaque"
-                                    label="Crédito da Imagem:"
-                                    placeholder="Crédito da Imagem"
-                                    dense="dense"
-                                    maxlength="240"
-                                    counter="240"
-                                    outlined
-                                    clearable
-                                ></v-text-field>
+                        </div>
+
+                        <!-- Arquivo PDF -->
+                        <div class="col-12">
+                            <div class="container-fluid">
+
+                                <div class="row">
+                                    <div class="col-12 col-box-files" :class="borderFields.file">
+                                        <label>Arquivo PDF</label>
+                                        <div class="box-files">
+                                            <template v-if="fileFileIsEdit != ''">
+                                                <div class="box-image box-file">
+                                                    <p class="icon-file"><span class="material-icons"> picture_as_pdf </span></p>
+                                                    <a :href="fileFileIsEdit" target="_blank">{{this.fileFileName}}</a>
+                                                    <p><v-btn depressed small color="error" @click="fileFileIsEdit = ''">Excluir</v-btn></p>
+                                                </div>
+                                            </template>
+                                            <template v-else>
+                                                <v-file-input
+                                                    name="file"
+                                                    v-model="filesFile"
+                                                    label="Arquivo PDF:"
+                                                    placeholder="Procurar Arquivo"
+                                                    prepend-icon=""
+                                                    prepend-inner-icon="picture_as_pdf"
+                                                    dense="dense"
+                                                    color="primary"
+                                                    counter
+                                                    multiple
+                                                    accept=".pdf"
+                                                    outlined
+                                                    :show-size="1000"
+                                                >
+                                                    <template v-slot:selection="{ index, text }">
+                                                    <v-chip v-if="index < 2" color="primary" dark label small >
+                                                        {{ text }}
+                                                    </v-chip>
+                                                    <span v-else-if="index === 2" class="overline grey--text text--darken-3 mx-2" >
+                                                        +{{ files.length - 2 }} File(s)
+                                                    </span>
+                                                    </template>
+                                                </v-file-input>
+                                            </template>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="row"><div class="col"><hr mt-5 mb-5></div></div>
+            
+                </v-card-text>
+            </v-card>
 
             <!-- Entidade -->
             <div class="row">
@@ -283,56 +340,6 @@
                 </div>
             </div>
 
-            <!-- Arquivo PDF -->
-            <div class="row">
-                <div class="col-12">
-                    
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-12 col-box-files" :class="borderFields.file">
-                                <label>Arquivo PDF</label>
-                                <div class="box-files">
-                                    <template v-if="fileFileIsEdit != ''">
-                                        <div class="box-image box-file">
-                                            <p class="icon-file"><span class="material-icons"> picture_as_pdf </span></p>
-                                            <a :href="fileFileIsEdit" target="_blank">{{this.fileFileName}}</a>
-                                            <p><v-btn depressed small color="error" @click="fileFileIsEdit = ''">Excluir</v-btn></p>
-                                        </div>
-                                    </template>
-                                    <template v-else>
-                                        <v-file-input
-                                            name="file"
-                                            v-model="filesFile"
-                                            label="Arquivo PDF:"
-                                            placeholder="Procurar Arquivo"
-                                            prepend-icon=""
-                                            prepend-inner-icon="picture_as_pdf"
-                                            dense="dense"
-                                            color="primary"
-                                            counter
-                                            multiple
-                                            accept=".pdf"
-                                            outlined
-                                            :show-size="1000"
-                                        >
-                                            <template v-slot:selection="{ index, text }">
-                                            <v-chip v-if="index < 2" color="primary" dark label small >
-                                                {{ text }}
-                                            </v-chip>
-                                            <span v-else-if="index === 2" class="overline grey--text text--darken-3 mx-2" >
-                                                +{{ files.length - 2 }} File(s)
-                                            </span>
-                                            </template>
-                                        </v-file-input>
-                                    </template>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
             <!-- Submit -->
             <div class="row mt-5">
                 <div class="col-12">
@@ -378,8 +385,8 @@ export default {
             
             borderFields: {
                 dataDaInclusao: 'required',
-                dataLimiteNoDestaque: 'required',
-                horaLimiteNoDestaque: 'required',
+                dataLimiteNoDestaque: '',
+                horaLimiteNoDestaque: '',
                 ativarNosSindicatos: '',
                 entidades: 'required',
                 bannerDestaque: 'required',
@@ -470,11 +477,6 @@ export default {
             }
 
             // Validações especificas
-            if ( _.isEmpty(this.dateTimeInputs.dates.limiteNoDestaque.date) )
-                this.errorsShow.errors.push({title: 'Limite No Destaque', description: 'obrigatório'});
-            if ( _.isEmpty(this.dateTimeInputs.times.limiteDestaque.time) )
-                this.errorsShow.errors.push({title: 'Limite Hora', description: 'obrigatório'});
-
             if ( _.isEmpty(this.filesBannerDestaque) && this.fileBannerIsEdit == '' )
                 this.errorsShow.errors.push({title: 'Banner Destaque', description: 'obrigatório'});
             if (! _.isEmpty(this.filesBannerDestaque) && this.fileBannerIsEdit == ''  ) {
@@ -602,7 +604,7 @@ export default {
 
 <style lang="scss">
 @import '~/../resources/_adm/sass/_vars.scss';
-#page-noticias-cadastro
+#page-acordos-e-convencoes
 {
     .box-btns-noticias {
         margin: 10px 0;
@@ -615,18 +617,6 @@ export default {
     
         > div {
             margin-bottom: 10px;
-        }
-    }
-    
-    .switch-ativar-noticia {
-        p {
-            font-size: 0.7em;
-            margin: 0;
-            padding: 0;
-            margin-bottom: -20px;
-            margin-top: -6px;
-            white-space: nowrap;
-            color: $gray-font;
         }
     }
 
@@ -698,11 +688,6 @@ export default {
             transition: $transition-normal ease;
             animation: shadowEfectBorder 1s;
             animation-fill-mode: forwards;
-
-            &.ckeditor {
-                padding: 5px;
-                border-radius: 5px;
-            }
         }
 
         fieldset {
@@ -716,8 +701,6 @@ export default {
     .inputs-finais-to-all-types {
         .v-input { margin-bottom: -30px; }
     }
-
-    .v-input--switch .v-input--selection-controls__input { margin: 0 auto; }
 }
 
 @keyframes shadowEfectBorder

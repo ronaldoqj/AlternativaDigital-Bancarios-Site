@@ -9,59 +9,7 @@
             <input type="hidden" name="_token" :value="csrf">
             <input type="hidden" name="id" :value="id" />
 
-            <hr>
-
-            <!-- Imagem da Campanha -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-12 col-box-files" :class="borderFields.campanha">
-                                <label>Imagem da campanha</label>
-                                <div class="box-files">
-                                    <template v-if="fileIsEdit != ''">
-                                        <div class="box-image">
-                                            <img :src="fileIsEdit" class="img-fluid" alt="">
-                                            <p><v-btn depressed small color="error" @click="fileIsEdit = ''">Excluir</v-btn></p>
-                                        </div>
-                                    </template>
-                                    <template v-else>
-                                        <v-file-input
-                                            name="file"
-                                            v-model="files"
-                                            label="Logo:"
-                                            placeholder="Procurar Imagem"
-                                            prepend-icon=""
-                                            prepend-inner-icon="image"
-                                            dense="dense"
-                                            color="primary"
-                                            counter
-                                            multiple
-                                            accept="image/png, image/jpeg, image/bmp"
-                                            outlined
-                                            :show-size="1000"
-                                        >
-                                            <template v-slot:selection="{ index, text }">
-                                            <v-chip v-if="index < 2" color="primary" dark label small>
-                                                {{ text }}
-                                            </v-chip>
-                                            <span v-else-if="index === 2" class="overline grey--text text--darken-3 mx-2" >
-                                                +{{ files.length - 2 }} File(s)
-                                            </span>
-                                            </template>
-                                        </v-file-input>
-                                    </template>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row"><div class="col"><hr mt-5 mb-5></div></div>
-
-            <div class="row">
+            <div class="row mt-4">
                 <!-- Data Inclusão -->
                 <div class="col-4" :class="borderFields.dataInclusao">
                     <v-dialog
@@ -159,7 +107,58 @@
                 </div>
             </div>
 
-            <div class="row"><div class="col"><hr mt-5 mb-5></div></div>
+            <v-card class="mx-auto  mb-4" outlined>
+                <v-card-text>
+
+                    <!-- Imagem da Campanha -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-12 col-box-files" :class="borderFields.campanha">
+                                        <label>Imagem da campanha</label>
+                                        <div class="box-files">
+                                            <template v-if="fileIsEdit != ''">
+                                                <div class="box-image">
+                                                    <img :src="fileIsEdit" class="img-fluid" alt="">
+                                                    <p><v-btn depressed small color="error" @click="fileIsEdit = ''">Excluir</v-btn></p>
+                                                </div>
+                                            </template>
+                                            <template v-else>
+                                                <v-file-input
+                                                    name="file"
+                                                    v-model="files"
+                                                    label="Logo:"
+                                                    placeholder="Procurar Imagem"
+                                                    prepend-icon=""
+                                                    prepend-inner-icon="image"
+                                                    dense="dense"
+                                                    color="primary"
+                                                    counter
+                                                    accept="image/png, image/jpeg, image/bmp"
+                                                    outlined
+                                                    :show-size="1000"
+                                                >
+                                                    <template v-slot:selection="{ index, text }">
+                                                    <v-chip v-if="index < 2" color="primary" dark label small>
+                                                        {{ text }}
+                                                    </v-chip>
+                                                    <span v-else-if="index === 2" class="overline grey--text text--darken-3 mx-2" >
+                                                        +{{ files.length - 2 }} File(s)
+                                                    </span>
+                                                    </template>
+                                                </v-file-input>
+                                            </template>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </v-card-text>
+            </v-card>
 
             <!-- Nome e Link -->
             <div class="row inputs-finais-to-all-types">

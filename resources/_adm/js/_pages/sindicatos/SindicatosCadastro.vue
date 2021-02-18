@@ -25,100 +25,100 @@
 
             <v-card class="mx-auto" outlined>
                 <v-card-text>
-                        <!-- Banner -->
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-12 col-box-files" :class="borderFields.sindicato">
-                                            <label>Banner da Página:</label>
-                                            <div class="box-files">
+                    <!-- Banner -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-12 col-box-files" :class="borderFields.sindicato">
+                                        <label>Banner da Página:</label>
+                                        <div class="box-files">
 
-                                                <template v-if="dataInputs.banner.fileIsEdit != ''">
-                                                    <div class="box-image">
-                                                        <img :src="dataInputs.banner.fileIsEdit" class="img-fluid" alt="">
-                                                        <p><v-btn depressed small color="error" @click="dataInputs.banner.fileIsEdit = ''">Excluir</v-btn></p>
-                                                    </div>
-                                                </template>
-                                                <template v-else>
-                                                    <v-file-input
-                                                        name="banner"
-                                                        v-model="dataInputs.banner.file"
-                                                        label="Banner:"
-                                                        placeholder="Procurar Imagem"
-                                                        prepend-icon=""
-                                                        prepend-inner-icon="image"
-                                                        dense="dense"
-                                                        color="primary"
-                                                        counter
-                                                        accept="image/png, image/jpeg, image/bmp"
-                                                        outlined
-                                                        :show-size="1000"
-                                                    >
-                                                        <template v-slot:selection="{ index, text }">
-                                                        <v-chip v-if="index < 2" color="primary" dark label small>
-                                                            {{ text }}
-                                                        </v-chip>
-                                                        <span v-else-if="index === 2" class="overline grey--text text--darken-3 mx-2" >
-                                                            +{{ dataInputs.banner.file.length - 2 }} File(s)
-                                                        </span>
-                                                        </template>
-                                                    </v-file-input>
-                                                </template>
-                                            </div>
+                                            <template v-if="dataInputs.banner.fileIsEdit != ''">
+                                                <div class="box-image">
+                                                    <img :src="dataInputs.banner.fileIsEdit" class="img-fluid" alt="">
+                                                    <p><v-btn depressed small color="error" @click="dataInputs.banner.fileIsEdit = ''">Excluir</v-btn></p>
+                                                </div>
+                                            </template>
+                                            <template v-else>
+                                                <v-file-input
+                                                    name="banner"
+                                                    v-model="dataInputs.banner.file"
+                                                    label="Banner:"
+                                                    placeholder="Procurar Imagem"
+                                                    prepend-icon=""
+                                                    prepend-inner-icon="image"
+                                                    dense="dense"
+                                                    color="primary"
+                                                    counter
+                                                    accept="image/png, image/jpeg, image/bmp"
+                                                    outlined
+                                                    :show-size="1000"
+                                                >
+                                                    <template v-slot:selection="{ index, text }">
+                                                    <v-chip v-if="index < 2" color="primary" dark label small>
+                                                        {{ text }}
+                                                    </v-chip>
+                                                    <span v-else-if="index === 2" class="overline grey--text text--darken-3 mx-2" >
+                                                        +{{ dataInputs.banner.file.length - 2 }} File(s)
+                                                    </span>
+                                                    </template>
+                                                </v-file-input>
+                                            </template>
                                         </div>
-                                        
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>
-                        <!-- Logo -->
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-12 col-box-files" :class="borderFields.sindicato">
-                                            <label>Logo do Sindicato</label>
-                                            <div class="box-files">
+                    </div>
+                    <!-- Logo -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-12 col-box-files" :class="borderFields.sindicato">
+                                        <label>Logo do Sindicato</label>
+                                        <div class="box-files">
 
-                                                <template v-if="dataInputs.logo.fileIsEdit != ''">
-                                                    <div class="box-image">
-                                                        <img :src="dataInputs.logo.fileIsEdit" class="img-fluid" alt="">
-                                                        <p><v-btn depressed small color="error" @click="dataInputs.logo.fileIsEdit = ''">Excluir</v-btn></p>
-                                                    </div>
-                                                </template>
-                                                <template v-else>
-                                                    <v-file-input
-                                                        name="logo"
-                                                        v-model="dataInputs.logo.file"
-                                                        label="Logo:"
-                                                        placeholder="Procurar Imagem"
-                                                        prepend-icon=""
-                                                        prepend-inner-icon="image"
-                                                        dense="dense"
-                                                        color="primary"
-                                                        counter
-                                                        accept="image/png, image/jpeg, image/bmp"
-                                                        outlined
-                                                        :show-size="1000"
-                                                    >
-                                                        <template v-slot:selection="{ index, text }">
-                                                        <v-chip v-if="index < 2" color="primary" dark label small>
-                                                            {{ text }}
-                                                        </v-chip>
-                                                        <span v-else-if="index === 2" class="overline grey--text text--darken-3 mx-2" >
-                                                            +{{ dataInputs.logo.file.length - 2 }} File(s)
-                                                        </span>
-                                                        </template>
-                                                    </v-file-input>
-                                                </template>
-                                            </div>
+                                            <template v-if="dataInputs.logo.fileIsEdit != ''">
+                                                <div class="box-image">
+                                                    <img :src="dataInputs.logo.fileIsEdit" class="img-fluid" alt="">
+                                                    <p><v-btn depressed small color="error" @click="dataInputs.logo.fileIsEdit = ''">Excluir</v-btn></p>
+                                                </div>
+                                            </template>
+                                            <template v-else>
+                                                <v-file-input
+                                                    name="logo"
+                                                    v-model="dataInputs.logo.file"
+                                                    label="Logo:"
+                                                    placeholder="Procurar Imagem"
+                                                    prepend-icon=""
+                                                    prepend-inner-icon="image"
+                                                    dense="dense"
+                                                    color="primary"
+                                                    counter
+                                                    accept="image/png, image/jpeg, image/bmp"
+                                                    outlined
+                                                    :show-size="1000"
+                                                >
+                                                    <template v-slot:selection="{ index, text }">
+                                                    <v-chip v-if="index < 2" color="primary" dark label small>
+                                                        {{ text }}
+                                                    </v-chip>
+                                                    <span v-else-if="index === 2" class="overline grey--text text--darken-3 mx-2" >
+                                                        +{{ dataInputs.logo.file.length - 2 }} File(s)
+                                                    </span>
+                                                    </template>
+                                                </v-file-input>
+                                            </template>
                                         </div>
-                                        
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </v-card-text>
             </v-card>
 
