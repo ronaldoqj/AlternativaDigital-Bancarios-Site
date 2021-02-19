@@ -435,9 +435,9 @@
                 },
 
                 borderFields: {
-                    sindicato: 'required',
-                    file: 'required',
-                    subdominio: 'required',
+                    sindicato: '',
+                    file: '',
+                    subdominio: '',
                     name: 'required',
                 },
 
@@ -495,9 +495,9 @@
                 this.errorsShow.errors = [];
                 // Validações especificas
                
-                if ( _.isNull(this.dataInputs.banner.file) && this.dataInputs.banner.fileIsEdit == '' ) {
-                    this.errorsShow.errors.push({title: 'Banner', description: 'obrigatório'});
-                }
+                // if ( _.isNull(this.dataInputs.banner.file) && this.dataInputs.banner.fileIsEdit == '' ) {
+                //     this.errorsShow.errors.push({title: 'Banner', description: 'obrigatório'});
+                // }
                 if ( ! _.isNull(this.dataInputs.banner.file) )
                 {
                     if ( this.dataInputs.banner.file.size >= 1000000 ) {
@@ -505,9 +505,9 @@
                     }
                 }
                 
-                if ( _.isNull(this.dataInputs.logo.file) && this.dataInputs.logo.fileIsEdit == '' ) {
-                    this.errorsShow.errors.push({title: 'Logo', description: 'obrigatório'});
-                }
+                // if ( _.isNull(this.dataInputs.logo.file) && this.dataInputs.logo.fileIsEdit == '' ) {
+                //     this.errorsShow.errors.push({title: 'Logo', description: 'obrigatório'});
+                // }
                 if ( ! _.isNull(this.dataInputs.logo.file) )
                 {
                     if ( this.dataInputs.logo.file.size >= 1000000 ) {
@@ -515,8 +515,8 @@
                     }
                 }
 
-                if ( _.isEmpty(this.dataInputs.subdominio) )
-                    this.errorsShow.errors.push({title: 'Subdomínio', description: 'obrigatório'});
+                // if ( _.isEmpty(this.dataInputs.subdominio) )
+                //     this.errorsShow.errors.push({title: 'Subdomínio', description: 'obrigatório'});
                 if ( _.isEmpty(this.dataInputs.name) )
                     this.errorsShow.errors.push({title: 'Nome', description: 'obrigatório'});
                 
@@ -535,8 +535,7 @@
                 // Controle para mostrar os files ignorando a regra atual de validação (CONTEM VALOR DO TIPO STRING)
                 // Ou manter a mesma logica que é quando o formulário está realizando cadastro (VAZIO DO TIPO STRING) 
                 // this.dataInputs.banner.fileIsEdit = item.file_id > 0 ? `/${item.file_pathfile}/${item.file_namefile}` : '';
-                console.log('file_id', item.file_id);
-                console.log('item', item);
+                
                 // this.dataInputs.banner.file = item.file_id > 0 ? `/${item.file_pathfile}/${item.file_namefile}` : '';
                 // this.fileName = item.file_namefile;
 
