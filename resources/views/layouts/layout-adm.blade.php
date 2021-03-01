@@ -60,7 +60,22 @@
                     <header id="header">
                         <div class="box-left-right">
                             <div class="left">
-                                <div class="title-header"> @yield('title') </div>
+                                <div class="title-header">
+                                    @if (Route::currentRouteName() == 'adm-home')
+                                        /Home
+                                    @else
+                                        @if (session()->get('configAdm')['entity'] == 0)
+                                            @if (session()->get('configAdm')['fetrafi'] == 'RS')
+                                                /Fetrafi-RS
+                                            @else
+                                                /Portal
+                                            @endif
+                                        @else
+                                            /{{session()->get('configAdm')['data']['name']}}
+                                        @endif
+                                    @endif
+                                    @yield('title')
+                                </div>
                                 <div class="subtitle-header"> @yield('subtitle') </div>
                             </div>
                             <div class="right">
@@ -98,3 +113,4 @@
         </div>
     </body>
 </html>
+{{--dd(session()->get('configAdm'))--}}

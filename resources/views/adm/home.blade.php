@@ -1,6 +1,5 @@
 @extends('layouts.layout-adm')
 
-    @section('title') /Home @endsection
     @section('subtitle') /home @endsection
 
 @section('js')
