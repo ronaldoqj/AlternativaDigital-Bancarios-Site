@@ -1,22 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="72" height="30.677" viewBox="0 0 72 30.677">
-  <defs>
-    <clipPath id="clip-path">
-      <rect width="72" height="30.677" fill="none"/>
-    </clipPath>
-  </defs>
-  <g id="Repetição_de_grade_7" data-name="Repetição de grade 7" clip-path="url(#clip-path)">
-    <g id="Grupo_1248" data-name="Grupo 1248" transform="translate(22425 8785.677)">
-      <text id="CAMPANHAS" transform="translate(-22425 -8766)" fill="#fff" font-size="8" font-family="OpenSans, Open Sans"><tspan x="11.701" y="9">CAMPANHAS</tspan></text>
-      <g id="Grupo_1247" data-name="Grupo 1247" transform="translate(-22425 -8898)">
-        <g id="Retângulo_1024" data-name="Retângulo 1024" transform="translate(16 115)" fill="none" stroke="#fff" stroke-linejoin="round" stroke-width="1">
-          <rect width="41" height="12" stroke="none"/>
-          <rect x="0.5" y="0.5" width="40" height="11" fill="none"/>
-        </g>
-        <g id="Grupo_1245" data-name="Grupo 1245">
-          <line id="Linha_74" data-name="Linha 74" x2="2" y2="2" transform="translate(54.5 112.5)" fill="none" stroke="#fff" stroke-width="0.5"/>
-          <line id="Linha_75" data-name="Linha 75" y1="2" x2="2" transform="translate(54.5 112.5)" fill="none" stroke="#fff" stroke-width="0.5"/>
-        </g>
-      </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="41" height="14.677" viewBox="0 0 41 14.677">
+  <g id="Grupo_1246" data-name="Grupo 1246" transform="translate(-16 -112.323)">
+    <g id="Retângulo_1024" data-name="Retângulo 1024" transform="translate(16 115)" fill="none" stroke="#fff" stroke-linejoin="round" stroke-width="1">
+      <rect width="41" height="12" stroke="none"/>
+      <rect x="0.5" y="0.5" width="40" height="11" fill="none"/>
+    </g>
+    <g id="Grupo_1245" data-name="Grupo 1245">
+      <line id="Linha_74" data-name="Linha 74" x2="2" y2="2" transform="translate(54.5 112.5)" fill="none" stroke="#fff" stroke-width="0.5"/>
+      <line id="Linha_75" data-name="Linha 75" y1="2" x2="2" transform="translate(54.5 112.5)" fill="none" stroke="#fff" stroke-width="0.5"/>
     </g>
   </g>
 </svg>

@@ -10,6 +10,10 @@
                         <div class="item-card" v-if="perfil == 'master'">
                             <CardHome :params="cards.entities.portal"></CardHome>
                         </div>
+                        <!-- Fetrafi-RS -->
+                        <div class="item-card" v-if="perfil == 'master'">
+                            <CardHome :params="cards.entities.fetrafirs"></CardHome>
+                        </div>
                         <!-- Sindicatos -->
                         <div class="item-card" v-for="sindicate in sindicates" :key="sindicate.id">
                             <CardHome @click="clickCard(sindicate.id)" :params="{link:'/adm/dashboard/'+sindicate.id, title: sindicate.name, icon:'/_adm/assets/SVGs/Home/icon-sindicatos.svg', subItem:{}}"></CardHome>
@@ -36,6 +40,12 @@ export default {
                         icon: '/_adm/assets/SVGs/Home/icon-house.svg',
                         title: 'Portal',
                         link: '/adm/dashboard/0',
+                        subItem: {}
+                    },
+                    fetrafirs:{
+                        icon: '/_adm/assets/SVGs/icon-fetrafi-rs.svg',
+                        title: 'Fetrafi-RS',
+                        link: '/adm/dashboard/0/RS',
                         subItem: {}
                     }
                 }
@@ -72,8 +82,6 @@ export default {
         align-items: center;
         order: 2;
     
-
-        
         .title {
             font-size: 2.5em !important;
             color: $blue;
@@ -84,10 +92,7 @@ export default {
 
         > div
         {
-            &:first-child {
-                 margin-right: 8px;
-            }
-
+            &:first-child { margin-right: 8px; }
             &:last-child
             {
                 background-color: #E0E1E3;
@@ -105,9 +110,7 @@ export default {
             justify-content: flex-start;
             flex-wrap: wrap;
 
-            .item-card {
-                padding: 10px;
-            }
+            .item-card { padding: 10px; }
         }
     }
 

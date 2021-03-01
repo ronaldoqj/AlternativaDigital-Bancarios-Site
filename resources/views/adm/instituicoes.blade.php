@@ -37,7 +37,7 @@
 <div class="container-fluid">
     <form-default-texts-ckeditor-page
         ref="cadastro"
-        form-action="{{url('adm/o-sindicato')}}"
+        form-action="{{url('adm/institucional')}}"
         csrf="{{ csrf_token() }}"
         entity="{{session()->get('configAdm')['entity']}}"
         data="{{json_encode($data)}}"

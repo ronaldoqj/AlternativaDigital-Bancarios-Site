@@ -27,7 +27,7 @@ Route::prefix('adm')->namespace('Adm')->group(function ()
     // });
 
     Route::get('/', 'HomeController@index')->name('adm-home');
-    Route::get('/dashboard/{id?}', 'DashboardController@index')->name('adm-dashboard');
+    Route::get('/dashboard/{id?}/{fetrafi?}', 'DashboardController@index')->name('adm-dashboard');
     
     Route::middleware([VerifyCurrentEntitySelected::class])->group(function ()
     {
@@ -86,12 +86,15 @@ Route::prefix('adm')->namespace('Adm')->group(function ()
         Route::post('/sindicatos/edicao', 'SindicatoController@editar')->name('adm-sindicatos-editar');
         Route::post('/sindicatos/delete', 'SindicatoController@deletar')->name('adm-sindicatos-deletar');
 
-        Route::get('/o-sindicato', 'InstituicaoController@index')->name('adm-instituicao');
-        Route::post('/o-sindicato', 'InstituicaoController@edicao')->name('adm-instituicao-edicao');
+        Route::get('/institucional', 'InstituicaoController@index')->name('adm-instituicao');
+        Route::post('/institucional', 'InstituicaoController@edicao')->name('adm-instituicao-edicao');
         Route::get('/servicos', 'ServicoController@index')->name('adm-servicos');
         Route::post('/servicos', 'ServicoController@edicao')->name('adm-servicos-edicao');
         Route::get('/contatos', 'ContatoController@index')->name('adm-contatos');
         Route::post('/contatos', 'ContatoController@edicao')->name('adm-contatos-edicao');
+        
+        Route::get('/info-portal', 'PortalController@index')->name('adm-portal');
+        Route::post('/info-portal', 'PortalController@edicao')->name('adm-portal-edicao');
     });
 
     // Formulários de cadastros do ADM

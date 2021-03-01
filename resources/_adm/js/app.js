@@ -60,6 +60,7 @@ Vue.component('usuarios-page', require('./_pages/usuarios/Usuarios.vue').default
 Vue.component('usuarios-cadastro-page', require('./_pages/usuarios/UsuariosCadastro.vue').default);
 Vue.component('form-default-combobox', require('./_pages/form-default-combobox/FormDefaultCombobox.vue').default);
 Vue.component('btn-action-widget-component', require('./components/widget/BtnActionComponent.vue').default);
+Vue.component('portal-page', require('./_pages/portal/Portal.vue').default);
 
 /**
  * Componente responsavel pelas páginas:

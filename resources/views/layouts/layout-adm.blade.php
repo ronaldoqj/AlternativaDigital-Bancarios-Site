@@ -49,7 +49,7 @@
             <div id="menu-sidebar" class="">
                 <div id="box-nav">
                     <nav>
-                        <sidebar-menu-component perfil="{{auth()->user()->perfil}}"></sidebar-menu-component>
+                        <!-- <sidebar-menu-component perfil="{{auth()->user()->perfil}}"></sidebar-menu-component> -->
                         @yield('menu-sidebar')
                     </nav>
                 </div>

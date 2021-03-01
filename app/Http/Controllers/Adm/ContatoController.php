@@ -139,4 +139,7 @@ class ContatoController extends Controller
             $updateRegister->save();
         }
     }
+
+
+
 }

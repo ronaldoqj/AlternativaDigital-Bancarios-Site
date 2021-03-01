@@ -21,12 +21,7 @@
                         <div class="col-12">
                             <div class="box-cards">
                                 <div class="item-card" v-for="item of cards.portalContent" :key="item.title">
-                                    <template v-if="perfil != 'master'">
-                                        <template v-if="item.title != 'Meu Sindicato'">  
-                                            <CardHome :params="item"></CardHome>
-                                        </template>
-                                    </template>
-                                    <template v-else>
+                                    <template v-if="item.active">
                                         <CardHome :params="item"></CardHome>
                                     </template>
                                 </div>
@@ -67,7 +62,7 @@
 import CardHome from "./components/CardHome"
 
 export default {
-    props: [ 'perfil', 'csrf' ],
+    props: [ 'perfil', 'csrf', 'configAdm' ],
     components: { CardHome },
     data: () => {
         return {
@@ -87,6 +82,7 @@ export default {
                         icon: '/_adm/assets/SVGs/Home/icon-noticia.svg',
                         title: 'Notícias',
                         link: '/adm/noticias',
+                        active: true,
                         subItem: {
                             icon: '/_adm/assets/SVGs/Home/icon-plus.svg',
                             title: 'Nova Notícia',
@@ -97,6 +93,7 @@ export default {
                         icon: '/_adm/assets/SVGs/Home/icon-pdf.svg',
                         title: 'Editais',
                         link: '/adm/editais',
+                        active: true,
                         subItem: {
                             icon: '/_adm/assets/SVGs/Home/icon-plus.svg',
                             title: 'Novo Edital',
@@ -107,28 +104,49 @@ export default {
                         icon: '/_adm/assets/SVGs/Home/icon-pdf.svg',
                         title: 'Acordos e Convenções',
                         link: '/adm/acordos-e-convencoes',
+                        active: true,
                         subItem: {
                             icon: '/_adm/assets/SVGs/Home/icon-plus.svg',
                             title: 'Novo Acordo',
                             link: '/adm/acordos-e-convencoes/cadastro',
                         }
                     },
+                    /**
+                     * Inicia como false
+                     */
+                    infoPortal: {
+                        icon: '/_adm/assets/SVGs/Home/icon-social.svg',
+                        title: 'Info do Portal',
+                        link: '/adm/info-portal',
+                        active: false,
+                        subItem: {},
+                    },
+                    campanhas: {
+                        icon: '/_adm/assets/SVGs/icon-campanhas.svg',
+                        title: 'campanhas',
+                        link: '/adm/campanhas',
+                        active: false,
+                        subItem: {},
+                    },
                     meuSindicato: {
                         icon: '/_adm/assets/SVGs/Home/icon-house.svg',
-                        title: 'Meu Sindicato',
-                        link: '/adm/o-sindicato',
+                        title: 'Texto Institucional',
+                        link: '/adm/institucional',
+                        active: true,
                         subItem: {}
                     },
                     servicos: {
                         icon: '/_adm/assets/SVGs/icon-paginas.svg',
                         title: 'Serviços',
                         link: '/adm/servicos',
+                        active: true,
                         subItem: {}
                     },
                     contatos: {
                         icon: '/_adm/assets/SVGs/icon-contatos.svg',
                         title: 'Contatos',
                         link: '/adm/contatos',
+                        active: true,
                         subItem: {}
                     },
                 },
@@ -137,42 +155,42 @@ export default {
                         icon: '/_adm/assets/SVGs/Home/icon-sindicatos.svg',
                         title: 'Sindicatos',
                         link: '/adm/sindicatos',
+                        active: true,
                         subItem: {},
                     },
                     meuBanco: {
                         icon: '/_adm/assets/SVGs/Home/icon-bank.svg',
                         title: 'Meu Banco',
                         link: '/adm/bancos',
+                        active: true,
                         subItem: {},
                     },
                     entidades: {
                         icon: '/_adm/assets/SVGs/Home/icon-entidade.svg',
                         title: 'Entidades',
                         link: '/adm/entidades',
+                        active: true,
                         subItem: {},
                     },
                     entidadesParceiras: {
                         icon: '/_adm/assets/SVGs/icon-entidades-parceiras.svg',
                         title: 'Entidades Parceiras',
                         link: '/adm/entidades-parceiras',
-                        subItem: {},
-                    },
-                    redesSociais: {
-                        icon: '/_adm/assets/SVGs/Home/icon-social.svg',
-                        title: 'Redes Sociais',
-                        link: '#',
+                        active: true,
                         subItem: {},
                     },
                     usuariso: {
                         icon: '/_adm/assets/SVGs/Home/icon-users.svg',
                         title: 'Usuários',
                         link: '#',
+                        active: true,
                         subItem: {},
                     },
                     meuPerfil: {
                         icon: '/_adm/assets/SVGs/Home/icon-perfil.svg',
                         title: 'Meu Perfil',
                         link: '#',
+                        active: true,
                         subItem: {},
                     },
                 }
@@ -181,12 +199,47 @@ export default {
     },
     computed: {
         btnHome() {
-            
             btn.title = 'Home';
             btn.link = '/adm/';
             btn.icon = '/_adm/assets/SVGs/Home/icon-house.svg';
             return btn;
         }
+    },
+    methods: {
+        checkActives() {
+            let configAdm = JSON.parse(this.configAdm);
+            console.log('ConfigAdm', configAdm);
+            
+            if (configAdm.fetrafi)
+            {
+                /**
+                 * Set objects not permiteds
+                 */
+                this.cards.portalContent.noticias.active = false;
+                this.cards.portalContent.editais.active = false;
+                this.cards.portalContent.acordosEConvencoes.active = false;
+                this.cards.portalContent.servicos.active = false;
+            }
+            else if (configAdm.entity == 0)
+            {
+                this.cards.portalContent.infoPortal.active = true;
+                this.cards.portalContent.campanhas.active = true;
+                this.cards.portalContent.contatos.active = false;
+            }
+            
+            /**
+             * Remove objects not permiteds
+             */
+            for (const item in this.cards.portalContent)
+            {
+                if (! this.cards.portalContent[item].active) {
+                    delete this.cards.portalContent[item];
+                }
+            }
+        }
+    },
+    mounted() {
+        this.checkActives();
     }
 }
 </script>

@@ -22,13 +22,22 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(Request $request, $id = null)
+    public function index(Request $request, $id = null, $fetrafi = null)
     {
-        
-        if (is_numeric($id))
+        if (is_numeric($id) || $fetrafi)
         {
             $configAdm = [
                 'entity' => $id,
+                /**
+                 * Bug do laravel
+                 * Se for add na sessão a variavel $fetrafi é add lixo da memória.
+                 * 
+                 * Se for preciso diferenciar a fetrafi por outras UFs terá que ser refeita
+                 * toda a logica para isso.
+                 * 
+                 * Obs: acredito que o problema está na passagem de parametro como null em segundo argumento.
+                 */
+                'fetrafi' => $fetrafi ? 'RS' : null,
                 'data' => []
             ];
 
@@ -45,7 +54,7 @@ class DashboardController extends Controller
                 $configAdm['data'] = (Array) $sindicate;
             }
             
-            session (['configAdm' => $configAdm]);
+            session(['configAdm' => $configAdm]);
         }
         else
         {
