@@ -85,22 +85,22 @@ class NoticiaController extends Controller
     public function cadastrarNoticia(Request $request)
     {
         $noticia = new Noticia();
-        $noticia->tipoDaNoticia         = $request->input('tipoDaNoticia')           ?? '';
+        $noticia->entidade              = (int)session()->get('configAdm')['entity'] ? (int)session()->get('configAdm')['entity'] : null;
+        $noticia->tipoDaNoticia         = $request->input('tipoDaNoticia');
         $noticia->dataInclusao          = $request->input('dataInclusao')            ?  Carbon::createFromFormat('Y-m-d', $request->input('dataInclusao')) : null;
         $noticia->dataLimiteNoDestaque  = $request->input('dataLimiteNoDestaque')    ?  Carbon::createFromFormat('Y-m-d H:i', "{$request->input('dataLimiteNoDestaque')} {$request->input('horaLimiteNoDestaque')}") : null;
         $noticia->horaLimiteNoDestaque  = $request->input('horaLimiteNoDestaque')    ?  Carbon::createFromFormat('H:i', $request->input('horaLimiteNoDestaque')) : null;
         $noticia->ativo                 = $request->input('ativarNoticia') == 'true' ?  'S' : 'N';
         $noticia->ativarNosSindicatos   = $request->input('ativarNosSindicatos')     ?? null;
-        $noticia->videoYoutube          = $request->input('videoYoutube')            ?? '';
-        $noticia->cartola               = $request->input('cartola')                 ?? '';
-        $noticia->tags                  = $request->input('tags')                    ?? '';
-        $noticia->titulo                = $request->input('tituloDaNoticia')         ?? '';
-        $noticia->linhaDeApoio          = $request->input('linhaDeApoio')            ?? '';
-        $noticia->texto                 = $request->input('texto')                   ?? '';
-        $noticia->jornalistaResponsavel = $request->input('jornalistaResponsavel')   ?? '';
+        $noticia->videoYoutube          = $request->input('videoYoutube');
+        $noticia->cartola               = $request->input('cartola');
+        $noticia->tags                  = $request->input('tags');
+        $noticia->titulo                = $request->input('tituloDaNoticia');
+        $noticia->linhaDeApoio          = $request->input('linhaDeApoio');
+        $noticia->texto                 = $request->input('texto');
+        $noticia->jornalistaResponsavel = $request->input('jornalistaResponsavel');
         $noticia->userIdCreated         = Auth::id();
-        $noticia->save();        
-
+        $noticia->save();
 
         $bancos = $request->input('idsBancos');
     

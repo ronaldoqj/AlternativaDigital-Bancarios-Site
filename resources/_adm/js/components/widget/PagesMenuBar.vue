@@ -40,7 +40,7 @@ export default {
 @import '~/../resources/_adm/sass/_vars.scss';
 .box-btns {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     flex-wrap: wrap;
     border: solid 1px $grey;
     padding: 10px 40px;

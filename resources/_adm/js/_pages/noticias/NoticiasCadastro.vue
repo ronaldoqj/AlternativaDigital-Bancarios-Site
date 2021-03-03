@@ -28,7 +28,7 @@
 
             <div class="row">
                 <!-- Data Inclusão -->
-                <div class="col-3" :class="borderFields.dataDaInclusao">
+                <div class="col-4" :class="borderFields.dataDaInclusao">
                     <v-dialog
                         ref="dialog1"
                         v-model="dateTimeInputs.dates.dataDaInclusao.modal"
@@ -89,7 +89,7 @@
                 </div>
 
                 <!-- Hora Limite No Destaque -->
-                <div class="col-2" :class="borderFields.horaLimiteNoDestaque">
+                <div class="col-3" :class="borderFields.horaLimiteNoDestaque">
                     <v-dialog
                         ref="dialog3"
                         v-model="dateTimeInputs.times.limiteDestaque.modal"
@@ -124,13 +124,18 @@
                 </div>
 
                 <!-- Ativar Notícia -->
-                <div class="col-1 switch-ativar-noticia text-center">
+                <div class="col-2 switch-ativar-noticia text-center">
                     <p>Ativar Notícia</p>
                     <v-switch v-model="ativarNoticia" class="ma-4"></v-switch>
                 </div>
 
                 <!-- Sindicatos -->
-                <div class="col-3" :class="borderFields.ativarSindicatos">
+                <!-- Removido,
+                     logica alterada,
+                     Ao invés do portal adicionar noticias nos sindicatos se desejar
+                     seram os sindicatos que adicionarão as noticias que quiserem do Portal
+                 -->
+                <div v-if="false" class="col-3" :class="borderFields.ativarSindicatos">
                     <v-combobox
                     name="sindicatos"
                     label="Ativar no Portal e Sindicatos:"
@@ -138,7 +143,6 @@
                     item-text="name"
                     item-value="id"
                     :items="dataInputs.sindicatos.items"
-                    :auto-select-first="true"
                     multiple
                     outlined
                     dense
@@ -498,7 +502,6 @@ export default {
         'formAction',
         'noticiaEdition',
         'banks',
-        'syndicates',
         'textInput',
         'registeredSyndicates',
         'registeredBanks'
@@ -816,8 +819,8 @@ export default {
             // Validações comuns a todos
             if ( _.isEmpty(this.dateTimeInputs.dates.dataDaInclusao.date) )
                 this.errorsShow.errors.push({title: 'Data Inclusão', description: 'obrigatório'});
-            if ( this.dataInputs.sindicatos.selected.length == 0 )
-                this.errorsShow.errors.push({title: 'Ativar no Portal e Sindicatos', description: 'obrigatório'});
+            // if ( this.dataInputs.sindicatos.selected.length == 0 )
+            //     this.errorsShow.errors.push({title: 'Ativar no Portal e Sindicatos', description: 'obrigatório'});
 
             if ( _.isEmpty(this.dataInputs.cartola) )
                 this.errorsShow.errors.push({title: 'Cartola', description: 'obrigatório'});
@@ -1087,7 +1090,7 @@ export default {
                 id: syndicates[0].id
             };
 
-            this.dataInputs.sindicatos.selected.push(syndicate);
+            //this.dataInputs.sindicatos.selected.push(syndicate);
         }
     }
 }

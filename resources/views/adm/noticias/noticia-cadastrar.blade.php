@@ -35,6 +35,13 @@
 
 @section('content')
 <div class="container-fluid">
-    <noticias-cadastro-page ref="cadastro" form-action="{{url('adm/noticias/cadastro')}}" banks="{{ $bancos }}" syndicates="{{ $sindicatos }}" method="post" csrf="{{ csrf_token() }}" />
+    <noticias-cadastro-page
+        ref="cadastro"
+        method="post"
+        csrf="{{ csrf_token() }}"
+        form-action="{{url('adm/noticias/cadastro')}}"
+        banks="{{ $bancos }}"
+        syndicates="{{ $sindicatos }}"
+    />
 </div>
 @endsection

@@ -17,6 +17,7 @@ class CreateNoticiasTable extends Migration
             $table->id();
             
             $table->char('ativo', 1)->default('N');
+            $table->integer('entidade')->nullable();
             $table->string('tipoDaNoticia', 240)->nullable();
             $table->string('titulo', 240)->nullable();
             $table->string('subtitulo', 240)->nullable();
