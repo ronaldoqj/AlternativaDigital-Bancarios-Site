@@ -46,15 +46,36 @@ class SindicatoController extends Controller
     public function edicao(Request $request, $id = '')
     {
         if( (int) $id == 0 ) {
-            return redirect('/adm/sindicatos');
+            return redirect()->route('adm-sindicatos');
         }
         
-        $Sindicato = new Sindicato();
-        $Sindicato = $Sindicato->findById($id);
+        $sindicato = new Sindicato();
+        $sindicato = $sindicato->findById($id);
 
         $estados = new Estado();
         
-        return view('adm.sindicatos.sindicato-editar')->withList(json_encode($Sindicato))->withEstados(json_encode($estados->all()->toArray()));
+        return view('adm.sindicatos.sindicato-editar')->withList(json_encode($sindicato))->withEstados(json_encode($estados->all()->toArray()));
+    }
+    
+    /**
+     * Método responsavel pela edição do simdicato escolhido
+     * Quando entra na edição do sindicato de Porto Alegre por exemplo,
+     * o sindicado de Porto Alegre apenas pode editar as informações
+     */
+    public function edicaoSindicatoVigente(Request $request)
+    {
+        $sindicato = new Sindicato();
+        $sindicato = $sindicato->findById(session()->get('configAdm')['entity']);
+
+        if (! $sindicato) {
+            return redirect()->route('adm-home');
+        }
+        
+        $estados = new Estado();
+                
+        return view('adm.sindicatos.sindicato-editar')->withList(json_encode($sindicato))
+                                                      ->withEstados(json_encode($estados->all()->toArray()))
+                                                      ->withSindicatoAtual(true);
     }
 
     public function cadastrar(Request $request)
@@ -118,7 +139,9 @@ class SindicatoController extends Controller
         $Sindicato = new Sindicato();
         $Sindicato = $Sindicato->find($id);
         $Sindicato->ativo = $request->input('ativo') == "true" ? 'S' : 'N';
-        $Sindicato->subdomain = $request->input('subdominio') ?? null;
+        if ($request->input('subdominio')){
+            $Sindicato->subdomain = $request->input('subdominio');
+        }
         $Sindicato->name = $request->input('name') ?? null;
         $Sindicato->fone = $request->input('fone') ?? null;
         $Sindicato->fone2 = $request->input('fone2') ?? null;
@@ -136,9 +159,6 @@ class SindicatoController extends Controller
         $Sindicato->bairro = $request->input('bairro') ?? null;
         $Sindicato->cidade = $request->input('cidade') ?? null;
         $Sindicato->uf = $request->input('estado') ?? null;
-        // $Sindicato->deleted_at = $request->input('deleted_at') ?  Carbon::createFromFormat('Y-m-d', $request->input('deleted_at'))                                       : null;
-        // $Sindicato->created_at   = $request->input('created_at')   ?  Carbon::createFromFormat('Y-m-d H:i', "{$request->input('created_at')} {$request->input('horaLimite')}") : null;
-        // $Sindicato->updated_at   = $request->input('updated_at')   ?  Carbon::createFromFormat('H:i', $request->input('updated_at'))                                           : null;
         $Sindicato->userIdUpdated = Auth::id();
 
         $Sindicato->save();
@@ -188,8 +208,12 @@ class SindicatoController extends Controller
                 $Sindicato->save();
             }
         }
-    
-        return redirect(url('adm/sindicatos'));
+        
+        if ($request->input('sindicatoAtual')) {
+            return redirect()->route('adm-dashboard');
+        }
+        
+        return redirect()->route('adm-sindicatos');
     }
 
     public function deletar(Request $request)

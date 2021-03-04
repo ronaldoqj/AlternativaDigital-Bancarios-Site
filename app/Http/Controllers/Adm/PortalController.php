@@ -58,7 +58,11 @@ class PortalController extends Controller
 
     private function returnPortal(): Portal {
         $portal = new Portal();
-        return $portal->all()->first();
+        return $portal->find( $this->returnId() );
+    }
+
+    private function returnId(): int {
+        return $id = session()->get('configAdm')['fetrafi'] ? 2 : 1;
     }
     
 }

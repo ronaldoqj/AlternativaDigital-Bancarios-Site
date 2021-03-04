@@ -116,7 +116,7 @@ export default {
                      */
                     infoPortal: {
                         icon: '/_adm/assets/SVGs/Home/icon-social.svg',
-                        title: 'Info do Portal',
+                        title: 'Dados da Instituição',
                         link: '/adm/info-portal',
                         active: false,
                         subItem: {},
@@ -128,10 +128,17 @@ export default {
                         active: false,
                         subItem: {},
                     },
-                    meuSindicato: {
+                    institucional: {
                         icon: '/_adm/assets/SVGs/Home/icon-house.svg',
                         title: 'Texto Institucional',
                         link: '/adm/institucional',
+                        active: true,
+                        subItem: {}
+                    },
+                    meuSindicato: {
+                        icon: '/_adm/assets/SVGs/Home/icon-sindicatos.svg',
+                        title: 'Atualizar Instituição',
+                        link: '/adm/sindicato-atualizar',
                         active: true,
                         subItem: {}
                     },
@@ -219,12 +226,15 @@ export default {
                 this.cards.portalContent.editais.active = false;
                 this.cards.portalContent.acordosEConvencoes.active = false;
                 this.cards.portalContent.servicos.active = false;
+                this.cards.portalContent.meuSindicato.active = false;
+                this.cards.portalContent.infoPortal.active = true;
             }
             else if (configAdm.entity == 0)
             {
                 this.cards.portalContent.infoPortal.active = true;
                 this.cards.portalContent.campanhas.active = true;
                 this.cards.portalContent.contatos.active = false;
+                this.cards.portalContent.meuSindicato.active = false;
             }
             
             /**

@@ -76,15 +76,18 @@ Route::prefix('adm')->namespace('Adm')->group(function ()
         Route::get('/bancos', 'BancoController@index')->name('adm-bancos');
         Route::post('/bancos/actions', 'BancoController@actions')->name('adm-bancos-actions');
     
-        // Route::get('/fetrafi-rs/cadastro', 'FetrafiRsController@cadastro')->name('adm-fetrafi-rs-cadastro');
-        // Route::post('/fetrafi-rs/cadastro', 'FetrafiRsController@cadastrar')->name('adm-fetrafi-rs-cadastrar');
-        
         Route::get('/sindicatos', 'SindicatoController@index')->name('adm-sindicatos');
         Route::get('/sindicatos/cadastro', 'SindicatoController@cadastro')->name('adm-sindicatos-cadastro');
         Route::post('/sindicatos/cadastro', 'SindicatoController@cadastrar')->name('adm-sindicatos-cadastrar');
         Route::get('/sindicatos/edicao/{id?}', 'SindicatoController@edicao')->name('adm-sindicatos-edicao');
         Route::post('/sindicatos/edicao', 'SindicatoController@editar')->name('adm-sindicatos-editar');
         Route::post('/sindicatos/delete', 'SindicatoController@deletar')->name('adm-sindicatos-deletar');
+        /**
+         * Rota responsavel pela edição do simdicato escolhido
+         * Quando entra na edição do sindicato de Porto Alegre por exemplo,
+         * o sindicado de Porto Alegre apenas pode editar as informações
+         */
+        Route::get('/sindicato-atualizar', 'SindicatoController@edicaoSindicatoVigente')->name('adm-sindicatos-edicao');
 
         Route::get('/institucional', 'InstituicaoController@index')->name('adm-instituicao');
         Route::post('/institucional', 'InstituicaoController@edicao')->name('adm-instituicao-edicao');

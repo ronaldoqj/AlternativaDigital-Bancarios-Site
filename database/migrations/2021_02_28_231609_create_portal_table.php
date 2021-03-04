@@ -15,6 +15,7 @@ class CreatePortalTable extends Migration
     {
         Schema::create('portal', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 240)->nullable()->comment('Unicamnete Informativo');
             $table->string('facebook', 240)->nullable();
             $table->string('twitter', 240)->nullable();
             $table->string('instagram', 240)->nullable();

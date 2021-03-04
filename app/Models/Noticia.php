@@ -35,7 +35,13 @@ class Noticia extends Model
         $list->whereNull('noticias.deleted_at');
         if ($type != '*') {
             $list->where('noticias.tipoDaNoticia', $type);
-        }                         
+        }
+
+        if ( (int)session()->get('configAdm')['entity'] ) {
+            $list->where('noticias.entidade', (int)session()->get('configAdm')['entity']);
+        } else {
+            $list->whereNull('noticias.entidade');
+        }
         $list->orderBy('noticias.id', 'desc');
 
         $listAll = $list->addSelect('noticias.id as id',

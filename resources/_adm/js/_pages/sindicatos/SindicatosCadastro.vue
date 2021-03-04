@@ -9,6 +9,7 @@
             <input type="hidden" name="id" :value="dataInputs.id" />
             <input type="hidden" name="ativo" :value="dataInputs.ativar" />
             <input type="hidden" name="estado" :value="computedUF" />
+            <input type="hidden" name="sindicatoAtual" :value="sindicatoAtual" />
 
             <!-- Ativar -->
             <div class="row">
@@ -126,7 +127,7 @@
 
             <div class="row inputs-finals-to-all-types">
                 <!-- subdominio -->
-                <div class="col-12" :class="borderFields.subdominio">
+                <div v-if="!sindicatoAtual" class="col-12" :class="borderFields.subdominio">
                     <v-text-field
                         v-model="dataInputs.subdominio"
                         name="subdominio"
@@ -419,7 +420,7 @@
 
 <script>
     export default {
-        props: ['csrf', 'formAction', 'formEdition', 'estados'],
+        props: ['csrf', 'formAction', 'formEdition', 'estados', 'sindicatoAtual'],
         data () {
             return {
                 pageControl: {
@@ -593,6 +594,11 @@
         },
         created()
         {
+            if (this.sindicatoAtual)
+                console.log('sindicato veio');
+            else
+                console.log('sindicato NÃO veio');
+            //console.log('sindicatoAtual', this.sindicatoAtual);
             if (!_.isEmpty(this.formEdition)) {
                 this.pageControl.pageEdit = true;
                 this.editStartCompleteFilds(JSON.parse(this.formEdition));

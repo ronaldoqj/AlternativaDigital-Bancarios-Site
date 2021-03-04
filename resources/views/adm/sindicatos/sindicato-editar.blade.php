@@ -12,6 +12,7 @@
         method="post"
         form-edition="{{$list}}"
         estados="{{$estados}}"
+        sindicato-atual="{{$sindicatoAtual ?? false}}"
         csrf="{{ csrf_token() }}"
     />
 

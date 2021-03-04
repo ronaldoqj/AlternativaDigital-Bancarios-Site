@@ -13,6 +13,12 @@ class PortalSeeder extends Seeder
     public function run()
     {
         DB::table('portal')->insert([
+            'id' => 1,
+            'created_at' => Carbon::now()
+        ]);
+        
+        DB::table('portal')->insert([
+            'id' => 2,
             'created_at' => Carbon::now()
         ]);
     }
