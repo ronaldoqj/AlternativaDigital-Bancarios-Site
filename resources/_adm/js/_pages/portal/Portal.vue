@@ -116,6 +116,7 @@
                                         counter="240"
                                         rounded
                                         outlined
+                                        disabled
                                         clearable
                                     ></v-text-field>
                                 </div>
