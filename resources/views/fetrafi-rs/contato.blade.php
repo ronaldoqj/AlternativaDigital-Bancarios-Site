@@ -12,13 +12,16 @@
             Contato
         </div>
 
-        <div class="description-of-page">
+        <!-- <div class="description-of-page">
             <p class="mt-4 mb-4"><h1>Federação dos Trabalhadores e Trabalhadoras em Instituições Financeiras RS</h1> 
-			
 			Rua Cel. Fernando Machado nº 820 <br>CEP 90010-320 - Bairro Centro Histórico - Porto Alegre, RS
-			
 			</p>
+        </div> -->
+        @if( request()->fetrafirs->textContato )
+        <div class="description-of-page">
+            {!! request()->fetrafirs->textContato !!}
         </div>
+        @endif
 
         <div class="row">
             <div class="col-12">
@@ -47,16 +50,27 @@
         <div class="col-md-12 col-lg-8 offset-lg-2">
             <div class="legendas">REDES SOCIAIS DA FETRAFI-RS</div>
             <div class="flex-icons">
-                <div> <a target="blank" href="https://www.facebook.com/FetrafiRS"><img src="{{asset('/_site/assets/SVGs/Brancos/facebook.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
-                <div> <a target="blank" href="https://twitter.com/fetrafi_rs"><img src="{{asset('/_site/assets/SVGs/Brancos/twitter.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
-                <div> <a target="blank" href="https://www.instagram.com/fetrafirs/"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                @if( request()->fetrafirs->facebook )
+                    <div> <a target="blank" href="{{url(request()->fetrafirs->facebook)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/facebook.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                @endif
+                @if( request()->fetrafirs->twitter )
+                <div> <a target="blank" href="{{url(request()->fetrafirs->twitter)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/twitter.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                @endif
+                @if( request()->fetrafirs->instagram )
+                <div> <a target="blank" href="{{url(request()->fetrafirs->instagram)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                @endif
                 <div class="d-block d-lg-none"> <a target="blank" href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/whatsapp.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
-                <div> <a target="blank" href="https://open.spotify.com/show/6gm0A7W6h2kUhZ4Cg5uGF6?si=7ldUyy_ZS2a4Rsnf6wwnhQ"><img src="{{asset('/_site/assets/SVGs/Brancos/podcasts.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
-                <div> <a target="blank" href="https://www.youtube.com/channel/UCh5dGGhvFO-TlfZVsJ8TM5w"><img src="{{asset('/_site/assets/SVGs/Brancos/youtube.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                @if( request()->fetrafirs->podcast )
+                <div> <a target="blank" href="{{url(request()->fetrafirs->podcast)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/podcasts.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                @endif
+                @if( request()->fetrafirs->youtube )
+                <div> <a target="blank" href="{{url(request()->fetrafirs->youtube)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/youtube.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                @endif
             </div>
         </div>
 
         <form>
+            <input type="hidden" name="emailDestini" value="{{ request()->fetrafirs->email }}" />
             <div class="row mb-3">
                 <div class="col-12 col-md-6">
                     <div class="form-group">

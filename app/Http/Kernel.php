@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'template.querys' => \Illuminate\Auth\Middleware\TemplateQuerys::class,
         'check.syndicate' => \Illuminate\Auth\Middleware\CheckSyndicate::class,
         'VerifyCurrentEntitySelected' => \App\Http\Middleware\VerifyCurrentEntitySelected::class,
+        'GetEntitiesForTemplate' => \App\Http\Middleware\GetEntitiesForTemplate::class,
     ];
 }

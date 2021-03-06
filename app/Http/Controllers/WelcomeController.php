@@ -62,8 +62,6 @@ class WelcomeController extends Controller
 
         if (is_numeric($request->input('banco')))
         {
-            
-            
                 $bancoPesquisa = new Banco();
                 $bancoPesquisa = $bancoPesquisa->find($request->input('banco'));
                 if ($bancoPesquisa) {

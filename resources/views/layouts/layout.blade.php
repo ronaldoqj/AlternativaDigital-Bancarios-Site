@@ -89,15 +89,25 @@
                 <p>Redes Sociais</p>
 
                 <div class="redes-sociais">
-                    <div class="d-flex justify-content-between">                        
-                        <div ><a target="_blank" href="https://www.facebook.com/FetrafiRS"><img src="{{asset('/_site/assets/SVGs/Brancos/facebook.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
-                        <div ><a target="_blank" href="https://twitter.com/fetrafi_rs"><img src="{{asset('/_site/assets/SVGs/Brancos/twitter.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
-                        <div ><a target="_blank" href="https://www.instagram.com/fetrafirs"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                    <div class="d-flex justify-content-between">
+                        @if( request()->portal->facebook )
+                            <div ><a target="_blank" href="{{url(request()->portal->facebook)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/facebook.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                        @endif
+                        @if( request()->portal->twitter )
+                            <div ><a target="_blank" href="{{url(request()->portal->twitter)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/twitter.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                        @endif
+                        @if( request()->portal->instagram )
+                            <div ><a target="_blank" href="{{url(request()->portal->instagram)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                        @endif
                     </div>
                     <div class="d-flex justify-content-between">
                         <div class="d-block d-lg-none"><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/whatsapp.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
-                        <div ><a target="_blank" href="https://open.spotify.com/show/6gm0A7W6h2kUhZ4Cg5uGF6?si=7ldUyy_ZS2a4Rsnf6wwnhQ"><img src="{{asset('/_site/assets/SVGs/Brancos/podcasts.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
-                        <div ><a target="_blank" href="https://www.youtube.com/channel/UCh5dGGhvFO-TlfZVsJ8TM5w"><img src="{{asset('/_site/assets/SVGs/Brancos/youtube.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                        @if( request()->portal->podcast )
+                            <div ><a target="_blank" href="{{url(request()->portal->podcast)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/podcasts.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                        @endif
+                        @if( request()->portal->youtube )
+                            <div ><a target="_blank" href="{{url(request()->portal->youtube)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/youtube.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                        @endif
                     </div>
                 </div>
             </ul>
@@ -105,14 +115,18 @@
             <ul class="list-unstyled components">
                 <p>Contato</p>                
                 <div class="contato">
+                    @if( request()->portal->fone )
                     <div class="d-flex ">
                         <div><img src="{{asset('/_site/assets/SVGs/icon-telefone.svg')}}" class="img-fluid" /></div>
-                        <div>(51) 3224-2000</div>
+                        <div>{{ request()->portal->fone }}</div>
                     </div>
+                    @endif
+                    @if( request()->portal->email )
                     <div class="d-flex ">
                         <div><img src="{{asset('/_site/assets/SVGs/icon-caracter-arroba.svg')}}" class="img-fluid" /></div>
-                        <div>FETRAFIRS@FETRAFIRS.ORG.BR</div>
+                        <div>{{ request()->portal->email }}</div>
                     </div>
+                    @endif
                 </div>
             </ul>
 
@@ -153,12 +167,24 @@
                                 <div id="social-buttons" class="container-fluid">
                                     <div class="row">
                                         <div class="col">
-                                            <div ><a target="_blank" href="https://www.facebook.com/FetrafiRS"><img src="{{asset('/_site/assets/SVGs/Brancos/facebook.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
-                                            <div ><a target="_blank" href="https://twitter.com/fetrafi_rs"><img src="{{asset('/_site/assets/SVGs/Brancos/twitter.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
-                                            <div ><a target="_blank" href="https://www.instagram.com/fetrafirs"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                                            @if( request()->portal->facebook )
+                                                <div ><a target="_blank" href="{{url(request()->portal->facebook)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/facebook.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                                            @endif
+                                            @if( request()->portal->twitter )
+                                                <div ><a target="_blank" href="{{url(request()->portal->twitter)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/twitter.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                                            @endif
+                                            @if( request()->portal->instagram )
+                                                <div ><a target="_blank" href="{{url(request()->portal->instagram)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                                            @endif
+                                            
                                             <div class="d-block d-lg-none"><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/whatsapp.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
-                                            <div ><a target="_blank" href="https://open.spotify.com/show/6gm0A7W6h2kUhZ4Cg5uGF6?si=7ldUyy_ZS2a4Rsnf6wwnhQ"><img src="{{asset('/_site/assets/SVGs/Brancos/podcasts.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
-                                            <div ><a target="_blank" href="https://www.youtube.com/channel/UCh5dGGhvFO-TlfZVsJ8TM5w"><img src="{{asset('/_site/assets/SVGs/Brancos/youtube.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                                            
+                                            @if( request()->portal->podcast )
+                                                <div ><a target="_blank" href="{{url(request()->portal->podcast)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/podcasts.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                                            @endif
+                                            @if( request()->portal->youtube )
+                                                <div ><a target="_blank" href="{{url(request()->portal->youtube)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/youtube.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
