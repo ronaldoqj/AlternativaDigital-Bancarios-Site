@@ -20,6 +20,8 @@ class CheckSyndicate
      */
     public function handle($request, Closure $next)
     {
+        $sessionSindicato = null;
+
         if (session()->has('sindicato'))
         {
             session()->forget('sindicato');
@@ -55,7 +57,8 @@ class CheckSyndicate
                 session(['sindicato' => $sessionSindicato]);
             }
         }
-
+        
+        $request->sindicate = $sessionSindicato;
         return $next($request);
     }
 

@@ -131,17 +131,24 @@ Route::middleware([GetEntitiesForTemplate::class, CheckSyndicate::class])->group
     Route::get('/noticia-texto', 'NoticiasController@withOnlyText')->name('noticias-only-text');
 
     // Sindicatos
-    Route::prefix('sindicato')->namespace('Sindicatos')->group(function () {
-        Route::get('/', 'SindicatoController@index')->name('sindicato');
-        Route::get('/pagina-inicial', 'SindicatoController@home')->name('sindicato-home');
-        Route::get('/o-sindicato', 'OSindicatoController@index')->name('sindicato-o-sindicato');
-        Route::get('/servicos', 'ServicosController@index')->name('sindicato-servicos');
-        Route::get('/editais', 'EditaisController@index')->name('sindicato-editais');
-        Route::get('/sindicalize-se', 'SindicalizeSeController@index')->name('sindicato-sindicalize-se');    
-        Route::get('/contato', 'ContatoController@index')->name('sindicato-contato');    
+    Route::prefix('sindicato')->group(function () {
+        /**
+         * Estão enviando para o mesmo controller do portal
+         */
+        //Route::get('/', 'SindicatoController@index')->name('sindicato');
+        Route::get('/', 'WelcomeController@indexSindicato')->name('sindicato');
+        //Route::get('/pagina-inicial', 'SindicatoController@home')->name('sindicato-home');
+        Route::get('/pagina-inicial', 'WelcomeController@homeSindicato')->name('sindicato-home');
+        Route::get('/noticia/{id?}/{title?}', 'NoticiasController@indexSindicato')->name('sindicato-noticia')->where('title', '.*');
+
+        Route::get('/o-sindicato', 'Sindicatos\OSindicatoController@index')->name('sindicato-o-sindicato');
+        Route::get('/servicos', 'Sindicatos\ServicosController@index')->name('sindicato-servicos');
+        Route::get('/editais', 'Sindicatos\EditaisController@index')->name('sindicato-editais');
+        Route::get('/sindicalize-se', 'Sindicatos\SindicalizeSeController@index')->name('sindicato-sindicalize-se');    
+        Route::get('/contato', 'Sindicatos\ContatoController@index')->name('sindicato-contato');    
     });
-    
-    // Sindicatos
+
+    // Fetrafi-RS
     Route::prefix('fetrafi-rs')->namespace('FetrafiRS')->group(function () {
         //Route::get('/', 'FetrafiRSController@index')->name('fetrafi-rs');
         Route::get('/', 'FederacaoController@index')->name('fetrafi-rs');
@@ -150,11 +157,6 @@ Route::middleware([GetEntitiesForTemplate::class, CheckSyndicate::class])->group
         Route::get('/contato', 'ContatoController@index')->name('fetrafi-rs-contato');    
     });
     
-    // Está enviando para o mesmo controller do portal
-    Route::get('/sindicato/', 'WelcomeController@indexSindicato')->name('sindicato');
-    Route::get('/sindicato/pagina-inicial', 'WelcomeController@homeSindicato')->name('sindicato-home');
-    Route::get('/sindicato/noticia/{id?}/{title?}', 'NoticiasController@indexSindicato')->name('sindicato-noticia')->where('title', '.*');
-
     // Route::fallback(function () {
     //     // rota quando não encontrou no site
     // });
