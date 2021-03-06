@@ -111,7 +111,7 @@ Route::prefix('adm')->namespace('Adm')->group(function ()
 
 
 // Portal Bancários
-Route::middleware([GetEntitiesForTemplate::class, TemplateQuerys::class, CheckSyndicate::class])->group(function()
+Route::middleware([GetEntitiesForTemplate::class, CheckSyndicate::class])->group(function()
 {
     Route::get('/', 'WelcomeController@index')->name('welcome');
     Route::get('/pagina-inicial', 'WelcomeController@home')->name('home');

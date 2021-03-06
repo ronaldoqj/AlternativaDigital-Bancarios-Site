@@ -1,3 +1,9 @@
+<?php
+//dump(request());
+// dump(request()->portal->facebook);
+// dd(request()->fetrafirs);
+?>
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -199,7 +205,7 @@
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">
                                                 <a href="{{ url('/?banco=0') }}"><button class="dropdown-item" type="button"> Todos Bancos </button></a>
-                                                @forelse (session()->all()['bancos'] as $sessionBanco)
+                                                @forelse (request()->bancos as $sessionBanco)
                                                     <a href="{{ url('?banco='.$sessionBanco->id) }}"><button class="dropdown-item" type="button">{{$sessionBanco->name}}</button></a>
                                                 @empty
                                                 @endforelse

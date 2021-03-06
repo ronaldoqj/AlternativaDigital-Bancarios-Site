@@ -6,6 +6,7 @@ use Closure;
 use App\Models\Portal;
 use App\Models\Contato;
 use App\Models\Instituicao;
+use App\Models\Banco;
 
 class GetEntitiesForTemplate
 {
@@ -21,7 +22,9 @@ class GetEntitiesForTemplate
         $entity = new Portal();
         $contatos = new Contato();
         $instituicoes = new Instituicao();
+        $banco = new Banco();
         
+        $banco = $banco->all();
         $portal = $entity->find(1);
         $fetrafirs = $entity->find(2);
         $contato = $contatos->where('fetrafi', 'RS')->first();
@@ -31,6 +34,7 @@ class GetEntitiesForTemplate
 
         $request->portal = $portal;
         $request->fetrafirs = $fetrafirs;
+        $request->bancos = $banco;
         
         return $next($request);
     }
