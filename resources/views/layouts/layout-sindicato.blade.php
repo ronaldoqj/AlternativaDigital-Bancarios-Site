@@ -1,9 +1,9 @@
 <?php
-    $bannerFile = session()->get('sindicato')['banner_file']['pathfile'];
-    $bannerPahtfile = session()->get('sindicato')['banner_file']['namefile'];
+    $bannerFile = request()->syndicate['banner_file']['pathfile'];
+    $bannerPahtfile = request()->syndicate['banner_file']['namefile'];
     $bannerLink = "/{$bannerFile}/{$bannerPahtfile}";
-    $logoFile = session()->get('sindicato')['logo_file']['pathfile'];
-    $logoPahtfile = session()->get('sindicato')['logo_file']['namefile'];
+    $logoFile = request()->syndicate['logo_file']['pathfile'];
+    $logoPahtfile = request()->syndicate['logo_file']['namefile'];
     $logoLink = "/{$logoFile}/{$logoPahtfile}";
 ?>
 @extends('layouts.layout')

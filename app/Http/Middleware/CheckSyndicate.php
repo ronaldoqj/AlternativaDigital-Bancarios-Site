@@ -20,13 +20,7 @@ class CheckSyndicate
      */
     public function handle($request, Closure $next)
     {
-        $sessionSindicato = null;
-
-        if (session()->has('sindicato'))
-        {
-            session()->forget('sindicato');
-        }
-
+        $syndicate = null;
         $subdomain = $this->getSubDomain();
         
         if ($subdomain)
@@ -51,14 +45,22 @@ class CheckSyndicate
                 $logo = new File();
                 $logo = $logo->find($sindicato[$keyArraySearch]->getAttributes()['logo']);
 
-                $sessionSindicato = $sindicato[$keyArraySearch]->getAttributes();
-                $sessionSindicato['banner_file'] = $banner->toArray();
-                $sessionSindicato['logo_file'] = $logo->toArray();
-                session(['sindicato' => $sessionSindicato]);
+                $syndicate = $sindicato[$keyArraySearch]->getAttributes();
+                $syndicate['banner_file'] = $banner->toArray();
+                $syndicate['logo_file'] = $logo->toArray();
             }
         }
-        
-        $request->sindicate = $sessionSindicato;
+
+        /**
+         * Caso não encontre um sindicato pelo subdominio,
+         * então será direcionado para a página que contem
+         * a listagem dos sindicatos no Portal
+         */
+        if (! $syndicate) {
+            return redirect()->route('meu-sindicato');
+        }
+
+        $request->syndicate = $syndicate;
         return $next($request);
     }
 

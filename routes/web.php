@@ -111,7 +111,7 @@ Route::prefix('adm')->namespace('Adm')->group(function ()
 
 
 // Portal Bancários
-Route::middleware([GetEntitiesForTemplate::class, CheckSyndicate::class])->group(function()
+Route::middleware([GetEntitiesForTemplate::class])->group(function()
 {
     Route::get('/', 'WelcomeController@index')->name('welcome');
     Route::get('/pagina-inicial', 'WelcomeController@home')->name('home');
@@ -131,7 +131,7 @@ Route::middleware([GetEntitiesForTemplate::class, CheckSyndicate::class])->group
     Route::get('/noticia-texto', 'NoticiasController@withOnlyText')->name('noticias-only-text');
 
     // Sindicatos
-    Route::prefix('sindicato')->group(function () {
+    Route::prefix('sindicato')->middleware([CheckSyndicate::class])->group(function () {
         /**
          * Estão enviando para o mesmo controller do portal
          */

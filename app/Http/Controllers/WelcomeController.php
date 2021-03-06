@@ -25,7 +25,7 @@ class WelcomeController extends Controller
      */
     public function index(Request $request)
     {
-        if (session()->has('sindicato'))
+        if (request()->syndicate)
         {
             return redirect()->route('sindicato-home');
         }
