@@ -21,10 +21,10 @@ class EditaisController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         $editais = new Edital();
-        $editais = $editais->listAllToSitePageEditais()->get();
+        $editais = $editais->listAllToSitePageEditais($request)->get();
 
         return view('editais')->withEditais($editais);
     }

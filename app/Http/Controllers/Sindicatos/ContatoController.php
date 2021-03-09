@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Sindicatos;
 use App\Http\Controllers\Controller;
 
+use App\Models\Contato;
 use Illuminate\Http\Request;
 
 class ContatoController extends Controller
@@ -21,13 +22,10 @@ class ContatoController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        /**
-         * Redireciona para o Portal caso não exista o subdominio acessado
-         */
-        if ( ! session()->has('sindicato') ) { return redirect(env('APP_URL')); }
+        $data = new Contato();
 
-        return view('sindicatos.contato');
+        return view('sindicatos.contato')->withData( $data->find($request->syndicate['id']) );
     }
 }

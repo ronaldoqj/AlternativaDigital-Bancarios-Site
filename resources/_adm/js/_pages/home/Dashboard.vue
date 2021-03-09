@@ -220,6 +220,7 @@ export default {
             if (configAdm.fetrafi)
             {
                 /**
+                 * Fetrafi
                  * Set objects not permiteds
                  */
                 this.cards.portalContent.noticias.active = false;
@@ -231,9 +232,15 @@ export default {
             }
             else if (configAdm.entity == 0)
             {
+                /**
+                 * Portal
+                 */
+                
+                this.cards.portalContent.institucional.active = false;
                 this.cards.portalContent.infoPortal.active = true;
                 this.cards.portalContent.campanhas.active = true;
                 this.cards.portalContent.contatos.active = false;
+                this.cards.portalContent.servicos.active = false;
                 this.cards.portalContent.meuSindicato.active = false;
             }
             

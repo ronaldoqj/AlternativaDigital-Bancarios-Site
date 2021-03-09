@@ -19,7 +19,7 @@
         </div> -->
         @if( request()->fetrafirs->textContato )
         <div class="description-of-page">
-            {!! request()->fetrafirs->textContato !!}
+            {!! request()->fetrafirs->textContato ?? '' !!}
         </div>
         @endif
 

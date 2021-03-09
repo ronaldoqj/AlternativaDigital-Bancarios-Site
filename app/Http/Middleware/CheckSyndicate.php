@@ -46,8 +46,15 @@ class CheckSyndicate
                 $logo = $logo->find($sindicato[$keyArraySearch]->getAttributes()['logo']);
 
                 $syndicate = $sindicato[$keyArraySearch]->getAttributes();
-                $syndicate['banner_file'] = $banner->toArray();
-                $syndicate['logo_file'] = $logo->toArray();
+                $syndicate['banner_file'] = null;
+                $syndicate['logo_file'] = null;
+
+                if ($banner) {
+                    $syndicate['banner_file'] = $banner->toArray();
+                }
+                if ($logo) {
+                    $syndicate['logo_file'] = $logo->toArray();
+                }
             }
         }
 

@@ -160,14 +160,20 @@ class Edital extends Model
     /**
      * site 
      */
-    public function listAllToSitePageEditais()
+    public function listAllToSitePageEditais($request)
     {
         $list = DB::table('editais');
         $list->leftjoin('files as filesBannerDestaque', 'filesBannerDestaque.id', '=', 'editais.bannerDestaque');
         $list->leftjoin('files as filesFile', 'filesFile.id', '=', 'editais.file');
         $list->where('editais.ativo', 'S');
         $list->whereNull('editais.deleted_at');
-                          
+        
+        if ($request->syndicate) {
+            $list->where('editais.sindicatoAutor', $request->syndicate['id']);
+        } else {
+            $list->whereNull('editais.sindicatoAutor');
+        }
+        
         $list->orderBy('editais.dataInclusao', 'desc');
 
         $listAll = $list->addSelect('editais.id as id',

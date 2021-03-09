@@ -10,6 +10,8 @@
             <input type="hidden" name="ativo" :value="dataInputs.ativar" />
             <input type="hidden" name="estado" :value="computedUF" />
             <input type="hidden" name="sindicatoAtual" :value="sindicatoAtual" />
+            <input type="hidden" name="deleteBannerOnEdit" :value="pageControl.deleteBannerOnEdit" />
+            <input type="hidden" name="deleteLogoOnEdit" :value="pageControl.deleteLogoOnEdit" />
 
             <!-- Ativar -->
             <div class="row">
@@ -38,7 +40,7 @@
                                             <template v-if="dataInputs.banner.fileIsEdit != ''">
                                                 <div class="box-image">
                                                     <img :src="dataInputs.banner.fileIsEdit" class="img-fluid" alt="">
-                                                    <p><v-btn depressed small color="error" @click="dataInputs.banner.fileIsEdit = ''">Excluir</v-btn></p>
+                                                    <p><v-btn depressed small color="error" @click="deleteOnEdit('banner')">Excluir</v-btn></p>
                                                 </div>
                                             </template>
                                             <template v-else>
@@ -85,7 +87,7 @@
                                             <template v-if="dataInputs.logo.fileIsEdit != ''">
                                                 <div class="box-image">
                                                     <img :src="dataInputs.logo.fileIsEdit" class="img-fluid" alt="">
-                                                    <p><v-btn depressed small color="error" @click="dataInputs.logo.fileIsEdit = ''">Excluir</v-btn></p>
+                                                    <p><v-btn depressed small color="error" @click="deleteOnEdit('logo')">Excluir</v-btn></p>
                                                 </div>
                                             </template>
                                             <template v-else>
@@ -426,7 +428,9 @@
             return {
                 pageControl: {
                     valueBtnSubmit: 'Cadastrar',
-                    pageEdit: false
+                    pageEdit: false,
+                    deleteBannerOnEdit: null,
+                    deleteLogoOnEdit: null
                 },
 
                 // variavel necessária para o component de mensagens de erro
@@ -497,9 +501,6 @@
                 this.errorsShow.errors = [];
                 // Validações especificas
                
-                // if ( _.isNull(this.dataInputs.banner.file) && this.dataInputs.banner.fileIsEdit == '' ) {
-                //     this.errorsShow.errors.push({title: 'Banner', description: 'obrigatório'});
-                // }
                 if ( ! _.isNull(this.dataInputs.banner.file) )
                 {
                     if ( this.dataInputs.banner.file.size >= 1000000 ) {
@@ -507,9 +508,6 @@
                     }
                 }
                 
-                // if ( _.isNull(this.dataInputs.logo.file) && this.dataInputs.logo.fileIsEdit == '' ) {
-                //     this.errorsShow.errors.push({title: 'Logo', description: 'obrigatório'});
-                // }
                 if ( ! _.isNull(this.dataInputs.logo.file) )
                 {
                     if ( this.dataInputs.logo.file.size >= 1000000 ) {
@@ -517,8 +515,6 @@
                     }
                 }
 
-                // if ( _.isEmpty(this.dataInputs.subdominio) )
-                //     this.errorsShow.errors.push({title: 'Subdomínio', description: 'obrigatório'});
                 if ( _.isEmpty(this.dataInputs.name) )
                     this.errorsShow.errors.push({title: 'Nome', description: 'obrigatório'});
                 
@@ -541,8 +537,8 @@
                 // this.dataInputs.banner.file = item.file_id > 0 ? `/${item.file_pathfile}/${item.file_namefile}` : '';
                 // this.fileName = item.file_namefile;
 
-                this.dataInputs.banner.fileIsEdit  = item.banner > 0 ? `/${item.banner_pathfile}/${item.banner_namefile}` : '';
-                this.dataInputs.logo.fileIsEdit  = item.logo > 0 ? `/${item.logo_pathfile}/${item.logo_namefile}` : '';
+                this.dataInputs.banner.fileIsEdit  = item.banner > 0 && _.isNil(item.banner_deleted_at) ? `/${item.banner_pathfile}/${item.banner_namefile}` : '';
+                this.dataInputs.logo.fileIsEdit  = item.logo > 0 && _.isNil(item.logo_deleted_at) ? `/${item.logo_pathfile}/${item.logo_namefile}` : '';
 
                 this.dataInputs.ativar = item.ativo === 'S' ? true : false;
                 this.dataInputs.subdominio = item.subdomain;
@@ -591,15 +587,22 @@
                 }
 
                 return btnsBarTop;
+            },
+
+            deleteOnEdit(typeFile)
+            {
+                if (typeFile === 'banner') {
+                    this.pageControl.deleteBannerOnEdit = 'S';
+                    this.dataInputs.banner.fileIsEdit = '';
+                }
+                if (typeFile === 'logo') {
+                    this.pageControl.deleteLogoOnEdit = 'S';
+                    this.dataInputs.logo.fileIsEdit = '';
+                }
             }
         },
         created()
         {
-            if (this.sindicatoAtual)
-                console.log('sindicato veio');
-            else
-                console.log('sindicato NÃO veio');
-            //console.log('sindicatoAtual', this.sindicatoAtual);
             if (!_.isEmpty(this.formEdition)) {
                 this.pageControl.pageEdit = true;
                 this.editStartCompleteFilds(JSON.parse(this.formEdition));

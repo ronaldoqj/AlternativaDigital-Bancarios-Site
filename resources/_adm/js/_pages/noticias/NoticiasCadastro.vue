@@ -684,12 +684,9 @@ export default {
             {
                 case 'noticia-destaque':
                     // Opcionais
-                    if ( ! _.isEmpty(this.filesPodcast) )
-                    {
-                        if ( ! _.isEmpty(this.filesPodcast) ) {
-                            if ( this.filesPodcast[0].size >= 20000000 ) {
-                                this.errorsShow.errors.push({title: 'Mp3 Podcast', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 20mb) '});
-                            }
+                    if ( ! _.isNil(this.filesPodcast) ) {
+                        if ( this.filesPodcast.size >= 20000000 ) {
+                            this.errorsShow.errors.push({title: 'Mp3 Podcast', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 20mb) '});
                         }
                     }
 
@@ -699,20 +696,20 @@ export default {
                     if ( _.isEmpty(this.dateTimeInputs.times.limiteDestaque.time) )
                         this.errorsShow.errors.push({title: 'Limite Hora', description: 'obrigatório'});
 
-                    if ( _.isEmpty(this.filesBannerDestaque) && this.fileBannerIsEdit == '' )
+                    if ( _.isNil(this.filesBannerDestaque) && this.fileBannerIsEdit == '' )
                         this.errorsShow.errors.push({title: 'Banner Destaque', description: 'obrigatório'});
-                    if ( ! _.isEmpty(this.filesBannerDestaque) && this.fileBannerIsEdit == '' ) {
-                        if ( this.filesBannerDestaque[0].size >= 1000000) {
+                    if ( ! _.isNil(this.filesBannerDestaque) && this.fileBannerIsEdit == '' ) {
+                        if ( this.filesBannerDestaque.size >= 1000000) {
                             this.errorsShow.errors.push({title: 'Banner Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
                         }
                     }
                     if ( _.isEmpty(this.dataInputs.creditoBannerDestaque) )
                         this.errorsShow.errors.push({title: 'Crédito da Imagem (Banner Destaque)', description: 'obrigatório'});
 
-                    if ( _.isEmpty(this.filesImagemDestaque) && this.fileImagemIsEdit == '' )
+                    if ( _.isNil(this.filesImagemDestaque) && this.fileImagemIsEdit == '' )
                         this.errorsShow.errors.push({title: 'Imagem Destaque', description: 'obrigatório'});
-                    if ( ! _.isEmpty(this.filesImagemDestaque) && this.fileImagemIsEdit == '' ) {
-                        if ( this.filesImagemDestaque[0].size >= 1000000) {
+                    if ( ! _.isNil(this.filesImagemDestaque) && this.fileImagemIsEdit == '' ) {
+                        if ( this.filesImagemDestaque.size >= 1000000) {
                             this.errorsShow.errors.push({title: 'Imagem Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
                         }
                     }
@@ -722,19 +719,19 @@ export default {
 
                 case 'noticia-video':
                     // Opcionais
-                    if ( ! _.isEmpty(this.filesBannerDestaque) )
+                    if ( ! _.isNil(this.filesBannerDestaque) )
                     {
-                        if ( this.filesBannerDestaque[0].size >= 1000000 ) {
+                        if ( this.filesBannerDestaque.size >= 1000000 ) {
                             this.errorsShow.errors.push({title: 'Banner Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
                         }
                     }
-                    if ( ! _.isEmpty(this.filesImagemDestaque) ) {
-                        if ( this.filesImagemDestaque[0].size >= 1000000) {
+                    if ( ! _.isNil(this.filesImagemDestaque) ) {
+                        if ( this.filesImagemDestaque.size >= 1000000) {
                             this.errorsShow.errors.push({title: 'Imagem Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
                         }
                     }
-                    if ( ! _.isEmpty(this.filesPodcast) ) {
-                        if ( this.filesPodcast[0].size >= 20000000) {
+                    if ( ! _.isNil(this.filesPodcast) ) {
+                        if ( this.filesPodcast.size >= 20000000) {
                             this.errorsShow.errors.push({title: 'Mp3 Podcast', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 20mb) '});
                         }
                     }
@@ -747,24 +744,24 @@ export default {
 
                 case 'noticia-imagem':
                     // Opcionais
-                    if ( ! _.isEmpty(this.filesBannerDestaque) )
+                    if ( ! _.isNil(this.filesBannerDestaque) )
                     {
-                        if ( this.filesBannerDestaque[0].size >= 1000000 ) {
+                        if ( this.filesBannerDestaque.size >= 1000000 ) {
                             this.errorsShow.errors.push({title: 'Banner Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
                         }
                     }
-                    if ( ! _.isEmpty(this.filesPodcast) ) {
-                        if ( this.filesPodcast[0].size >= 20000000) {
+                    if ( ! _.isNil(this.filesPodcast) ) {
+                        if ( this.filesPodcast.size >= 20000000) {
                             this.errorsShow.errors.push({title: 'Mp3 Podcast', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 20mb) '});
                         }
                     }
                     
 
                     // Validações especificas
-                    if ( _.isEmpty(this.filesImagemDestaque) && this.fileImagemIsEdit == '' )
+                    if ( _.isNil(this.filesImagemDestaque) && this.fileImagemIsEdit == '' )
                         this.errorsShow.errors.push({title: 'Imagem Destaque', description: 'obrigatório'});
-                    if ( ! _.isEmpty(this.filesImagemDestaque && this.fileImagemIsEdit == '') ) {
-                        if ( this.filesImagemDestaque[0].size >= 1000000) {
+                    if ( ! _.isNil(this.filesImagemDestaque && this.fileImagemIsEdit == '') ) {
+                        if ( this.filesImagemDestaque.size >= 1000000) {
                             this.errorsShow.errors.push({title: 'Imagem Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
                         }
                     }
@@ -774,42 +771,42 @@ export default {
 
                 case 'noticia-podcast':
                     // Opcionais
-                    if ( ! _.isEmpty(this.filesBannerDestaque) )
+                    if ( ! _.isNil(this.filesBannerDestaque) )
                     {
-                        if ( this.filesBannerDestaque[0].size >= 1000000 ) {
+                        if ( this.filesBannerDestaque.size >= 1000000 ) {
                             this.errorsShow.errors.push({title: 'Banner Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
                         }
                     }
-                    if ( ! _.isEmpty(this.filesImagemDestaque) ) {
-                        if ( this.filesImagemDestaque[0].size >= 1000000 ) {
+                    if ( ! _.isNil(this.filesImagemDestaque) ) {
+                        if ( this.filesImagemDestaque.size >= 1000000 ) {
                             this.errorsShow.errors.push({title: 'Imagem Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
                         }
                     }
 
                     // Validações especificas
-                    if ( _.isEmpty(this.filesPodcast) && this.filePodcastIsEdit == '' )
+                    if ( _.isNil(this.filesPodcast) && this.filePodcastIsEdit == '' )
                         this.errorsShow.errors.push({title: 'Mp3 Podcast', description: 'obrigatório'});
-                    if ( ! _.isEmpty(this.filesPodcast) && this.filePodcastIsEdit == '' ) {
-                        if ( this.filesPodcast[0].size >= 20000000 ) {
+                    if ( ! _.isNil(this.filesPodcast) && this.filePodcastIsEdit == '' ) {
+                        if ( this.filesPodcast.size >= 20000000 ) {
                             this.errorsShow.errors.push({title: 'Mp3 Podcast', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 20mb) '});
                         }
                     }
                 break;
                 case 'noticia-simples':
                     // Opcionais
-                    if ( ! _.isEmpty(this.filesBannerDestaque) )
+                    if ( ! _.isNil(this.filesBannerDestaque) )
                     {
-                        if ( this.filesBannerDestaque[0].size >= 1000000) {
+                        if ( this.filesBannerDestaque.size >= 1000000) {
                             this.errorsShow.errors.push({title: 'Banner Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
                         }
                     }
-                    if ( ! _.isEmpty(this.filesImagemDestaque) ) {
-                        if ( this.filesImagemDestaque[0].size >= 1000000) {
+                    if ( ! _.isNil(this.filesImagemDestaque) ) {
+                        if ( this.filesImagemDestaque.size >= 1000000) {
                             this.errorsShow.errors.push({title: 'Imagem Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
                         }
                     }
-                    if ( ! _.isEmpty(this.filesPodcast) ) {
-                        if ( this.filesPodcast[0].size >= 20000000 ) {
+                    if ( ! _.isNil(this.filesPodcast) ) {
+                        if ( this.filesPodcast.size >= 20000000 ) {
                             this.errorsShow.errors.push({title: 'Mp3 Podcast', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 20mb) '});
                         }
                     }

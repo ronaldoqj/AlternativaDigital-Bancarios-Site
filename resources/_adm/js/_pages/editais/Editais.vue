@@ -12,8 +12,10 @@
                     <template v-if="this.list.length">    
                         <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in list" :key="item.id">
                             <div class="box--noticia noticia-simples">
-                                <div class="buttons">
-                                    <a :href="`${actionForm}/edicao/${item.id}`"><img src="/_adm/assets/SVGs/editar.svg" class="img-fluid" onload="SVGInject(this)" /></a>
+                                <div class="buttons" :style="{ backgroundImage: `url(/${item.fileBannerDestaque_pathfile}/${item.fileBannerDestaque_namefile})` }">
+                                    <a :href="`${actionForm}/edicao/${item.id}`">
+                                        <img src="/_adm/assets/SVGs/editar.svg" class="img-fluid" onload="SVGInject(this)" />
+                                    </a>
                                     <v-menu :close-on-content-click="true" :nudge-width="150" offset-x>
                                         <template v-slot:activator="{ on, attrs }">
                                             <a @click="clickExcluir(item)" v-bind="attrs" v-on="on"><img src="/_adm/assets/SVGs/excluir.svg" class="img-fluid" onload="SVGInject(this)" /></a>
@@ -161,6 +163,9 @@ export default {
                 margin: -43px 0 0;
                 position: absolute;
                 width: 100%;
+                background-size: cover;
+                background-position: center;
+
                 a
                 {
                     svg

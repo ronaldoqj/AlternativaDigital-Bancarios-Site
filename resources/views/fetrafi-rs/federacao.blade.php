@@ -1,8 +1,3 @@
-<?php
-//dump(request()->fetrafirs);
-// dump(request()->portal->facebook);
-// dd(request()->fetrafirs);
-?>
 @extends('layouts.layout-fetrafi-rs')
 @section('css')
     <link href="{{url(mix('/_site/css/pages/fetrafi-rs/o-fetrafi-rs.css'))}}" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -33,7 +28,7 @@
         <div class="mt-3 mb-3"></div>
         
         <!-- Colocar aqui o texto institucional -->
-        {!! request()->fetrafirs->textInstitucional !!}
+        {!! request()->fetrafirs->textInstitucional ?? '' !!}
         
     </div>
     

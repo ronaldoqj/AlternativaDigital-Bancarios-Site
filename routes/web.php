@@ -114,7 +114,6 @@ Route::prefix('adm')->namespace('Adm')->group(function ()
 Route::middleware([GetEntitiesForTemplate::class])->group(function()
 {
     Route::get('/', 'WelcomeController@index')->name('welcome');
-    Route::get('/pagina-inicial', 'WelcomeController@home')->name('home');
     Route::get('/fetrafi-rs', 'WelcomeController@home')->name('fetrafi-rs');
     Route::get('/entidades-parceiras', 'EntidadesParceirasController@index')->name('entidades-parceiras');
     Route::match(['get', 'post'], '/busca', 'SearchController@index')->name('search');
@@ -138,7 +137,6 @@ Route::middleware([GetEntitiesForTemplate::class])->group(function()
         //Route::get('/', 'SindicatoController@index')->name('sindicato');
         Route::get('/', 'WelcomeController@indexSindicato')->name('sindicato');
         //Route::get('/pagina-inicial', 'SindicatoController@home')->name('sindicato-home');
-        Route::get('/pagina-inicial', 'WelcomeController@homeSindicato')->name('sindicato-home');
         Route::get('/noticia/{id?}/{title?}', 'NoticiasController@indexSindicato')->name('sindicato-noticia')->where('title', '.*');
 
         Route::get('/o-sindicato', 'Sindicatos\OSindicatoController@index')->name('sindicato-o-sindicato');

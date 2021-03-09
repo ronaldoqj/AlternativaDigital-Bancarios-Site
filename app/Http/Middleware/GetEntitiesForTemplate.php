@@ -28,9 +28,9 @@ class GetEntitiesForTemplate
         $portal = $entity->find(1);
         $fetrafirs = $entity->find(2);
         $contato = $contatos->where('fetrafi', 'RS')->first();
-        $fetrafirs->textContato = $contato->texto;
+        $fetrafirs->textContato = $contato->texto ?? null;
         $instituicao = $instituicoes->where('fetrafi', 'RS')->first();
-        $fetrafirs->textInstitucional = $instituicao->texto;
+        $fetrafirs->textInstitucional = $instituicao->texto ?? null;
 
         $request->portal = $portal;
         $request->fetrafirs = $fetrafirs;

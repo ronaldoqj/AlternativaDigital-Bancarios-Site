@@ -2,6 +2,11 @@
 //dump(request());
 // dump(request()->portal->facebook);
 // dd(request()->fetrafirs);
+
+//dd(request()->bancos[0]);
+//dump(route(Route::currentRouteName()));
+//dump(Route::current());
+//dd(Route::currentRouteName());
 ?>
 
 <!DOCTYPE html>
@@ -61,7 +66,7 @@
             </div>
 
             <div class="sidebar-header">
-                <a href="{{ route('home') }}">
+                <a href="{{ route('welcome') }}">
                     <img src="/_site/assets/bancariosrs.svg" class="img-fluid logo" onload="SVGInject(this)" width="220" />
                 </a>
             </div>
@@ -69,7 +74,7 @@
             <ul class="list-unstyled components">
                 <p>Menu</p>
                 <li class="active">
-                    <a href="{{ route('home') }}">Página Inicial</a>
+                    <a href="{{ route('welcome') }}">Página Inicial</a>
                 </li>
                 <li>
                     <a href="{{route('fetrafi-rs')}}">Fetrafi-RS</a>
@@ -163,7 +168,7 @@
                             <div id="expand__menu2" class="d-lg-none">
                                 <img src="/_site/assets/expand-menu2.png" class="rounded-circle" />
                             </div>
-                            <a href="{{ route('home') }}">
+                            <a href="{{ route('welcome') }}">
                                 <img src="/_site/assets/bancariosrs.svg" class="img-fluid logo" onload="SVGInject(this)"  />
                             </a>
                         </div>
@@ -204,9 +209,10 @@
                                                 {{ $return['bancoSelecionado'] ?? 'Meu Banco' }}
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">
-                                                <a href="{{ url('/?banco=0') }}"><button class="dropdown-item" type="button"> Todos Bancos </button></a>
-                                                @forelse (request()->bancos as $sessionBanco)
-                                                    <a href="{{ url('?banco='.$sessionBanco->id) }}"><button class="dropdown-item" type="button">{{$sessionBanco->name}}</button></a>
+                                                <a href="{{ route(Route::currentRouteName()) }}"><button class="dropdown-item" type="button"> Todos Bancos </button></a>
+                                                
+                                                @forelse (request()->bancos as $banco)
+                                                    <a href="{{ '?banco='.$banco->id }}"><button class="dropdown-item" type="button">{{$banco->name}}</button></a>
                                                 @empty
                                                 @endforelse
                                             </div>
@@ -268,8 +274,9 @@
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+        <script src="/_site/js/_plugins/jquery/jquery.min.js"></script>
+
         <!-- Plugins -->
         <script src="{{ url(mix('/_site/js/plugins.js')) }}"></script>
         

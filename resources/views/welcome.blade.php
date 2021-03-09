@@ -54,7 +54,7 @@
 ?>
 <a href="{{url($link)}}">
 <section id="top-banner">
-    <div class="container" style='background-image: url({{asset("/{$noticiaDestaqueFirst->fileImagemDestaque_pathfile}/{$noticiaDestaqueFirst->fileImagemDestaque_namefile}")}}); height: 350px;'>
+    <div class="container" style='background-image: url({{asset("/{$noticiaDestaqueFirst->fileBannerDestaque_pathfile}/{$noticiaDestaqueFirst->fileBannerDestaque_namefile}")}}); height: 350px;'>
         <div class="row align-items-end">
             <div class="col cols__texts">
                 <!-- <div class="col-12 col-lg-9 container-text-1">#{{ $noticiaDestaqueFirst->tags }}</div> -->

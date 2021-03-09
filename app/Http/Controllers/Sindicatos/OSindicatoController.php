@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Sindicatos;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use App\Models\Instituicao;
 
 class OSindicatoController extends Controller
 {
@@ -21,8 +22,10 @@ class OSindicatoController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('sindicatos.o-sindicato');
+        $data = new Instituicao();
+
+        return view('sindicatos.o-sindicato')->withData( $data->find($request->syndicate['id']) );
     }
 }

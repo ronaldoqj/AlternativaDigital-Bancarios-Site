@@ -1,9 +1,9 @@
 <?php
-    $bannerFile = request()->syndicate['banner_file']['pathfile'];
-    $bannerPahtfile = request()->syndicate['banner_file']['namefile'];
+    $bannerFile = request()->syndicate['banner_file']['pathfile'] ?? null;
+    $bannerPahtfile = request()->syndicate['banner_file']['namefile'] ?? null;
     $bannerLink = "/{$bannerFile}/{$bannerPahtfile}";
-    $logoFile = request()->syndicate['logo_file']['pathfile'];
-    $logoPahtfile = request()->syndicate['logo_file']['namefile'];
+    $logoFile = request()->syndicate['logo_file']['pathfile'] ?? null;
+    $logoPahtfile = request()->syndicate['logo_file']['namefile'] ?? null;
     $logoLink = "/{$logoFile}/{$logoPahtfile}";
 ?>
 @extends('layouts.layout')
@@ -13,7 +13,8 @@
 
     @section('top-syndicate')
         <!-- Banner TOP -->
-        <a href="/sindicato">
+        @if ($bannerFile && $bannerPahtfile)
+        <a href="{{ route('sindicato') }}">
             <section id="top-banner">
                 <div id="box-top-sindicato" class="container-fluid" style="background-image: url({{$bannerLink}}); height: 250px;">
                     <div class="container">
@@ -28,7 +29,7 @@
                 </div>
             </section>
         </a>
-
+        @endif
         <div id="menu-sindicato" class="container-fluid">
             <div class="container">
                 <div class="row container-menus-sindicatos">
@@ -36,7 +37,7 @@
                     <div class="col-md-12 col-lg-7 col-texts">
                         <div class="legendas">MENU DO SINDICATO</div>
                         <div class="flex-texts">
-                            <div><a href="{{ route('sindicato-home') }}">HOME</a></div>
+                            <div><a href="{{ route('sindicato') }}">HOME</a></div>
                             <div class="separador">&nbsp;</div>
                             <div><a href="{{ route('sindicato-o-sindicato') }}">O SINDICATO</a></div>
                             <div class="separador">&nbsp;</div>
@@ -53,12 +54,24 @@
                     <div class="col-md-12 col-lg-5">
                         <div class="legendas">REDES SOCIAIS DO SINDICATO</div>
                         <div class="flex-icons">
-                            <div> <a href="https://www.facebook.com/seeb.camaqua"><img src="{{asset('/_site/assets/SVGs/Brancos/facebook.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
-                            <div> <a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/twitter.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
-                            <div> <a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                            @if( request()->syndicate['facebook'] )
+                                <div> <a href="{{url(request()->syndicate['facebook'])}}"><img src="{{asset('/_site/assets/SVGs/Brancos/facebook.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                            @endif
+                            @if( request()->syndicate['twitter'] )
+                                <div> <a href="{{url(request()->syndicate['twitter'])}}"><img src="{{asset('/_site/assets/SVGs/Brancos/twitter.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                            @endif
+                            @if( request()->syndicate['instagram'] )
+                                <div> <a href="{{url(request()->syndicate['instagram'])}}"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                            @endif
+
                             <div> <a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/whatsapp.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
-                            <div> <a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/podcasts.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
-                            <div> <a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/youtube.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+
+                            @if( request()->syndicate['podcast'] )
+                                <div> <a href="{{url(request()->syndicate['podcast'])}}"><img src="{{asset('/_site/assets/SVGs/Brancos/podcasts.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                            @endif
+                            @if( request()->syndicate['youtube'] )
+                                <div> <a href="{{url(request()->syndicate['youtube'])}}"><img src="{{asset('/_site/assets/SVGs/Brancos/youtube.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                            @endif
                         </div>
                     </div>
                 </div>

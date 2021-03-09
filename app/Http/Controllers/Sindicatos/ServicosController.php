@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Sindicatos;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use App\Models\Servico;
 
 class ServicosController extends Controller
 {
@@ -21,19 +22,10 @@ class ServicosController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        //phpinfo();
-        $teste = '';
-        $ronaldo = 'oioi';
-        $teste = 'Ronaldo';
-        $teste .= ' ';
-        $teste .= 'Quionha';
-        $teste .= ' ';
-        $teste .= 'de';
-        $teste .= ' ';
-        $teste .= 'Jesus';
+        $data = new Servico();
 
-        return view('sindicatos.servicos');
+        return view('sindicatos.servicos')->withData( $data->find($request->syndicate['id']) );
     }
 }

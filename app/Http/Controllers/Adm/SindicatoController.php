@@ -163,18 +163,17 @@ class SindicatoController extends Controller
 
         $Sindicato->save();
 
+
         /**
          * Update Banner
          */
         $banner = new File();
+        $banner = $banner->where( 'id', $Sindicato->banner )->first();
+        if ($banner && $request->input('deleteBannerOnEdit')) {
+            $banner->delete();
+        }
         if ( $request->file('banner') )
         {
-            $banner = $banner->where( 'id', $Sindicato->banner )->first();
-
-            if ($banner) {
-                $banner->delete();
-            }
-
             $file = new Upload();
             $file->path = 'files/sindicatos';
             $file->creditfile = $request->input('creditoBanner') ?? null;
@@ -190,14 +189,12 @@ class SindicatoController extends Controller
          * Update Logo
          */
         $logo = new File();
+        $logo = $logo->where( 'id', $Sindicato->logo )->first();
+        if ($logo && $request->input('deleteLogoOnEdit')) {
+            $logo->delete();
+        }
         if ( $request->file('logo') )
         {
-            $logo = $logo->where( 'id', $Sindicato->logo )->first();
-
-            if ($logo) {
-                $logo->delete();
-            }
-
             $file = new Upload();
             $file->path = 'files/sindicatos';
             $file->creditfile = $request->input('creditoLogo') ?? null;
@@ -216,6 +213,7 @@ class SindicatoController extends Controller
         return redirect()->route('adm-sindicatos');
     }
 
+
     public function deletar(Request $request)
     {
         $Sindicato = new Sindicato();
@@ -223,4 +221,14 @@ class SindicatoController extends Controller
         $delete->delete();
         return redirect(url('adm/sindicatos'));
     }
+
+    // private function deleteFile($dataFile)
+    // {
+    //     if ($dataFile) {
+    //         $nameFileFull = $dataFile->pathfile . '/' . $dataFile->namefile;
+    //         if ( is_file($nameFileFull) ) {
+    //             unlink($nameFileFull);
+    //         }
+    //     }
+    // }
 }

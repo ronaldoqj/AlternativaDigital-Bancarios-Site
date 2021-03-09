@@ -32,6 +32,7 @@ class Sindicato extends Model
 
             'logo.pathfile          as logo_pathfile',
             'logo.namefile          as logo_namefile',
+            'logo.deleted_at        as logo_deleted_at'
         );
         return $listAll;
     }
@@ -87,6 +88,7 @@ class Sindicato extends Model
             'banner.type            as banner_type',
             'banner.description     as banner_description',
             'banner.alternativeText as banner_alternativeText',
+            'banner.deleted_at      as banner_deleted_at',
             'banner.created_at      as banner_created_at',
             'banner.updated_at      as banner_updated_at',
             
@@ -103,6 +105,7 @@ class Sindicato extends Model
             'logo.type              as logo_type',
             'logo.description       as logo_description',
             'logo.alternativeText   as logo_alternativeText',
+            'logo.deleted_at        as logo_deleted_at',
             'logo.created_at        as logo_created_at',
             'logo.updated_at        as logo_updated_at'
         )->first();

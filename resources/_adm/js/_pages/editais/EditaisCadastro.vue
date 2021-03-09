@@ -433,10 +433,10 @@ export default {
             this.errorsShow.errors = [];
 
             // Validações especificas
-            if ( _.isEmpty(this.filesBannerDestaque) && this.fileBannerIsEdit == '' )
+            if ( _.isNil(this.filesBannerDestaque) && this.fileBannerIsEdit == '' )
                 this.errorsShow.errors.push({title: 'Banner Destaque', description: 'obrigatório'});
-            if (! _.isEmpty(this.filesBannerDestaque) && this.fileBannerIsEdit == ''  ) {
-                if ( this.filesBannerDestaque[0].size >= 1000000) {
+            if (! _.isNil(this.filesBannerDestaque) && this.fileBannerIsEdit == ''  ) {
+                if ( this.filesBannerDestaque.size >= 1000000) {
                     this.errorsShow.errors.push({title: 'Banner Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
                 }
             }
@@ -444,10 +444,10 @@ export default {
                 this.errorsShow.errors.push({title: 'Crédito da Imagem (Banner Destaque)', description: 'obrigatório'});
             
 
-            if ( _.isEmpty(this.filesFile) && this.fileFileIsEdit == '' )
+            if ( _.isNil(this.filesFile) && this.fileFileIsEdit == '' )
                 this.errorsShow.errors.push({title: 'Arquivo PDF', description: 'obrigatório'});
-            if (! _.isEmpty(this.filesFile) && this.fileFileIsEdit == '' ) {
-                if ( this.filesFile[0].size >= 20000000) {
+            if (! _.isNil(this.filesFile) && this.fileFileIsEdit == '' ) {
+                if ( this.filesFile.size >= 20000000) {
                     this.errorsShow.errors.push({title: 'Arquivo PDF', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 20mb) '});
                 }
             }
