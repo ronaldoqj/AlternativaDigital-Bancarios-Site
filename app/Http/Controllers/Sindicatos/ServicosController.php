@@ -26,6 +26,6 @@ class ServicosController extends Controller
     {
         $data = new Servico();
 
-        return view('sindicatos.servicos')->withData( $data->find($request->syndicate['id']) );
+        return view('sindicatos.servicos')->withData( $data->where('entity', $request->syndicate['id'])->first() );
     }
 }

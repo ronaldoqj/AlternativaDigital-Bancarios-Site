@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('css')
-    <link href="{{asset('/_site/css/pages/acordos-e-convencoes.scss')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{{asset('/_site/css/pages/acordos-e-convencoes.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
 @endsection
 @section('content')
 

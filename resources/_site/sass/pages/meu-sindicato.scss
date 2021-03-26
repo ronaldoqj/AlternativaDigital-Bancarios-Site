@@ -5,61 +5,91 @@
 #meu-sindicato
 {
     padding-top: 20px;
+    h2 { font-size: 1.4em; color: #0B3C5E; }
+    h3 { margin-top: 8px; font-size: 1.3em; color: #53A6D8; }
+    h4 { font-size: 1.2em; }
 
-    .card-body {
-        
+    p {
+        margin-top: 20px;
+        color: #333;
+        font-size: 1.3em;
+        line-height: 1.1em;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .__text--1
+    {
+        font-family: 'Anton', sans-serif;
+        color: #53A6D8;
+        line-height: inherit;
+        font-size: 1.3em;
         margin-top: 10px;
 
-        h2 {
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            color: #A5A5A5;
+        span {
+            color: #B3B3B3;
+            padding-left: 10px;
+        }
+    }
+    .__text--2
+    {
+        font-family: 'Anton', sans-serif;
+        font-size: 1.2em;
+        line-height: 1em;
+        padding: 8px 0;
+    }
+    .__text--3
+    {
+        font-family: 'Anton', sans-serif;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: normal;
+        font-size: 1.1em;
+        line-height: 1em;
+    }
 
-            &[aria-expanded="true"] {
-                color: #53A6D8;
+    .destaques {
+        font-family: "Anton", sans-serif;
+        
+        .__card--box
+        {
+            .logo {
+                height: 180px;
+                border: solid 1px #0B3C5E;
+                border-left-width: 8px;
+                border-right-width: 8px;
+                margin-bottom: 20px;
+                background-color: #0B3C5E;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center center;
             }
 
-            &::before {
-                // Caracter bullet
-                content: "\2022";
-                width: 10px;
-                height: 10px;
-                margin-left: -10px;
-                margin-right: -2px;
-                font-size: 0.6em;
-                vertical-align: middle;
+            color: #333;
+            padding: 25px 20px 0 25px;
+            
+            h2 {
+                text-align: center;
+                margin-bottom: 10px;
+            }
+            .__card--content
+            {
+                .__text--3 {
+                    text-align: center;
+                }
             }
         }
+    }
+
+    
+    
+    .card-body {
+        margin-top: 10px; 
     }
 
 
     .accordionStandard
     {
-
         margin-top: 20px;
-
-        h2 {
-            font-size: 2.1em;
-            color: #0B3C5E;
-        }
-
-        h3 {
-            margin-top: 8px;
-            font-size: 1.3em;
-            color: #53A6D8;
-        }
-
-        h4 {
-            font-size: 2.1em;
-        }
-
-        p {
-            margin-top: 20px;
-            color: #333;
-            font-size: 1.5em;
-            line-height: 1.4em;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+        
 
         /* Buttons Editais */
         /**
@@ -79,6 +109,9 @@
             margin-top: -15px;
             margin-bottom: 20px;
 
+            .row {
+                width: 100%;
+            }
             .__card--box
             {
                 line-height: 1.4em;
@@ -96,35 +129,6 @@
                 
                 .__card--content
                 {
-                    .__text--1
-                    {
-                        font-family: 'Anton', sans-serif;
-                        color: #53A6D8;
-                        line-height: inherit;
-                        font-size: 1.5em;
-                        margin-top: 10px;
-        
-                        span {
-                            color: #B3B3B3;
-                            padding-left: 10px;
-                        }
-                    }
-                    .__text--2
-                    {
-                        font-family: 'Anton', sans-serif;
-                        font-size: 2.1em;
-                        line-height: 1.2em;
-                        padding: 8px 0;
-                    }
-                    .__text--3
-                    {
-                        font-family: 'Anton', sans-serif;
-                        font-family: Arial, Helvetica, sans-serif;
-                        font-weight: normal;
-                        font-size: 1.5em;
-                        line-height: 1.2em;
-                    }
-        
                     > div {
                         &:last-child {
                             border-bottom: solid 1px #C1C1C1;
@@ -149,7 +153,6 @@
                         }
                     }
                 }
-            
             }
 
             .__icons--editais
@@ -174,9 +177,8 @@
 
 
             .titulo-btns {
-                font-size: Arial, Helvetica, sans-serif !important;
                 color: #919191;
-                font-size: 0.9em;
+                font-size: 1.1em;
                 text-align: center;
             }
 
@@ -202,10 +204,6 @@
             }
 
         }
-
-
-
-
 
 
     }

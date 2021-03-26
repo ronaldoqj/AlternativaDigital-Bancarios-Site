@@ -26,6 +26,6 @@ class ContatoController extends Controller
     {
         $data = new Contato();
 
-        return view('sindicatos.contato')->withData( $data->find($request->syndicate['id']) );
+        return view('sindicatos.contato')->withData( $data->where('entity', $request->syndicate['id'])->first() );
     }
 }

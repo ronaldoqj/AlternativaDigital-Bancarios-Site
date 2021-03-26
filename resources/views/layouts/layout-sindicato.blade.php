@@ -20,8 +20,7 @@
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col">
-                                <div class="box-logo">
-                                    <img src="{{asset($logoLink)}}" height="100" />
+                                <div class="box-logo" style=" background-image: url(' {{ asset($logoLink) }} ') ">
                                 </div>
                             </div>
                         </div>

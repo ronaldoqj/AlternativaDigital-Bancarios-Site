@@ -10,28 +10,89 @@
   padding-top: 20px;
 }
 
-#meu-sindicato .card-body {
-  margin-top: 10px;
+#meu-sindicato h2 {
+  font-size: 1.4em;
+  color: #0B3C5E;
 }
 
-#meu-sindicato .card-body h2 {
-  margin-bottom: 8px;
-  text-transform: uppercase;
-  color: #A5A5A5;
-}
-
-#meu-sindicato .card-body h2[aria-expanded=true] {
+#meu-sindicato h3 {
+  margin-top: 8px;
+  font-size: 1.3em;
   color: #53A6D8;
 }
 
-#meu-sindicato .card-body h2::before {
-  content: "\2022";
-  width: 10px;
-  height: 10px;
-  margin-left: -10px;
-  margin-right: -2px;
-  font-size: 0.6em;
-  vertical-align: middle;
+#meu-sindicato h4 {
+  font-size: 1.2em;
+}
+
+#meu-sindicato p {
+  margin-top: 20px;
+  color: #333;
+  font-size: 1.3em;
+  line-height: 1.1em;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#meu-sindicato .__text--1 {
+  font-family: "Anton", sans-serif;
+  color: #53A6D8;
+  line-height: inherit;
+  font-size: 1.3em;
+  margin-top: 10px;
+}
+
+#meu-sindicato .__text--1 span {
+  color: #B3B3B3;
+  padding-left: 10px;
+}
+
+#meu-sindicato .__text--2 {
+  font-family: "Anton", sans-serif;
+  font-size: 1.2em;
+  line-height: 1em;
+  padding: 8px 0;
+}
+
+#meu-sindicato .__text--3 {
+  font-family: "Anton", sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 1.1em;
+  line-height: 1em;
+}
+
+#meu-sindicato .destaques {
+  font-family: "Anton", sans-serif;
+}
+
+#meu-sindicato .destaques .__card--box {
+  color: #333;
+  padding: 25px 20px 0 25px;
+}
+
+#meu-sindicato .destaques .__card--box .logo {
+  height: 180px;
+  border: solid 1px #0B3C5E;
+  border-left-width: 8px;
+  border-right-width: 8px;
+  margin-bottom: 20px;
+  background-color: #0B3C5E;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#meu-sindicato .destaques .__card--box h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#meu-sindicato .destaques .__card--box .__card--content .__text--3 {
+  text-align: center;
+}
+
+#meu-sindicato .card-body {
+  margin-top: 10px;
 }
 
 #meu-sindicato .accordionStandard {
@@ -45,29 +106,6 @@
   *
   * @subpackage 
   */
-}
-
-#meu-sindicato .accordionStandard h2 {
-  font-size: 2.1em;
-  color: #0B3C5E;
-}
-
-#meu-sindicato .accordionStandard h3 {
-  margin-top: 8px;
-  font-size: 1.3em;
-  color: #53A6D8;
-}
-
-#meu-sindicato .accordionStandard h4 {
-  font-size: 2.1em;
-}
-
-#meu-sindicato .accordionStandard p {
-  margin-top: 20px;
-  color: #333;
-  font-size: 1.5em;
-  line-height: 1.4em;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 #meu-sindicato .accordionStandard .download {
@@ -90,6 +128,10 @@
   */
 }
 
+#meu-sindicato .accordionStandard .__card--acordion .row {
+  width: 100%;
+}
+
 #meu-sindicato .accordionStandard .__card--acordion .__card--box {
   line-height: 1.4em;
   color: #333;
@@ -104,34 +146,6 @@
   #meu-sindicato .accordionStandard .__card--acordion .__card--box:first-child {
     border-right: solid 1px #C1C1C1;
   }
-}
-
-#meu-sindicato .accordionStandard .__card--acordion .__card--box .__card--content .__text--1 {
-  font-family: "Anton", sans-serif;
-  color: #53A6D8;
-  line-height: inherit;
-  font-size: 1.5em;
-  margin-top: 10px;
-}
-
-#meu-sindicato .accordionStandard .__card--acordion .__card--box .__card--content .__text--1 span {
-  color: #B3B3B3;
-  padding-left: 10px;
-}
-
-#meu-sindicato .accordionStandard .__card--acordion .__card--box .__card--content .__text--2 {
-  font-family: "Anton", sans-serif;
-  font-size: 2.1em;
-  line-height: 1.2em;
-  padding: 8px 0;
-}
-
-#meu-sindicato .accordionStandard .__card--acordion .__card--box .__card--content .__text--3 {
-  font-family: "Anton", sans-serif;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: normal;
-  font-size: 1.5em;
-  line-height: 1.2em;
 }
 
 #meu-sindicato .accordionStandard .__card--acordion .__card--box .__card--content > div:last-child {
@@ -166,9 +180,8 @@
 }
 
 #meu-sindicato .accordionStandard .__card--acordion .titulo-btns {
-  font-size: Arial, Helvetica, sans-serif !important;
   color: #919191;
-  font-size: 0.9em;
+  font-size: 1.1em;
   text-align: center;
 }
 

@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Middleware\TemplateQuerys;
 use App\Http\Middleware\CheckSyndicate;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -87,7 +87,7 @@ Route::prefix('adm')->namespace('Adm')->group(function ()
          * Quando entra na edição do sindicato de Porto Alegre por exemplo,
          * o sindicado de Porto Alegre apenas pode editar as informações
          */
-        Route::get('/sindicato-atualizar', 'SindicatoController@edicaoSindicatoVigente')->name('adm-sindicatos-edicao');
+        Route::get('/sindicato-atualizar', 'SindicatoController@edicaoSindicatoVigente')->name('adm-sindicatos-atualizar');
 
         Route::get('/institucional', 'InstituicaoController@index')->name('adm-instituicao');
         Route::post('/institucional', 'InstituicaoController@edicao')->name('adm-instituicao-edicao');
@@ -113,7 +113,8 @@ Route::prefix('adm')->namespace('Adm')->group(function ()
 // Portal Bancários
 Route::middleware([GetEntitiesForTemplate::class])->group(function()
 {
-    Route::get('/', 'WelcomeController@index')->name('welcome');
+    Route::get('/', 'WelcomeController@index')->name('welcome')->middleware(CheckSyndicate::class);
+    Route::match(['get', 'post'], '/pagination', 'WelcomeController@ajax_pagination')->name('welcome-pagination')->middleware(CheckSyndicate::class);
     Route::get('/fetrafi-rs', 'WelcomeController@home')->name('fetrafi-rs');
     Route::get('/entidades-parceiras', 'EntidadesParceirasController@index')->name('entidades-parceiras');
     Route::match(['get', 'post'], '/busca', 'SearchController@index')->name('search');

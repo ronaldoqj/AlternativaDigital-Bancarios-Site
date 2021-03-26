@@ -49,7 +49,7 @@
     @endif
 
 @empty
-    <p class="emptyRegisters">Não há editais no momento</p>
+    <div class="emptyRegisters">Não há editais no momento</div>
     <hr>
 @endforelse
 
