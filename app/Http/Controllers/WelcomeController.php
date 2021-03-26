@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Noticia;
 use App\Models\Banco;
 use App\Models\Campanha;
+use App\Models\Pagination;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class WelcomeController extends Controller
 {
@@ -14,8 +17,12 @@ class WelcomeController extends Controller
      *
      * @return void
      */
+
+    private Pagination $pagination;
+
     public function __construct()
     {
+        $this->pagination = new Pagination();
     }
 
     /**
@@ -24,30 +31,69 @@ class WelcomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index(Request $request)
-    {   
-        session()->flash('typeNoticia', ['autorNoticia' => 'portal']);
-        return $this->renderizaPagina($request);
+    {
+        $this->pagination->page = 1;
+        $return = $this->renderizaPagina($request);
+        
+        // Pagination
+        $this->pagination->setResult($return['data']['noticias']);
+        $this->pagination->get();
+        $return['data']['noticias'] = $this->pagination->items;
+
+        return $return['view']->withReturn($return['data'])
+                              ->withSindicato(null);
     }
 
     public function indexSindicato(Request $request)
     {
-        session()->flash('typeNoticia', ['autorNoticia' => 'sindicato']);
-        return $this->renderizaPagina($request, true);
+        $this->pagination->page = 1;
+        $return = $this->renderizaPagina($request);
+
+        // Pagination
+        $this->pagination->setResult($return['data']['noticias']);
+        $this->pagination->get();
+        $return['data']['noticias'] = $this->pagination->items;
+
+        return $return['view']->withReturn($return['data'])
+                              ->withSindicato(true);
     }
 
-    private function renderizaPagina($request, $sindicato = null)
+    public function ajax_pagination(Request $request)
     {
-        $return = [];
+        $this->pagination->setPage( $request->input('page') ?? 1 );
+        
+        $return = $this->renderizaPagina($request);
+        
+        $this->pagination->setResult($return['data']['noticias']);
+        $this->pagination->get();
+
+        $linkComplemento = request()->syndicate ? 'sindicato/' : '';
+        foreach($this->pagination->items as $key => $item)
+        {
+            $this->pagination->items[$key]->extraLink = url("/{$linkComplemento}noticia/{$item->id}/" . Str::slug($item->titulo, '-'));
+            $this->pagination->items[$key]->extraAssetUrl = url(asset("/{$item->fileImagemDestaque_pathfile}/{$item->fileImagemDestaque_namefile}"));
+            $this->pagination->items[$key]->extraData = \Carbon\Carbon::parse($item->dataInclusao)->format('d/m/Y');
+        }
+
+        return json_encode($this->pagination);
+    }
+
+    private function renderizaPagina($request)
+    {
+        $return = [
+            'view' => view('welcome'),
+            'data' => null
+        ];
         $noticia = new Noticia();
         $campanha = new Campanha();
         
-        $return['bancoSelecionado'] = $this->getNameBank($request);
-        $return['noticiaDestaqueFirst'] = $noticia->getDestaques()->first();
-        $notIDs = [$return['noticiaDestaqueFirst']->id];
-        $return['noticias'] = $noticia->getNoticias($request, $notIDs)->get();
-        $return['campanha'] = $campanha->returnCampanhaVigente();
+        $return['data']['bancoSelecionado']     = $this->getNameBank($request);
+        $return['data']['noticiaDestaqueFirst'] = $noticia->getDestaques()->first();
+        $notIDs                                 = [$return['data']['noticiaDestaqueFirst']->id];
+        $return['data']['noticias']             = $noticia->getNoticias($request, $notIDs);
+        $return['data']['campanha']             = $campanha->returnCampanhaVigente();
 
-        return view('welcome')->withReturn($return)->withSindicato($sindicato);
+        return $return;
     }
 
     private function getNameBank($request): string {

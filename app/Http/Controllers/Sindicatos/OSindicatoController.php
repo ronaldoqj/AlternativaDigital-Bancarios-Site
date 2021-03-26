@@ -26,6 +26,6 @@ class OSindicatoController extends Controller
     {
         $data = new Instituicao();
 
-        return view('sindicatos.o-sindicato')->withData( $data->find($request->syndicate['id']) );
+        return view('sindicatos.o-sindicato')->withData( $data->where('entity', $request->syndicate['id'])->first() );
     }
 }

@@ -23,7 +23,7 @@ mix.js('resources/_adm/js/app.js', 'public/_adm/js/app.js')
     .sass('resources/_site/sass/pages/entidades-parceiras.scss', 'public/_site/css/pages/entidades-parceiras.css')
     .sass('resources/_site/sass/pages/editais.scss', 'public/_site/css/pages/editais.css')
     .sass('resources/_site/sass/pages/search.scss', 'public/_site/css/pages/search.css')
-    .sass('resources/_site/sass/pages/acordos-e-convencoes.scss', 'public/_site/css/pages/acordos-e-convencoes.scss')
+    .sass('resources/_site/sass/pages/acordos-e-convencoes.scss', 'public/_site/css/pages/acordos-e-convencoes.css')
     .sass('resources/_site/sass/pages/meu-sindicato.scss', 'public/_site/css/pages/meu-sindicato.css')
 
     .sass('resources/_site/sass/componentes/menu-sindicato.scss', 'public/_site/css/pages/menu-sindicato.css')
@@ -56,6 +56,7 @@ mix.js('resources/_adm/js/app.js', 'public/_adm/js/app.js')
     .scripts('resources/_site/js/pages/sindicalize-se.js', 'public/_site/js/pages/sindicalize-se.js')
     .scripts('resources/_site/js/template.js', 'public/_site/js/template.js');
 
+mix.scripts('resources/_site/js/pages/welcome.js', 'public/_site/js/pages/welcome.js').version();
 mix.sass('resources/_adm/sass/app.scss', 'public/_adm/css/app.css');
 mix.sass('resources/_adm/sass/auth.scss', 'public/_adm/css/auth.css');
 

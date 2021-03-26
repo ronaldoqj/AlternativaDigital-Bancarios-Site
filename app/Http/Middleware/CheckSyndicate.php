@@ -63,8 +63,27 @@ class CheckSyndicate
          * então será direcionado para a página que contem
          * a listagem dos sindicatos no Portal
          */
-        if (! $syndicate) {
-            return redirect()->route('meu-sindicato');
+        if (! $syndicate)
+        {
+            /**
+             * Regra não se aplica as rotas
+             * nameRoute => welcome
+             * nameRoute => welcome-pagination
+             */
+            if ($request->route()->getName() != 'welcome' && $request->route()->getName() != 'welcome-pagination') {
+                return redirect()->route('meu-sindicato');
+            }
+        }
+        else
+        {
+            /**
+             * Caso encontre um sindicato por sub-dominio a rota
+             * /welcome fica inacessivel realizando um redirect para
+             * a rota /sindicato
+             */
+            if ($request->route()->getName() == 'welcome') {
+                return redirect()->route('sindicato');
+            }
         }
 
         $request->syndicate = $syndicate;

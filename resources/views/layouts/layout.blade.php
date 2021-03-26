@@ -59,6 +59,7 @@
         </script>
     </head>
     <body>
+        <input type="hidden" name="idBank" value="{{ request()->input('banco') }}" />
         <nav id="sidebar" class="">
             <div id="dismiss">
                 <!-- <i class="fas fa-arrow-left"></i> -->
@@ -74,7 +75,7 @@
             <ul class="list-unstyled components">
                 <p>Menu</p>
                 <li class="active">
-                    <a href="{{ route('welcome') }}">Página Inicial</a>
+                    <a href="{{ url(env('APP_URL')) }}">Página Inicial</a>
                 </li>
                 <li>
                     <a href="{{route('fetrafi-rs')}}">Fetrafi-RS</a>
@@ -168,7 +169,7 @@
                             <div id="expand__menu2" class="d-lg-none">
                                 <img src="/_site/assets/expand-menu2.png" class="rounded-circle" />
                             </div>
-                            <a href="{{ route('welcome') }}">
+                            <a href="{{ url(env('APP_URL')) }}">
                                 <img src="/_site/assets/bancariosrs.svg" class="img-fluid logo" onload="SVGInject(this)"  />
                             </a>
                         </div>

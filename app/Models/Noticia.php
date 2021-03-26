@@ -2,15 +2,15 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use DB;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Query\Builder;
 
 class Noticia extends Model
 {
-
     use SoftDeletes;
     private $syndicate;
-
-
+  
+    
     /**
      * Metodos para o adm
      */
@@ -202,7 +202,6 @@ class Noticia extends Model
         return $listAll;
     }
 
-
     public function findSindicatosByIdNoticia($idNoticia)
     {
         $list = DB::table('noticias_has_sindicatos');
@@ -230,7 +229,6 @@ class Noticia extends Model
 
         return $listAll;
     }
-
 
     /**
      * Metodos para o site
@@ -303,7 +301,6 @@ class Noticia extends Model
         return $list;
     }
 
-
     private function checkBank($request): bool
     {
         $check = false;
@@ -325,7 +322,7 @@ class Noticia extends Model
     }
 
     
-    public function getNoticias($request, $notIDs = [])
+    public function getNoticias($request, $notIDs = []): Builder
     {
         $list = DB::table('noticias');
         $list->leftjoin('files as filesBannerDestaque', 'filesBannerDestaque.id', '=', 'noticias.bannerDestaque');
@@ -360,7 +357,7 @@ class Noticia extends Model
         {
             $list->join('noticias_has_bancos as noticiasHasBancos', 'noticiasHasBancos.noticia', '=', 'noticias.id');
             $list->where('noticiasHasBancos.banco', $request->input('banco'));
-
+            
             /** Pode ser realizado desta maneira */
             // $list->join('noticias_has_bancos as noticiasHasBancos', 'noticiasHasBancos.noticia', '=', 'noticias.id');
             // $list->where('noticiasHasBancos.banco', $idbanco);
@@ -369,10 +366,10 @@ class Noticia extends Model
             // $list->join('noticias_has_bancos', function($join) use ( $idbanco )
             // {
             //     $join->on('noticias_has_bancos.noticia', '=', 'noticias.id')
-            //         ->where('noticias_has_bancos.banco', '=', $idbanco);
+            //          ->where('noticias_has_bancos.banco', '=', $idbanco);
             // });
         }
-    
+
         $list->orderBy('noticias.dataInclusao', 'desc');
         $list->addSelect('noticias.id as id',
                          'noticias.ativo as ativo',
@@ -447,7 +444,6 @@ class Noticia extends Model
 
         return $list;
     }
-
 
     public function searchPageSearch(String $search)
     {

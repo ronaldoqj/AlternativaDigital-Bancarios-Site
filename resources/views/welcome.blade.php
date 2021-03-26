@@ -2,7 +2,7 @@
     $noticiaDestaqueFirst = $return['noticiaDestaqueFirst'];
     $campanha = $return['campanha'];
     $layout = $sindicato ? 'layouts.layout-sindicato' : 'layouts.layout';
-    $linkComplemento = $sindicato ? 'sindicato/' : '';
+    $linkComplemento = request()->syndicate ? 'sindicato/' : '';
 ?>
 
 @extends($layout)
@@ -11,6 +11,8 @@
 @endsection
 
 @section('metatags')
+<meta name="route-pagination" content="{{ route('welcome-pagination') }}">
+
 <meta property="og:url"         content="{{url('/')}}" />
 <meta property="og:type"        content="website" />
 <meta property="og:title"       content="Portal Bancários RS" />
@@ -19,6 +21,8 @@
 @endsection
 
 @section('js')
+<script src="{{ url(mix('/_site/js/pages/welcome.js')) }}"></script>
+
 @if ($campanha)
     <script>
         $('#campanhaModal').modal('show')
@@ -27,6 +31,7 @@
 @endsection
 
 @section('content')
+
 @if ($campanha)
 <!-- Modal -->
 <div class="modal fade" id="campanhaModal" tabindex="-1" aria-labelledby="campanhaModalLabel" aria-hidden="true">
@@ -47,7 +52,7 @@
 </div>
 @endif
 
-@if ( $noticiaDestaqueFirst && session()->get('typeNoticia')['autorNoticia'] == 'portal' )
+@if ( $noticiaDestaqueFirst && !request()->syndicate )
 <!-- Banner TOP -->
 <?php
     $link = "/{$linkComplemento}noticia/{$noticiaDestaqueFirst->id}/" . Str::slug($noticiaDestaqueFirst->titulo, '-');
@@ -198,7 +203,11 @@
         @break
     @endswitch
 @empty
-    <p>Não foram encontradas notícias cadastradas</p>
+    <div class="emptyRegisters">Não foram encontradas notícias cadastradas</div>
+    <hr>
 @endforelse
 </section>
+<div class="loading mb-0 mt-5">
+    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+</div>
 @endsection

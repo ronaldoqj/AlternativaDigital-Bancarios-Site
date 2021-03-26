@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Sindicato;
 
 use Illuminate\Http\Request;
 
@@ -22,17 +23,11 @@ class MeuSindicatoController extends Controller
      */
     public function index()
     {
-        //phpinfo();
-        $teste = '';
-        $ronaldo = 'oioi';
-        $teste = 'Ronaldo';
-        $teste .= ' ';
-        $teste .= 'Quionha';
-        $teste .= ' ';
-        $teste .= 'de';
-        $teste .= ' ';
-        $teste .= 'Jesus';
+        $return = [];
+        $Sindicato = new Sindicato();
 
-        return view('meu-sindicato');
+        $return['list'] = $Sindicato->listAllToAdmPageSindicatos()->get()->toArray();
+
+        return view('meu-sindicato')->withReturn($return);
     }
 }
