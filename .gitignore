@@ -1,9 +1,5 @@
 /.vscode
 /node_modules
-/public/_site/css
-/public/_site/js
-/public/_adm/css
-/public/_adm/js
 /public/hot
 /public/files
 /public/storage

@@ -344,13 +344,9 @@ export default {
         this.noticias.comPodcast = JSON.parse(JSON.parse(this.propNoticias).noticiaComPodcast);
         this.noticias.comVideo = JSON.parse(JSON.parse(this.propNoticias).noticiaComVideo);
         this.noticias.simples = JSON.parse(JSON.parse(this.propNoticias).noticiaSimples);
-
-        console.log('teste', this.noticias);
     }
 }
-
 </script>
-
 
 <style lang="scss">
 @import '~/../resources/_adm/sass/_vars.scss';
