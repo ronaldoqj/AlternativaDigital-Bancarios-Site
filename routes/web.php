@@ -31,7 +31,7 @@ Route::prefix('adm')->namespace('Adm')->group(function ()
     
     Route::middleware([VerifyCurrentEntitySelected::class])->group(function ()
     {
-        Route::get('/noticias', 'NoticiaController@index')->name('adm-noticias');
+        Route::match(['get', 'post'], '/noticias', 'NoticiaController@index')->name('adm-noticias');
         Route::get('/noticias/cadastro', 'NoticiaController@cadastro')->name('adm-noticias-cadastro');
         Route::post('/noticias/cadastro', 'NoticiaController@cadastrarNoticia')->name('adm-noticias-cadastrar');
         Route::get('/noticias/edicao/{id?}', 'NoticiaController@edicao')->name('adm-noticias-edicao');

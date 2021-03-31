@@ -5,11 +5,11 @@
 
 @section('content')
 <div class="container-fluid">
-    
+
     <div>
         <noticias-page
             action-form="/adm/noticias/delete"
-            prop-noticias="{{ json_encode($return) }}"
+            url-current-page="{{ route(Route::currentRouteName()) }}"
             csrf="{{ csrf_token() }}"
         />
     </div>

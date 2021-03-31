@@ -11,6 +11,7 @@ class Pagination
     public int $totalItems;
     public int $nextPage;
     public int $previousPage;
+    public array $extraParam = [];
     public Array $items = [];
     private Builder $result;
 
@@ -22,6 +23,14 @@ class Pagination
         }
     }
 
+    public function setItemsPerPage(int $itemsPerPage): void {
+        $this->itemsPerPage = $itemsPerPage;
+    }
+    
+    public function setExtraParam(Array $extraParam): void {
+        $this->extraParam = $extraParam;
+    }
+    
     public function setResult(Builder $result): void {
         $this->result = $result;
     }

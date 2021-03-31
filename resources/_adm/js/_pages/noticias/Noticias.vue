@@ -13,227 +13,175 @@
             multiple
             flat
             >
+
+                <!-- Noticia destaque -->
                 <v-expansion-panel>
                     <v-expansion-panel-header>
                         <div class="header--panel">
-                            <div><btnIconText :params="paramsBtnIcons.btnIconTextDestaque"></btnIconText></div>
+                            <div><BtnIconText :params="paramsBtnIcons.btnIconTextDestaque"></BtnIconText></div>
                             <div></div>
                         </div>
                     </v-expansion-panel-header>
                     <v-expansion-panel-content>
-                    <div class="container-fluid content--panel">
-                        <div class="row">
-                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in noticias.destaques" :key="item.id">
-                                
-                                <div class="box--noticia">
-                                    <div class="imagem-noticia" :style="{ backgroundImage: `url(/${item.fileBannerDestaque_pathfile}/${item.fileBannerDestaque_namefile})` }"></div>
-                                    <div class="buttons">
-                                        <a :href="`/adm/noticias/edicao/${item.id}`"><img src="/_adm/assets/SVGs/editar.svg" class="img-fluid" onload="SVGInject(this)" /></a>
-                                        
-                                        <v-menu :close-on-content-click="true" :nudge-width="150" offset-x>
-                                            <template v-slot:activator="{ on, attrs }">
-                                                <a @click="clickExcluir(item)" v-bind="attrs" v-on="on"><img src="/_adm/assets/SVGs/excluir.svg" class="img-fluid" onload="SVGInject(this)" /></a>
-                                            </template>
-                                            
-                                            <v-card>
-                                                <v-list-item> <v-list-item-title>Deseja excluir o registro?</v-list-item-title> </v-list-item>
-                                                
-                                                <v-btn x-small class="ma-2" text @click="menu = false">Cancelar</v-btn>
-                                                <v-btn small tile color="error" class="ma-2 white--text" outlined @click="formExcluirEnviar()">
-                                                    Excluir <v-icon right dark> mdi-delete </v-icon>
-                                                </v-btn>
-                                            </v-card>
-                                        </v-menu>
-
-                                    </div>
-                                    <div class="content">
-                                        <p>
-                                            {{item.titulo}}
-                                        </p>
-                                    </div>
-                                </div>
+                        <v-overlay absolute :value="controlNoticiasPaginate.destaques.overlay">
+                            <v-progress-circular
+                                indeterminate
+                                size="64"
+                            ></v-progress-circular>
+                        </v-overlay>
+                        <div class="container-fluid content--panel">
+                            <div class="row">
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in noticias.destaques" :key="item.id">
+                                    <CardNews type="card-banner" :data="item" @clickedDelete="deleteCard"></CardNews>
+                                </div> 
                             </div>
+                            
                         </div>
-                    </div>
+                        <v-row justify="center">
+                            <v-container class="max-width">
+                                <v-pagination
+                                    v-model="controlNoticiasPaginate.destaques.page"
+                                    class="my-4"
+                                    :length="controlNoticiasPaginate.destaques.totalOfPages"
+                                ></v-pagination>
+                            </v-container>
+                        </v-row>
                     </v-expansion-panel-content>
                 </v-expansion-panel>
 
+                <!-- Noticia com Video -->
                 <v-expansion-panel>
                     <v-expansion-panel-header>
                         <div class="header--panel">
-                            <div><btnIconText :params="paramsBtnIcons.btnIconTextVideo"></btnIconText></div>
+                            <div><BtnIconText :params="paramsBtnIcons.btnIconTextVideo"></BtnIconText></div>
                             <div></div>
                         </div>
                     </v-expansion-panel-header>
                     <v-expansion-panel-content>
-                    <div class="container-fluid content--panel">
-                        <div class="row">
-                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in noticias.comVideo" :key="item.id">
-                                <div class="box--noticia">
-                                    <div class="embed-responsive embed-responsive-16by9">
-                                        <iframe class="embed-responsive-item" :src="'https://www.youtube.com/embed/' + item.videoYoutube" allowfullscreen></iframe>
-                                    </div>
-
-                                    <div class="buttons">
-                                        <a :href="`/adm/noticias/edicao/${item.id}`"><img src="/_adm/assets/SVGs/editar.svg" class="img-fluid" onload="SVGInject(this)" /></a>
-                                        <v-menu :close-on-content-click="true" :nudge-width="150" offset-x>
-                                            <template v-slot:activator="{ on, attrs }">
-                                                <a @click="clickExcluir(item)" v-bind="attrs" v-on="on"><img src="/_adm/assets/SVGs/excluir.svg" class="img-fluid" onload="SVGInject(this)" /></a>
-                                            </template>
-                                            
-                                            <v-card>
-                                                <v-list-item> <v-list-item-title>Deseja excluir o registro?</v-list-item-title> </v-list-item>
-                                                
-                                                <v-btn x-small class="ma-2" text @click="menu = false">Cancelar</v-btn>
-                                                <v-btn small tile color="error" class="ma-2 white--text" outlined @click="formExcluirEnviar()">
-                                                    Excluir <v-icon right dark> mdi-delete </v-icon>
-                                                </v-btn>
-                                            </v-card>
-                                        </v-menu>
-                                    </div>
-                                    <div class="content">
-                                        <p>
-                                            {{item.titulo}}
-                                        </p>
-                                    </div>
+                        <v-overlay absolute :value="controlNoticiasPaginate.comVideo.overlay">
+                            <v-progress-circular
+                                indeterminate
+                                size="64"
+                            ></v-progress-circular>
+                        </v-overlay>
+                        <div class="container-fluid content--panel">
+                            <div class="row">
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in noticias.comVideo" :key="item.id">
+                                    <CardNews type="card-video" :data="item" @clickedDelete="deleteCard"></CardNews>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <v-row justify="center">
+                            <v-container class="max-width">
+                                <v-pagination
+                                    v-model="controlNoticiasPaginate.comVideo.page"
+                                    class="my-4"
+                                    :length="controlNoticiasPaginate.comVideo.totalOfPages"
+                                ></v-pagination>
+                            </v-container>
+                        </v-row>
                     </v-expansion-panel-content>
                 </v-expansion-panel>
 
+                <!-- Noticia com Imagem -->
                 <v-expansion-panel>
                     <v-expansion-panel-header>
                         <div class="header--panel">
-                            <div><btnIconText :params="paramsBtnIcons.btnIconTextImagem"></btnIconText></div>
+                            <div><BtnIconText :params="paramsBtnIcons.btnIconTextImagem"></BtnIconText></div>
                             <div></div>
                         </div>
                     </v-expansion-panel-header>
                     <v-expansion-panel-content>
-                    <div class="container-fluid content--panel">
-                        <div class="row">
-                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in noticias.comImagem" :key="item.id">
-                                
-                                <div class="box--noticia">
-                                    <div class="imagem-noticia" :style="{ backgroundImage: `url(/${item.fileImagemDestaque_pathfile}/${item.fileImagemDestaque_namefile})` }"></div>
-                                    <div class="buttons">
-                                        <a :href="`/adm/noticias/edicao/${item.id}`"><img src="/_adm/assets/SVGs/editar.svg" class="img-fluid" onload="SVGInject(this)" /></a>
-                                        <v-menu :close-on-content-click="true" :nudge-width="150" offset-x>
-                                            <template v-slot:activator="{ on, attrs }">
-                                                <a @click="clickExcluir(item)" v-bind="attrs" v-on="on"><img src="/_adm/assets/SVGs/excluir.svg" class="img-fluid" onload="SVGInject(this)" /></a>
-                                            </template>
-                                            
-                                            <v-card>
-                                                <v-list-item> <v-list-item-title>Deseja excluir o registro?</v-list-item-title> </v-list-item>
-                                                
-                                                <v-btn x-small class="ma-2" text @click="menu = false">Cancelar</v-btn>
-                                                <v-btn small tile color="error" class="ma-2 white--text" outlined @click="formExcluirEnviar()">
-                                                    Excluir <v-icon right dark> mdi-delete </v-icon>
-                                                </v-btn>
-                                            </v-card>
-                                        </v-menu>
-                                    </div>
-                                    <div class="content">
-                                        <p>
-                                            {{item.titulo}}
-                                        </p>
-                                    </div>
+                        <v-overlay absolute :value="controlNoticiasPaginate.comImagem.overlay">
+                            <v-progress-circular
+                                indeterminate
+                                size="64"
+                            ></v-progress-circular>
+                        </v-overlay>
+                        <div class="container-fluid content--panel">
+                            <div class="row">
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in noticias.comImagem" :key="item.id">
+                                    <CardNews type="card-image" :data="item" @clickedDelete="deleteCard"></CardNews>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <v-row justify="center">
+                            <v-container class="max-width">
+                                <v-pagination
+                                    v-model="controlNoticiasPaginate.comImagem.page"
+                                    class="my-4"
+                                    :length="controlNoticiasPaginate.comImagem.totalOfPages"
+                                ></v-pagination>
+                            </v-container>
+                        </v-row>
                     </v-expansion-panel-content>
                 </v-expansion-panel>
 
+                <!-- Nocia Podcast -->
                 <v-expansion-panel>
                     <v-expansion-panel-header>
                         <div class="header--panel">
-                            <div><btnIconText :params="paramsBtnIcons.btnIconTextPodcast"></btnIconText></div>
+                            <div><BtnIconText :params="paramsBtnIcons.btnIconTextPodcast"></BtnIconText></div>
                             <div></div>
                         </div>
                     </v-expansion-panel-header>
                     <v-expansion-panel-content>
-                    <div class="container-fluid content--panel">
-                        <div class="row">
-                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in noticias.comPodcast" :key="item.id">
-                                
-                                <div class="box--noticia">
-
-                                    <audio controls>
-                                        <source :src="`/${item.filePodcast_pathfile}/${item.filePodcast_namefile}`" type="audio/mpeg">
-                                        Seu navegador de internet não suporta o elemento do tipo audio.
-                                    </audio>
-
-                                    <div class="buttons">
-                                        <a :href="`/adm/noticias/edicao/${item.id}`"><img src="/_adm/assets/SVGs/editar.svg" class="img-fluid" onload="SVGInject(this)" /></a>
-                                        <v-menu :close-on-content-click="true" :nudge-width="150" offset-x>
-                                            <template v-slot:activator="{ on, attrs }">
-                                                <a @click="clickExcluir(item)" v-bind="attrs" v-on="on"><img src="/_adm/assets/SVGs/excluir.svg" class="img-fluid" onload="SVGInject(this)" /></a>
-                                            </template>
-                                            
-                                            <v-card>
-                                                <v-list-item> <v-list-item-title>Deseja excluir o registro?</v-list-item-title> </v-list-item>
-                                                
-                                                <v-btn x-small class="ma-2" text @click="menu = false">Cancelar</v-btn>
-                                                <v-btn small tile color="error" class="ma-2 white--text" outlined @click="formExcluirEnviar()">
-                                                    Excluir <v-icon right dark> mdi-delete </v-icon>
-                                                </v-btn>
-                                            </v-card>
-                                        </v-menu>
-                                    </div>
-                                    <div class="content">
-                                        <p>
-                                            {{item.titulo}}
-                                        </p>
-                                    </div>
+                        <v-overlay absolute :value="controlNoticiasPaginate.comPodcast.overlay">
+                            <v-progress-circular
+                                indeterminate
+                                size="64"
+                            ></v-progress-circular>
+                        </v-overlay>
+                        <div class="container-fluid content--panel">
+                            <div class="row">
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in noticias.comPodcast" :key="item.id">
+                                    <CardNews type="card-file" :data="item" @clickedDelete="deleteCard"></CardNews>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <v-row justify="center">
+                            <v-container class="max-width">
+                                <v-pagination
+                                    v-model="controlNoticiasPaginate.comPodcast.page"
+                                    class="my-4"
+                                    :length="controlNoticiasPaginate.comPodcast.totalOfPages"
+                                ></v-pagination>
+                            </v-container>
+                        </v-row>
                     </v-expansion-panel-content>
                 </v-expansion-panel>
                 
+                <!-- Noticia Simples -->
                 <v-expansion-panel>
                     <v-expansion-panel-header>
                         <div class="header--panel">
-                            <div><btnIconText :params="paramsBtnIcons.btnIconTextTexto"></btnIconText></div>
+                            <div><BtnIconText :params="paramsBtnIcons.btnIconTextTexto"></BtnIconText></div>
                             <div></div>
                         </div>
                     </v-expansion-panel-header>
                     <v-expansion-panel-content>
-                    <div class="container-fluid content--panel">
-                        <div class="row">
-                            
-                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in noticias.simples" :key="item.id">
-                                
-                                <div class="box--noticia noticia-simples">
-                                    <div class="buttons">
-                                        <a :href="`/adm/noticias/edicao/${item.id}`"><img src="/_adm/assets/SVGs/editar.svg" class="img-fluid" onload="SVGInject(this)" /></a>
-                                        <v-menu :close-on-content-click="true" :nudge-width="150" offset-x>
-                                            <template v-slot:activator="{ on, attrs }">
-                                                <a @click="clickExcluir(item)" v-bind="attrs" v-on="on"><img src="/_adm/assets/SVGs/excluir.svg" class="img-fluid" onload="SVGInject(this)" /></a>
-                                            </template>
-                                            
-                                            <v-card>
-                                                <v-list-item> <v-list-item-title>Deseja excluir o registro?</v-list-item-title> </v-list-item>
-                                                
-                                                <v-btn x-small class="ma-2" text @click="menu = false">Cancelar</v-btn>
-                                                <v-btn small tile color="error" class="ma-2 white--text" outlined @click="formExcluirEnviar()">
-                                                    Excluir <v-icon right dark> mdi-delete </v-icon>
-                                                </v-btn>
-                                            </v-card>
-                                        </v-menu>
-                                    </div>
-                                    <div class="content">
-                                        <p>
-                                            {{item.titulo}}
-                                        </p>
-                                    </div>
+                        <v-overlay absolute :value="controlNoticiasPaginate.simples.overlay">
+                            <v-progress-circular
+                                indeterminate
+                                size="64"
+                            ></v-progress-circular>
+                        </v-overlay>
+                        <div class="container-fluid content--panel">
+                            <div class="row">
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in noticias.simples" :key="item.id">
+                                    <CardNews type="card-text" :data="item" @clickedDelete="deleteCard"></CardNews>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <v-row justify="center">
+                            <v-container class="max-width">
+                                <v-pagination
+                                    v-model="controlNoticiasPaginate.simples.page"
+                                    class="my-4"
+                                    :length="controlNoticiasPaginate.simples.totalOfPages"
+                                ></v-pagination>
+                            </v-container>
+                        </v-row>
                     </v-expansion-panel-content>
                 </v-expansion-panel>
 
@@ -243,17 +191,22 @@
 </template>  
 
 <script>
-import btnIconText from "../../components/btn_icon-text/BtnIconText.vue"
+import BtnIconText from "../../components/btn_icon-text/BtnIconText.vue"
+import CardNews from "../../components/widget/CardNewsComponent.vue"
+import { PaginationCardPost } from "../../_services/ServiceCardNews"
+
 export default {
+    components: { BtnIconText, CardNews },
+    props: [ 'csrf', 'actionForm', 'urlCurrentPage' ],
     data: () => {
         return {
-
             // inputs Hidden
             id: '',
             action: '',
 
             // controle dos acordeões
-            panel: [0, 1, 2, 3, 4],
+            //panel: [0, 1, 2, 3, 4],
+            panel: [0],
             
             size: {
                 height: '250px',
@@ -300,22 +253,53 @@ export default {
                 comPodcast: null,
                 comVideo: null,
                 simples: null
+            },
+
+            controlNoticiasPaginate: {
+                destaques: {
+                    page: null,
+                    totalOfPages: null,
+                    overlay: false
+                },
+                comImagem: {
+                    page: null,
+                    totalOfPages: null,
+                    overlay: false
+                },
+                comPodcast: {
+                    page: null,
+                    totalOfPages: null,
+                    overlay: false
+                },
+                comVideo: {
+                    page: null,
+                    totalOfPages: null,
+                    overlay: false
+                },
+                simples: {
+                    page: null,
+                    totalOfPages: null,
+                    overlay: false
+                }
+            },
+
+            settingPagination: {
+                url: '',
+                csrf: '',
+                page: 1,
+                typeOfNews: ''
             }
         }
     },
-    components: { btnIconText },
-    props: [ 'csrf', 'actionForm', 'propNoticias' ],
     methods: {
-        clickExcluir(item)
+        deleteCard(item)
         {
             this.id = item.id;
             this.action = 'excluir';
-        },
-        formExcluirEnviar() {
             this.$refs.formDelete.submit();
         },
-
-        makeBtnsBarTop() {
+        makeBtnsBarTop()
+        {
             const btnsBarTop = {
                 home: {
                     title: 'Home',
@@ -335,138 +319,133 @@ export default {
             }
 
             return btnsBarTop;
+        },
+        pagination(payload)
+        {
+            PaginationCardPost(payload)
+            .then(response => {
+                this.setNews(response);
+            })
+            .catch(error => {
+                console.log('Erro in the call of new page', error);
+            })
+            .finally(() => {
+                //console.log('finally');
+            });
+        },
+        setNews(response)
+        {
+            switch (response.data.extraParam.typeOfNews)
+            {
+                case 'noticia-destaque':
+                    this.noticias.destaques = response.data.items;
+                    this.controlNoticiasPaginate.destaques.page = response.data.page;
+                    this.controlNoticiasPaginate.destaques.totalOfPages = response.data.totalPages;
+                    this.controlNoticiasPaginate.destaques.overlay = false;
+                    break;
+
+                case 'noticia-imagem':
+                    this.noticias.comImagem = response.data.items;
+                    this.controlNoticiasPaginate.comImagem.page = response.data.page;
+                    this.controlNoticiasPaginate.comImagem.totalOfPages = response.data.totalPages;
+                    this.controlNoticiasPaginate.comImagem.overlay = false;
+                    break;
+            
+                case 'noticia-podcast':
+                    this.noticias.comPodcast = response.data.items;
+                    this.controlNoticiasPaginate.comPodcast.page = response.data.page;
+                    this.controlNoticiasPaginate.comPodcast.totalOfPages = response.data.totalPages;
+                    this.controlNoticiasPaginate.comPodcast.overlay = false;
+                    break;
+            
+                case 'noticia-video':
+                    this.noticias.comVideo = response.data.items;
+                    this.controlNoticiasPaginate.comVideo.page = response.data.page;
+                    this.controlNoticiasPaginate.comVideo.totalOfPages = response.data.totalPages;
+                    this.controlNoticiasPaginate.comVideo.overlay = false;
+                    break;
+            
+                case 'noticia-simples':
+                    this.noticias.simples = response.data.items;
+                    this.controlNoticiasPaginate.simples.page = response.data.page;
+                    this.controlNoticiasPaginate.simples.totalOfPages = response.data.totalPages;
+                    this.controlNoticiasPaginate.simples.overlay = false;
+                    break;
+            }
         }
     },
-    created()
+    computed: {
+        pageDestaques() {
+            return this.controlNoticiasPaginate.destaques.page;
+        },
+        pageImages: function() {
+            return this.controlNoticiasPaginate.comImagem.page;
+        },
+        pagePodcasts: function() {
+            return this.controlNoticiasPaginate.comPodcast.page;
+        },
+        pageVideos: function() {
+            return this.controlNoticiasPaginate.comVideo.page;
+        },
+        pageSimpes: function() {
+            return this.controlNoticiasPaginate.simples.page;
+        }
+    },
+    watch: {
+        pageDestaques: function (newValue, oldValue) {
+            const payloadDestaque = _.cloneDeep(this.settingPagination);
+            payloadDestaque.typeOfNews = 'noticia-destaque';
+            payloadDestaque.page = newValue;
+
+            this.controlNoticiasPaginate.destaques.overlay = true;
+            this.pagination(payloadDestaque);
+        },
+        pageImages: function (newValue, oldValue) {
+            const payloadImage = _.cloneDeep(this.settingPagination);
+            payloadImage.typeOfNews = 'noticia-imagem';
+            payloadImage.page = newValue;
+
+            this.controlNoticiasPaginate.comImagem.overlay = true;
+            this.pagination(payloadImage);
+        },
+        pagePodcasts: function (newValue, oldValue) {
+            const payloadPodcast = _.cloneDeep(this.settingPagination);
+            payloadPodcast.typeOfNews = 'noticia-podcast';
+            payloadPodcast.page = newValue;
+
+            this.controlNoticiasPaginate.comPodcast.overlay = true;
+            this.pagination(payloadPodcast);
+        },
+        pageVideos: function (newValue, oldValue) {
+            const payloadVideo = _.cloneDeep(this.settingPagination);
+            payloadVideo.typeOfNews = 'noticia-video';
+            payloadVideo.page = newValue;
+
+            this.controlNoticiasPaginate.comVideo.overlay = true;
+            this.pagination(payloadVideo);
+        },
+        pageSimpes: function (newValue, oldValue) {
+            const payloadSimples = _.cloneDeep(this.settingPagination);
+            payloadSimples.typeOfNews = 'noticia-simples';
+            payloadSimples.page = newValue;
+
+            this.controlNoticiasPaginate.simples.overlay = true;
+            this.pagination(payloadSimples);
+        }
+    },
+    mounted()
     {
-        this.noticias.destaques = JSON.parse(JSON.parse(this.propNoticias).noticiaDestaque);
-        this.noticias.comImagem = JSON.parse(JSON.parse(this.propNoticias).noticiaComImagem);
-        this.noticias.comPodcast = JSON.parse(JSON.parse(this.propNoticias).noticiaComPodcast);
-        this.noticias.comVideo = JSON.parse(JSON.parse(this.propNoticias).noticiaComVideo);
-        this.noticias.simples = JSON.parse(JSON.parse(this.propNoticias).noticiaSimples);
+        /** Config comun parameters for responses */
+        this.settingPagination.url = this.urlCurrentPage;
+        this.settingPagination.csrf = this.csrf;
+        this.settingPagination.itemsPerPage = 12;
+        
+        /** Call the first pages */
+        this.controlNoticiasPaginate.destaques.page = 1;
+        this.controlNoticiasPaginate.comVideo.page = 1;
+        this.controlNoticiasPaginate.comImagem.page = 1;
+        this.controlNoticiasPaginate.comPodcast.page = 1;
+        this.controlNoticiasPaginate.simples.page = 1;
     }
 }
 </script>
-
-<style lang="scss">
-@import '~/../resources/_adm/sass/_vars.scss';
-.noticias-list
-{
-    .v-expansion-panel-header
-    {
-        padding: 0;
-        outline: none;
-
-        .v-icon {
-            font-size: 3rem;
-            color: #125488 !important;
-        }
-    }
-
-    .header--panel
-    {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        order: 2;
-    
-        > div
-        {
-            &:first-child {
-                 margin-right: 8px;
-            }
-
-            &:last-child
-            {
-                background-color: #E0E1E3;
-                height: 2px;
-                width: 100%;
-            }
-        }   
-    }
-
-    .content--panel
-    {
-        padding-left: 30px;
-
-        .box--noticia
-        {
-            position: relative;
-            border-bottom: solid 1px $grey-light;
-
-            .imagem-noticia {
-                width: 100%;
-                height: 100px;
-                background-size: cover;
-                background-position: center;
-            }
-
-            audio {
-                width: 100%;
-                margin: 0px 0 20px;
-            }
-
-            .buttons
-            {
-                display: flex;
-                justify-content: center;
-                margin: -43px 0 0;
-                position: absolute;
-                width: 100%;
-                a
-                {
-                    svg
-                    {
-                        width: 65px;
-                        height: 65px;
-                        margin: 0 3px;
-                        cursor: pointer;
-    
-                        circle {
-                            transition: ease 0.4s;
-                        }
-                    }
-
-                    &:first-child
-                    {    
-                        &:hover svg {
-                            circle {
-                                fill: $blue-strong;
-                            }
-                        }
-                    }
-
-                    &:last-child
-                    {
-                        &:hover svg {
-                            circle {
-                                fill: $red-strong;
-                            }
-                        }
-                    }
-                }
-            }
-
-            .content {
-                color: #125488;
-                line-height: 1.2em;
-                font-size: 0.9em;
-                margin-top: 15px;
-            }
-
-            &.noticia-simples
-            {
-                .buttons {
-                    margin: 0;
-                    position: relative;
-                    margin-top: 20px;
-                }
-                
-            }
-
-        }
-        
-    }
-}
-
-</style>

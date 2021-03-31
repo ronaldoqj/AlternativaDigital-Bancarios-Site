@@ -12,6 +12,7 @@ use App\Models\NoticiaHasSindicato;
 use App\Models\NoticiaHasBanco;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
+use App\Models\Pagination;
 
 class NoticiaController extends Controller
 {
@@ -32,19 +33,47 @@ class NoticiaController extends Controller
      */
     public function index(Request $request)
     {
+        $page = 1;
+        $itemsPerPage = 12;
         $return = [];
         $noticia = new Noticia();
 
-        $return['noticiaDestaque'] = $noticia->listAllToAdmPageNoticias('noticia-destaque')->get()->toJson();
-        $return['noticiaComImagem'] = $noticia->listAllToAdmPageNoticias('noticia-imagem')->get()->toJson();
-        $return['noticiaComPodcast'] = $noticia->listAllToAdmPageNoticias('noticia-podcast')->get()->toJson();
-        $return['noticiaComVideo'] = $noticia->listAllToAdmPageNoticias('noticia-video')->get()->toJson();
-        $return['noticiaSimples'] = $noticia->listAllToAdmPageNoticias('noticia-simples')->get()->toJson();
+        $pagination = new Pagination();
+        $pagination->setItemsPerPage(12);
 
-        // Fazer a chamada para receber todos
-        $return['noticiaSimples'] = $noticia->listAllToAdmPageNoticias('noticia-simples')->get()->toJson();
+        /**
+         * Ajax Request
+         * 
+         * When the requisition where Post,
+         * than, will be a ajax requisition by Vue
+         */
+        if ($request->isMethod('post'))
+        {
+            if ( $request->input('page') ) {
+                $page = $request->input('page');
+            }
 
-        return view('adm.noticias.noticias')->withReturn($return);
+            if ( $request->input('itemsPerPage') ) {
+                $itemsPerPage = $request->input('itemsPerPage');
+            }
+            
+            $pagination->setPage($page);
+            $pagination->setItemsPerPage($itemsPerPage);
+            $pagination->setExtraParam(['typeOfNews' => $request->input('typeOfNews')]);
+            
+            $return = $noticia->listAllToAdmPageNoticias($request->input('typeOfNews'));
+            // Pagination
+            $pagination->setResult($return);
+            $pagination->get();
+            $return = $pagination;
+
+            return json_encode($return, true);
+        }
+        else
+        {
+            return view('adm.noticias.noticias');
+        }
+
     }
 
     public function cadastro(Request $request)
@@ -52,7 +81,9 @@ class NoticiaController extends Controller
         $bancos = new Banco();
         $sindicatos = new Sindicato();
 
-        return view('adm.noticias.noticia-cadastrar')->withBancos($bancos->all()->toJson())->withSindicatos($sindicatos->all()->toJson())->withBancos($bancos->all()->toJson());
+        return view('adm.noticias.noticia-cadastrar')->withBancos($bancos->all()->toJson())
+                                                     ->withSindicatos($sindicatos->all()->toJson())
+                                                     ->withBancos($bancos->all()->toJson());
     }
 
     public function edicao(Request $request, $id = '')
@@ -72,7 +103,6 @@ class NoticiaController extends Controller
 
         $noticiasSindicato = new Noticia();
         $sindicatosDaNoticia = $noticiasSindicato->findSindicatosByIdNoticia($id);
-
 
         $bancos = new Banco();
 
@@ -118,7 +148,6 @@ class NoticiaController extends Controller
             }
         }
 
-
         $sindicatos = $request->input('idsSindicatos');
     
         if ($sindicatos)
@@ -134,8 +163,6 @@ class NoticiaController extends Controller
                 $noticaHasSindicato->save();
             }
         }
-        
-        
 
         $file = new Upload();
         $file->path = 'files/noticias';
@@ -192,7 +219,6 @@ class NoticiaController extends Controller
 
         $noticia->save();
 
-
         /**
          * Update Bancos
          */
@@ -243,7 +269,6 @@ class NoticiaController extends Controller
             }
         }
 
-
         /**
          * Update Sindicatos
          */
@@ -292,7 +317,6 @@ class NoticiaController extends Controller
                 }
             }
         }
-
 
         /**
          * Update Banner Destaque

@@ -114,5 +114,4 @@ class WelcomeController extends Controller
 
         return $nameBank;
     }
-
 }
