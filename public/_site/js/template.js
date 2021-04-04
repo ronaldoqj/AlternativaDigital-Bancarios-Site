@@ -60,7 +60,14 @@ $(document).ready(function ()
 
     playerAudio();
     eventSocialNetworks();
+    eventsAlerts();
 });
+
+function eventsAlerts() {
+    $('.close-alert-sucess-comum').click(function(){
+        $('.alert-sucess-comum').hide('fast');
+    });
+}
 
 function aumentaDiminui (aumentaDiminui, classOrDiv)
 {

@@ -175,3 +175,11 @@
   border: solid 1px #FF1414;
 }
 
+#sindicalize-se .input-group-text {
+  background: none;
+  width: 35px;
+  height: 30px;
+  margin-right: 5px;
+  border: 0;
+}
+

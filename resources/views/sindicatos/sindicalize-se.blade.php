@@ -15,11 +15,24 @@
             Sindicalize-se
         </div>
 
+        @if ($msgEnvio !== '')
+        <div class="alert alert-success alert-sucess-comum" role="alert">
+            <button type="button" class="close close-alert-sucess-comum">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="alert-heading">Inscrição enviada!</h4>
+            <p>Iremos realizar as checagens dos dados, para isso, pode ser que precisaremos entrar em contato para validação de algumas informações.</p>
+            <hr>
+            <p class="mb-0">Obrigado pela sua candidatura.</p>
+        </div>
+        @endif
+
         <div class="description-of-page">
             <p class="mt-4">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
         </div>      
         
-        <form id="form-sindicalize-se" class="fieldsRounded">
+        <form id="form-sindicalize-se" class="fieldsRounded" method="POST">
+            @csrf
             <!--
               -- Dados Pessoais
              -->
@@ -187,7 +200,7 @@
                 </div>    
                 <div class="col-6 col-md-4">
                     <div class="form-group">
-                        <label for="inputAgencia">Agencia / Número</label>
+                        <label for="inputAgencia">Agência / Número</label>
                         <input type="text" class="form-control" id="inputAgencia" name="inputAgencia">
                     </div>
                 </div>
@@ -195,8 +208,8 @@
             <div class="row">    
                 <div class="col-12 col-md-6">
                     <div class="form-group">
-                        <label for="inputFuncaoCargo">Funcao / Cargo</label>
-                        <input type="text" class="form-control" id="inputFuncaoCargo" name="inputFuncao-cargo">
+                        <label for="inputFuncaoCargo">Função / Cargo</label>
+                        <input type="text" class="form-control" id="inputFuncaoCargo" name="inputFuncaoCargo">
                     </div>
                 </div>
                 <div class="col-6 col-md-3">
@@ -216,7 +229,7 @@
                 <div class="col-12 col-md-12">
                     <div class="form-group">
                         <label for="inputEmailComercial">E-mail comercial</label>
-                        <input type="email" class="form-control" id="inputEmailComercial" name="inputEmailComercial" required>
+                        <input type="email" class="form-control" id="inputEmailComercial" name="inputEmailComercial">
                     </div>
                 </div>
             </div>
@@ -224,7 +237,7 @@
             <!--
               -- Comunicação
              -->
-             <div class="row mt-5">
+            <div class="row mt-5">
                 <div class="col-12">
                     <div class="form-group titles-of-section">
                         <label>Comunicação</label>
@@ -238,28 +251,50 @@
             <div class="row">
                 <div class="col-12 col-md-6">
                     <div class="form-group">
-                        <label for="inputFacebook">Link ou nome do perfil</label>
-                        <input type="text" class="form-control" id="inputFacebook" name="inputFacebook">
+                        <label for="inputFacebook">Link ou nome do perfil do Facebook</label>
+                        <div class="input-group ">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">
+                                    <img src="{{asset('/_site/assets/SVGs/IconsOnlyLetters/facebook.svg')}}" class="img-fluid" onload="SVGInject(this)" />
+                                </span>
+                            </div>
+                            <input type="text" class="form-control" id="inputFacebook" name="inputFacebook">
+                        </div>
                     </div>
                 </div>    
                 <div class="col-12 col-md-6">
-                    <div class="form-group">
-                        <label for="inputTweeter">Link ou nome do perfil</label>
-                        <input type="text" class="form-control" id="inputTweeter" name="inputTweeter">
+                    <label for="inputTweeter">Link ou nome do perfil do Twitter</label>
+                    <div class="input-group ">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">
+                                <img src="{{asset('/_site/assets/SVGs/IconsOnlyLetters/twitter.svg')}}" class="img-fluid" onload="SVGInject(this)" />
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" id="inputFacebook" name="inputFacebook">
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 col-md-6">
-                    <div class="form-group">
-                        <label for="inputinstagram">Link ou nome do perfil</label>
-                        <input type="text" class="form-control" id="inputinstagram" name="inputinstagram">
+                    <label for="inputinstagram">Link ou nome do perfil do Instagram</label>
+                    <div class="input-group ">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">
+                                <img src="{{asset('/_site/assets/SVGs/IconsOnlyLetters/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" />
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" id="inputFacebook" name="inputFacebook">
                     </div>
                 </div>    
                 <div class="col-12 col-md-6">
-                    <div class="form-group">
-                        <label for="inputLinkedin">Link ou nome do perfil</label>
-                        <input type="text" class="form-control" id="inputLinkedin" name="inputLinkedin">
+                    <label for="inputinstagram">Link ou nome do perfil do LinkedIn</label>
+                    <div class="input-group ">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">
+                                <img src="{{asset('/_site/assets/SVGs/IconsOnlyLetters/linkedin.svg')}}" class="img-fluid" onload="SVGInject(this)" />
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" id="inputFacebook" name="inputFacebook">
                     </div>
                 </div>
             </div>
@@ -318,7 +353,7 @@
             <!--
               -- Termos e condições
              -->
-            <div class="row">
+            <div class="row mt-5">
                 <div class="col-12">
                     <div class="form-group subtitles-of-section">
                         <label>Privacidade & Termos</label>
@@ -342,7 +377,8 @@
                         <div class="checkboxes-sindicalize-se privacity-and-terms">
                             <label class="box-checkbox green">
                                 <p>Concordo com os termos</p>
-                                <input type="checkbox" checked="checked" id="inputAceitar" name="inputAceitar">
+                                <!-- <input type="checkbox" checked="checked" id="inputAceitar" name="inputAceitar"> -->
+                                <input type="checkbox" id="inputAceitar" name="inputAceitar">
                                 <span class="checkmark"></span>
                             </label>
                             <label class="box-checkbox red">
@@ -352,6 +388,12 @@
                             </label>
                         </div>
                     </div>
+                </div>
+                <div id="alert-privacity" class="alert alert-danger alert-dismissible fade false" role="alert">
+                    Por favor <strong>selecione</strong> o consentimento ou não dos termos de Privacidade
+                    <button id="close-alert-privacity" type="button" class="close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>    
             </div>
 

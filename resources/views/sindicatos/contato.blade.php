@@ -10,6 +10,20 @@
             Contato
         </div>
 
+
+        @if ($msgEnvio !== '')
+        <div class="alert alert-success alert-sucess-comum" role="alert">
+            <button type="button" class="close close-alert-sucess-comum">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="alert-heading">Mensagem enviada!</h4>
+            <p>Agredecemos seu contato, retornaremos assim que possível.</p>
+            <hr>
+            <p class="mb-0">Obrigado pela sua atenção.</p>
+        </div>
+        @endif
+
+
         <div class="description-of-page">
             {!! $data->texto ?? '' !!}
         </div>
@@ -78,27 +92,28 @@
         </div>
         @endif
         
-        <form>
+        <form action="" method="POST">
+            @csrf
             <input type="hidden" name="emailDestini" value="{{ request()->syndicate['email'] }}" />
             <div class="row mb-3">
                 <div class="col-12 col-md-6">
                     <div class="form-group">
                         <label for="nome">Nome</label>
-                        <input type="text" class="form-control" id="nome">
+                        <input type="text" class="form-control" name="nome" maxlength="120" required>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Email</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">E-mail</label>
+                        <input type="email" class="form-control" name="email" maxlength="120" required>
                     </div>
                     <div class="form-group">
                         <label for="assunto">Assunto</label>
-                        <input type="text" class="form-control" id="assunto">
+                        <input type="text" class="form-control" name="assunto" maxlength="100" required>
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
                     <div class="form-group">
                         <label for="mensagem">Mensagem</label>
-                        <textarea class="form-control" id="mensagem" rows="8"></textarea>
+                        <textarea class="form-control" name="mensagem" rows="8" maxlength="900" required></textarea>
                     </div>
                 </div>
             </div>

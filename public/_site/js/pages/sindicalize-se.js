@@ -72,8 +72,8 @@ var arrayInputs = {
     // Dados Comerciais
     inputCodigoBanco:         { nameVar: 'inputCodigoBanco',         id: 'inputCodigoBanco',         title: 'Código do Banco' },
     inputBanco:               { nameVar: 'inputBanco',               id: 'inputBanco',               title: 'Banco' },
-    inputAgencia:             { nameVar: 'inputAgencia',             id: 'inputAgencia',             title: 'Agencia / Número' },
-    inputFuncaoCargo:         { nameVar: 'inputFuncaoCargo',         id: 'inputFuncaoCargo',         title: 'Funcao / Cargo' },
+    inputAgencia:             { nameVar: 'inputAgencia',             id: 'inputAgencia',             title: 'Agência / Número' },
+    inputFuncaoCargo:         { nameVar: 'inputFuncaoCargo',         id: 'inputFuncaoCargo',         title: 'Função / Cargo' },
     inputDataAdmissaoEmpresa: { nameVar: 'inputDataAdmissaoEmpresa', id: 'inputDataAdmissaoEmpresa', title: 'Data de admissao na empresa' },
     inputMatriculaFuncional:  { nameVar: 'inputMatriculaFuncional',  id: 'inputMatriculaFuncional',  title: 'Matricula Funcional' },
     inputEmailComercial:      { nameVar: 'inputEmailComercial',      id: 'inputEmailComercial',      title: 'E-mail Comercial' },
@@ -111,7 +111,7 @@ var arrayInputsRequiredOneOrAnother = [
     'inputRejeitar'
 ];
 
-function init ()
+function init()
 {
     $('#inputCpf').mask('000.000.000-00', {reverse: true});
     $('#inputCelular').mask('(00) 00000-0000', {placeholder: "(00) 00000-0000"});
@@ -184,18 +184,28 @@ function returnInputWithErrors() {
 function validationForm()
 {
 
-    $('#form-sindicalize-se #btnSubmit').click(function() {
-        
-        setVariables();
-        returnInputWithErrors();
-        //console.log('inputCpf', inputCpf);
-        return false;
+    $( "#form-sindicalize-se" ).submit(function(event) {
 
+        if ( !$('#inputAceitar').filter(":checked").val() && !$('#inputRejeitar').filter(":checked").val() )
+        {
+            $('#alert-privacity').removeClass('false').addClass('show');
+
+            event.preventDefault();
+        }
     });
     
+    $('#close-alert-privacity').click(function(){
+        $('#alert-privacity').removeClass('show').addClass('false');
+    });
 
-    //return false;
-    //$('#form-sindicalize-se').submit();
+
+    /** Checkboxes of terms */
+    $('#inputAceitar').click(function(){
+        $( "#inputRejeitar" ).prop( "checked", false );
+    });
+    $('#inputRejeitar').click(function(){
+        $( "#inputAceitar" ).prop( "checked", false );
+    });
 }
 
 $(document).ready(function ()

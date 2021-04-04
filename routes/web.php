@@ -19,6 +19,10 @@ use Illuminate\Support\Facades\Auth;
 //     return view('welcome');
 // });
 
+Route::get('/mail', function () {
+    return view('mail');
+});
+
 // ADM
 Route::prefix('adm')->namespace('Adm')->group(function ()
 {
@@ -143,8 +147,8 @@ Route::middleware([GetEntitiesForTemplate::class])->group(function()
         Route::get('/o-sindicato', 'Sindicatos\OSindicatoController@index')->name('sindicato-o-sindicato');
         Route::get('/servicos', 'Sindicatos\ServicosController@index')->name('sindicato-servicos');
         Route::get('/editais', 'Sindicatos\EditaisController@index')->name('sindicato-editais');
-        Route::get('/sindicalize-se', 'Sindicatos\SindicalizeSeController@index')->name('sindicato-sindicalize-se');    
-        Route::get('/contato', 'Sindicatos\ContatoController@index')->name('sindicato-contato');    
+        Route::match(['get', 'post'], '/sindicalize-se', 'Sindicatos\SindicalizeSeController@index')->name('sindicato-sindicalize-se');    
+        Route::match(['get', 'post'], '/contato', 'Sindicatos\ContatoController@index')->name('sindicato-contato');    
     });
 
     // Fetrafi-RS
