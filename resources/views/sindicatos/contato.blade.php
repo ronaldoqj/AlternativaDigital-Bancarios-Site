@@ -118,9 +118,7 @@
                 </div>
             </div>
             
-            <button type="submit" class="btn btn-primary btn-block">
-                <div>Enviar</div>
-            </button>
+            <input type="submit" class="btn btn-primary btn-block" value="Enviar" />
         </form>
     </div>
 </section>

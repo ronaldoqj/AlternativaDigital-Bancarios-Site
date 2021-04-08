@@ -7,6 +7,7 @@ use App\Models\Portal;
 use App\Models\Contato;
 use App\Models\Instituicao;
 use App\Models\Banco;
+use App\Models\File;
 
 class GetEntitiesForTemplate
 {
@@ -35,6 +36,10 @@ class GetEntitiesForTemplate
         $request->portal = $portal;
         $request->fetrafirs = $fetrafirs;
         $request->bancos = $banco;
+
+        $file = new File();
+        $request->fetrafirs->dataBanner = $file->find($request->fetrafirs->banner)->toArray();
+        $request->fetrafirs->dataLogo = $file->find($request->fetrafirs->logo)->toArray();
         
         return $next($request);
     }

@@ -157,7 +157,7 @@ Route::middleware([GetEntitiesForTemplate::class])->group(function()
         Route::get('/', 'FederacaoController@index')->name('fetrafi-rs');
         Route::get('/federacao', 'FederacaoController@index')->name('fetrafi-rs-federacao');
         Route::get('/servicos', 'ServicosController@index')->name('fetrafi-rs-servicos');
-        Route::get('/contato', 'ContatoController@index')->name('fetrafi-rs-contato');    
+        Route::match(['get', 'post'], '/contato', 'ContatoController@index')->name('fetrafi-rs-contato');    
     });
     
     // Route::fallback(function () {

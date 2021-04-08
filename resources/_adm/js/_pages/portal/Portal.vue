@@ -4,8 +4,132 @@
         <pages-menu-bar :btns-top-bar="makeBtnsBarTop()"></pages-menu-bar>
 
         <errors-component :objErrorsShow="errorsShow" @showErrorsChange="errorsShow.show = $event"></errors-component>
-        <form :action="formAction" method="post" @submit="checkForm">
+        <form :action="formAction" method="post" @submit="checkForm" enctype="multipart/form-data">
             <input type="hidden" name="_token" :value="csrf">
+
+            <input type="hidden" name="deleteBannerOnEdit" :value="pageControl.deleteBannerOnEdit" />
+            <input type="hidden" name="deleteLogoOnEdit" :value="pageControl.deleteLogoOnEdit" />
+
+            <v-card class="mx-auto" outlined v-if="dataInputs.id === 2">
+                <v-card-text>
+                    <!-- Images -->
+                    <div class="row">
+
+                        <!-- Banner -->
+                        <div class="col-12 col-md-6">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-12 col-box-files" :class="borderFields.sindicato">
+                                        <label>Banner da Página:</label>
+                                        <div class="box-files" :style="{backgroundImage: `url(${dataInputs.banner.fileIsEdit})`}">
+
+                                            <template v-if="dataInputs.banner.fileIsEdit != ''">
+                                                <v-btn
+                                                elevation="6"
+                                                large
+                                                color="error"
+                                                @click="deleteOnEdit('banner')"
+                                                >
+                                                    Excluir
+                                                </v-btn>
+                                            </template>
+                                            <template v-else>
+                                                <v-file-input
+                                                    name="banner"
+                                                    v-model="dataInputs.banner.file"
+                                                    label="Banner:"
+                                                    placeholder="Procurar Imagem"
+                                                    prepend-icon=""
+                                                    prepend-inner-icon="image"
+                                                    dense="dense"
+                                                    color="primary"
+                                                    background-color="rgba(255, 255, 255, 0.7)"
+                                                    counter
+                                                    accept="image/png, image/jpeg, image/bmp"
+                                                    outlined
+                                                    :show-size="1000"
+                                                >
+                                                    <template v-slot:selection="{ index, text }">
+                                                    <v-chip v-if="index < 2" color="primary" dark label small>
+                                                        {{ text }}
+                                                    </v-chip>
+                                                    <span v-else-if="index === 2" class="overline grey--text text--darken-3 mx-2" >
+                                                        +{{ dataInputs.banner.file.length - 2 }} File(s)
+                                                    </span>
+                                                    </template>
+                                                </v-file-input>
+                                            </template>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Logo -->
+                        <div class="col-12 col-md-6">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-12 col-box-files" :class="borderFields.sindicato">
+                                        <label>Logo do Sindicato</label>
+                                        <div class="box-files" :style="{backgroundImage: `url(${dataInputs.banner.fileIsEdit})`}">
+
+                                            <template v-if="dataInputs.logo.fileIsEdit != ''">
+                                                <div class="box-image">
+                                                    <img :src="dataInputs.logo.fileIsEdit" class="img-fluid" alt="">
+                                                    <p>
+                                                        <v-btn
+                                                        elevation="6"
+                                                        small
+                                                        color="error"
+                                                        @click="deleteOnEdit('logo')"
+                                                        >
+                                                            Excluir
+                                                        </v-btn>
+                                                    </p>
+                                                </div>
+                                            </template>
+                                            <template v-else>
+                                                <v-file-input
+                                                    name="logo"
+                                                    v-model="dataInputs.logo.file"
+                                                    label="Logo:"
+                                                    placeholder="Procurar Imagem"
+                                                    prepend-icon=""
+                                                    prepend-inner-icon="image"
+                                                    dense="dense"
+                                                    color="primary"
+                                                    background-color="rgba(255, 255, 255, 0.7)"
+                                                    counter
+                                                    accept="image/png, image/jpeg, image/bmp, image/svg+xml"
+                                                    outlined
+                                                    :show-size="1000"
+                                                >
+                                                    <template v-slot:selection="{ index, text }">
+                                                    <v-chip v-if="index < 2" color="primary" dark label small>
+                                                        {{ text }}
+                                                    </v-chip>
+                                                    <span v-else-if="index === 2" class="overline grey--text text--darken-3 mx-2" >
+                                                        +{{ dataInputs.logo.file.length - 2 }} File(s)
+                                                    </span>
+                                                    </template>
+                                                </v-file-input>
+                                            </template>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        
+                    </div>
+                </v-card-text>
+            </v-card>
+
+            <div class="row"><div class="col"></div></div>
 
             <div class="row inputs-finals-to-all-types">
                 <!-- Telefone Princípal-->
@@ -172,7 +296,9 @@
         data () {
             return {
                 pageControl: {
-                    pageEdit: false
+                    pageEdit: true,
+                    deleteBannerOnEdit: null,
+                    deleteLogoOnEdit: null
                 },
 
                 // variavel necessária para o component de mensagens de erro
@@ -187,6 +313,15 @@
                 },
 
                 dataInputs: {
+                    id: null,
+                    banner: {
+                        file: null,
+                        fileIsEdit: ''
+                    },
+                    logo: {
+                        file: null,
+                        fileIsEdit: ''
+                    },
                     fone: '',
                     fone2: '',
                     email: '',
@@ -212,6 +347,20 @@
             {
                 this.errorsShow.errors = [];
                 
+                if ( ! _.isNull(this.dataInputs.banner.file) )
+                {
+                    if ( this.dataInputs.banner.file.size >= 1000000 ) {
+                        this.errorsShow.errors.push({title: 'Banner', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
+                    }
+                }
+                
+                if ( ! _.isNull(this.dataInputs.logo.file) )
+                {
+                    if ( this.dataInputs.logo.file.size >= 1000000 ) {
+                        this.errorsShow.errors.push({title: 'Logo', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
+                    }
+                }
+
                 if (this.errorsShow.errors.length > 0)
                 {
                     this.errorsShow.show = true;
@@ -223,7 +372,11 @@
             {
                 // Controle para mostrar os files ignorando a regra atual de validação (CONTEM VALOR DO TIPO STRING)
                 // Ou manter a mesma logica que é quando o formulário está realizando cadastro (VAZIO DO TIPO STRING) 
+                this.dataInputs.id = item.id;
                 
+                this.dataInputs.banner.fileIsEdit  = item.banner > 0 ? `/${item.banner_pathfile}/${item.banner_namefile}` : '';
+                this.dataInputs.logo.fileIsEdit  = item.logo > 0 ? `/${item.logo_pathfile}/${item.logo_namefile}` : '';
+
                 this.dataInputs.fone = item.fone;
                 this.dataInputs.fone2 = item.fone2;
                 this.dataInputs.email = item.email;
@@ -250,11 +403,25 @@
                 }
 
                 return btnsBarTop;
+            },
+
+            deleteOnEdit(typeFile)
+            {
+                if (typeFile === 'banner') {
+                    this.pageControl.deleteBannerOnEdit = 'S';
+                    this.dataInputs.banner.fileIsEdit = '';
+                }
+                if (typeFile === 'logo') {
+                    this.pageControl.deleteLogoOnEdit = 'S';
+                    this.dataInputs.logo.fileIsEdit = '';
+                }
             }
         },
         created()
         {
             this.editStartCompleteFilds(JSON.parse(this.formEdition));
+            console.log('oioioi');
+            console.log(JSON.parse(this.formEdition));
         }
     }
 </script>
@@ -289,15 +456,27 @@
             margin-bottom: 0;
         }
         .box-files {
+            padding: 10px;
             border: solid 1px $grey;
             border-radius: 20px;
-            padding: 30px 20px 10px;
+            min-height: 200px;
+            background-size: cover;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             .box-image
             {
                 text-align: center;
 
-                img { height: 100px; margin-top: -20px; }
+                img {
+                    height: 100px;
+                    padding: 15px;
+                    background-color: rgba(8, 90, 76, 0.87);
+                    border-radius: 10px;
+                }
+
                 audio { margin-top: -15px; }
                 p { margin: 5px 0 0; }
 

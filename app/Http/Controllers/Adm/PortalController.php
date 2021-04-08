@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Adm;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Portal;
+use App\Services\Upload;
+use App\Models\File;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Carbon;
 
 class PortalController extends Controller
 {
@@ -26,7 +27,9 @@ class PortalController extends Controller
      */
     public function index(Request $request)
     {
-        $portal = $this->returnPortal();
+        $portal = new Portal();
+        $portal = $portal->findById( $this->returnId() );
+
         return view('adm.portal')->withData($portal);
     }
 
@@ -51,9 +54,87 @@ class PortalController extends Controller
         $portal->uf = $request->input('estado') ?? null;
         
         $portal->userIdUpdated = Auth::id();
+        
         $portal->save();
         
+
+        /**
+         * Delete Images
+         */
+
+        $file = new File();
+        
+        /** Delete Banner */
+        if ( $request->input('deleteBannerOnEdit') )
+        {
+            $recordBanner = $file->find( $portal->banner );
+
+            if ( $recordBanner ) {
+                $this->deleteImage($recordBanner);
+                $portal->banner = null;
+                $portal->save();
+            }
+        }
+        
+        /** Delete Logo */
+        if ( $request->input('deleteLogoOnEdit') )
+        {
+            $recordLogo = $file->where( 'id', $portal->logo )->first();
+
+            if ( $recordLogo ) {
+                $this->deleteImage($recordLogo);
+                $portal->logo = null;
+                $portal->save();
+            }
+        }
+        
+        /** Register Banner */
+        if ( $request->file('banner') )
+        {
+            $file = new Upload();
+            $file->path = 'files/portal';
+            $file->creditfile = $request->input('creditoBanner') ?? null;
+            $fileBannerStored = $file->addFile( $request->file('banner') );
+            
+            if ( count($fileBannerStored) > 0 ) {
+                $portal->banner = $fileBannerStored['FileId'];
+                $portal->save();
+            }
+        }
+        
+        /** Register Logo */
+        if ( $request->file('logo') )
+        {
+            $file = new Upload();
+            $file->path = 'files/portal';
+            $file->creditfile = $request->input('creditoLogo') ?? null;
+            $fileLogoStored = $file->addFile( $request->file('logo') );
+            
+            if ( count($fileLogoStored) > 0 ) {
+                $portal->logo = $fileLogoStored['FileId'];
+                $portal->save();
+            }
+        }
+        
         return redirect()->route('adm-portal');
+    }
+
+    private function deleteImage(File $file): bool
+    {
+        
+        $done = false;
+        $pathFile = "{$file->pathfile}/{$file->namefile}";
+
+        if ( is_file($pathFile) )
+        {
+            if (unlink($pathFile) )
+            {
+                $file->forceDelete();
+                $done = true;
+            }
+        }
+
+        return $done;
     }
 
     private function returnPortal(): Portal {

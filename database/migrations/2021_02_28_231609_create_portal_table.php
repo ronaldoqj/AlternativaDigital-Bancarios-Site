@@ -16,15 +16,17 @@ class CreatePortalTable extends Migration
         Schema::create('portal', function (Blueprint $table) {
             $table->id();
             $table->string('name', 240)->nullable()->comment('Unicamnete Informativo');
+            $table->integer('banner')->nullable();
+            $table->integer('logo')->nullable();
+            $table->string('fone', 20)->nullable();
+            $table->string('fone2', 20)->nullable();
+            $table->string('email', 240)->nullable();
             $table->string('facebook', 240)->nullable();
             $table->string('twitter', 240)->nullable();
             $table->string('instagram', 240)->nullable();
             $table->string('whatsapp', 240)->nullable();
             $table->string('podcast', 240)->nullable();
             $table->string('youtube', 240)->nullable();
-            $table->string('fone', 20)->nullable();
-            $table->string('fone2', 20)->nullable();
-            $table->string('email', 240)->nullable();
             $table->string('cep', 14)->nullable();
             $table->string('endereco', 240)->nullable();
             $table->string('numero', 30)->nullable();
