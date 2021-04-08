@@ -12,7 +12,9 @@
                     <template v-if="this.list.length">    
                         <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in list" :key="item.id">
                             <div class="box--sindicato sindicato">
-                                <div class="imagem-sindicato" :style="{ backgroundImage: getLogoImage(item) }"></div>
+                                <div class="imagem-sindicato" :style="{ backgroundImage: getBannerImage(item) }">
+                                    <img v-if="getLogoImage(item)" :src="getLogoImage(item)" height="80" />
+                                </div>
                                 <div class="buttons">
                                     <a :href="`${actionForm}/edicao/${item.id}`"><img src="/_adm/assets/SVGs/editar.svg" class="img-fluid" onload="SVGInject(this)" /></a>
                                     <v-menu :close-on-content-click="true" :nudge-width="150" offset-x>
@@ -99,11 +101,22 @@ export default {
             return btnsBarTop;
         },
 
+        getBannerImage(data)
+        {
+            console.log('teste', data);
+            let pathBanner = '';
+            if ( _.isNil(data.banner_deleted_at) ) {
+                pathBanner = `url(/${data.banner_pathfile}/${data.banner_namefile})`;
+            }
+
+            return pathBanner;
+        },
+
         getLogoImage(data)
         {
             let pathLogo = '';
             if ( _.isNil(data.logo_deleted_at) ) {
-                pathLogo = `url(/${data.logo_pathfile}/${data.logo_namefile})`;
+                pathLogo = `/${data.logo_pathfile}/${data.logo_namefile}`;
             }
 
             return pathLogo;
@@ -130,6 +143,15 @@ export default {
             height: 100px;
             background-size: cover;
             background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+
+            img {
+                padding: 10px;
+                background-color: rgba(0, 0, 0, 0.6);
+            }
         }
 
         .buttons

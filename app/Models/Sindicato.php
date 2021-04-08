@@ -3,7 +3,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class Sindicato extends Model
 {
@@ -15,6 +15,7 @@ class Sindicato extends Model
     public function listAllToAdmPageSindicatos()
     {
         $list = DB::table('sindicatos');
+        $list->leftjoin('files as banner', 'banner.id', '=', 'sindicatos.banner');
         $list->leftjoin('files as logo', 'logo.id', '=', 'sindicatos.logo');
         $list->whereNull('sindicatos.deleted_at');
                           
@@ -47,6 +48,10 @@ class Sindicato extends Model
             'sindicatos.deleted_at  as deleted_at',
             'sindicatos.created_at  as created_at',
             'sindicatos.updated_at  as updated_at',
+
+            'banner.pathfile          as banner_pathfile',
+            'banner.namefile          as banner_namefile',
+            'banner.deleted_at        as banner_deleted_at',
 
             'logo.pathfile          as logo_pathfile',
             'logo.namefile          as logo_namefile',

@@ -117,11 +117,17 @@
                                 <div class="row">
                                     <div class="col-12 col-box-files" :class="borderFields.campanha">
                                         <label>Imagem da campanha</label>
-                                        <div class="box-files">
+                                        <div class="box-files" :style="{backgroundImage: `url(${fileIsEdit})`}">
                                             <template v-if="fileIsEdit != ''">
                                                 <div class="box-image">
-                                                    <img :src="fileIsEdit" class="img-fluid" alt="">
-                                                    <p><v-btn depressed small color="error" @click="fileIsEdit = ''">Excluir</v-btn></p>
+                                                    <p>
+                                                        <v-btn
+                                                        elevation="6"
+                                                        large color="error"
+                                                        @click="fileIsEdit = ''">
+                                                            Excluir
+                                                        </v-btn>
+                                                    </p>
                                                 </div>
                                             </template>
                                             <template v-else>
@@ -377,9 +383,16 @@ export default {
         }
 
         .box-files {
+            padding: 10px;
             border: solid 1px $grey;
             border-radius: 20px;
-            padding: 30px 20px 10px;
+            min-height: 200px;
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             .box-image
             {

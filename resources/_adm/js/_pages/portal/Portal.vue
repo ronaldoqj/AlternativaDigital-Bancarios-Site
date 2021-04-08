@@ -461,6 +461,7 @@
             border-radius: 20px;
             min-height: 200px;
             background-size: cover;
+            background-position: center;
 
             display: flex;
             align-items: center;

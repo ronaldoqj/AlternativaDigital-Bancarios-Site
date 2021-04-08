@@ -28,19 +28,27 @@
 
             <v-card class="mx-auto" outlined>
                 <v-card-text>
-                    <!-- Banner -->
+                    <!-- Images -->
                     <div class="row">
-                        <div class="col-12">
+
+                        <!-- Banner -->
+                        <div class="col-12 col-md-6">
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-12 col-box-files" :class="borderFields.sindicato">
                                         <label>Banner da Página:</label>
-                                        <div class="box-files">
+                                        <div class="box-files" :style="{backgroundImage: `url(${dataInputs.banner.fileIsEdit})`}">
 
                                             <template v-if="dataInputs.banner.fileIsEdit != ''">
                                                 <div class="box-image">
-                                                    <img :src="dataInputs.banner.fileIsEdit" class="img-fluid" alt="">
-                                                    <p><v-btn depressed small color="error" @click="deleteOnEdit('banner')">Excluir</v-btn></p>
+                                                    <v-btn
+                                                    elevation="6"
+                                                    large
+                                                    color="error"
+                                                    @click="deleteOnEdit('banner')"
+                                                    >
+                                                        Excluir
+                                                    </v-btn>
                                                 </div>
                                             </template>
                                             <template v-else>
@@ -74,20 +82,26 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Logo -->
-                    <div class="row">
-                        <div class="col-12">
+
+                        <!-- Logo -->
+                        <div class="col-12 col-md-6">
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-12 col-box-files" :class="borderFields.sindicato">
                                         <label>Logo do Sindicato</label>
-                                        <div class="box-files">
+                                        <div class="box-files" :style="{backgroundImage: `url(${dataInputs.banner.fileIsEdit})`}">
 
                                             <template v-if="dataInputs.logo.fileIsEdit != ''">
                                                 <div class="box-image">
                                                     <img :src="dataInputs.logo.fileIsEdit" class="img-fluid" alt="">
-                                                    <p><v-btn depressed small color="error" @click="deleteOnEdit('logo')">Excluir</v-btn></p>
+                                                    <p>
+                                                        <v-btn
+                                                        elevation="6"
+                                                        small
+                                                        color="error"
+                                                        @click="deleteOnEdit('logo')">
+                                                            Excluir
+                                                        </v-btn></p>
                                                 </div>
                                             </template>
                                             <template v-else>
@@ -100,8 +114,9 @@
                                                     prepend-inner-icon="image"
                                                     dense="dense"
                                                     color="primary"
+                                                    background-color="rgba(255, 255, 255, 0.7)"
                                                     counter
-                                                    accept="image/png, image/jpeg, image/bmp"
+                                                    accept="image/png, image/jpeg, image/bmp, image/svg+xml"
                                                     outlined
                                                     :show-size="1000"
                                                 >
@@ -578,12 +593,16 @@
                         title: 'Dashboard',
                         link: '/adm/dashboard',
                         icon: '/_adm/assets/SVGs/icon-dashboard.svg'
-                    },
-                    sindicatos: {
+                    }    
+                }
+
+                if ( !this.sindicatoAtual )
+                {
+                    btnsBarTop.sindicatos = {
                         title: 'Sindicatos',
                         link: '/adm/sindicatos',
                         icon: '/_adm/assets/SVGs/icon-sindicatos.svg'
-                    }
+                    }    
                 }
 
                 return btnsBarTop;
@@ -641,15 +660,28 @@
             margin-bottom: 0;
         }
         .box-files {
+            padding: 10px;
             border: solid 1px $grey;
             border-radius: 20px;
-            padding: 30px 20px 10px;
+            min-height: 200px;
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             .box-image
             {
                 text-align: center;
 
-                img { height: 100px; margin-top: -20px; }
+                img {
+                    height: 100px;
+                    padding: 15px;
+                    background-color: rgba(0, 0, 0, 0.6);
+                    border-radius: 3px;
+                }
+
                 audio { margin-top: -15px; }
                 p { margin: 5px 0 0; }
 

@@ -140,8 +140,8 @@
             <v-card class="mx-auto mb-4" outlined>
                 <v-card-text>
 
-                    <!-- Banner Destaque -->
-                    <div class="row">
+                    <!-- Banner Destaque (DELETADO) -->
+                    <div v-if="false" class="row">
                         <div class="col-12">
                             
                             <div class="container-fluid">
@@ -433,15 +433,15 @@ export default {
             this.errorsShow.errors = [];
 
             // Validações especificas
-            if ( _.isNil(this.filesBannerDestaque) && this.fileBannerIsEdit == '' )
-                this.errorsShow.errors.push({title: 'Banner Destaque', description: 'obrigatório'});
-            if (! _.isNil(this.filesBannerDestaque) && this.fileBannerIsEdit == ''  ) {
-                if ( this.filesBannerDestaque.size >= 1000000) {
-                    this.errorsShow.errors.push({title: 'Banner Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
-                }
-            }
-            if ( _.isEmpty(this.dataInputs.creditoBannerDestaque) )
-                this.errorsShow.errors.push({title: 'Crédito da Imagem (Banner Destaque)', description: 'obrigatório'});
+            // if ( _.isNil(this.filesBannerDestaque) && this.fileBannerIsEdit == '' )
+            //     this.errorsShow.errors.push({title: 'Banner Destaque', description: 'obrigatório'});
+            // if (! _.isNil(this.filesBannerDestaque) && this.fileBannerIsEdit == ''  ) {
+            //     if ( this.filesBannerDestaque.size >= 1000000) {
+            //         this.errorsShow.errors.push({title: 'Banner Destaque', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
+            //     }
+            // }
+            // if ( _.isEmpty(this.dataInputs.creditoBannerDestaque) )
+            //     this.errorsShow.errors.push({title: 'Crédito da Imagem (Banner Destaque)', description: 'obrigatório'});
             
 
             if ( _.isNil(this.filesFile) && this.fileFileIsEdit == '' )
