@@ -38,8 +38,30 @@ class GetEntitiesForTemplate
         $request->bancos = $banco;
 
         $file = new File();
-        $request->fetrafirs->dataBanner = $file->find($request->fetrafirs->banner)->toArray();
-        $request->fetrafirs->dataLogo = $file->find($request->fetrafirs->logo)->toArray();
+
+        if ($request->portal->logo)
+        {    
+            $file = $file->find($request->portal->logo);
+            if ($file) {
+                $request->portal->dataLogo = $file->toArray();
+            }
+        }
+
+        if ($request->fetrafirs->banner)
+        {
+            $file = $file->find($request->fetrafirs->banner);
+            if ($file) {
+                $request->fetrafirs->dataBanner = $file->toArray();
+            }
+        }
+
+        if ($request->fetrafirs->logo)
+        {
+            $file = $file->find($request->fetrafirs->logo);
+            if ($file) {
+                $request->fetrafirs->dataLogo = $file->toArray();
+            }
+        }
         
         return $next($request);
     }

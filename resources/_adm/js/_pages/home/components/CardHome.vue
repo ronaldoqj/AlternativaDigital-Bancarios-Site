@@ -3,146 +3,89 @@
     <div class="component-card-home">
 
         <a :href="params.link">
-            <div class="icon">
-                <div><img :src="params.icon" alt=""></div>
+            <div class="header" :style="bannerHeader">
+                <!-- <img :src="params.logo" alt=""> -->
+                <div class="logo" :style="{backgroundImage: 'url(' + params.logo + ')' }"></div>
+            </div>
+            <div class="body">
                 <p>{{ params.title }}</p>
             </div>
         </a>
 
-        <template v-if="showSubitem">
-            <a :href="params.subItem.link">
-                <div class="action">
-                    <div class="box-img">
-                        <img :src="params.subItem.icon" alt="">
-                    </div>
-                    <p>{{params.subItem.title}}</p>
-                </div>
-            </a>
-        </template>
-    
     </div>
 </template>  
 
 <script>
 export default {
+    props: [ 'params' ],
     data: () => {
         return {
-            panel: [0, 1],
-            showSubitem: true
+            bannerHeader: null
         }
-    },
-    components: {  },
-    props: [ 'params' ],
-    methods: {
-        
     },
     created()
     {
-        
-    },
-    mounted()
-    {
-        if ( _.isEmpty(this.params.subItem) )
+        if (this.params.banner)
         {
-            this.showSubitem = false;
+            this.bannerHeader = {
+                backgroundImage: `url(${this.params.banner})`
+            }
         }
     }
 }
-
 </script>
-
 
 <style lang="scss">
 @import '~/../resources/_adm/sass/_vars.scss';
 .component-card-home
 {
-    width: fit-content;
-    padding: 15px;
     position: relative;
-    margin: 0 auto;
-    border-radius: 10px;
     
-    a
-    {
+    a {
+        text-align: center;
         display: block;
+        text-decoration: none;
 
-        .icon
+        .header
         {
-            display: flex;
             margin: 0 auto;
-            justify-content: center;
-            align-content: center;
-            flex-direction: column;
+            padding: 15px 20px;
+            height: 160px;
+            max-width: 400px;
+            border-radius: 3px;
             text-align: center;
             background-color: $blue;
-            border-radius: 50%;
-            width: 95px;
-            height: 95px;
+            background-size: cover;
+            background-position: center;
+
             transition: $transition-normal;
-            text-align: center;
-            padding: 10px;
 
-            img {
-                width: 25px;
-                height: 25px;
-                margin-bottom: 5px;
-            }
-
-            p {
-                color: white;
-                font-size: 0.75em;
-                padding: 0;
-                margin: 0;
-                line-height: 1em;
-                
+            .logo {
+                width: 100%;
+                height: 100%;
+                background-size: contain;
+                background-position: center;
             }
         }
 
-        &:hover .icon {
-            transform: rotateY(360deg);
-            background: $blue-light;
+        .body
+        {    
+            p {
+                color: $blue;
+                font-size: 2em;
+                padding: 10px;
+                line-height: 1.1em;
+                text-align: center;
+                margin: 0;
+                padding-bottom: 0;
+            }
         }
 
-        .action
-        {
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            margin-top: 20px;
-
-            .box-img {
-                text-align: center;
-                margin-bottom: 3px;
-
-                img {
-                    width: 40px;
-                    height: 40px;
-                    transition: $transition-normal;
-                    border-radius: 50%;
-                }
-            }
-
-            p {
-                color: $blue-light;
-                transition: $transition-normal;
-                text-align: center;
-                padding: 0;
-                margin: 0;
-                font-size: 0.8em;
-            }
-
-            &:hover
-            {
-                .box-img img {
-                    transform: rotate(360deg);
-                    border: solid 2px $blue-strong;
-                    box-sizing: border-box;
-                }
-
-                p {
-                    color: $blue-strong;
-                }
-            }
+        &:hover .header {
+            max-width: 100%;
+            margin-top: -10px;
+            margin-bottom: 10px;
+            box-shadow: 0px 5px 15px rgba(0,0,0, 0.4);
         }
     }
 }

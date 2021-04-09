@@ -7,20 +7,16 @@ section#top-banner {
         .box-logo {
             padding: 15px;
             background-color: rgba(0, 0, 0, 0.6);
-            width: 250px;
-            height: 130px;
             border-radius: 3px;
-            float: left;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
         }
     }
 }
 
-#menu-sindicato {
-
+#menu-sindicato
+{
     transition: 0.4s;
+    background-color: #0B3C5E;
+    clear: both;
 
     .container-menus-sindicatos {
         height: auto;
@@ -28,7 +24,8 @@ section#top-banner {
         transition: all 0.3s;
     }
 
-    .title-menu-mobile {
+    .title-menu-mobile
+    {
         display: none;
 
         .text-tile-menu {
@@ -48,20 +45,16 @@ section#top-banner {
         font-weight: bold;
     }
 
-    .col-texts {
-        padding-right: 0;
-    }
+    .col-texts { padding-right: 0; }
 
-    background-color: #0B3C5E;
-    
     .flex-texts {
-
         display: flex;
         justify-content: space-around;
         white-space: nowrap;
         transition: 0.4s;
 
-        div {
+        div
+        {
             a {
                 font-size: 1.2em;
                 color: white;
@@ -70,7 +63,8 @@ section#top-banner {
                 transition: 0.4s;
             }
 
-            &:last-child {
+            &:last-child
+            {
                 a::after {
                     content: none;
                 }
@@ -87,14 +81,13 @@ section#top-banner {
                 background-color: #53A6D8;
             }
         }
-        
     }
 
-    .flex-icons {
+    .flex-icons
+    {
         display: flex;
         justify-content: space-around;
         transition: 0.4s;
-
 
         div {
             padding-top: 8px;
@@ -119,8 +112,6 @@ section#top-banner {
         }
     }
 
-    clear: both;
-
 
     /* Mobile */
     @media (max-width: 991.98px)
@@ -131,9 +122,7 @@ section#top-banner {
             overflow: hidden;
         }
 
-        .rotate {
-            transition: 0.4s;
-        }
+        .rotate { transition: 0.4s; }
 
         /* Expande o Menu do Sindicato */
         /**
@@ -154,12 +143,11 @@ section#top-banner {
                 opacity: 1;
             }
 
-            .rotate {
-                transform: rotate(180deg);
-            }
+            .rotate { transform: rotate(180deg); }
         }
 
-        .title-menu-mobile {
+        .title-menu-mobile
+        {
             display: block;
 
             #expand__menu--sindicato {
@@ -176,15 +164,13 @@ section#top-banner {
 
         .legendas { display: block; }
 
-        .flex-texts {
-
+        .flex-texts
+        {
             display: block;
 
-            div {
-                a {
-                    font-size: 1.5em;
-                }
-
+            div
+            {
+                a { font-size: 1.5em; }
                 text-align: center;
 
                 &.separador {
@@ -193,19 +179,16 @@ section#top-banner {
             }
         }
 
-
-        .flex-icons {
-
+        .flex-icons
+        {
             margin: 15px 0;
             
             div {
                 padding-bottom: 5px;
                 width: 50px;
                 height: 50px;
-            }
-            
+            }   
         }
-
 
     }
 }

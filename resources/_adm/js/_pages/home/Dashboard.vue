@@ -22,7 +22,7 @@
                             <div class="box-cards">
                                 <div class="item-card" v-for="item of cards.portalContent" :key="item.title">
                                     <template v-if="item.active">
-                                        <CardHome :params="item"></CardHome>
+                                        <CardDashboard :params="item"></CardDashboard>
                                     </template>
                                 </div>
                             </div>
@@ -45,7 +45,7 @@
                         <div class="col-12">
                             <div class="box-cards">
                                 <div class="item-card" v-for="item of cards.admFunctions" :key="item.title">
-                                    <CardHome :params="item"></CardHome>
+                                    <CardDashboard :params="item"></CardDashboard>
                                 </div>
                             </div>
                         </div>
@@ -59,11 +59,11 @@
 </template>  
 
 <script>
-import CardHome from "./components/CardHome"
+import CardDashboard from "./components/CardDashboard"
 
 export default {
     props: [ 'perfil', 'csrf', 'configAdm' ],
-    components: { CardHome },
+    components: { CardDashboard },
     data: () => {
         return {
             panel: [0, 1],

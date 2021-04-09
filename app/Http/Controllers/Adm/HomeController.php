@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Adm;
 use App\Http\Controllers\Controller;
 use App\Models\Sindicato;
+use App\Models\Portal;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -25,6 +26,9 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $sindicates = new Sindicato();
-        return view('adm.home')->withSindicates($sindicates->all()->toArray());
+        $portal = new Portal();
+        $portal = $portal->getAll();
+
+        return view('adm.home')->withSindicates($sindicates->listAllToAdmPageSindicatos()->get()->toArray())->withPortal($portal);
     }
 }

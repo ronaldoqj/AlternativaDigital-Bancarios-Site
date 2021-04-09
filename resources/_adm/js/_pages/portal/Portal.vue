@@ -10,13 +10,13 @@
             <input type="hidden" name="deleteBannerOnEdit" :value="pageControl.deleteBannerOnEdit" />
             <input type="hidden" name="deleteLogoOnEdit" :value="pageControl.deleteLogoOnEdit" />
 
-            <v-card class="mx-auto" outlined v-if="dataInputs.id === 2">
+            <v-card class="mx-auto" outlined>
                 <v-card-text>
                     <!-- Images -->
                     <div class="row">
 
                         <!-- Banner -->
-                        <div class="col-12 col-md-6">
+                        <div class="col-12" :class="dataInputs.id === 2 ? 'col-md-6': ''" v-if="dataInputs.id === 2">
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-12 col-box-files" :class="borderFields.sindicato">
@@ -67,54 +67,52 @@
                         </div>
 
                         <!-- Logo -->
-                        <div class="col-12 col-md-6">
+                        <div class="col-12" :class="dataInputs.id === 2 ? 'col-md-6': ''">
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-12 col-box-files" :class="borderFields.sindicato">
                                         <label>Logo do Sindicato</label>
-                                        <div class="box-files" :style="{backgroundImage: `url(${dataInputs.banner.fileIsEdit})`}">
+                                        <div class="box-files" :class="dataInputs.id === 1 ? 'portal': ''" :style="{backgroundImage: `url(${dataInputs.banner.fileIsEdit})`}">
 
-                                            <template v-if="dataInputs.logo.fileIsEdit != ''">
-                                                <div class="box-image">
-                                                    <img :src="dataInputs.logo.fileIsEdit" class="img-fluid" alt="">
-                                                    <p>
-                                                        <v-btn
-                                                        elevation="6"
-                                                        small
-                                                        color="error"
-                                                        @click="deleteOnEdit('logo')"
-                                                        >
-                                                            Excluir
-                                                        </v-btn>
-                                                    </p>
-                                                </div>
-                                            </template>
-                                            <template v-else>
-                                                <v-file-input
-                                                    name="logo"
-                                                    v-model="dataInputs.logo.file"
-                                                    label="Logo:"
-                                                    placeholder="Procurar Imagem"
-                                                    prepend-icon=""
-                                                    prepend-inner-icon="image"
-                                                    dense="dense"
-                                                    color="primary"
-                                                    background-color="rgba(255, 255, 255, 0.7)"
-                                                    counter
-                                                    accept="image/png, image/jpeg, image/bmp, image/svg+xml"
-                                                    outlined
-                                                    :show-size="1000"
-                                                >
-                                                    <template v-slot:selection="{ index, text }">
-                                                    <v-chip v-if="index < 2" color="primary" dark label small>
-                                                        {{ text }}
-                                                    </v-chip>
-                                                    <span v-else-if="index === 2" class="overline grey--text text--darken-3 mx-2" >
-                                                        +{{ dataInputs.logo.file.length - 2 }} File(s)
-                                                    </span>
-                                                    </template>
-                                                </v-file-input>
-                                            </template>
+                                            <div class="box-image" v-if="dataInputs.logo.fileIsEdit != ''">
+                                                <img :src="dataInputs.logo.fileIsEdit" class="img-fluid" alt="">
+                                                <p>
+                                                    <v-btn
+                                                    elevation="6"
+                                                    small
+                                                    color="error"
+                                                    @click="deleteOnEdit('logo')"
+                                                    >
+                                                        Excluir
+                                                    </v-btn>
+                                                </p>
+                                            </div>
+                                            <v-file-input
+                                                v-if="dataInputs.logo.fileIsEdit == ''"
+                                                class="mt-5"
+                                                name="logo"
+                                                v-model="dataInputs.logo.file"
+                                                label="Logo:"
+                                                placeholder="Procurar Imagem"
+                                                prepend-icon=""
+                                                prepend-inner-icon="image"
+                                                dense="dense"
+                                                color="primary"
+                                                background-color="rgba(255, 255, 255, 0.7)"
+                                                counter
+                                                accept="image/png, image/jpeg, image/bmp, image/svg+xml"
+                                                outlined
+                                                :show-size="1000"
+                                            >
+                                                <template v-slot:selection="{ index, text }">
+                                                <v-chip v-if="index < 2" color="primary" dark label small>
+                                                    {{ text }}
+                                                </v-chip>
+                                                <span v-else-if="index === 2" class="overline grey--text text--darken-3 mx-2" >
+                                                    +{{ dataInputs.logo.file.length - 2 }} File(s)
+                                                </span>
+                                                </template>
+                                            </v-file-input>
                                         </div>
                                     </div>
                                     
@@ -420,8 +418,6 @@
         created()
         {
             this.editStartCompleteFilds(JSON.parse(this.formEdition));
-            console.log('oioioi');
-            console.log(JSON.parse(this.formEdition));
         }
     }
 </script>
@@ -466,6 +462,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
+
+            /** Sobrescrita quando portal */
+            &.portal
+            {
+                background-color: #125488 !important;
+
+                .box-image {
+                    img {
+                        background-color: transparent !important;
+                    }
+                }
+            }
 
             .box-image
             {

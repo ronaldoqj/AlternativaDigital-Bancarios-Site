@@ -1,61 +1,87 @@
-
 <template>
     <div class="component-page-home">
-        <div class="container-fluid content--panel">
-            <div class="row">
-                <div class="col-12">
+        <v-container class="grey lighten-5 mt-10">
+            <v-row v-if="perfil == 'master'">
+                <v-col cols="12" md="6">
+                    <CardHome :params="cards.entities.portal" />
+                </v-col>
+                <v-col cols="12" md="6">
+                    <CardHome :params="cards.entities.fetrafirs" />
+                </v-col>
+            </v-row>
+        </v-container>
 
-                    <div class="box-cards">
-                        <!-- Portal -->
-                        <div class="item-card" v-if="perfil == 'master'">
-                            <CardHome :params="cards.entities.portal"></CardHome>
-                        </div>
-                        <!-- Fetrafi-RS -->
-                        <div class="item-card" v-if="perfil == 'master'">
-                            <CardHome :params="cards.entities.fetrafirs"></CardHome>
-                        </div>
-                        <!-- Sindicatos -->
-                        <div class="item-card" v-for="sindicate in sindicates" :key="sindicate.id">
-                            <CardHome @click="clickCard(sindicate.id)" :params="{link:'/adm/dashboard/'+sindicate.id, title: sindicate.name, icon:'/_adm/assets/SVGs/Home/icon-sindicatos.svg', subItem:{}}"></CardHome>
-                        </div>
-                    </div>
+        <v-container class="mt-5">
+            <v-row><v-col> <h2>Sindicatos</h2> </v-col></v-row>
+        </v-container>
 
-                </div>
-            </div>
-        </div>    
-    </div>
-</template>  
+        <v-container class="grey lighten-5">
+            <v-row>
+                <v-col v-for="sindicate in cards.entities.sindicates" :key="sindicate.id">
+                    <!-- Sindicatos -->
+                    <CardHome :params="sindicate"></CardHome>
+                </v-col>
+            </v-row>
+        </v-container>
+    </div>    
+</template>
 
 <script>
 import CardHome from "./components/CardHome"
 export default {
     components: {CardHome},
-    props: [ 'perfil', 'csrf', 'listSindicates' ],
+    props: [ 'perfil', 'csrf', 'listSindicates', 'listPortal' ],
     data: () => {
         return {
-            panel: [0, 1],
             cards: {
                 entities: {
-                    portal:{
-                        icon: '/_adm/assets/SVGs/Home/icon-house.svg',
+                    portal: {
+                        banner: null,
+                        logo: null,
                         title: 'Portal',
                         link: '/adm/dashboard/0',
-                        subItem: {}
+                        style: { backgroundColor: '#125488' }
                     },
-                    fetrafirs:{
-                        icon: '/_adm/assets/SVGs/icon-fetrafi-rs.svg',
+                    fetrafirs: {
+                        banner: null,
+                        logo: null,
                         title: 'Fetrafi-RS',
                         link: '/adm/dashboard/0/RS',
-                        subItem: {}
-                    }
+                        style: null
+                    },
+                    sindicates: []
                 }
             }
         }
     },
-    computed: {
-        sindicates() {
-            return JSON.parse(this.listSindicates);
+    methods: {
+        setPortal() {
+            const portal = JSON.parse(this.listPortal)[0];
+            this.cards.entities.portal.logo = `/${portal.logo_pathfile}/${portal.logo_namefile}`;
+        },
+        setFetrafiRs() {
+            const fetrafiRs = JSON.parse(this.listPortal)[1];
+            this.cards.entities.fetrafirs.banner = `/${fetrafiRs.banner_pathfile}/${fetrafiRs.banner_namefile}`;
+            this.cards.entities.fetrafirs.logo = `/${fetrafiRs.logo_pathfile}/${fetrafiRs.logo_namefile}`;
+        },
+        setSindicates() {
+            JSON.parse(this.listSindicates).forEach(element => {
+                const sindicate = {
+                    id: element.id,
+                    banner: `/${element.banner_pathfile}/${element.banner_namefile}`,
+                    logo: `/${element.logo_pathfile}/${element.logo_namefile}`,
+                    link: `/adm/dashboard/${element.id}`,
+                    title: element.name
+                }
+
+                this.cards.entities.sindicates.push(sindicate);
+            });
         }
+    },
+    created() {
+        this.setPortal();
+        this.setFetrafiRs();
+        this.setSindicates();
     }
 }
 </script>
@@ -64,55 +90,13 @@ export default {
 @import '~/../resources/_adm/sass/_vars.scss';
 .component-page-home
 {
-    .v-expansion-panel-header
-    {
-        padding: 0;
-        outline: none;
-
-        .v-icon {
-            font-size: 3rem;
-            color: #125488 !important;
-        }
+    h2 {
+        color: #125488;
+        font-size: 2em;
+        padding: 10px;
+        line-height: 1.1em;
+        border-bottom: 1px solid #125488;
+        margin-bottom: 0;
     }
-
-    .header--panel
-    {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        order: 2;
-    
-        .title {
-            font-size: 2.5em !important;
-            color: $blue;
-            font-weight: bold;
-            line-height: 1.1em;
-            white-space: pre;
-        }
-
-        > div
-        {
-            &:first-child { margin-right: 8px; }
-            &:last-child
-            {
-                background-color: #E0E1E3;
-                height: 2px;
-                width: 100%;
-            }
-        }   
-    }
-
-    .content--panel
-    {
-        .box-cards
-        {
-            display: flex;
-            justify-content: flex-start;
-            flex-wrap: wrap;
-
-            .item-card { padding: 10px; }
-        }
-    }
-
 }
 </style>

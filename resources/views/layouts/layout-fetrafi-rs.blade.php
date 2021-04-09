@@ -1,6 +1,13 @@
 <?php
-    $banner = request()->fetrafirs->dataBanner['pathfile'] .'/'. request()->fetrafirs->dataBanner['namefile'];
-    $logo = request()->fetrafirs->dataLogo['pathfile'] .'/'. request()->fetrafirs->dataLogo['namefile'];
+    $banner = '';
+    $logo = '';
+
+    if (request()->fetrafirs->dataBanner) {
+        $banner = request()->fetrafirs->dataBanner['pathfile'] .'/'. request()->fetrafirs->dataBanner['namefile'];
+    }
+    if (request()->fetrafirs->dataLogo) {
+        $logo = request()->fetrafirs->dataLogo['pathfile'] .'/'. request()->fetrafirs->dataLogo['namefile'];
+    }
 ?>
 
 @extends('layouts.layout')

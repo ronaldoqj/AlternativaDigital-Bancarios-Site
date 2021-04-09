@@ -1,7 +1,9 @@
 <?php
-//dump(request());
-// dump(request()->portal->facebook);
-// dd(request()->fetrafirs);
+$pathLogoPortal = '';
+
+if (request()->portal['dataLogo']) {
+    $pathLogoPortal = (request()->portal['dataLogo']['pathfile'] . '/' . request()->portal['dataLogo']['namefile']);
+}
 
 //dd(request()->bancos[0]);
 //dump(route(Route::currentRouteName()));
@@ -54,7 +56,6 @@
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-
             gtag('config', 'G-3YEGYVT5X6');
         </script>
     </head>
@@ -68,7 +69,7 @@
 
             <div class="sidebar-header">
                 <a href="{{ route('welcome') }}">
-                    <img src="/_site/assets/bancariosrs.svg" class="img-fluid logo" onload="SVGInject(this)" width="220" />
+                    <img src="{{ asset($pathLogoPortal) }}" class="img-fluid logo" onload="SVGInject(this)" width="220" />
                 </a>
             </div>
 
@@ -170,7 +171,7 @@
                                 <img src="/_site/assets/expand-menu2.png" class="rounded-circle" />
                             </div>
                             <a href="{{ url(env('APP_URL')) }}">
-                                <img src="/_site/assets/bancariosrs.svg" class="img-fluid logo" onload="SVGInject(this)"  />
+                                <img src="{{ asset($pathLogoPortal) }}" class="img-fluid logo" onload="SVGInject(this)"  />
                             </a>
                         </div>
                         <div id="menus" class="col-12 col-lg-6 offset-lg-2 order-1 order-lg-3">
