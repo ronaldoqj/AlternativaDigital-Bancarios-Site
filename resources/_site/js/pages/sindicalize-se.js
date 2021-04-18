@@ -176,7 +176,7 @@ function returnInputWithErrors() {
 
     for (item in arrayInputsRequired)
     {
-        console.log(arrayInputsRequired[item], window[arrayInputsRequired[item]]);
+        //console.log(arrayInputsRequired[item], window[arrayInputsRequired[item]]);
     }
 
 }

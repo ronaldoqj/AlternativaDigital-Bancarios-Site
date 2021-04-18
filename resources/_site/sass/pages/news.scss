@@ -3,7 +3,6 @@
 @import "../_functions";
 
 
-
 #noticias
 {
     font-size: 1rem;
@@ -60,5 +59,14 @@
         font-weight: normal;
         line-height: 1.5em;
         color: #333;
+
+        a {
+            font-size: 0.9em;
+            color: #53A6D8;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
     }
 }

@@ -2,7 +2,7 @@
 <template>
     <div class="acordos-e-convencoes-list">
         
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-12">
                 <div class="box-btns-noticias">
                     <a :href="actionForm + '/cadastro'">
@@ -13,7 +13,8 @@
                     </a>
                 </div>
             </div>
-        </div>
+        </div> -->
+        <pages-menu-bar :btns-top-bar="makeBtnsBarTop()"></pages-menu-bar>
 
         <form ref="formDelete" :action="actionForm + '/delete'" method="post">
             <input type="hidden" name="_token" :value="csrf">
@@ -91,7 +92,27 @@ export default {
     components: {  },
     props: [ 'csrf', 'page', 'actionForm', 'propList' ],
     methods: {
-        
+        makeBtnsBarTop() {
+            const btnsBarTop = {
+                home: {
+                    title: 'Home',
+                    link: '/adm/',
+                    icon: '/_adm/assets/SVGs/Home/icon-house.svg'
+                },
+                dashboard: {
+                    title: 'Dashboard',
+                    link: '/adm/dashboard',
+                    icon: '/_adm/assets/SVGs/icon-dashboard.svg'
+                },
+                cadastro: {
+                    title: 'Novo Usuário',
+                    link: '/adm//usuarios/cadastro',
+                    icon: '/_adm/assets/SVGs/icon-mais.svg'
+                }
+            }
+
+            return btnsBarTop;
+        },
         clickExcluir(item)
         {
             this.id = item.id;

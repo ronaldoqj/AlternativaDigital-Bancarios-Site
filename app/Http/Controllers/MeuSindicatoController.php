@@ -26,7 +26,7 @@ class MeuSindicatoController extends Controller
         $return = [];
         $Sindicato = new Sindicato();
 
-        $return['list'] = $Sindicato->listAllToAdmPageSindicatos()->get()->toArray();
+        $return['list'] = $Sindicato->listAllToSitePageSindicatos()->get()->toArray();
 
         return view('meu-sindicato')->withReturn($return);
     }

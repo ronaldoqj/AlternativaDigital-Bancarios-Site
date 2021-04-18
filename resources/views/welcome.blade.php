@@ -108,19 +108,7 @@
             <a href="{{url($link)}}">
             <div class="row COMPONENTE__news--with--video">
                 <div class="col-12 col-lg-5 __news--left">
-                    <!-- <iframe width="100%" height="252" src="https://www.youtube.com/embed/LcTqbMFVars" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
                     <iframe width="100%" height="252" src="https://www.youtube.com/embed/{{$noticia->videoYoutube}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <!-- ONDE ERA O VÍDEO
-                    <div style="background-image: url({{asset('/_site/assets/Home/video_corona.jpg')}}); height: 250px">
-                        <div class="container">
-                            <div class="row align-items-center text-center">
-                                <div class="col">
-                                    <img src="{{asset('/_site/assets/player.png')}}" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    -->
                 </div>
                 <div class="col-12 col-lg-7 __news--right">
                     <div class="__text--1">{{ $noticia->cartola }} | {{ \Carbon\Carbon::parse($noticia->dataInclusao)->format('d/m/Y') }} <span>{{-- '#' --}}{{-- $noticia->tags --}}</span></div>

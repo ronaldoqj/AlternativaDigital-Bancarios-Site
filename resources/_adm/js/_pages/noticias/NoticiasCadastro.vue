@@ -132,27 +132,6 @@
                     <p>Ativar Notícia</p>
                     <v-switch v-model="ativarNoticia" class="ma-4"></v-switch>
                 </div>
-
-                <!-- Sindicatos -->
-                <!-- Removido,
-                     logica alterada,
-                     Ao invés do portal adicionar noticias nos sindicatos se desejar
-                     seram os sindicatos que adicionarão as noticias que quiserem do Portal
-                 -->
-                <div v-if="false" class="col-3" :class="borderFields.ativarSindicatos">
-                    <v-combobox
-                    name="sindicatos"
-                    label="Ativar no Portal e Sindicatos:"
-                    v-model="dataInputs.sindicatos.selected"
-                    item-text="name"
-                    item-value="id"
-                    :items="dataInputs.sindicatos.items"
-                    multiple
-                    outlined
-                    dense
-                    :clearable="true"
-                    ></v-combobox>
-                </div>
             </div>
 
             <!-- Bancos -->
@@ -633,7 +612,7 @@ export default {
     methods: {
         updateCkeditorViaJquery: function(text)
         {
-            console.log('Funcionou', text);
+            //console.log('Funcionou', text);
         },
 
         shadowEfectBorderReset: function()
@@ -812,8 +791,6 @@ export default {
             // Validações comuns a todos
             if ( _.isEmpty(this.dateTimeInputs.dates.dataDaInclusao.date) )
                 this.errorsShow.errors.push({title: 'Data Inclusão', description: 'obrigatório'});
-            // if ( this.dataInputs.sindicatos.selected.length == 0 )
-            //     this.errorsShow.errors.push({title: 'Ativar no Portal e Sindicatos', description: 'obrigatório'});
 
             if ( _.isEmpty(this.dataInputs.cartola) )
                 this.errorsShow.errors.push({title: 'Cartola', description: 'obrigatório'});
@@ -857,24 +834,6 @@ export default {
                 }
 
                 this.dataInputs.bancos.selected = bank;
-            }
-
-            // Started combobox syndicates
-            if ( ! _.isEmpty(this.registeredSyndicates) )
-            {
-                let registeredSyndicates = JSON.parse(this.registeredSyndicates);
-                let syndicate = [];
-                for ( let item in registeredSyndicates )
-                {
-                    let contructSyndicate = {
-                        name: registeredSyndicates[item].name,
-                        id: registeredSyndicates[item].sindicato,
-                    }
-
-                    syndicate.push(contructSyndicate);
-                }
-
-                this.dataInputs.sindicatos.selected = syndicate;
             }
 
             // Seleciona o tipo de noticia
@@ -1055,35 +1014,12 @@ export default {
                 this.dataInputs.bancos.items.push(bank);
             }
         }
-
-        if ( ! _.isEmpty(this.syndicates) )
-        {
-            //syndicate
-            this.syndicateItemsObject = JSON.parse(this.syndicates);
-            for ( let item in this.syndicateItemsObject )
-            {
-                let syndicate = {
-                    name: this.syndicateItemsObject[item].name,
-                    id: this.syndicateItemsObject[item].id
-                };
-
-                this.dataInputs.sindicatos.items.push(syndicate);
-            }
-        }
     },
     mounted()
     {
         if ( ! _.isEmpty(this.noticiaEdition) ) {
             this.isEdit = true;
             this.editStartCompleteFilds(JSON.parse(this.noticiaEdition));
-        } else {
-            let syndicates = JSON.parse(this.syndicates);
-            let syndicate = {
-                name: syndicates[0].name,
-                id: syndicates[0].id
-            };
-
-            //this.dataInputs.sindicatos.selected.push(syndicate);
         }
     }
 }

@@ -58,3 +58,12 @@
   color: #333;
 }
 
+#noticias p a {
+  font-size: 0.9em;
+  color: #53A6D8;
+}
+
+#noticias p a:hover {
+  text-decoration: underline;
+}
+

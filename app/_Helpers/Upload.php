@@ -1,8 +1,7 @@
 <?php
-namespace App\Services;
-use Illuminate\Database\Eloquent\Model;
-use Validator;
+namespace App\_Helpers;
 use Illuminate\Support\Str;
+use App\_Helpers\ClearString;
 use App\Models\File;
 use DateTime;
 
@@ -16,7 +15,6 @@ class Upload
     public ?string $description = null;
     public ?string $alternativeText = null;
     public array $return = [];
-
 
     /**
      * AddFiles on table files and make upload on files.
@@ -70,7 +68,9 @@ class Upload
         $fileExtension = '.' . ltrim( substr( $fileNameToRegister, strrpos( $fileNameToRegister, '.' ) ), '.' );
         $nameFileWidouthExtension = substr($fileNameToRegister, 0, -strlen($fileExtension));
         $dt = new DateTime();
-        $fileNameToRegister = substr($nameFileWidouthExtension, 0, 120 - strlen($fileExtension) - (strlen($dt->format('Ymd_His-u')) + 1)) . '-' . $dt->format('Ymd_His-u') . $fileExtension;
+        $clearString = new ClearString();
+        $nameFileWidouthExtension = $clearString->removeSpecialCharacters($nameFileWidouthExtension);
+        $fileNameToRegister = substr( $nameFileWidouthExtension, 0, 120 - strlen($fileExtension) - (strlen($dt->format('Ymd_His-u')) + 1)) . '-' . $dt->format('Ymd_His-u') . $fileExtension;
         
 
         // Caso consiga mover o arquivo registra no banco de dados e retorna os dados do arquivo
@@ -100,9 +100,7 @@ class Upload
                 'FileExtension' => $fileExtension
             ];
         }
-        
-        
+
         return $this->return;
     }
-
 }

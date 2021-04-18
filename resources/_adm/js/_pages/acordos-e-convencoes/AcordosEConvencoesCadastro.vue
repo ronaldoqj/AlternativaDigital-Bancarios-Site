@@ -522,7 +522,6 @@ export default {
 
             // Controle para mostrar os files ignorando a regra atual de validação (CONTEM VALOR DO TIPO STRING)
             // Ou manter a mesma logica que é quando o formulário está realizando cadastro (VAZIO DO TIPO STRING) 
-            console.log('now', item.file_id);
             this.fileBannerIsEdit = item.fileBannerDestaque_id > 0 ? `/${item.fileBannerDestaque_pathfile}/${item.fileBannerDestaque_namefile}` : '';
             this.fileFileIsEdit = item.file_id > 0 ? `/${item.file_pathfile}/${item.file_namefile}` : '';
             this.fileFileName = item.file_namefile;

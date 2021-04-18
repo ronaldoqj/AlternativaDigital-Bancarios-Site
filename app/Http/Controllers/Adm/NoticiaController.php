@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Banco;
 use App\Models\Noticia;
-use App\Services\Upload;
+use App\_Helpers\Upload;
 use App\Models\File;
 use App\Models\Sindicato;
 use App\Models\NoticiaHasSindicato;
@@ -79,10 +79,8 @@ class NoticiaController extends Controller
     public function cadastro(Request $request)
     {
         $bancos = new Banco();
-        $sindicatos = new Sindicato();
 
         return view('adm.noticias.noticia-cadastrar')->withBancos($bancos->all()->toJson())
-                                                     ->withSindicatos($sindicatos->all()->toJson())
                                                      ->withBancos($bancos->all()->toJson());
     }
 
@@ -249,7 +247,6 @@ class NoticiaController extends Controller
         // Atualiza os bancos se as strings for diferentes, ou seja se houve alteração
         if ($bancos != $oldIdsBancos)
         {
-            //dd($bancos);
             $bancosArray = explode(',', $bancos);
             // se existir algo registrado deleta
             if ( strlen($oldIdsBancos) ) {
@@ -408,7 +405,10 @@ class NoticiaController extends Controller
     {
         $noticia = new Noticia();
         $delete = $noticia->find($request->input('id'));
-        $delete->delete();
+
+        if ($delete) {
+            $delete->delete();
+        }
         return redirect(url('adm/noticias'));
     }
 }

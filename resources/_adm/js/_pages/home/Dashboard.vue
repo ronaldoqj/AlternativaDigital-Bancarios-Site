@@ -186,10 +186,10 @@ export default {
                         active: true,
                         subItem: {},
                     },
-                    usuariso: {
+                    usuarios: {
                         icon: '/_adm/assets/SVGs/Home/icon-users.svg',
                         title: 'Usuários',
-                        link: '#',
+                        link: '/adm/usuarios',
                         active: true,
                         subItem: {},
                     },
@@ -215,7 +215,6 @@ export default {
     methods: {
         checkActives() {
             let configAdm = JSON.parse(this.configAdm);
-            console.log('ConfigAdm', configAdm);
             
             if (configAdm.fetrafi)
             {

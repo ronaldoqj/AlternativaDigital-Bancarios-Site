@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Adm;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Edital;
-use App\Services\Upload;
+use App\_Helpers\Upload;
 use App\Models\File;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;

@@ -34,12 +34,12 @@
             <a :href="`/adm/noticias/edicao/${data.id}`"><img src="/_adm/assets/SVGs/editar.svg" class="img-fluid" onload="SVGInject(this)" /></a>
             <v-menu :close-on-content-click="true" :nudge-width="150" offset-x>
                 <template v-slot:activator="{ on, attrs }">
-                    <a v-bind="attrs" v-on="on"><img src="/_adm/assets/SVGs/excluir.svg" class="img-fluid" onload="SVGInject(this)" /></a>
+                    <a v-bind="attrs" v-on="on" @click="clickedIconDelete(data)"><img src="/_adm/assets/SVGs/excluir.svg" class="img-fluid" onload="SVGInject(this)" /></a>
                 </template>
                 <v-card>
                     <v-list-item> <v-list-item-title>Deseja excluir o registro?</v-list-item-title> </v-list-item>
                     <v-btn x-small class="ma-2" text @click="menu = false">Cancelar</v-btn>
-                    <v-btn small tile color="error" class="ma-2 white--text" outlined @click="deleteCard(data)">
+                    <v-btn small tile color="error" class="ma-2 white--text" outlined @click="deleteCard()">
                         Excluir <v-icon right dark> mdi-delete </v-icon>
                     </v-btn>
                 </v-card>
@@ -62,8 +62,11 @@
         }
     },
     methods: {
-        deleteCard(data) {
-            this.$emit('clickedDelete', data);
+        clickedIconDelete(data) {
+            this.$emit('clickIconDelete', data);
+        },
+        deleteCard() {
+            this.$emit('clickedDelete');
         }
     }
   }

@@ -10,7 +10,7 @@ class Sindicato extends Model
     use SoftDeletes;
 
     /**
-     * Adm 
+     * Adm
      */
     public function listAllToAdmPageSindicatos()
     {
@@ -18,6 +18,58 @@ class Sindicato extends Model
         $list->leftjoin('files as banner', 'banner.id', '=', 'sindicatos.banner');
         $list->leftjoin('files as logo', 'logo.id', '=', 'sindicatos.logo');
         $list->whereNull('sindicatos.deleted_at');
+                          
+        $list->orderBy('sindicatos.created_at', 'desc');
+
+        $listAll = $list->addSelect(
+            'sindicatos.id          as id',
+            'sindicatos.ativo       as ativo',
+            'sindicatos.name        as name',
+            'sindicatos.subdomain   as subdomain',
+            'sindicatos.logo        as logo',
+
+            'sindicatos.fone        as fone',
+            'sindicatos.fone2       as fone2',
+            'sindicatos.email       as email',
+            'sindicatos.facebook    as facebook',
+            'sindicatos.twitter     as twitter',
+            'sindicatos.instagram   as instagram',
+            'sindicatos.whatsapp    as whatsapp',
+            'sindicatos.podcast     as podcast',
+            'sindicatos.youtube     as youtube',
+            'sindicatos.cep         as cep',
+            'sindicatos.endereco    as endereco',
+            'sindicatos.numero      as numero',
+            'sindicatos.complemento as complemento',
+            'sindicatos.bairro      as bairro',
+            'sindicatos.cidade      as cidade',
+            'sindicatos.uf          as uf',
+
+            'sindicatos.deleted_at  as deleted_at',
+            'sindicatos.created_at  as created_at',
+            'sindicatos.updated_at  as updated_at',
+
+            'banner.pathfile          as banner_pathfile',
+            'banner.namefile          as banner_namefile',
+            'banner.deleted_at        as banner_deleted_at',
+
+            'logo.pathfile          as logo_pathfile',
+            'logo.namefile          as logo_namefile',
+            'logo.deleted_at        as logo_deleted_at'
+        );
+        return $listAll;
+    }
+    
+    /**
+     * Site
+     */
+    public function listAllToSitePageSindicatos()
+    {
+        $list = DB::table('sindicatos');
+        $list->leftjoin('files as banner', 'banner.id', '=', 'sindicatos.banner');
+        $list->leftjoin('files as logo', 'logo.id', '=', 'sindicatos.logo');
+        $list->whereNull('sindicatos.deleted_at');
+        $list->where('sindicatos.ativo', 'S');
                           
         $list->orderBy('sindicatos.created_at', 'desc');
 

@@ -103,7 +103,6 @@ export default {
 
         getBannerImage(data)
         {
-            console.log('teste', data);
             let pathBanner = '';
             if ( _.isNil(data.banner_deleted_at) ) {
                 pathBanner = `url(/${data.banner_pathfile}/${data.banner_namefile})`;

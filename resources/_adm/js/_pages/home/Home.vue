@@ -1,7 +1,7 @@
 <template>
     <div class="component-page-home">
         <v-container class="grey lighten-5 mt-10">
-            <v-row v-if="perfil == 'master'">
+            <v-row>
                 <v-col cols="12" md="6">
                     <CardHome :params="cards.entities.portal" />
                 </v-col>
@@ -11,11 +11,11 @@
             </v-row>
         </v-container>
 
-        <v-container class="mt-5">
+        <v-container v-if="perfil == 'master'" class="mt-5">
             <v-row><v-col> <h2>Sindicatos</h2> </v-col></v-row>
         </v-container>
 
-        <v-container class="grey lighten-5">
+        <v-container v-if="perfil == 'master'" class="grey lighten-5">
             <v-row>
                 <v-col v-for="sindicate in cards.entities.sindicates" :key="sindicate.id">
                     <!-- Sindicatos -->
@@ -82,6 +82,8 @@ export default {
         this.setPortal();
         this.setFetrafiRs();
         this.setSindicates();
+
+        console.log(JSON.parse(this.listPortal));
     }
 }
 </script>

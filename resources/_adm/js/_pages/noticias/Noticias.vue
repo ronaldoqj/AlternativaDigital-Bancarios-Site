@@ -13,7 +13,6 @@
             multiple
             flat
             >
-
                 <!-- Noticia destaque -->
                 <v-expansion-panel>
                     <v-expansion-panel-header>
@@ -32,7 +31,12 @@
                         <div class="container-fluid content--panel">
                             <div class="row">
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in noticias.destaques" :key="item.id">
-                                    <CardNews type="card-banner" :data="item" @clickedDelete="deleteCard"></CardNews>
+                                    <CardNews
+                                    type="card-banner"
+                                    :data="item"
+                                    @clickIconDelete="setHiddenInputsForm"
+                                    @clickedDelete="deleteCard"
+                                    ></CardNews>
                                 </div> 
                             </div>
                             
@@ -67,7 +71,12 @@
                         <div class="container-fluid content--panel">
                             <div class="row">
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in noticias.comVideo" :key="item.id">
-                                    <CardNews type="card-video" :data="item" @clickedDelete="deleteCard"></CardNews>
+                                    <CardNews
+                                    type="card-video"
+                                    :data="item"
+                                    @clickIconDelete="setHiddenInputsForm"
+                                    @clickedDelete="deleteCard"
+                                    ></CardNews>
                                 </div>
                             </div>
                         </div>
@@ -101,7 +110,12 @@
                         <div class="container-fluid content--panel">
                             <div class="row">
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in noticias.comImagem" :key="item.id">
-                                    <CardNews type="card-image" :data="item" @clickedDelete="deleteCard"></CardNews>
+                                    <CardNews
+                                    type="card-image"
+                                    :data="item"
+                                    @clickIconDelete="setHiddenInputsForm"
+                                    @clickedDelete="deleteCard"
+                                    ></CardNews>
                                 </div>
                             </div>
                         </div>
@@ -135,7 +149,12 @@
                         <div class="container-fluid content--panel">
                             <div class="row">
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in noticias.comPodcast" :key="item.id">
-                                    <CardNews type="card-file" :data="item" @clickedDelete="deleteCard"></CardNews>
+                                    <CardNews
+                                    type="card-file"
+                                    :data="item"
+                                    @clickIconDelete="setHiddenInputsForm"
+                                    @clickedDelete="deleteCard"
+                                    ></CardNews>
                                 </div>
                             </div>
                         </div>
@@ -169,7 +188,12 @@
                         <div class="container-fluid content--panel">
                             <div class="row">
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in noticias.simples" :key="item.id">
-                                    <CardNews type="card-text" :data="item" @clickedDelete="deleteCard"></CardNews>
+                                    <CardNews
+                                    type="card-text"
+                                    :data="item"
+                                    @clickIconDelete="setHiddenInputsForm"
+                                    @clickedDelete="deleteCard"
+                                    ></CardNews>
                                 </div>
                             </div>
                         </div>
@@ -201,8 +225,8 @@ export default {
     data: () => {
         return {
             // inputs Hidden
-            id: '',
-            action: '',
+            id: null,
+            action: null,
 
             // controle dos acordeões
             //panel: [0, 1, 2, 3, 4],
@@ -292,10 +316,13 @@ export default {
         }
     },
     methods: {
-        deleteCard(item)
+        setHiddenInputsForm(item)
         {
             this.id = item.id;
             this.action = 'excluir';
+        },
+        deleteCard()
+        {
             this.$refs.formDelete.submit();
         },
         makeBtnsBarTop()
@@ -446,6 +473,9 @@ export default {
         this.controlNoticiasPaginate.comImagem.page = 1;
         this.controlNoticiasPaginate.comPodcast.page = 1;
         this.controlNoticiasPaginate.simples.page = 1;
+
+        this.id = 13;
+        //this.action = 'delete';
     }
 }
 </script>

@@ -104,7 +104,6 @@ export default {
     created()
     {
         this.list = JSON.parse(JSON.parse(this.propList).list);
-        console.log('teste', JSON.parse(JSON.parse(this.propList).list));
     }
 }
 </script>

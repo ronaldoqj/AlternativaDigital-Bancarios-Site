@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Adm;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Sindicato;
-use App\Services\Upload;
+use App\_Helpers\Upload;
 use App\Models\File;
 use App\Models\Estado;
 use Illuminate\Support\Facades\Auth;

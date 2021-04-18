@@ -5,6 +5,27 @@ if (request()->portal['dataLogo']) {
     $pathLogoPortal = (request()->portal['dataLogo']['pathfile'] . '/' . request()->portal['dataLogo']['namefile']);
 }
 
+
+/**
+ * Hack para funcionar os filtros dos bancos
+ * nos sub-dominios em produção.
+ * Por algum motivo talvez de htacces o parametro
+ * banco "?banco=[id]" é ocultado nos subdominios apenas.
+ * Ou se perde por se tratar de um subdominio, ou por estar
+ * em mais um nivel de path da URL.
+ */
+// $urlBanco = '?banco=';
+// $resolveUrl = explode(url('/'), url()->current());
+
+// if ( count($resolveUrl) == 2 )
+// {
+//     if (strlen($resolveUrl[1]))
+//     {
+//         $resolveUrl = explode('banco/', $resolveUrl[1]);
+//         $urlBanco = rtrim(url('/'), '/') . rtrim($resolveUrl[0], '/')  . '/banco/';
+//     }
+// }
+
 //dd(request()->bancos[0]);
 //dump(route(Route::currentRouteName()));
 //dump(Route::current());
@@ -214,7 +235,11 @@ if (request()->portal['dataLogo']) {
                                                 <a href="{{ route(Route::currentRouteName()) }}"><button class="dropdown-item" type="button"> Todos Bancos </button></a>
                                                 
                                                 @forelse (request()->bancos as $banco)
-                                                    <a href="{{ '?banco='.$banco->id }}"><button class="dropdown-item" type="button">{{$banco->name}}</button></a>
+                                                    <a href="{{ rtrim(url()->current(), '/') . '/' . '?banco='.$banco->id }}"><button class="dropdown-item" type="button">{{$banco->name}}</button></a>
+                                                    <!-- <a href="{{  '?banco='.$banco->id }}"><button class="dropdown-item" type="button">{{$banco->name}}</button></a> -->
+                                                    
+                                                    <!-- <a href="{{-- $urlBanco.$banco->id --}}"><button class="dropdown-item" type="button">{{$banco->name}}</button></a> -->
+                                                    <!-- <a href="{{ route(Route::currentRouteName(), $banco->id) }}"><button class="dropdown-item" type="button">{{$banco->name}}</button></a> -->
                                                 @empty
                                                 @endforelse
                                             </div>

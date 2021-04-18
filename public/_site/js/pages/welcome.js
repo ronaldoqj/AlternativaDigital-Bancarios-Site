@@ -27,6 +27,15 @@ function init(page)
         if (news.items.length)
         {
             setNews(news);
+
+            /**
+             * playerAudio
+             * 
+             * Função no arquivo templateJS
+             * Cada vez que realiza a paginação é preciso remapear
+             * os events listenners de clicks da página home
+             */
+            playerAudio();
             init(page);
         }
         else
@@ -53,7 +62,6 @@ function getHtmlNews(news)
             html += `<a href="${news.extraLink}">`;
             html += `    <div class="row COMPONENTE__news--with--image">`;
             html += `        <div class="col-12 col-lg-5 __news--left">`;
-            html += `            <div style='background-image: url("/${news.fileImagemDestaque_pathfile}/${news.fileImagemDestaque_namefile}"); height: 250px'></div>`;
             html += `            <div style='background-image: url("/${news.fileImagemDestaque_pathfile}/${news.fileImagemDestaque_namefile}"); height: 250px'></div>`;
             html += `        </div>`;
             html += `        <div class="col-12 col-lg-7 __news--right">`;
@@ -140,6 +148,7 @@ function setNews(news)
         htmlNews = getHtmlNews(news.items[i]);
         $('#news').append(htmlNews);
     }
+
 }
 
 $(document).ready(function ()

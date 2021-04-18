@@ -71,7 +71,7 @@
                                                 /Portal
                                             @endif
                                         @else
-                                            /{{session()->get('configAdm')['data']['name']}}
+                                            /{{ substr(session()->get('configAdm')['data']['name'], 0, 40) }} {{ strlen(session()->get('configAdm')['data']['name']) > 40 ? '...' : '' }}
                                         @endif
                                     @endif
                                     @yield('title')

@@ -41,7 +41,6 @@
         csrf="{{ csrf_token() }}"
         form-action="{{url('adm/noticias/cadastro')}}"
         banks="{{ $bancos }}"
-        syndicates="{{ $sindicatos }}"
     />
 </div>
 @endsection

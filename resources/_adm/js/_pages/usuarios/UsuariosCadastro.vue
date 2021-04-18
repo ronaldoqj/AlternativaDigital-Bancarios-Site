@@ -1,9 +1,11 @@
 
 <template>
     
-    <div id="noticias-cadastro" class="container-fluid mt-10">
+    <div id="usuario__cadastro" class="container-fluid mt-10">
 
     <errors-component :objErrorsShow="errorsShow" @showErrorsChange="errorsShow.show = $event"></errors-component>
+
+    <pages-menu-bar :btns-top-bar="makeBtnsBarTop()"></pages-menu-bar>
 
     <form :action="formAction" method="post" @submit="checkForm" enctype="multipart/form-data">
 
@@ -15,10 +17,31 @@
 
             <div class="col-3">
                 
-                <div class="col-8 col-box-files" :class="borderFields.file">
-                    <label>Banner Destaque</label>
-                    <div class="box-files">
 
+                <img
+                    src="/files/portal/background-topo-fetrafi-rs-20210409_020622-732184.jpg"
+                    alt="John"
+                    width="100%"
+                >
+
+                <!-- <v-avatar width="100%">
+                <img
+                    src="/files/portal/background-topo-fetrafi-rs-20210409_020622-732184.jpg"
+                    alt="John"
+                >
+                </v-avatar> -->
+
+
+                <!-- <div class="img__profile">
+                    <img
+                    src="/files/portal/background-topo-fetrafi-rs-20210409_020622-732184.jpg"
+                    alt="John"
+                    />
+                </div> -->
+
+                
+                <!-- <div class="col-8 col-box-file" :class="borderFields.file">
+                    <div class="box-file">
                         <template v-if="fileFileIsEdit != ''">
                             <div class="box-image">
                                 <img :src="fileFileIsEdit" class="img-fluid" alt="">
@@ -32,7 +55,7 @@
                                 placeholder="Procurar Imagem"
                                 prepend-icon=""
                                 prepend-inner-icon="add_photo_alternate"
-                                dense="dense"
+                                dense
                                 color="primary"
                                 counter
                                 multiple
@@ -51,13 +74,10 @@
                             </v-file-input>
                         </template>
                     </div>
-                </div>
+                </div> -->
 
 
-
-
-
-
+        
 
             </div>
             <div class="col-9">
@@ -67,7 +87,7 @@
                             v-model="dataInputs.nome"
                             name="nome"
                             label="nome:"
-                            dense="dense"
+                            dense
                             maxlength="240"
                             counter="240"
                             outlined
@@ -80,7 +100,7 @@
                             v-model="dataInputs.email"
                             name="email"
                             label="Tag's:"
-                            dense="dense"
+                            dense
                             maxlength="240"
                             counter="240"
                             outlined
@@ -94,7 +114,7 @@
                         v-model="dataInputs.fone"
                         name="fone"
                         label="Fone:"
-                        dense="dense"
+                        dense
                         maxlength="240"
                         counter="240"
                         outlined
@@ -108,7 +128,7 @@
                         v-model="dataInputs.empresa"
                         name="empresa"
                         label="Empresa:"
-                        dense="dense"
+                        dense
                         maxlength="240"
                         counter="240"
                         outlined
@@ -122,7 +142,7 @@
                             v-model="dataInputs.cargo"
                             name="cargo"
                             label="Cargo/Função:"
-                            dense="dense"
+                            dense
                             maxlength="240"
                             counter="240"
                             outlined
@@ -241,6 +261,29 @@ export default {
     },
     components: {  },
     methods: {
+
+        makeBtnsBarTop() {
+            const btnsBarTop = {
+                home: {
+                    title: 'Home',
+                    link: '/adm/',
+                    icon: '/_adm/assets/SVGs/Home/icon-house.svg'
+                },
+                dashboard: {
+                    title: 'Dashboard',
+                    link: '/adm/dashboard',
+                    icon: '/_adm/assets/SVGs/icon-dashboard.svg'
+                },
+                usuarios: {
+                    title: 'Usuários',
+                    link: '/adm/usuarios',
+                    icon: '/_adm/assets/SVGs/Home/icon-users.svg'
+                }
+            }
+
+            return btnsBarTop;
+        },
+
         checkForm: function (e)
         {
             this.errorsShow.errors = [];
@@ -320,8 +363,18 @@ export default {
 
 
 @import '~/../resources/_adm/sass/_vars.scss';
-.noticias-list
+#usuario__cadastro
 {
+    .img__profile {
+        border: solid 1px $grey-strong;
+        border-radius: 50%;
+        padding: 2px;
+
+        img {
+            width: 100%;
+            border-radius: 50%;
+        }
+    }
 
     .box-btns-noticias {
         margin: 10px 0;
@@ -515,7 +568,7 @@ export default {
         }
     }
 
-    .col-box-files
+    .col-box-file
     {
         padding: 0;
         padding-right: 0;
@@ -526,7 +579,7 @@ export default {
             margin-bottom: 0;
         }
 
-        .box-files {
+        .box-file {
             border: solid 1px $grey;
             border-radius: 20px;
             padding: 30px 20px 10px;
@@ -575,7 +628,7 @@ export default {
 
     .required
     {
-        .box-files {
+        .box-file {
             border-color: #53A6D8;
             transition: $transition-normal ease;
             animation: shadowEfectBorder 1s;

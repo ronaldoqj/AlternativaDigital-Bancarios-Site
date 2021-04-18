@@ -1,10 +1,10 @@
 {
-    "/_adm/js/app.js": "/_adm/js/app.js?id=b3b525171b3d82558db6",
+    "/_adm/js/app.js": "/_adm/js/app.js?id=6d119890e98b5c045746",
     "/css/app.css": "/css/app.css?id=22b989e4d97ddd08aa94",
     "/_site/css/plugins.css": "/_site/css/plugins.css?id=ca37495d239e9de99068",
     "/_site/css/template.css": "/_site/css/template.css?id=15deccb1e622d3577502",
     "/_site/css/pages/home.css": "/_site/css/pages/home.css?id=d2c53e86238b056177c5",
-    "/_site/css/pages/news.css": "/_site/css/pages/news.css?id=49df94a84e60e255f605",
+    "/_site/css/pages/news.css": "/_site/css/pages/news.css?id=c3d1ece1976473cf9a2a",
     "/_site/css/pages/entidades-parceiras.css": "/_site/css/pages/entidades-parceiras.css?id=35b729cac0b2cba7f52f",
     "/_site/css/pages/editais.css": "/_site/css/pages/editais.css?id=b90c7c049d612e6684a3",
     "/_site/css/pages/search.css": "/_site/css/pages/search.css?id=9dda0a0625618693757f",
@@ -26,12 +26,12 @@
     "/_site/css/pages/fetrafi-rs/sindicalize-se.css": "/_site/css/pages/fetrafi-rs/sindicalize-se.css?id=287e4e1db9f48676d3d4",
     "/_adm/css/app.css": "/_adm/css/app.css?id=6a8a77eb618a86bc4dd8",
     "/_adm/css/auth.css": "/_adm/css/auth.css?id=bcbf6ccc775ae22e5138",
-    "/_site/js/app.js": "/_site/js/app.js?id=29ce84f0c1a0a4250c65",
+    "/_site/js/app.js": "/_site/js/app.js?id=c581e0b78c15df6847fb",
     "/_site/css/mCustomScrollbar.css": "/_site/css/mCustomScrollbar.css?id=295351a5027c5ad6256f",
     "/_adm/js/_plugins/jquery/jquery.min.js": "/_adm/js/_plugins/jquery/jquery.min.js?id=b61aa6e2d68d21b3546b",
     "/_site/js/plugins.js": "/_site/js/plugins.js?id=de9f9ccb5f5fccb49eb6",
     "/_site/js/svg-inject.min.js": "/_site/js/svg-inject.min.js?id=ae60670a20f05e487c47",
-    "/_site/js/pages/sindicalize-se.js": "/_site/js/pages/sindicalize-se.js?id=508924e39825aabdc639",
-    "/_site/js/template.js": "/_site/js/template.js?id=90721e9360890f14ee2c",
-    "/_site/js/pages/welcome.js": "/_site/js/pages/welcome.js?id=a218bb0ee5b2112fee7f"
+    "/_site/js/pages/sindicalize-se.js": "/_site/js/pages/sindicalize-se.js?id=e77d69e94ea610d8847a",
+    "/_site/js/template.js": "/_site/js/template.js?id=8001fe738a43c44d29b0",
+    "/_site/js/pages/welcome.js": "/_site/js/pages/welcome.js?id=20f5d44507c95611b6a5"
 }

@@ -8,6 +8,7 @@ use App\Models\Contato;
 use App\Models\Instituicao;
 use App\Models\Banco;
 use App\Models\File;
+use PhpParser\Node\Expr\Cast\Object_;
 
 class GetEntitiesForTemplate
 {
@@ -62,7 +63,38 @@ class GetEntitiesForTemplate
                 $request->fetrafirs->dataLogo = $file->toArray();
             }
         }
-        
+
+        $request = $this->checkAndInjectBancoParameter($request);  
         return $next($request);
+    }
+
+    /**
+     * Tratamento para resolver o problema de produção
+     * na obtenção do parametro GET "?banco=[id]".
+     * Em produção é adicionado o caracter "/" antes dos
+     * parametros GET, somente nos subdominios. Exemplo:
+     * "/?banco=2", e essa barra faz com que o Laravel não
+     * consiga reconhecer o parametro GET
+     */
+    private function checkAndInjectBancoParameter($request): Object
+    {
+        $banco = $request->input('banco');
+        
+        if ( ! $banco )
+        {
+            $url = $_SERVER['REQUEST_URI'];
+            $paramBanco = explode('?banco=', $url);
+
+            if ( count($paramBanco) > 1 )
+            {
+                if ( (int) $paramBanco[1] )
+                {
+                    $request->request->add(['banco' => $banco]);
+                    $request->attributes->banco = $banco;
+                }
+            }
+        }
+
+        return $request;
     }
 }

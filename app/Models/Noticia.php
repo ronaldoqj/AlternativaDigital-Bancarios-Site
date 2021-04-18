@@ -4,12 +4,18 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Carbon;
+use DateTimeZone;
+
 
 class Noticia extends Model
 {
     use SoftDeletes;
     private $syndicate;
-  
+    
+    const TIME_ZONE = 'America/Sao_Paulo';
+    const DATE_FORMAT = 'Y/m/d H:i:s';
+
     
     /**
      * Metodos para o adm
@@ -235,13 +241,16 @@ class Noticia extends Model
      */
     public function getDestaques()
     {
+        $dateNow = Carbon::now(new DateTimeZone(self::TIME_ZONE))->format(self::DATE_FORMAT);
+
         $list = DB::table('noticias');
         $list->leftjoin('files as filesBannerDestaque', 'filesBannerDestaque.id', '=', 'noticias.bannerDestaque');
         $list->leftjoin('files as filesImagemDestaque', 'filesImagemDestaque.id', '=', 'noticias.imagemDestaque');
         $list->whereNull('noticias.deleted_at');
         $list->where('ativo', 'S');
         $list->where('noticias.tipoDaNoticia', 'noticia-destaque');
-        $list->where('ativo', 'S');
+        $list->where('noticias.dataLimiteNoDestaque', '>=', $dateNow);
+        $list->orderBy('noticias.dataLimiteNoDestaque', 'desc');
 
         $list->addSelect('noticias.id as id',
                          'noticias.ativo as ativo',
@@ -335,7 +344,7 @@ class Noticia extends Model
         if (count($notIDs)) {
             $list->whereNotIn('noticias.id', $notIDs);
         }
-        
+
         /** Portal */
         if (! $request->syndicate)
         {
@@ -344,12 +353,13 @@ class Noticia extends Model
         /** Sindicato */
         else
         {
-            $this->syndicate = $request->syndicate['id'];
-            $list->join('noticias_has_sindicatos', function($join)
-            {   
-                    $join->on('noticias_has_sindicatos.noticia', '=', 'noticias.id')
-                         ->where('noticias_has_sindicatos.sindicato', '=', $this->syndicate);
-            });
+            $list->where('noticias.entidade', $request->syndicate['id']);
+            // $this->syndicate = $request->syndicate['id'];
+            // $list->join('noticias_has_sindicatos', function($join)
+            // {   
+            //         $join->on('noticias_has_sindicatos.noticia', '=', 'noticias.id')
+            //              ->where('noticias_has_sindicatos.sindicato', '=', $this->syndicate);
+            // });
         }
 
         
@@ -447,23 +457,30 @@ class Noticia extends Model
 
     public function searchPageSearch(String $search)
     {
+        $arrayIDs = [];
+
+        $noticia = new Noticia();
+        $noticias = $noticia->where('noticias.titulo', 'like', '%'.$search.'%')
+                            ->where('noticias.ativo', 'S')
+                            ->orWhere('noticias.subtitulo', 'like', '%'.$search.'%')
+                            ->orWhere('noticias.cartola', 'like', '%'.$search.'%')
+                            ->orWhere('noticias.tags', 'like', '%'.$search.'%')
+                            ->orWhere('noticias.linhaDeApoio', 'like', '%'.$search.'%');
+
+        $noticias = $noticias->get();
+        if ($noticias->count())
+        {
+            foreach( $noticias as $noticia)
+            {
+                $arrayIDs[] = $noticia->id;
+            }
+        }
+
         $list = DB::table('noticias');
         $list->leftjoin('files as filesBannerDestaque', 'filesBannerDestaque.id', '=', 'noticias.bannerDestaque');
         $list->leftjoin('files as filesImagemDestaque', 'filesImagemDestaque.id', '=', 'noticias.imagemDestaque');
         $list->leftjoin('files as filesFilesPodcasts', 'filesFilesPodcasts.id', '=', 'noticias.filePodcast');
-
-
-        $list->whereNull('noticias.deleted_at');
-        $list->where('ativo', 'S');
-
-
-        $list->where('noticias.titulo', 'like', '%'.$search.'%');
-        $list->orWhere('noticias.subtitulo', 'like', '%'.$search.'%');
-        $list->orWhere('noticias.cartola', 'like', '%'.$search.'%');
-        $list->orWhere('noticias.tags', 'like', '%'.$search.'%');
-        $list->orWhere('noticias.linhaDeApoio', 'like', '%'.$search.'%');
-
-
+        $list->whereIn('noticias.id', $arrayIDs);
         $list->orderBy('noticias.dataInclusao', 'desc');
 
         $listAll = $list->addSelect('noticias.id as id',
@@ -536,13 +553,13 @@ class Noticia extends Model
                                     'filesFilesPodcasts.alternativeText as filePodcast_alternativeText',
                                     'filesFilesPodcasts.created_at as filePodcast_created_at',
                                     'filesFilesPodcasts.updated_at as filePodcast_updated_at');
+
         return $listAll->get();
     }
 
 
     public function sugestoesDeNoticias($id)
     {
-
         $list = DB::table('noticias');
         $list->leftjoin('files as filesBannerDestaque', 'filesBannerDestaque.id', '=', 'noticias.bannerDestaque');
         $list->leftjoin('files as filesImagemDestaque', 'filesImagemDestaque.id', '=', 'noticias.imagemDestaque');

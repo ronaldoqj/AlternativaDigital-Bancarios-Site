@@ -90,6 +90,8 @@ class Portal extends Model
         $list = DB::table('portal');
         $list->leftjoin('files as banner', 'banner.id', '=', 'portal.banner');
         $list->leftjoin('files as logo', 'logo.id', '=', 'portal.logo');
+        $list->orderBy('portal.id', 'ASC');
+
 
         $listAll = $list->addSelect(
             'portal.id          as id',

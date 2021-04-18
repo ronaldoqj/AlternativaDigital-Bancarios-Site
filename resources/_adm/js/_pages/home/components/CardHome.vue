@@ -71,8 +71,9 @@ export default {
         .body
         {    
             p {
-                color: $blue;
-                font-size: 2em;
+                font-family: "Anton", sans-serif;
+                color: $blue-strong;
+                font-size: 1.1em;
                 padding: 10px;
                 line-height: 1.1em;
                 text-align: center;
@@ -82,7 +83,7 @@ export default {
         }
 
         &:hover .header {
-            max-width: 100%;
+            max-width: 430px;
             margin-top: -10px;
             margin-bottom: 10px;
             box-shadow: 0px 5px 15px rgba(0,0,0, 0.4);

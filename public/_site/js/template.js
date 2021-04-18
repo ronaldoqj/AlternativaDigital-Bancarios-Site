@@ -85,9 +85,9 @@ function aumentaDiminui (aumentaDiminui, classOrDiv)
 // Home Player Audio
 function playerAudio()
 {
+    $( '.player__audio' ).unbind( "click" );
     $('.player__audio').click(function()
     {
-        
         if ( $(this).attr('rel') != 'play' )
         {
             $(this).attr('rel', 'play');
@@ -98,7 +98,6 @@ function playerAudio()
             $(this).attr('rel', 'stop');
             $(this).children('audio')[0].pause();
         }
-
     });
 }
 

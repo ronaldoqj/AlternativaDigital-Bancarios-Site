@@ -2,6 +2,7 @@
 /node_modules
 /public/hot
 /public/files
+/public/plugins/elFinder-2.1.43/files
 /public/storage
 /storage/*.key
 /vendor

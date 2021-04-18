@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Entidade;
 use App\Models\AcordoEConvencao;
-use App\Services\Upload;
+use App\_Helpers\Upload;
 use App\Models\File;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;

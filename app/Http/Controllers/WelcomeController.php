@@ -84,19 +84,23 @@ class WelcomeController extends Controller
             'view' => view('welcome'),
             'data' => null
         ];
+        $notIDs = [];
         $noticia = new Noticia();
         $campanha = new Campanha();
         
         $return['data']['bancoSelecionado']     = $this->getNameBank($request);
         $return['data']['noticiaDestaqueFirst'] = $noticia->getDestaques()->first();
-        $notIDs                                 = [$return['data']['noticiaDestaqueFirst']->id];
+        if ($return['data']['noticiaDestaqueFirst']) {
+            $notIDs[] = $return['data']['noticiaDestaqueFirst']->id;
+        }
         $return['data']['noticias']             = $noticia->getNoticias($request, $notIDs);
         $return['data']['campanha']             = $campanha->returnCampanhaVigente();
 
         return $return;
     }
 
-    private function getNameBank($request): string {
+    private function getNameBank($request): string
+    {
         $nameBank = 'Meu Banco';
 
         if ( is_numeric($request->input('banco')) )
