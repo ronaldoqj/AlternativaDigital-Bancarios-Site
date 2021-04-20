@@ -1,4 +1,3 @@
-
 <template>
     <div id="page-campanhas" class="container-fluid mt-10">
         <pages-menu-bar :btns-top-bar="makeBtnsBarTop()"></pages-menu-bar>
@@ -118,43 +117,42 @@
                                     <div class="col-12 col-box-files" :class="borderFields.campanha">
                                         <label>Imagem da campanha</label>
                                         <div class="box-files" :style="{backgroundImage: `url(${fileIsEdit})`}">
-                                            <template v-if="fileIsEdit != ''">
-                                                <div class="box-image">
-                                                    <p>
-                                                        <v-btn
-                                                        elevation="6"
-                                                        large color="error"
-                                                        @click="fileIsEdit = ''">
-                                                            Excluir
-                                                        </v-btn>
-                                                    </p>
-                                                </div>
-                                            </template>
-                                            <template v-else>
-                                                <v-file-input
-                                                    name="file"
-                                                    v-model="files"
-                                                    label="Logo:"
-                                                    placeholder="Procurar Imagem"
-                                                    prepend-icon=""
-                                                    prepend-inner-icon="image"
-                                                    dense="dense"
-                                                    color="primary"
-                                                    counter
-                                                    accept="image/png, image/jpeg, image/bmp"
-                                                    outlined
-                                                    :show-size="1000"
-                                                >
-                                                    <template v-slot:selection="{ index, text }">
-                                                    <v-chip v-if="index < 2" color="primary" dark label small>
-                                                        {{ text }}
-                                                    </v-chip>
-                                                    <span v-else-if="index === 2" class="overline grey--text text--darken-3 mx-2" >
-                                                        +{{ files.length - 2 }} File(s)
-                                                    </span>
-                                                    </template>
-                                                </v-file-input>
-                                            </template>
+
+                                            <div class="box-image" v-if="fileIsEdit != ''">
+                                                <v-btn
+                                                elevation="6"
+                                                large
+                                                color="error"
+                                                @click="fileIsEdit = ''">
+                                                    Excluir
+                                                </v-btn>
+                                            </div>
+
+                                            <v-file-input
+                                                v-if="fileIsEdit == ''"
+                                                class="mt-5"
+                                                name="file"
+                                                v-model="files"
+                                                label="Imagem:"
+                                                placeholder="Procurar Imagem"
+                                                prepend-icon=""
+                                                prepend-inner-icon="image"
+                                                dense="dense"
+                                                color="primary"
+                                                accept="image/png, image/jpeg, image/bmp"
+                                                outlined
+                                                counter
+                                                :show-size="1000"
+                                            >
+                                                <template v-slot:selection="{ index, text }">
+                                                <v-chip v-if="index < 2" color="primary" dark label small>
+                                                    {{ text }}
+                                                </v-chip>
+                                                <span v-else-if="index === 2" class="overline grey--text text--darken-3 mx-2" >
+                                                    +{{ files.length - 2 }} File(s)
+                                                </span>
+                                                </template>
+                                            </v-file-input>
                                         </div>
                                     </div>
                                     
@@ -265,7 +263,7 @@ export default {
 
         // Controle dos files
         files: null,
-            fileIsEdit: ''
+        fileIsEdit: ''
       }
 
     },
@@ -276,15 +274,15 @@ export default {
 
             // Validações especificas
             if ( _.isEmpty(this.dateTimeInputs.dates.limite.date) )
-            this.errorsShow.errors.push({title: 'Limite No Destaque', description: 'obrigatório'});
+                this.errorsShow.errors.push({title: 'Limite No Destaque', description: 'obrigatório'});
             if ( _.isEmpty(this.dateTimeInputs.times.limiteDestaque.time) )
                 this.errorsShow.errors.push({title: 'Limite Hora', description: 'obrigatório'});
 
-            if ( _.isEmpty(this.files) && this.fileIsEdit == '' )
-                this.errorsShow.errors.push({title: 'Logo', description: 'obrigatório'});
-            if (! _.isEmpty(this.files) && this.fileIsEdit == ''  ) {
-                if ( this.files[0].size >= 1000000) {
-                    this.errorsShow.errors.push({title: 'Logo', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
+            if ( _.isNil(this.files) && this.fileIsEdit == '' )
+                this.errorsShow.errors.push({title: 'Imagem da campanha', description: 'obrigatório'});
+            if (! _.isNil(this.files) && this.fileIsEdit == ''  ) {
+                if ( this.files.size >= 1000000) {
+                    this.errorsShow.errors.push({title: 'Imagem da campanha', description: 'Tamanho do arquivo excedido! (tamanho máximo permitido é de 1mb) '});
                 }
             }
 
@@ -299,14 +297,16 @@ export default {
                 e.preventDefault();
             }
         },
-        editStartCompleteFilds (item)
+
+        editStartCompleteFilds(item)
         {
             this.id = item.id;
             this.valueBtnSubmit = 'Editar';
 
             // Controle para mostrar os files ignorando a regra atual de validação (CONTEM VALOR DO TIPO STRING)
             // Ou manter a mesma logica que é quando o formulário está realizando cadastro (VAZIO DO TIPO STRING) 
-            this.file = item.file_id > 0 ? `/${item.file_pathfile}/${item.file_namefile}` : '';
+
+            //this.file = item.file_id > 0 ? `/${item.file_pathfile}/${item.file_namefile}` : '';
             this.fileIsEdit = item.file_id > 0 ? `/${item.file_pathfile}/${item.file_namefile}` : '';
             this.fileName = item.file_namefile;
 
@@ -316,14 +316,15 @@ export default {
             };
 
             if (item.dataInclusao)
-            this.dateTimeInputs.dates.dataInclusao.date = moment(String(item.dataInclusao)).format('YYYY-MM-DD');
+                this.dateTimeInputs.dates.dataInclusao.date = moment(String(item.dataInclusao)).format('YYYY-MM-DD');
             if (item.dataLimite)
-            this.dateTimeInputs.dates.limite.date = _.isEmpty(item.dataLimite) ? '' : moment(String(item.dataLimite)).format('YYYY-MM-DD');
+                this.dateTimeInputs.dates.limite.date = _.isEmpty(item.dataLimite) ? '' : moment(String(item.dataLimite)).format('YYYY-MM-DD');
             if (item.horaLimite)
-            this.dateTimeInputs.times.limiteDestaque.time = _.isEmpty(item.horaLimite) ? '' : moment(String('2020-01-01 '+item.horaLimite)).format('H:mm');
+                this.dateTimeInputs.times.limiteDestaque.time = _.isEmpty(item.horaLimite) ? '' : moment(String('2020-01-01 '+item.horaLimite)).format('H:mm');
         },
 
-        makeBtnsBarTop() {
+        makeBtnsBarTop()
+        {
             const btnsBarTop = {
                 home: {
                     title: 'Home',
@@ -347,7 +348,7 @@ export default {
     },
     created()
     {
-        if (!_.isEmpty(this.formEdition)) {
+        if ( ! _.isEmpty(this.formEdition) ) {
             this.isEdit = true;
             this.editStartCompleteFilds(JSON.parse(this.formEdition));
         }
@@ -359,7 +360,8 @@ export default {
 @import '~/../resources/_adm/sass/_vars.scss';
 #page-campanhas
 {
-    .switch-ativar-noticia {
+    .switch-ativar-noticia
+    {
         p {
             font-size: 0.7em;
             margin: 0;
@@ -382,8 +384,9 @@ export default {
             margin-bottom: 0;
         }
 
-        .box-files {
-            padding: 10px;
+        .box-files
+        {
+            padding: 20px;
             border: solid 1px $grey;
             border-radius: 20px;
             min-height: 200px;
@@ -398,19 +401,11 @@ export default {
             {
                 text-align: center;
 
-                img {
-                    height: 100px;
-                    margin-top: -20px;
-                }
-
-                audio { margin-top: -15px; }
-
-                p { margin: 5px 0 0; }
+                img { height: 100px; margin-top: -20px; }
 
                 &.box-file
                 {
-                    .icon-file
-                    {
+                    .icon-file {
                         span { font-size: 3em; }
                     }
                     a {
@@ -422,17 +417,6 @@ export default {
                 }
             }
         }
-    }
-
-    .credito-da-imagem { height: 20px; }
-    .youtube-exmaple-code
-    {
-        margin-top: -20px;
-        text-align: center;
-        font-size: 0.8em;
-        color: $grey;
-        
-        span { color: $blue-light; }
     }
 
     .btn-cadastrar {
@@ -447,11 +431,6 @@ export default {
             transition: $transition-normal ease;
             animation: shadowEfectBorder 1s;
             animation-fill-mode: forwards;
-
-            &.ckeditor {
-                padding: 5px;
-                border-radius: 5px;
-            }
         }
 
         fieldset {
@@ -466,8 +445,6 @@ export default {
     .inputs-finais-to-all-types {
         .v-input { margin-bottom: -30px; }
     }
-
-    .v-input--switch .v-input--selection-controls__input { margin: 0 auto; }
 }
 
 @keyframes shadowEfectBorder

@@ -168,8 +168,7 @@
                                             elevation="6"
                                             large
                                             color="error"
-                                            @click="fileBannerIsEdit = ''"
-                                            >
+                                            @click="fileBannerIsEdit = ''">
                                                 Excluir
                                             </v-btn>
                                         </div>
@@ -1002,7 +1001,6 @@ export default {
         
         if ( ! _.isEmpty(this.banks) )
         {
-            //bank
             this.bankItemsObject = JSON.parse(this.banks);
             for ( let item in this.bankItemsObject )
             {

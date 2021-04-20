@@ -39,7 +39,7 @@
                 <v-card>
                     <v-list-item> <v-list-item-title>Deseja excluir o registro?</v-list-item-title> </v-list-item>
                     <v-btn x-small class="ma-2" text @click="menu = false">Cancelar</v-btn>
-                    <v-btn small tile color="error" class="ma-2 white--text" outlined @click="deleteCard()">
+                    <v-btn small tile color="error" class="ma-2" outlined @click="deleteCard()">
                         Excluir <v-icon right dark> mdi-delete </v-icon>
                     </v-btn>
                 </v-card>

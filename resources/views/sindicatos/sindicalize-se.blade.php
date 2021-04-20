@@ -28,7 +28,7 @@
         @endif
 
         <div class="description-of-page">
-            <p class="mt-4">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+            <p class="mt-4">Realize sua sindicalização digital preenchendo o formulário abaixo com seus dados.</p>
         </div>      
         
         <form id="form-sindicalize-se" class="fieldsRounded" method="POST">
@@ -356,7 +356,7 @@
             <div class="row mt-5">
                 <div class="col-12">
                     <div class="form-group subtitles-of-section">
-                        <label>Privacidade & Termos</label>
+                        <label>Política de Privacidade</label>
                     </div>
                 </div>
             </div>
@@ -364,8 +364,11 @@
                 <div class="col-12">
                     <div class="form-group">                        
                         <div class="terms-of-condictions">
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
-                            Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+                            O Portal dos Bancários RS respeita sua privacidade, por isso entendemos a importância da sua segurança quando se trata da utilização dos seus dados pessoais e um diálogo sobre isso com você é fundamental.
+                            <br />
+                            Esclarecemos nesta Política de Privacidade quais dados pessoais podemos obter e como podemos utilizá-los.
+                            <br />
+                            Ela se aplica a todos os serviços disponibilizados pelo Portal e/ou Sindicato por meio de sites e portal.
                         </div>
                     </div>
                 </div>

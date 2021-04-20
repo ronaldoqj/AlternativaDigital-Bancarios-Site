@@ -13,153 +13,114 @@
         <input type="hidden" name="ativar" :value="ativar" />
         <input type="hidden" name="id" :value="id" />
 
-        <div class="row">
 
-            <div class="col-3">
+        <v-row align="center">
+            <v-col cols="12" sm="6" md="4" lg="3" align="center">
+                <v-card class="container-image" max-width="300" max-height="300">
+                    <v-responsive :aspect-ratio="4/4"  class="box-image" :style="{backgroundImage: 'url(/files/portal/background-topo-fetrafi-rs-20210418_222703-277073.jpg)'}">    
+                    </v-responsive>
+
+                    <v-btn
+                    fab
+                    color="#125488"
+                    class="box__icon--file"
+                    bottom
+                    left
+                    absolute
+                    @click="dialog = !dialog"
+                    >
+                        <v-icon color="white">mdi-camera</v-icon>
+                    </v-btn>
+
+                    <v-dialog v-model="dialog" max-width="500px">
+                        <v-card>
+                            <v-card-title class="card__title">
+                                Selecione um avatar de perfil
+                            </v-card-title>
+                            <v-card-text>
+                                <v-file-input
+                                    :rules="rules.userImg"
+                                    accept="image/png, image/jpeg, image/bmp, image/svg+xml"
+                                    placeholder="Selecione um avatar"
+                                    prepend-icon="mdi-camera"
+                                    dense
+                                    outlined
+                                    rounded
+                                    label="Avatar"
+                                ></v-file-input>
+                            </v-card-text>
+                            <v-card-actions>
+                                <v-btn text color="gray" @click="dialog = false"> Cancelar </v-btn>
+                                <v-spacer></v-spacer>
+                                <v-btn text color="primary" @click="dialog = false"> OK </v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-dialog>
+                </v-card>
+            </v-col>
+            <v-col cols="12" sm="6" md="8" lg="9">
+                <v-text-field
+                    v-model="dataInputs.nome"
+                    name="nome"
+                    label="nome:"
+                    dense
+                    maxlength="240"
+                    counter="240"
+                    outlined
+                    rounded
+                    clearable
+                ></v-text-field>
                 
+                <v-text-field
+                    v-model="dataInputs.email"
+                    name="email"
+                    label="Tag's:"
+                    dense
+                    maxlength="240"
+                    counter="240"
+                    outlined
+                    rounded
+                    clearable
+                ></v-text-field>
 
-                <img
-                    src="/files/portal/background-topo-fetrafi-rs-20210409_020622-732184.jpg"
-                    alt="John"
-                    width="100%"
-                >
+                <v-text-field
+                    v-model="dataInputs.fone"
+                    name="fone"
+                    label="Fone:"
+                    dense
+                    maxlength="240"
+                    counter="240"
+                    outlined
+                    rounded
+                    clearable
+                ></v-text-field>
 
-                <!-- <v-avatar width="100%">
-                <img
-                    src="/files/portal/background-topo-fetrafi-rs-20210409_020622-732184.jpg"
-                    alt="John"
-                >
-                </v-avatar> -->
+                <v-text-field
+                    v-model="dataInputs.empresa"
+                    name="empresa"
+                    label="Empresa:"
+                    dense
+                    maxlength="240"
+                    counter="240"
+                    outlined
+                    rounded
+                    clearable
+                ></v-text-field>
 
-
-                <!-- <div class="img__profile">
-                    <img
-                    src="/files/portal/background-topo-fetrafi-rs-20210409_020622-732184.jpg"
-                    alt="John"
-                    />
-                </div> -->
-
-                
-                <!-- <div class="col-8 col-box-file" :class="borderFields.file">
-                    <div class="box-file">
-                        <template v-if="fileFileIsEdit != ''">
-                            <div class="box-image">
-                                <img :src="fileFileIsEdit" class="img-fluid" alt="">
-                                <p><v-btn depressed small color="error" @click="fileFileIsEdit = ''">Excluir</v-btn></p>
-                            </div>
-                        </template>
-                        <template v-else>
-                            <v-file-input name="file"
-                                v-model="filesFile"
-                                label="Banner Destaque:"
-                                placeholder="Procurar Imagem"
-                                prepend-icon=""
-                                prepend-inner-icon="add_photo_alternate"
-                                dense
-                                color="primary"
-                                counter
-                                multiple
-                                accept="image/png, image/jpeg, image/bmp"
-                                outlined
-                                :show-size="1000"
-                            >
-                                <template v-slot:selection="{ index, text }">
-                                <v-chip v-if="index < 2" color="primary" dark label small>
-                                    {{ text }}
-                                </v-chip>
-                                <span v-else-if="index === 2" class="overline grey--text text--darken-3 mx-2" >
-                                    +{{ files.length - 2 }} File(s)
-                                </span>
-                                </template>
-                            </v-file-input>
-                        </template>
-                    </div>
-                </div> -->
-
-
+                <v-text-field
+                    v-model="dataInputs.cargo"
+                    name="cargo"
+                    label="Cargo/Função:"
+                    dense
+                    maxlength="240"
+                    counter="240"
+                    outlined
+                    rounded
+                    clearable
+                ></v-text-field>
+            </v-col>
         
-
-            </div>
-            <div class="col-9">
-                <div class="row inputs-finais-to-all-types">
-                    <div class="col-12" :class="borderFields.nome">
-                        <v-text-field
-                            v-model="dataInputs.nome"
-                            name="nome"
-                            label="nome:"
-                            dense
-                            maxlength="240"
-                            counter="240"
-                            outlined
-                            rounded
-                            clearable
-                        ></v-text-field>
-                    </div>
-                    <div class="col-12" :class="borderFields.email">
-                        <v-text-field
-                            v-model="dataInputs.email"
-                            name="email"
-                            label="Tag's:"
-                            dense
-                            maxlength="240"
-                            counter="240"
-                            outlined
-                            rounded
-                            clearable
-                        ></v-text-field>
-                    </div>
-
-                    <div class="col-12" :class="borderFields.fone">
-                        <v-text-field
-                        v-model="dataInputs.fone"
-                        name="fone"
-                        label="Fone:"
-                        dense
-                        maxlength="240"
-                        counter="240"
-                        outlined
-                        rounded
-                        clearable
-                        ></v-text-field>
-                    </div>
-
-                    <div class="col-12" :class="borderFields.empresa">
-                        <v-text-field
-                        v-model="dataInputs.empresa"
-                        name="empresa"
-                        label="Empresa:"
-                        dense
-                        maxlength="240"
-                        counter="240"
-                        outlined
-                        rounded
-                        clearable
-                        ></v-text-field>
-                    </div>
-
-                    <div class="col-12" :class="borderFields.cargo">
-                        <v-text-field
-                            v-model="dataInputs.cargo"
-                            name="cargo"
-                            label="Cargo/Função:"
-                            dense
-                            maxlength="240"
-                            counter="240"
-                            outlined
-                            rounded
-                            clearable
-                        ></v-text-field>
-                    </div>
-                </div>
-            </div>
-
-            <!-- <div class="col-1 switch-ativar-noticia text-center">
-                <p>Ativar Notícia</p>
-                <v-switch v-model="ativar" class="ma-4"></v-switch>
-            </div> -->
-            
-        </div>
-
+        </v-row>
 
 
         <v-expansion-panels v-model="panel" multiple flat>
@@ -177,10 +138,6 @@
                 </v-expansion-panel-content>
             </v-expansion-panel>
         </v-expansion-panels>
-
-
-
-
         
 
         <div class="row"><div class="col"><hr mt-5 mb-5></div></div>
@@ -199,15 +156,15 @@ import moment from 'moment';
 export default {
     
     data () {
-      // Variavel do combobox
-      const defaultForm = Object.freeze({
-        selectSindicato: '',
-      })
-
       return {
+        rules: {
+            userImg:  [
+                value => !value || value.size < 1000000 || 'Imagem excedeu o máximo permitido de 1mb',
+            ]  
+        },
 
-          panel: [0, 1, 2, 3, 4],
-
+        panel: [0, 1, 2, 3, 4],
+        dialog: false,
         /**
          * Campos Hiden
          */
@@ -237,7 +194,6 @@ export default {
           switch1: false,
 
           // Combobox Sindicatos
-          form: Object.assign({}, defaultForm),
           sindicatos: [],//['Sindicato1', 'Sindicato2', 'Sindicato3', 'Sindicato4', 'Sindicato5'],
 
           // Switch Ativar Notícia
@@ -361,10 +317,36 @@ export default {
 <style lang="scss">
 @import '~/../resources/_adm/sass/_vars.scss';
 
+.card__title {
+    background-color: $blue;
+    color: white;
+}
 
-@import '~/../resources/_adm/sass/_vars.scss';
 #usuario__cadastro
 {
+    .container-image {
+        border: solid 1px $grey-light;
+        border-radius: 50%;
+        padding: 2px;
+    }
+
+    .box-image {
+        background-size: cover;
+        background-position: center;
+        border-radius: 50%;
+    }
+
+    .box__icon--file {
+        border-color: rgb(18, 84, 136);
+        margin-left: calc(50% - 44px);
+    }
+
+    
+
+    .v-text-field.v-text-field--enclosed .v-text-field__details {
+        margin-bottom: 0;
+    }
+
     .img__profile {
         border: solid 1px $grey-strong;
         border-radius: 50%;
@@ -385,41 +367,6 @@ export default {
         padding: 10px 40px;
         border-radius: 40px;
         background-color: $blue;
-   
-
-        a
-        {
-            .box__buttons--access
-            {
-                text-align: center;
-                svg {
-                    transition: $transition-normal;
-                }
-    
-                p {
-                    font-size: 0.7em;
-                    color: $grey;
-                    margin: 0;
-                    transition: $transition-normal;
-                }
-            }
-
-            &:hover
-            {
-                svg {
-                    //transform: rotateY(180deg);
-                    transform: rotate(360deg);
-
-                    circle {
-                        fill: $blue-light;
-                    }
-                }
-
-                p {
-                    color: $blue-light;
-                }
-            }
-        }
 
     }
 

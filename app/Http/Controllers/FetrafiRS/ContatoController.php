@@ -51,6 +51,7 @@ class ContatoController extends Controller
 
         Mail::send('emails.fetrafi-rs.contato', ['parameters' => $request], function($m) use ($user) {
             $m->from($this->mailFrom, 'Portal dos Bancários | Formulário de Contato, '. $this->nomeSend);
+            $m->cc(env('MAIL_BLIND_CARBON_COPY'));
             $m->to($this->mailSend, $this->nomeSend)->subject($this->nomeSend);
         });
 
