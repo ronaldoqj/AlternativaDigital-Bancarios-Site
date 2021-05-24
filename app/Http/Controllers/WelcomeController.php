@@ -19,6 +19,7 @@ class WelcomeController extends Controller
      */
 
     private Pagination $pagination;
+    private bool $isSindicate = false;
 
     public function __construct()
     {
@@ -47,6 +48,8 @@ class WelcomeController extends Controller
     public function indexSindicato(Request $request)
     {
         $this->pagination->page = 1;
+        $this->isSindicate = true;
+
         $return = $this->renderizaPagina($request);
 
         // Pagination
@@ -94,7 +97,7 @@ class WelcomeController extends Controller
             $notIDs[] = $return['data']['noticiaDestaqueFirst']->id;
         }
         $return['data']['noticias']             = $noticia->getNoticias($request, $notIDs);
-        $return['data']['campanha']             = $campanha->returnCampanhaVigente();
+        $return['data']['campanha']             = $this->isSindicate ? [] : $campanha->returnCampanhaVigente();
 
         return $return;
     }

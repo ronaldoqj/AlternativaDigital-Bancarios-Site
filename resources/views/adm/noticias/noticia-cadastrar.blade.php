@@ -37,10 +37,11 @@
 <div class="container-fluid">
     <noticias-cadastro-page
         ref="cadastro"
-        method="post"
         csrf="{{ csrf_token() }}"
         form-action="{{url('adm/noticias/cadastro')}}"
         banks="{{ $bancos }}"
+        method="post"
+        config-adm="{{json_encode(session()->get('configAdm'))}}"
     />
 </div>
 @endsection

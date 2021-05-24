@@ -14,6 +14,7 @@
                 csrf="{{ csrf_token() }}"
                 list-sindicates="{{json_encode($sindicates)}}"
                 config-adm="{{json_encode(session()->get('configAdm'))}}"
+                permissions="{{ json_encode(session()->get('permissions')) }}"
             ></home-page>
         </div>
     </div>

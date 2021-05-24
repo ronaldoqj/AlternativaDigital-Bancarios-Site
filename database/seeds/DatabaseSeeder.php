@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SindicatoSeeder::class);
         $this->call(EstadosSeeder::class);
         $this->call(PortalSeeder::class);
+        $this->call(PermissionsSeeder::class);
     }
 }

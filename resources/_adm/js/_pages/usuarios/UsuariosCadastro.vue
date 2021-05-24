@@ -1,45 +1,42 @@
 
 <template>
-    
     <div id="usuario__cadastro" class="container-fluid mt-10">
-
-    <errors-component :objErrorsShow="errorsShow" @showErrorsChange="errorsShow.show = $event"></errors-component>
-
+    <errors-component :objErrorsShow="configurations.errorsShow" @showErrorsChange="configurations.errorsShow.show = $event"></errors-component>
     <pages-menu-bar :btns-top-bar="makeBtnsBarTop()"></pages-menu-bar>
 
-    <form :action="formAction" method="post" @submit="checkForm" enctype="multipart/form-data">
 
-        <input type="hidden" name="_token" :value="csrf">
-        <input type="hidden" name="ativar" :value="ativar" />
-        <input type="hidden" name="id" :value="id" />
+        <form ref="form" :action="formAction" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="_token" :value="csrf">
+            <input type="hidden" name="id" :value="configurations.id" />
+            <input type="hidden" name="isEdit" :value="configurations.isEdit" />
+            <input type="hidden" name="deletedImage" :value="configurations.deletedImage" />
+            <input type="hidden" name="changedPermissions" :value="configurations.changedPermissions > 1 ? true : null" />
+            <input type="hidden" name="permissions" :value="computedPermissions" />
 
-
-        <v-row align="center">
-            <v-col cols="12" sm="6" md="4" lg="3" align="center">
-                <v-card class="container-image" max-width="300" max-height="300">
-                    <v-responsive :aspect-ratio="4/4"  class="box-image" :style="{backgroundImage: 'url(/files/portal/background-topo-fetrafi-rs-20210418_222703-277073.jpg)'}">    
-                    </v-responsive>
-
-                    <v-btn
-                    fab
-                    color="#125488"
-                    class="box__icon--file"
-                    bottom
-                    left
-                    absolute
-                    @click="dialog = !dialog"
-                    >
-                        <v-icon color="white">mdi-camera</v-icon>
-                    </v-btn>
-
-                    <v-dialog v-model="dialog" max-width="500px">
-                        <v-card>
-                            <v-card-title class="card__title">
-                                Selecione um avatar de perfil
-                            </v-card-title>
-                            <v-card-text>
+            <v-row align="center">
+                <!-- Image -->
+                <v-col cols="12" sm="6" md="4" lg="3" align="center">
+                    
+                    <v-card class="container-image" max-width="300" max-height="300">
+                        <v-btn
+                        v-if="! configurations.showAvatarInputFile"
+                        fab
+                        color="red darken-4"
+                        class="box__icon--file"
+                        bottom
+                        right
+                        elevation="15"
+                        @click="buttomDeleteImage()"
+                        >
+                            <v-icon color="white">mdi-delete</v-icon>
+                        </v-btn>
+                        <v-responsive :aspect-ratio="4/4"  class="box-image" :style="{backgroundImage: `url(${configurations.avatarImage})`}">
+                            <div class="box__file" v-if="configurations.showAvatarInputFile">
                                 <v-file-input
-                                    :rules="rules.userImg"
+                                    v-model="dataInputs.fileAvatar"
+                                    name="avatar"
+                                    attach="form"
+                                    :rules="configurations.rules.userImg"
                                     accept="image/png, image/jpeg, image/bmp, image/svg+xml"
                                     placeholder="Selecione um avatar"
                                     prepend-icon="mdi-camera"
@@ -48,176 +45,252 @@
                                     rounded
                                     label="Avatar"
                                 ></v-file-input>
-                            </v-card-text>
-                            <v-card-actions>
-                                <v-btn text color="gray" @click="dialog = false"> Cancelar </v-btn>
-                                <v-spacer></v-spacer>
-                                <v-btn text color="primary" @click="dialog = false"> OK </v-btn>
-                            </v-card-actions>
-                        </v-card>
-                    </v-dialog>
-                </v-card>
-            </v-col>
-            <v-col cols="12" sm="6" md="8" lg="9">
-                <v-text-field
-                    v-model="dataInputs.nome"
-                    name="nome"
-                    label="nome:"
-                    dense
-                    maxlength="240"
-                    counter="240"
-                    outlined
-                    rounded
-                    clearable
-                ></v-text-field>
-                
-                <v-text-field
-                    v-model="dataInputs.email"
-                    name="email"
-                    label="Tag's:"
-                    dense
-                    maxlength="240"
-                    counter="240"
-                    outlined
-                    rounded
-                    clearable
-                ></v-text-field>
+                            </div>
+                        </v-responsive>
+                    </v-card>
+                </v-col>
 
-                <v-text-field
-                    v-model="dataInputs.fone"
-                    name="fone"
-                    label="Fone:"
-                    dense
-                    maxlength="240"
-                    counter="240"
-                    outlined
-                    rounded
-                    clearable
-                ></v-text-field>
+                <!-- Filds -->
+                <v-col cols="12" sm="6" md="8" lg="9">
+                    <v-text-field
+                        :class="configurations.borderFields.name"
+                        name="name"
+                        v-model="dataInputs.name"
+                        label="Nome:"
+                        maxlength="240"
+                        counter="240"
+                        outlined
+                        dense
+                        clearable
+                        rounded
+                    ></v-text-field>
+                    
+                    <v-text-field
+                        :class="configurations.borderFields.email"
+                        name="email"
+                        v-model="dataInputs.email"
+                        label="E-Mail:"
+                        maxlength="240"
+                        counter="240"
+                        outlined
+                        rounded
+                        dense
+                        clearable
+                    ></v-text-field>
 
-                <v-text-field
-                    v-model="dataInputs.empresa"
-                    name="empresa"
-                    label="Empresa:"
-                    dense
-                    maxlength="240"
-                    counter="240"
-                    outlined
-                    rounded
-                    clearable
-                ></v-text-field>
+                    <v-text-field
+                        :class="configurations.borderFields.phone"
+                        name="phone" 
+                        v-model="dataInputs.phone"
+                        label="Fone:"
+                        maxlength="240"
+                        counter="240"
+                        outlined
+                        dense
+                        clearable
+                        rounded
+                    ></v-text-field>
 
-                <v-text-field
-                    v-model="dataInputs.cargo"
-                    name="cargo"
-                    label="Cargo/Função:"
-                    dense
-                    maxlength="240"
-                    counter="240"
-                    outlined
-                    rounded
-                    clearable
-                ></v-text-field>
-            </v-col>
+                    <v-text-field
+                        :class="configurations.borderFields.company"
+                        name="company"
+                        v-model="dataInputs.company"
+                        label="Empresa:"
+                        maxlength="240"
+                        counter="240"
+                        outlined
+                        dense
+                        clearable
+                        rounded
+                    ></v-text-field>
+
+                    <v-text-field
+                        :class="configurations.borderFields.position"
+                        name="position"
+                        v-model="dataInputs.position"
+                        label="Cargo/Função:"
+                        maxlength="240"
+                        counter="240"
+                        outlined
+                        dense
+                        clearable
+                        rounded
+                    ></v-text-field>
+                    
+                    <v-text-field
+                        :class="configurations.borderFields.password"
+                        name="password"
+                        v-model="dataInputs.password"
+                        label="Senha:"
+                        maxlength="240"
+                        counter="240"
+                        outlined
+                        dense
+                        clearable
+                        rounded
+                    ></v-text-field>
+                </v-col>
+            </v-row>
+
+            <div class="row"><div class="col" mt-5 mb-5></div></div>
+
+            <!-- Permissions -->
+            <v-row>
+                <v-col>
+                    <!-- ADM -->
+                    <expancionPanel title="Funções ADM">
+                        <v-simple-table class="color__table--grey">
+                            <template v-slot:default>
+                            <tbody>
+                                <tr v-for="permission in dataInputs.switchs.adm" :key="permission.id">
+                                    <td>{{ permission.name }}</td>
+                                    <td> <v-switch v-model="permission.active"></v-switch> </td>
+                                </tr>
+                            </tbody>
+                            </template>
+                        </v-simple-table>
+                    </expancionPanel>
+
+                    <div class="row"><div class="col" mt-5 mb-5></div></div>
+
+                    <!-- Portal -->
+                    <expancionPanel title="Portal">
+                        <v-simple-table class="color__table--grey">
+                            <template v-slot:default>
+                            <tbody>
+                                <tr v-for="permission in dataInputs.switchs.portal" :key="permission.id">
+                                    <td>{{ permission.name }}</td>
+                                    <td> <v-switch v-model="permission.active"></v-switch> </td>
+                                </tr>
+                            </tbody>
+                            </template>
+                        </v-simple-table>
+                    </expancionPanel>
+
+                    <div class="row"><div class="col" mt-5 mb-5></div></div>
+
+                    <!-- Fetrafi-RS -->
+                    <expancionPanel title="Fetrafi-RS">
+                        <v-simple-table class="color__table--grey">
+                            <template v-slot:default>
+                            <tbody>
+                                <tr v-for="permission in dataInputs.switchs.fetrafiRs" :key="permission.id">
+                                    <td>{{ permission.name }}</td>
+                                    <td> <v-switch v-model="permission.active" right></v-switch> </td>
+                                </tr>
+                            </tbody>
+                            </template>
+                        </v-simple-table>
+                    </expancionPanel>
+
+                    <div class="row"><div class="col" mt-5 mb-5></div></div>
+
+                    <!-- Syndicates -->
+                    <expancionPanel title="Sindicatos">
+                        <expancionPanel :title="item.name" v-for="item in JSON.parse(syndicates)" :key="item.id">
+                            <v-simple-table class="color__table--grey">
+                                <template v-slot:default>
+                                <tbody>
+                                    <tr v-for="permission in dataInputs.switchs.syndicates[item.id]" :key="permission.id">
+                                        <td>{{ permission.name }}</td>
+                                        <td> <v-switch v-model="permission.active"></v-switch> </td>
+                                    </tr>
+                                </tbody>
+                                </template>
+                            </v-simple-table>
+                        </expancionPanel>
+                    </expancionPanel>
+                </v-col>
+            </v-row>
         
-        </v-row>
+            <!-- <div class="row"><div class="col"><hr mt-5 mb-5></div></div> -->
 
-
-        <v-expansion-panels v-model="panel" multiple flat>
-            <v-expansion-panel>
-                <v-expansion-panel-header>
-                    <div class="header--panel">
-                            <div>Teste header</div>
-                            <div></div>
-                    </div>
-                </v-expansion-panel-header>
-                <v-expansion-panel-content>
-                    <div class="container-fluid content--panel">
-                        Test conteudo
-                    </div>
-                </v-expansion-panel-content>
-            </v-expansion-panel>
-        </v-expansion-panels>
-        
-
-        <div class="row"><div class="col"><hr mt-5 mb-5></div></div>
-
-        <div class="row mt-5">
-            <div class="col-12">
-                <v-btn type="submit" class="btn-cadastrar" block rounded dark>{{valueBtnSubmit}}</v-btn>
+            <div class="row mt-5">
+                <div class="col-12">
+                    <v-btn type="bottom" @click="checkForm" class="btn-cadastrar" block rounded dark>{{configurations.valueBtnSubmit}}</v-btn>
+                </div>
             </div>
-        </div>
-    </form>  
+        </form> 
+
     </div>
 </template>  
 
 <script>
-import moment from 'moment';
+import expancionPanel from '../../components/widget/ExpansionPanelsComponent';
 export default {
-    
+    props: ['csrf', 'formAction', 'formEdition', 'syndicates', 'permissions', 'permissionsAssigned'],
+    components: { expancionPanel },
     data () {
-      return {
-        rules: {
-            userImg:  [
-                value => !value || value.size < 1000000 || 'Imagem excedeu o máximo permitido de 1mb',
-            ]  
-        },
+        return {
+            configurations: {
+                id: null,
+                isEdit: false,
+                deletedImage: null,
+                changedPermissions: 0,
+                imageDefault: '/_adm/assets/profile-default.jpg',
+                avatarImage: '/_adm/assets/profile-default.jpg',
+                valueBtnSubmit: 'Cadastrar',
+                showAvatarInputFile: true,
+                rules: {
+                    userImg:  [
+                        value => !value || value.size < 1000000 || 'Imagem excedeu o máximo permitido de 1mb',
+                    ]  
+                },
+                // variavel necessária para o component de mensagens de erro
+                errorsShow: {
+                    show: false,
+                    title: 'Não foi possivel realizar o cadastro!',
+                    errors: []
+                },
+                borderFields: {
+                    file: 'required',
+                    name: 'required',
+                    email: 'required',
+                    phone: 'required',
+                    company: 'required',
+                    position: 'required',
+                    password: 'required'
+                }
+            },
 
-        panel: [0, 1, 2, 3, 4],
-        dialog: false,
-        /**
-         * Campos Hiden
-         */
-        id: '',
+           
+            dataInputs: {
+                /** Campos */
+                name: '',
+                email: '',
+                phone: '',
+                company: '',
+                position: '',
+                password: '',
+                
+                /** Switchs dinamicos de permições */
+                switchs: {
+                    adm:[],
+                    portal: [],
+                    fetrafiRs: [],
+                    syndicates: {}
+                },
 
-          valueBtnSubmit: 'Cadastrar',
-
-          // variavel necessária para o component de mensagens de erro
-          errorsShow: {
-            show: false,
-            title: 'Não foi possivel realizar o cadastro!',
-            errors: []
-          },
-
-          isEdit: false,
-          
-          borderFields: {
-                file: 'required',
-                nome: 'required',
-                email: 'required',
-                fone: 'required',
-                empresa: 'required',
-                cargo: 'required'
-          },
-
-
-          switch1: false,
-
-          // Combobox Sindicatos
-          sindicatos: [],//['Sindicato1', 'Sindicato2', 'Sindicato3', 'Sindicato4', 'Sindicato5'],
-
-          // Switch Ativar Notícia
-          ativar: false,
-
-          dataInputs: {
-            nome: '',
-            email: '',
-            fone: '',
-            empresa: ''
-          },
-
-
-          // Controle dos files
-          filesFile: null,
-            fileFileIsEdit: '',
-            fileFileName: '',
-
-      }
-
+                // Controle dos files
+                fileAvatar: null,
+                fileFileIsEdit: '',
+                fileFileName: '',
+            }
+        }
     },
-    components: {  },
-    methods: {
-
+    computed:{
+        computedPermissions() {
+            this.configurations.changedPermissions++;
+            return JSON.stringify(this.dataInputs.switchs);
+        }
+    },
+    methods:
+    {
+        buttomDeleteImage() {
+            this.configurations.showAvatarInputFile = true;
+            this.configurations.avatarImage = this.configurations.imageDefault;
+            this.configurations.deletedImage = true;
+        },
         makeBtnsBarTop() {
             const btnsBarTop = {
                 home: {
@@ -240,82 +313,166 @@ export default {
             return btnsBarTop;
         },
 
-        checkForm: function (e)
+        checkForm: function(e)
         {
-            this.errorsShow.errors = [];
+            this.configurations.errorsShow.errors = [];
 
-            // Opcionais
-            if (! _.isEmpty(this.filesFile) )
-            {
-                if (! _.isEmpty(this.filesFile)  ) {
-                    if ( this.filesFile[0].size >= 1000000) {
-                        this.errorsShow.errors.push({title: 'Imagem', description: 'Tamanho da imagem excedida! (tamanho máximo permitido é de 1mb) '});
-                    }
+
+            // // Validações especificas
+            if (! _.isNil(this.dataInputs.fileAvatar) ) {
+                if ( this.dataInputs.fileAvatar.size >= 1000000) {
+                    this.configurations.errorsShow.errors.push({title: 'Imagem', description: 'Tamanho da imagem excedida! (tamanho máximo permitido é de 1mb) '});
                 }
             }
 
-            // Validações especificas
-            if ( _.isEmpty(this.filesFile) && this.fileFileIsEdit == '' )
-                this.errorsShow.errors.push({title: 'Imagem', description: 'obrigatório'});
-            if (! _.isEmpty(this.filesFile) && this.fileFileIsEdit == '' ) {
-                if ( this.filesFile[0].size >= 1000000) {
-                    this.errorsShow.errors.push({title: 'Imagem', description: 'Tamanho da imagem excedida! (tamanho máximo permitido é de 1mb) '});
-                }
-            }
-
-            i
-            if ( _.isEmpty(this.dataInputs.nome) )
-                this.errorsShow.errors.push({title: 'nome', description: 'obrigatório'});
+            if ( _.isEmpty(this.dataInputs.name) )
+                this.configurations.errorsShow.errors.push({title: 'Nome', description: 'obrigatório'});
             if ( _.isEmpty(this.dataInputs.email) )
-                this.errorsShow.errors.push({title: 'Tag\'s', description: 'obrigatório'});
-            if ( _.isEmpty(this.dataInputs.fone) )
-                this.errorsShow.errors.push({title: 'Fone', description: 'obrigatório'});
-            if ( _.isEmpty(this.dataInputs.empresa) )
-                this.errorsShow.errors.push({title: 'Empresa', description: 'obrigatório'});
-            if ( _.isEmpty(this.dataInputs.cargo) )
-                this.errorsShow.errors.push({title: 'Cargo/Função', description: 'obrigatório'});
+                this.configurations.errorsShow.errors.push({title: 'E-Mail', description: 'obrigatório'});
+            if ( _.isEmpty(this.dataInputs.phone) )
+                this.configurations.errorsShow.errors.push({title: 'Telefone', description: 'obrigatório'});
+            if ( _.isEmpty(this.dataInputs.company) )
+                this.configurations.errorsShow.errors.push({title: 'Empresa', description: 'obrigatório'});
+            if ( _.isEmpty(this.dataInputs.position) )
+                this.configurations.errorsShow.errors.push({title: 'Cargo/Função', description: 'obrigatório'});
             
-            if (this.errorsShow.errors.length > 0)
+            if (this.configurations.errorsShow.errors.length > 0)
             {
-                this.errorsShow.show = true;
+                this.configurations.errorsShow.show = true;
                 e.preventDefault();
+            } else {
+                this.$refs.form.submit()
             }
         },
 
-        editStartCompleteFilds (item)
+        
+        
+
+        addActivePropertyToPortalAndFetrafirs(arraySwitch)
         {
-            this.id = item.id;
-            this.valueBtnSubmit = 'Editar';
+            arraySwitch.forEach(function(element)
+            {
+                element.active = false;
+            });
 
-            // Controle para mostrar os files ignorando a regra atual de validação (CONTEM VALOR DO TIPO STRING)
-            // Ou manter a mesma logica que é quando o formulário está realizando cadastro (VAZIO DO TIPO STRING) 
-            this.fileFileIsEdit = item.file_id > 0 ? `/${item.file_pathfile}/${item.file_namefile}` : '';
-            this.fileFileName = item.file_namefile;
-
-            this.dataInputs = {
-                nome: item.nome,
-                email: item.email,
-                fone: item.fone,
-                empresa: item.empresa,
-                cargo: item.cargo,
-            };
+            return arraySwitch;
         },
 
+        addActivePropertyToSyndicates(arraySwitch)
+        {
+            let newObjectSyndicate = {};
+            let permissionsSyndicates = JSON.parse(this.permissions).syndicates;
+            
+            permissionsSyndicates.forEach(function(element)
+            {
+                element.active = false;
+            });
+
+            JSON.parse(this.syndicates).forEach( (element) =>
+            {
+                newObjectSyndicate[element.id] = JSON.parse(JSON.stringify(permissionsSyndicates));
+            });
+            
+            return newObjectSyndicate;
+        },
+
+        checkImage(item)
+        {
+            console.log('image', item);
+            if ( !_.isNil(item.image_pathfile) != '' && !_.isNil(item.image_namefile != '') ) {
+                this.configurations.avatarImage = `/${item.image_pathfile}/${item.image_namefile}`;
+            }
+            return this.configurations.avatarImage;
+        },
+
+        editStartCompleteFilds(item)
+        {
+            if (item.image) {
+                this.configurations.showAvatarInputFile = false;
+            }
+
+            const permissionsAssigned = JSON.parse(this.permissionsAssigned);
+            this.configurations.id = item.id;
+            this.configurations.isEdit = true;
+            this.dataInputs.name = item.name;
+            this.dataInputs.email = item.email;
+            this.dataInputs.phone = item.phone;
+            this.dataInputs.company = item.company;
+            this.dataInputs.position = item.position;
+            this.dataInputs.password = item.password;
+            this.configurations.avatarImage = this.checkImage(item);
+
+            if (permissionsAssigned.assigned.adm.length) {
+                this.dataInputs.switchs.adm = this.setPermissionsAssigned(this.dataInputs.switchs.adm, permissionsAssigned.assigned.adm);
+            }
+            if (permissionsAssigned.assigned.portal.length) {
+                this.dataInputs.switchs.portal = this.setPermissionsAssigned(this.dataInputs.switchs.portal, permissionsAssigned.assigned.portal);
+            }
+            if (permissionsAssigned.assigned.fetrafiRs.length) {
+                this.dataInputs.switchs.fetrafiRs = this.setPermissionsAssigned(this.dataInputs.switchs.fetrafiRs, permissionsAssigned.assigned.fetrafiRs);
+            }
+
+            console.log( permissionsAssigned.assigned );
+
+            if ( Object.keys(permissionsAssigned.assigned.syndicates).length) {
+                this.dataInputs.switchs.syndicates = this.setPermissionsAssignedToSyndicates(this.dataInputs.switchs.syndicates, permissionsAssigned.assigned.syndicates);
+            }
+        },
+
+        /** Type Object */
+        setPermissionsAssignedToSyndicates(switchs, permissionsAssigned)
+        {
+            Object.keys(permissionsAssigned).forEach(element => {
+                switchs[element] = switchs[element].map(item => {
+                    permissionsAssigned[element].forEach(value => {
+                        if (item.id == value.permission_id) {
+                            item.active = true;
+                        }
+                    });
+
+                    return item;
+                });
+            });
+
+            return switchs;
+        },
+
+        /** Type Array */
+        setPermissionsAssigned(switchs, permissionsAssigned)
+        {
+            permissionsAssigned.forEach(element => {
+                switchs = switchs.map(item => {
+                    if (item.id == element.permission_id) {
+                        item.active = true;
+                    }
+                    return item;
+                });
+            });
+
+            return switchs;
+        }
     },
     created()
     {
-        
+        this.dataInputs.switchs.adm = this.addActivePropertyToPortalAndFetrafirs(JSON.parse(this.permissions).adm);
+        this.dataInputs.switchs.portal = this.addActivePropertyToPortalAndFetrafirs(JSON.parse(this.permissions).portal);
+        this.dataInputs.switchs.fetrafiRs = this.addActivePropertyToPortalAndFetrafirs(JSON.parse(this.permissions).fetrafiRs);
+        this.dataInputs.switchs.syndicates = this.addActivePropertyToSyndicates(this.dataInputs.switchs.syndicates);
+
         if (!_.isEmpty(this.formEdition)) {
-            //this.isEdit = true;
+            this.configurations.isEdit = true;
             this.editStartCompleteFilds(JSON.parse(this.formEdition));
         }
-    },
-    props: ['csrf', 'formAction', 'formEdition'],
+    }
 }
 </script>
 
 <style lang="scss">
 @import '~/../resources/_adm/sass/_vars.scss';
+
+.color__table--grey {
+    background-color: #f5f5f5 !important;
+}
 
 .card__title {
     background-color: $blue;
@@ -334,18 +491,28 @@ export default {
         background-size: cover;
         background-position: center;
         border-radius: 50%;
+        max-width: 100%;
+        display: flex;
+        align-items: center;
+
+        .box__file {
+            background-color: rgba(255,255,255, 0.7);
+
+            padding-top: 15px;
+            padding: 15px 5px 0 5px;
+
+        }
     }
 
     .box__icon--file {
-        border-color: rgb(18, 84, 136);
-        margin-left: calc(50% - 44px);
+        border: solid 1px white !important;
+        position: absolute;
+        right: 0;
+        margin-right: 25px;
+        z-index: 90;
     }
 
-    
-
-    .v-text-field.v-text-field--enclosed .v-text-field__details {
-        margin-bottom: 0;
-    }
+    .v-text-field.v-text-field--enclosed .v-text-field__details { margin-bottom: 0; }
 
     .img__profile {
         border: solid 1px $grey-strong;
@@ -367,129 +534,10 @@ export default {
         padding: 10px 40px;
         border-radius: 40px;
         background-color: $blue;
-
-    }
-
-    .v-expansion-panel-header
-    {
-        padding: 0;
-        outline: none;
-
-        .v-icon {
-            font-size: 3rem;
-            color: #125488 !important;
-        }
-    }
-
-    .header--panel
-    {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        order: 2;
-    
-        > div
-        {
-            &:first-child {
-                 margin-right: 8px;
-            }
-
-            &:last-child
-            {
-                background-color: #E0E1E3;
-                height: 2px;
-                width: 100%;
-            }
-        }   
-    }
-
-    .content--panel
-    {
-        padding-left: 30px;
-
-        .box--noticia
-        {
-            position: relative;
-            border-bottom: solid 1px $grey-light;
-
-            .imagem-noticia {
-                width: 100%;
-                height: 100px;
-                background-size: cover;
-                background-position: center;
-            }
-
-            audio {
-                width: 100%;
-                margin: 0px 0 20px;
-            }
-
-            .buttons
-            {
-                display: flex;
-                justify-content: center;
-                margin: -43px 0 0;
-                position: absolute;
-                width: 100%;
-                a
-                {
-                    svg
-                    {
-                        width: 65px;
-                        height: 65px;
-                        margin: 0 3px;
-                        cursor: pointer;
-    
-                        circle {
-                            transition: ease 0.4s;
-                        }
-                    }
-
-                    &:first-child
-                    {    
-                        &:hover svg {
-                            circle {
-                                fill: $blue-strong;
-                            }
-                        }
-                    }
-
-                    &:last-child
-                    {
-                        &:hover svg {
-                            circle {
-                                fill: $red-strong;
-                            }
-                        }
-                    }
-                }
-            }
-
-            .content {
-                color: #125488;
-                line-height: 1.2em;
-                font-size: 0.9em;
-                margin-top: 15px;
-            }
-
-            &.noticia-simples
-            {
-                .buttons {
-                    margin: 0;
-                    position: relative;
-                    margin-top: 20px;
-                }
-                
-            }
-
-        }
-        
     }
 }
 
-
-
-#noticias-cadastro
+#usuario__cadastro
 {
     .box-btns-noticias {
         margin: 10px 0;
@@ -503,7 +551,8 @@ export default {
         > div { margin-bottom: 10px; }
     }
     
-    .switch-ativar-noticia {
+    .switch-ativar-noticia
+    {
         p {
             font-size: 0.7em;
             margin: 0;
@@ -526,7 +575,8 @@ export default {
             margin-bottom: 0;
         }
 
-        .box-file {
+        .box-file
+        {
             border: solid 1px $grey;
             border-radius: 20px;
             padding: 30px 20px 10px;
@@ -536,9 +586,7 @@ export default {
                 text-align: center;
 
                 img { height: 100px; margin-top: -20px; }
-
                 audio { margin-top: -15px; }
-
                 p { margin: 5px 0 0; }
 
                 &.box-file
@@ -549,7 +597,6 @@ export default {
                     }
 
                     a { font-size: 0.9em; color: $blue-strong; }
-                    
                     p:last-child { margin: 15px 0; }
                 }
             }

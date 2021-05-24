@@ -8,9 +8,9 @@
 
     <div>
         <noticias-page
+            csrf="{{ csrf_token() }}"
             action-form="/adm/noticias/delete"
             url-current-page="{{ route(Route::currentRouteName()) }}"
-            csrf="{{ csrf_token() }}"
         />
     </div>
 

@@ -1,3 +1,15 @@
+<?php
+$moreUserDetails = session()->get('moreUserDetails');
+$urlImage = '_adm/assets/profile-default.jpg';
+
+if ($moreUserDetails){
+    if ($moreUserDetails['pathfile'] && $moreUserDetails['namefile']) {
+        $urlImage = "{$moreUserDetails['pathfile']}/{$moreUserDetails['namefile']}";
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -80,7 +92,8 @@
                             </div>
                             <div class="right">
                                 <div class="user">
-                                    <div class="profile" style="background-image: url('{{asset('_adm/assets/profile-default.jpg')}}');">
+                                    
+                                    <div class="profile" style="background-image: url('{{asset($urlImage)}}');">
                                     </div>
                                 </div>
                                 <div class="texts">

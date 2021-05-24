@@ -1,74 +1,69 @@
 
 <template>
-    <div class="acordos-e-convencoes-list">
+    <div id="component__usuarios">
         
-        <!-- <div class="row">
-            <div class="col-12">
-                <div class="box-btns-noticias">
-                    <a :href="actionForm + '/cadastro'">
-                        <div class="box__buttons--access">
-                            <img src="/_adm/assets/SVGs/icon-mais.svg" class="img-fluid" onload="SVGInject(this)" />
-                            <p>novo usuário</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div> -->
         <pages-menu-bar :btns-top-bar="makeBtnsBarTop()"></pages-menu-bar>
-
-        <form ref="formDelete" :action="actionForm + '/delete'" method="post">
-            <input type="hidden" name="_token" :value="csrf">
-            <input type="hidden" name="id" :value="id">
-            <input type="hidden" name="action" :value="action">
+        <form ref="formDelete" action="/adm/usuario/deletar" method="post">
+            <input type="hidden" name="_token" :value="csrf" />
+            <input type="hidden" name="id" :value="config.id" />
+        </form>
                 
-            <div class="container-fluid content--panel">
-                <div class="row">
+        <div class="container-fluid content--panel">
+            <div class="row">
 
-                    <template v-if="this.list.length">    
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in list">
-                            
-                            <div class="box--noticia noticia-simples">
-                                <div class="buttons">
-                                    <a :href="`${actionForm}/edicao/${item.id}`"><img src="/_adm/assets/SVGs/editar.svg" class="img-fluid" onload="SVGInject(this)" /></a>
+                <template v-if="this.list.length">    
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in list" :key="item.id">
+
+                        <div class="box--noticia noticia-simples">
+                            <v-row>
+                                <v-col>
+                                    <v-responsive :aspect-ratio="4/4" class="box-image" :style="{backgroundImage: `url(${item.urlImage})`}">
+                                    </v-responsive>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col class="buttons">
+                                    <a :href="`/adm/usuario/edicao/${item.id}`">
+                                        <img src="/_adm/assets/SVGs/editar.svg" class="img-fluid" onload="SVGInject(this)" />
+                                    </a>
+                                    
                                     <v-menu :close-on-content-click="true" :nudge-width="150" offset-x>
                                         <template v-slot:activator="{ on, attrs }">
-                                            <a @click="clickExcluir(item)" v-bind="attrs" v-on="on"><img src="/_adm/assets/SVGs/excluir.svg" class="img-fluid" onload="SVGInject(this)" /></a>
+                                            <a v-bind="attrs" v-on="on"  @click="clickedIconDelete(item.id)"><img src="/_adm/assets/SVGs/excluir.svg" class="img-fluid" onload="SVGInject(this)" /></a>
                                         </template>
                                         
                                         <v-card>
                                             <v-list-item> <v-list-item-title>Deseja excluir o registro?</v-list-item-title> </v-list-item>
-                                            
                                             <v-btn x-small class="ma-2" text @click="menu = false">Cancelar</v-btn>
-                                            <v-btn small class="ma-2" tile outlined color="error" @click="formExcluirEnviar()">
-                                                <v-icon left>delete_outline</v-icon> Excluir
+                                            <v-btn small tile color="error" class="ma-2" outlined @click="deleteUser()">
+                                                Excluir <v-icon right dark> mdi-delete </v-icon>
                                             </v-btn>
                                         </v-card>
                                     </v-menu>
-                                </div>
-                                <div class="content">
-                                    <p>
-                                        {{item.titulo}}
-                                    </p>
-                                </div>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col class="content">
+                                    <p> {{item.name}} </p>
+                                </v-col>
+                            </v-row>
+                        </div>
+
+                    </div>
+                </template>
+
+                <template v-else>
+                    <div class="col-12">
+                        <div class="box--noticia">
+                            <div class="content">
+                                <p> Não foram encontrados registros. </p>
                             </div>
                         </div>
-                    </template>
+                    </div>
+                </template>
 
-                    <template v-else>
-                        <div class="col-12">
-                            <div class="box--noticia">
-                                <div class="content">
-                                    <p> Não foram encontrados registros. </p>
-                                </div>
-                            </div>
-                        </div>
-                    </template>
-
-                </div>
             </div>
-
-        </form>
-    
+        </div>
     </div>
 </template>  
 
@@ -76,17 +71,13 @@
 export default {
     data: () => {
         return {
-
-            // inputs Hidden
-            id: '',
-            action: '',
-
-            size: {
-                height: '250px',
-                backgroundImage: 'url(/files/noticias/be6e7ee47196117d743e38015197ecdf924d2ec4bc0fbff5d69ec24b67b828c2-20200707_183027-777950.jpg)'
+            config: {
+                defaultImage: '/_adm/assets/profile-default.jpg',
+                id: null
             },
+            // inputs Hidden
 
-            list: null,
+            list: [],
         }
     },
     components: {  },
@@ -106,113 +97,65 @@ export default {
                 },
                 cadastro: {
                     title: 'Novo Usuário',
-                    link: '/adm//usuarios/cadastro',
+                    link: '/adm/usuarios/cadastro',
                     icon: '/_adm/assets/SVGs/icon-mais.svg'
                 }
             }
 
             return btnsBarTop;
         },
-        clickExcluir(item)
-        {
-            this.id = item.id;
+        clickedIconDelete(id) {
+            this.config.id = id;
         },
-        formExcluirEnviar() {
+        deleteUser()
+        {
             this.$refs.formDelete.submit();
+        },
+        insertImageElement(users) {
+            users = users.map( element => {
+                if ( _.isNil(element.image_pathfile) != '' || _.isNil(element.image_namefile != '') ) {
+                    element.urlImage = this.config.defaultImage;
+                } else {
+                    element.urlImage = `/${element.image_pathfile}/${element.image_namefile}`;
+                }
+
+                return element;
+            });
+
+            return users;
         }
     },
     created()
     {
-        //this.list = JSON.parse(JSON.parse(this.propList).list);
-        this.list = [];
+        this.list = this.insertImageElement(JSON.parse(this.propList));
+        console.log('list', this.list);
     }
 }
-
 </script>
-
 
 <style lang="scss">
 @import '~/../resources/_adm/sass/_vars.scss';
-.acordos-e-convencoes-list
+
+#component__usuarios
 {
-
-    .box-btns-noticias {
-        margin: 10px 0;
+    .box-image {
+        background-size: cover;
+        background-position: center;
+        border-radius: 50%;
+        max-width: 130px;
+        margin: 0 auto;
+    }
+    .buttons {
+        margin-top: -50px !important;
         display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        border: solid 1px $grey;
-        padding: 10px 40px;
-        border-radius: 40px;
-        background-color: $blue;
-
-        a
-        {
-            .box__buttons--access
-            {
-                text-align: center;
-                svg {
-                    transition: $transition-normal;
-                }
-    
-                p {
-                    font-size: 0.7em;
-                    color: $grey;
-                    margin: 0;
-                    transition: $transition-normal;
-                }
-            }
-
-            &:hover
-            {
-                svg {
-                    //transform: rotateY(180deg);
-                    transform: rotate(360deg);
-
-                    circle {
-                        fill: $blue-light;
-                    }
-                }
-
-                p {
-                    color: $blue-light;
-                }
-            }
-        }
-
+        justify-content: center;
     }
 
-    .v-expansion-panel-header
-    {
-        padding: 0;
-        outline: none;
-
-        .v-icon {
-            font-size: 3rem;
-            color: #125488 !important;
+    .content {
+        margin: 0 !important;
+        p {
+            text-align: center;
         }
-    }
-
-    .header--panel
-    {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        order: 2;
-    
-        > div
-        {
-            &:first-child {
-                 margin-right: 8px;
-            }
-
-            &:last-child
-            {
-                background-color: #E0E1E3;
-                height: 2px;
-                width: 100%;
-            }
-        }   
     }
 
     .content--panel
@@ -224,18 +167,6 @@ export default {
             position: relative;
             border-bottom: solid 1px $grey-light;
 
-            .imagem-noticia {
-                width: 100%;
-                height: 100px;
-                background-size: cover;
-                background-position: center;
-            }
-
-            audio {
-                width: 100%;
-                margin: 0px 0 20px;
-            }
-
             .buttons
             {
                 display: flex;
@@ -243,8 +174,23 @@ export default {
                 margin: -43px 0 0;
                 position: absolute;
                 width: 100%;
+
+                .container--buttons {
+                    margin-bottom: -30px;
+                    text-align: center;
+                }
+
+                .icon-file {
+                    text-align: center;
+                    margin: 0;
+                    span { font-size: 3em; }
+                }
+
                 a
                 {
+                    font-size: 0.9em;
+                    color: $blue-strong;
+
                     svg
                     {
                         width: 65px;
@@ -252,26 +198,20 @@ export default {
                         margin: 0 3px;
                         cursor: pointer;
     
-                        circle {
-                            transition: ease 0.4s;
-                        }
+                        circle { transition: ease 0.4s; }
                     }
 
                     &:first-child
                     {    
                         &:hover svg {
-                            circle {
-                                fill: $blue-strong;
-                            }
+                            circle { fill: $blue-strong; }
                         }
                     }
 
                     &:last-child
                     {
                         &:hover svg {
-                            circle {
-                                fill: $red-strong;
-                            }
+                            circle { fill: $red-strong; }
                         }
                     }
                 }
@@ -291,11 +231,8 @@ export default {
                     position: relative;
                     margin-top: 20px;
                 }
-                
             }
-
         }
-        
     }
 }
 

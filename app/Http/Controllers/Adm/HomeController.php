@@ -25,10 +25,10 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $sindicates = new Sindicato();
+        $syndicates = new Sindicato();
         $portal = new Portal();
         $portal = $portal->getAll();
 
-        return view('adm.home')->withSindicates($sindicates->listAllToAdmPageSindicatos()->get()->toArray())->withPortal($portal);
+        return view('adm.home')->withSyndicates($syndicates->listAllToAdmPageSindicatos()->get()->toArray())->withPortal($portal);
     }
 }

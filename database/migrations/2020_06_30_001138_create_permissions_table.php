@@ -15,26 +15,12 @@ class CreatePermissionsTable extends Migration
     {
         Schema::create('permissions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->string('name', 240)->nullable();
-            $table->string('modulo', 240)->nullable();
-            $table->string('functionality', 240)->nullable();
-            $table->smallInteger('weight')->default(27)->comment('[ denied = 0,
-                                                                    view = 1,
-                                                                    insert = 5,
-                                                                    edit = 7,
-                                                                    delete = 14,
-                                                                    all = 27 ]');
-            $table->char('denied', 1)->default('N');
-            $table->char('view', 1)->default('N');
-            $table->char('insert', 1)->default('N');
-            $table->char('edit', 1)->default('N');
-            $table->char('delete', 1)->default('N');
-            $table->char('all', 1)->default('N');
-
+            $table->string('entity', 240)->comment('[ portal, fetrafi-rs, syndicate ]');
+            $table->string('name', 240);
+            $table->string('var_name', 240);
+            $table->string('description', 240)->nullable();
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users');
+            //$table->foreign('user_id')->references('id')->on('users');
         });
     }
 

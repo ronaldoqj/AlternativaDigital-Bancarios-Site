@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -15,8 +17,9 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Ronaldo Quionha de Jesus',
             'email' => 'developer.ronaldoqj@gmail.com',
-            'image' => '1-developer.ronaldoqj@gmail.com.jpg',
             'perfil' => 'master',
+            'company' => 'Alternativa Digital',
+            'position' => 'CO / PO',
             'password' => Hash::make('Master123#'),
             'created_at' => Carbon::now()
         ]);
@@ -24,8 +27,9 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Marcelo Silveira de Almeida',
             'email' => 'marcelo.almeida@alternativadigital.com.br',
-            'image' => '2-marcelo.almeida@alternativadigital.com.br.jpg',
             'perfil' => 'master',
+            'company' => 'Alternativa Digital',
+            'position' => 'CO / PO',
             'password' => Hash::make('123456'),
             'created_at' => Carbon::now()
         ]);
@@ -33,8 +37,8 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Administrator',
             'email' => 'administrator@administrator.com.br',
-            'image' => '3-administrator@administrator.com.br.jpg',
             'perfil' => 'administrator',
+            'company' => 'Alternativa Digital',
             'password' => Hash::make('123456'),
             'created_at' => Carbon::now()
         ]);
@@ -44,6 +48,7 @@ class UserSeeder extends Seeder
             'email' => 'normal@normal.com.br',
             'image' => '4-normal@normal.com.br',
             'perfil' => 'normal',
+            'company' => 'Alternativa Digital',
             'password' => Hash::make('123456'),
             'created_at' => Carbon::now()
         ]);

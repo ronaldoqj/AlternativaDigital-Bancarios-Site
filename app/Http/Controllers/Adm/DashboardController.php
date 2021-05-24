@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Adm;
 use App\Http\Controllers\Controller;
 use App\Models\Sindicato;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -63,11 +64,53 @@ class DashboardController extends Controller
             }
         }
 
+        /** Verifica permissão para acessar a página */
+        if ( ! $this->checkPermission($request) ) {
+            return $this->redirectToHome();
+        }
+
         $sindicates = new Sindicato();
         return view('adm.dashboard')->withSindicates($sindicates->all()->toArray());
     }
 
     private function redirectToHome() {
         return redirect()->route('adm-home');
+    }
+
+    private function checkPermission(Request $request): bool
+    {
+        $permission = true;
+        $perfilMaster = (Auth::user()->perfil ?? 'normal') == 'master';
+
+        /** Valida permissão somente para utilizadores que não são perfil do tipo "master" */
+        if ( ! $perfilMaster )
+        {
+            $sessionConfigAdm = $request->session()->get('configAdm');
+            $sessionPermissions = $request->session()->get('permissions');
+
+
+            
+            if ($sessionConfigAdm['fetrafi'])
+            {
+                if ( ! count($sessionPermissions['assigned']['fetrafiRs']) ) {
+                    $permission = false;
+                }
+            }
+            else
+            {
+                if ( $sessionConfigAdm['entity'] == 0 )
+                {
+                    if ( ! count($sessionPermissions['assigned']['portal']) ) {
+                        $permission = false;
+                    }
+                }
+                else
+                {
+                    $permission = isset($sessionPermissions['assigned']['syndicates'][$sessionConfigAdm['entity']]);
+                }
+            }
+        }
+
+        return $permission;
     }
 }

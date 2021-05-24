@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Symfony\Component\HttpFoundation\Request;
+use App\Models\Permission;
+use App\Models\PermissionAssigned;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -37,4 +41,21 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    /**
+     * Adiciona na sessão as permissões do usuário logado
+     * 
+     * @return void
+     */
+    protected function authenticated(Request $request, $user)
+    {
+        $modelUser = new User();
+        $request->session()->put('permissions', $modelUser->getPermissionsById($user->id));
+        $moreUserDetails = [];
+        if ( is_int($user->image) ) {
+            $moreUserDetails = $modelUser->getMoreUserDetailsById($user->image);
+        }
+        $request->session()->put('moreUserDetails', $moreUserDetails);
+    }
+
 }

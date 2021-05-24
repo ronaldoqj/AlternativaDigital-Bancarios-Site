@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class SindicatoSeeder extends Seeder
 {
@@ -13,12 +14,8 @@ class SindicatoSeeder extends Seeder
     public function run()
     {
         DB::table('sindicatos')->insert([
-            'name' => 'Portal',
+            'name' => 'Sindicato de Porto Alegre',
             'created_at' => Carbon::now()
         ]);
-        // DB::table('sindicatos')->insert([
-        //     'name' => 'Sindicato de Camaquã',
-        //     'created_at' => Carbon::now()
-        // ]);
     }
 }

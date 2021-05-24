@@ -76,6 +76,9 @@ Route::prefix('adm')->namespace('Adm')->group(function ()
         Route::get('/usuarios', 'UsuarioController@index')->name('adm-usuarios');
         Route::get('/usuarios/cadastro', 'UsuarioController@cadastro')->name('adm-usuarios-cadastro');
         Route::post('/usuarios/cadastro', 'UsuarioController@cadastrar')->name('adm-usuarios-cadastrar');
+        Route::get('/usuario/edicao/{id?}', 'UsuarioController@edicao')->name('adm-usuario-edicao');
+        Route::post('/usuario/edicao', 'UsuarioController@editar')->name('adm-usuario-editar');
+        Route::post('/usuario/deletar', 'UsuarioController@deletar')->name('adm-usuario-delete');
         
         Route::get('/bancos', 'BancoController@index')->name('adm-bancos');
         Route::post('/bancos/actions', 'BancoController@actions')->name('adm-bancos-actions');

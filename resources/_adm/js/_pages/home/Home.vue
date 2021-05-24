@@ -1,28 +1,30 @@
 <template>
     <div class="component-page-home">
-        <v-container class="grey lighten-5 mt-10">
+        <v-container class="grey lighten-5 mt-10" v-if="config.permissions.portal || config.permissions.fetrafiRs">
             <v-row>
-                <v-col cols="12" md="6">
+                <v-col cols="12" :md="config.permissions.portal === false || config.permissions.fetrafiRs === false ? 12 : 6" v-if="config.permissions.portal">
                     <CardHome :params="cards.entities.portal" />
                 </v-col>
-                <v-col cols="12" md="6">
+                <v-col cols="12" :md="config.permissions.portal === false || config.permissions.fetrafiRs === false ? 12 : 6" v-if="config.permissions.fetrafiRs">
                     <CardHome :params="cards.entities.fetrafirs" />
                 </v-col>
             </v-row>
         </v-container>
 
-        <v-container v-if="perfil == 'master'" class="mt-5">
-            <v-row><v-col> <h2>Sindicatos</h2> </v-col></v-row>
-        </v-container>
+        <template v-if="config.permissions.syndicates">
+            <v-container class="mt-5">
+                <v-row><v-col> <h2>Sindicatos</h2> </v-col></v-row>
+            </v-container>
 
-        <v-container v-if="perfil == 'master'" class="grey lighten-5">
-            <v-row>
-                <v-col v-for="sindicate in cards.entities.sindicates" :key="sindicate.id">
-                    <!-- Sindicatos -->
-                    <CardHome :params="sindicate"></CardHome>
-                </v-col>
-            </v-row>
-        </v-container>
+            <v-container class="grey lighten-5">
+                <v-row>
+                    <v-col v-for="sindicate in cards.entities.syndicates" :key="sindicate.id">
+                        <!-- Sindicatos -->
+                        <CardHome :params="sindicate"></CardHome>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </template>
     </div>    
 </template>
 
@@ -30,9 +32,16 @@
 import CardHome from "./components/CardHome"
 export default {
     components: {CardHome},
-    props: [ 'perfil', 'csrf', 'listSindicates', 'listPortal' ],
+    props: [ 'perfil', 'csrf', 'listSyndicates', 'listPortal', 'permissions' ],
     data: () => {
         return {
+            config: {
+                permissions: {
+                    portal: true,
+                    fetrafiRs: true,
+                    syndicates: true
+                }
+            },
             cards: {
                 entities: {
                     portal: {
@@ -49,7 +58,7 @@ export default {
                         link: '/adm/dashboard/0/RS',
                         style: null
                     },
-                    sindicates: []
+                    syndicates: []
                 }
             }
         }
@@ -65,8 +74,8 @@ export default {
             this.cards.entities.fetrafirs.logo = `/${fetrafiRs.logo_pathfile}/${fetrafiRs.logo_namefile}`;
         },
         setSindicates() {
-            JSON.parse(this.listSindicates).forEach(element => {
-                const sindicate = {
+            JSON.parse(this.listSyndicates).forEach(element => {
+                const syndicate = {
                     id: element.id,
                     banner: `/${element.banner_pathfile}/${element.banner_namefile}`,
                     logo: `/${element.logo_pathfile}/${element.logo_namefile}`,
@@ -74,8 +83,22 @@ export default {
                     title: element.name
                 }
 
-                this.cards.entities.sindicates.push(sindicate);
+                this.cards.entities.syndicates.push(syndicate);
             });
+        },
+        checkPermissions(permissions)
+        {
+            let syndicatesKeys = Object.keys(permissions.assigned.syndicates);
+            syndicatesKeys = syndicatesKeys.map( element => Number(element) );
+
+            this.config.permissions.portal = permissions.assigned.portal.length > 0;
+            this.config.permissions.fetrafiRs = permissions.assigned.fetrafiRs.length > 0;
+            this.config.permissions.syndicates = syndicatesKeys.length > 0;
+
+            /** filtra só para os syndicatos permitidos */
+            this.cards.entities.syndicates = this.cards.entities.syndicates.filter( element => {
+                                                 return  syndicatesKeys.indexOf(element.id) >= 0;
+                                             });
         }
     },
     created() {
@@ -83,7 +106,9 @@ export default {
         this.setFetrafiRs();
         this.setSindicates();
 
-        console.log(JSON.parse(this.listPortal));
+        if (this.perfil != 'master') {
+            this.checkPermissions(JSON.parse(this.permissions));
+        }
     }
 }
 </script>

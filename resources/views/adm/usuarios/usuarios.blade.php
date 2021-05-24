@@ -10,7 +10,8 @@
         <usuarios-page
             action-form="/adm/usuarios"
             page="usuarios"
-            prop-list="{{ json_encode($return) }}"
+            prop-list="{{ $return['list'] }}"
+            permissions="{{ json_encode($return['permissions']) }}"
             csrf="{{ csrf_token() }}"
         />
     </div>

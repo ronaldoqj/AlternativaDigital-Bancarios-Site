@@ -17,9 +17,9 @@
             <div class="row">
                 <div class="col-12">
                     <div class="box-btns-noticias">
-                        <div @click="clickBtnNoticias('btnIconTextDestaque')"><btnIconText :params="paramsBtnIcons.btnIconTextDestaque"></btnIconText> </div>
-                        <div @click="clickBtnNoticias('btnIconTextVideo')">   <btnIconText :params="paramsBtnIcons.btnIconTextVideo"></btnIconText>    </div>
+                        <div v-if="config.highlights" @click="clickBtnNoticias('btnIconTextDestaque')"><btnIconText :params="paramsBtnIcons.btnIconTextDestaque"></btnIconText> </div>
                         <div @click="clickBtnNoticias('btnIconTextImagem')">  <btnIconText :params="paramsBtnIcons.btnIconTextImagem"></btnIconText>   </div>
+                        <div @click="clickBtnNoticias('btnIconTextVideo')">   <btnIconText :params="paramsBtnIcons.btnIconTextVideo"></btnIconText>    </div>
                         <div @click="clickBtnNoticias('btnIconTextPodcast')"> <btnIconText :params="paramsBtnIcons.btnIconTextPodcast"></btnIconText>  </div>
                         <div @click="clickBtnNoticias('btnIconTextTexto')">   <btnIconText :params="paramsBtnIcons.btnIconTextTexto"></btnIconText>    </div>    
                     </div>
@@ -158,7 +158,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <!-- Banner Destaque -->
-                            <div class="col-12 col-md-6 col-box-files" :class="borderFields.bannerDestaque">
+                            <div v-if="config.highlights" class="col-12 col-md-6 col-box-files" :class="borderFields.bannerDestaque">
                                 <label>Banner Destaque</label>
                                 <div class="box-files" :style="{backgroundImage: `url(${fileBannerIsEdit})`}">
 
@@ -218,7 +218,7 @@
                             </div>
 
                              <!-- Imagem Destaque -->
-                            <div class="col-12 col-md-6 col-box-files" :class="borderFields.imagemDestaque">
+                            <div class="col-12 col-md-6 col-box-files" :class="config.highlights ? ['col-md-6', borderFields.imagemDestaque] : ['col-md-12', borderFields.imagemDestaque]">
                                 <label>Imagem Destaque</label>
                                 <div class="box-files" :style="{backgroundImage: `url(${fileImagemIsEdit})`}">
 
@@ -337,7 +337,7 @@
                                     <div class="container--files">
                                         <iframe v-if="dataInputs.youtube != '' && dataInputs.youtube != null" class="embed-responsive-item" :src="'https://www.youtube.com/embed/' + dataInputs.youtube" allowfullscreen></iframe>
 
-                                            <div class="background--Credito" :class="borderFields.creditoImagemDestaque">
+                                            <div class="background--Credito" :class="borderFields.creditoYoutube">
                                                 <v-text-field
                                                     class="mt-5"
                                                     v-model="dataInputs.youtube"
@@ -478,10 +478,16 @@ export default {
         'banks',
         'textInput',
         'registeredSyndicates',
-        'registeredBanks'
+        'registeredBanks',
+        'configAdm'
     ],
     data() {
         return {
+
+            config: {
+                highlights: true
+            },
+
             /**
              * Campos Hiden
              */
@@ -553,16 +559,16 @@ export default {
                     icon: '/_adm/assets/SVGs/noticia-imagem.svg',
                     selected: true
                 },
-                btnIconTextVideo: {
-                    type: 'noticia-video',
-                    text: 'Notícia Com Video',
-                    icon: '/_adm/assets/SVGs/noticia-video.svg',
-                    selected: false
-                },
                 btnIconTextImagem: {
                     type: 'noticia-imagem',
                     text: 'Notícia Com Imagem',
                     icon: '/_adm/assets/SVGs/noticia-imagem.svg',
+                    selected: false
+                },
+                btnIconTextVideo: {
+                    type: 'noticia-video',
+                    text: 'Notícia Com Video',
+                    icon: '/_adm/assets/SVGs/noticia-video.svg',
                     selected: false
                 },
                 btnIconTextPodcast: {
@@ -906,6 +912,13 @@ export default {
             }
 
             return btnsBarTop;
+        },
+
+        hidesHighlightsIfSyndicate() {
+            console.log('entidade sindicato');
+            this.paramsBtnIcons.btnIconTextDestaque.selected = false;
+            this.paramsBtnIcons.btnIconTextImagem.selected = true;
+            this.config.highlights = false;
         }
     },
     watch: {
@@ -934,11 +947,12 @@ export default {
                             jornalistaResponsavel: 'required'
                         }
                         break;
-                      case 'noticia-video':
+                      case 'noticia-imagem':
                         this.borderFields = {
                             dataDaInclusao: 'required',
                             ativarSindicatos: 'required',
-                            videoYoutube: 'required',
+                            imagemDestaque: 'required',
+                            creditoImagemDestaque: 'required',
                             cartola: 'required',
                             tags: 'required',
                             tituloDaNoticia: 'required',
@@ -947,12 +961,11 @@ export default {
                             jornalistaResponsavel: 'required'
                         }
                         break;
-                      case 'noticia-imagem':
+                      case 'noticia-video':
                         this.borderFields = {
                             dataDaInclusao: 'required',
                             ativarSindicatos: 'required',
-                            imagemDestaque: 'required',
-                            creditoImagemDestaque: 'required',
+                            videoYoutube: 'required',
                             cartola: 'required',
                             tags: 'required',
                             tituloDaNoticia: 'required',
@@ -1015,6 +1028,12 @@ export default {
     },
     mounted()
     {
+        let configAdm = JSON.parse(this.configAdm);
+        
+        if (parseInt(configAdm.entity)) {
+            this.hidesHighlightsIfSyndicate();
+        }
+
         if ( ! _.isEmpty(this.noticiaEdition) ) {
             this.isEdit = true;
             this.editStartCompleteFilds(JSON.parse(this.noticiaEdition));

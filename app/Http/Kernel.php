@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'check.syndicate' => \Illuminate\Auth\Middleware\CheckSyndicate::class,
         'VerifyCurrentEntitySelected' => \App\Http\Middleware\VerifyCurrentEntitySelected::class,
         'GetEntitiesForTemplate' => \App\Http\Middleware\GetEntitiesForTemplate::class,
+        'CheckPermission' => \App\Http\Middleware\CheckPermission::class,
     ];
 }

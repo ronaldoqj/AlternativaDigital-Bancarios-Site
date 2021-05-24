@@ -37,14 +37,15 @@
 <div class="container-fluid">
     <noticias-cadastro-page
         ref="cadastro"
+        csrf="{{ csrf_token() }}"
         form-action="{{url('adm/noticias/edicao')}}"
         banks="{{ $bancos }}"
         syndicates="{{ $sindicatos }}"
-        method="post"
-        csrf="{{ csrf_token() }}"
         noticia-edition="{{$noticia}}"
         registered-syndicates="{{$registeredSyndicates}}"
         registered-banks="{{$registeredBanks}}"
+        method="post"
+        config-adm="{{json_encode(session()->get('configAdm'))}}"
     />
 </div>
 @endsection

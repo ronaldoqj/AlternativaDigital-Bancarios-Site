@@ -6,12 +6,17 @@
 @endsection
 
 @section('content')
-
-
 <div class="container-fluid">
     <div class="row">
         <div class="col">
-            <home-page perfil="{{auth()->user()->perfil}}" csrf="{{ csrf_token() }}" list-sindicates="{{json_encode($sindicates)}}" list-portal="{{json_encode($portal)}}"></home-page>
+            <home-page
+            csrf="{{ csrf_token() }}"
+            perfil="{{auth()->user()->perfil}}"
+            list-syndicates="{{json_encode($syndicates)}}"
+            list-portal="{{json_encode($portal)}}"
+            permissions="{{ json_encode(session()->get('permissions')) }}"
+            >
+            </home-page>
         </div>
     </div>
 </div>
