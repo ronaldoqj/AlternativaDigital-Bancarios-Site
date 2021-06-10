@@ -1,17 +1,21 @@
+<?php
+$whatsappFetrafiRs = request()->fetrafirs['whatsapp'];
+
+if ($whatsappFetrafiRs) {
+    $whatsappFetrafiRs = 55 . preg_replace('/[^0-9]/', '', $whatsappFetrafiRs);
+    $linkSocialMediaWhatsappFetrafiRs = "https://api.whatsapp.com/send?phone={$whatsappFetrafiRs}&text=Olá Bancários-RS, acessei seu contato no Portal dos Bancários RS.";
+}
+?>
+
 @extends('layouts.layout-fetrafi-rs')
 @section('css')
     <link href="{{url(mix('/_site/css/pages/fetrafi-rs/contato.css'))}}" type="text/css" rel="stylesheet" media="screen,projection"/>
 @endsection
 @section('content-syndicate')
 
-
 <section id="contato">
-
     <div class="container">
-        <div class="title-page fetrafi-rs">
-            Contato
-        </div>
-
+        <div class="title-page fetrafi-rs"> Contato </div>
 
         @if ($msgEnvio !== '')
         <div class="alert alert-success alert-sucess-comum" role="alert">
@@ -24,7 +28,6 @@
             <p class="mb-0">Obrigado pela sua atenção.</p>
         </div>
         @endif
-
 
         <!-- <div class="description-of-page">
             <p class="mt-4 mb-4"><h1>Federação dos Trabalhadores e Trabalhadoras em Instituições Financeiras RS</h1> 
@@ -39,10 +42,7 @@
 
         <div class="row">
             <div class="col-12">
-
-
                 <div class="dados-contato">
-                   					
 					<div class="d-flex flex-nowrap align-items-center">
                         <div class="icons">
                             <img src="{{asset('/_site/assets/SVGs/icon-telefone.svg')}}" onload="SVGInject(this)" />
@@ -56,10 +56,8 @@
                         <div class="text">FETRAFI@FETRAFIRS.ORG.BR</div>
                     </div>
                 </div>
-
             </div>
         </div>
-        
         
         <div class="col-md-12 col-lg-8 offset-lg-2">
             <div class="legendas">REDES SOCIAIS DA FETRAFI-RS</div>
@@ -73,7 +71,9 @@
                 @if( request()->fetrafirs->instagram )
                 <div> <a target="blank" href="{{url(request()->fetrafirs->instagram)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                 @endif
-                <div class="d-block d-lg-none"> <a target="blank" href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/whatsapp.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                @if ($whatsappFetrafiRs)
+                <div> <a target="_blank" href="{{ $linkSocialMediaWhatsappFetrafiRs }}"><img src="{{asset('/_site/assets/SVGs/Brancos/whatsapp.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                @endif
                 @if( request()->fetrafirs->podcast )
                 <div> <a target="blank" href="{{url(request()->fetrafirs->podcast)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/podcasts.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                 @endif
@@ -108,11 +108,9 @@
                     </div>
                 </div>
             </div>
-            
+
             <input type="submit" class="btn btn-primary btn-block" value="Enviar" />
         </form>
     </div>
-    
 </section>
-
 @endsection

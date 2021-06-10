@@ -1,4 +1,33 @@
+<?php
+    $linkSocialMediaFacebook = url('editais');
+    $linkSocialMediaTwitter = '&url=' . url('editais');
+
+    $imageSyndicateToShare = '';
+    if ( isset(request()->syndicate['logo_file']['pathfile']) && isset(request()->syndicate['logo_file']['namefile']) )
+    {
+        $imageSyndicateToShare = asset(request()->syndicate['logo_file']['pathfile'] . '/' . request()->syndicate['logo_file']['namefile']);
+    }
+?>
 @extends('layouts.layout-sindicato')
+
+
+@section('metatags')
+<meta property="og:url"          content="{{$linkSocialMediaFacebook}}" />
+<meta property="og:type"         content="website" />
+<meta property="og:title"        content="Portal dos bancários-rs - Editais" />
+<?php /*
+<meta property="og:description" content="{{$noticia->subtitulo}}" />
+<meta property="og:image"       content="{{$urlImage}}" />
+*/ ?>
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:creator"     content="@fetrafi_rs">
+<meta name="twitter:description" content="Editais ">
+<meta name="twitter:domain"      content="Portal Bancários RS ">
+<meta name="twitter:image"       content="{{ $imageSyndicateToShare }}">
+<meta name="twitter:site"        content="@fetrafi_rs">
+<meta name="twitter:title"       content="Edital">
+@endsection
+
 @section('css')
 <link href="{{asset('/_site/css/pages/sindicatos/editais.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
 @endsection
@@ -7,9 +36,7 @@
 
 <section id="editais" class="container">
     <div class="container">
-        <div class="title-page">
-            Editais
-        </div>
+        <div class="title-page"> Editais </div>
 
         @forelse($editais as $item)
 
@@ -28,10 +55,9 @@
 
                     <div class="titulo-btns">Compartilhar</div>
                     <div class="SHARED__icons__socials--midia">
-                        <div> <a href="{{url('editais#')}}" title="Facebook" class="btSocialNetwork"><img src="{{asset('/_site/assets/SVGs/Facebook-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
-                        <div> <a href="{{url('editais#')}}" title="Twitter" class="btSocialNetwork"><img src="{{asset('/_site/assets/SVGs/Twitter-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
-                        <!-- <div> <a href="#"><img src="{{asset('/_site/assets/SVGs/Instagram-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div> -->
-                        <div> <a href='{{ "whatsapp://send?text=$item->titulo - " . url("noticia") }}' title="Whatsapp" class="btSocialNetwork"><img src="{{asset('/_site/assets/SVGs/Whatsapp-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                        <div> <a title="Facebook" class="btSocialNetwork" href="{{ $linkSocialMediaFacebook }}"> <img src="{{asset('/_site/assets/SVGs/Facebook-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                        <div> <a title="Twitter" class="btSocialNetwork" href="{{ $item->titulo . $linkSocialMediaTwitter }}"> <img src="{{asset('/_site/assets/SVGs/Twitter-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                        <div class="d-block d-lg-none"> <a title="Whatsapp" title="Whatsapp" href="whatsapp://send?text={{$item->titulo}} - {{url("/sindicato/editais")}}" ><img src="{{asset('/_site/assets/SVGs/Whatsapp-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                     </div>
 
                     <div class="clear-fix"></div>

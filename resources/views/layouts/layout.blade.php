@@ -5,6 +5,12 @@ if (request()->portal['dataLogo']) {
     $pathLogoPortal = (request()->portal['dataLogo']['pathfile'] . '/' . request()->portal['dataLogo']['namefile']);
 }
 
+$whatsappPortal = request()->portal->whatsapp;
+
+if ($whatsappPortal) {
+    $whatsappPortal = 55 . preg_replace('/[^0-9]/', '', $whatsappPortal);
+    $linkSocialMediaWhatsappPortal = "https://api.whatsapp.com/send?phone={$whatsappPortal}&text=Olá Bancários-RS, acessei seu contato no Portal dos Bancários RS.";
+}
 
 /**
  * Hack para funcionar os filtros dos bancos
@@ -81,6 +87,27 @@ if (request()->portal['dataLogo']) {
         </script>
     </head>
     <body>
+
+        @if (request()->cookie('lgpd') != 'ok')
+        <section id="lgpd">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <p>Atenção! O Portal dos Bancários RS utiliza cookies neste site, eles são utilizados para melhorar a sua experiência de uso e estatísticos.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="actions">
+                            <input type="button" id="disagree" class="btnLgpd" value="Não Aceito" />
+                            <input type="button" id="agree" class="btnLgpd" value="Aceito" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        @endif
+
         <input type="hidden" name="idBank" value="{{ request()->input('banco') }}" />
         <nav id="sidebar" class="">
             <div id="dismiss">
@@ -135,7 +162,10 @@ if (request()->portal['dataLogo']) {
                         @endif
                     </div>
                     <div class="d-flex justify-content-between">
-                        <div class="d-block d-lg-none"><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/whatsapp.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                        @if( $whatsappPortal )
+                            <div><a target="_blank" href="{{ $linkSocialMediaWhatsappPortal }}"><img src="{{asset('/_site/assets/SVGs/Brancos/whatsapp.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                        @endif
+                        
                         @if( request()->portal->podcast )
                             <div ><a target="_blank" href="{{url(request()->portal->podcast)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/podcasts.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
                         @endif
@@ -201,23 +231,24 @@ if (request()->portal['dataLogo']) {
                                 <div id="social-buttons" class="container-fluid">
                                     <div class="row">
                                         <div class="col">
+
                                             @if( request()->portal->facebook )
-                                                <div ><a target="_blank" href="{{url(request()->portal->facebook)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/facebook.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                                                <div><a target="_blank" href="{{url(request()->portal->facebook)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/facebook.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
                                             @endif
                                             @if( request()->portal->twitter )
-                                                <div ><a target="_blank" href="{{url(request()->portal->twitter)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/twitter.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                                                <div><a target="_blank" href="{{url(request()->portal->twitter)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/twitter.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
                                             @endif
                                             @if( request()->portal->instagram )
-                                                <div ><a target="_blank" href="{{url(request()->portal->instagram)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                                                <div><a target="_blank" href="{{url(request()->portal->instagram)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
                                             @endif
-                                            
-                                            <div class="d-block d-lg-none"><a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/whatsapp.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
-                                            
+                                            @if( $whatsappPortal )
+                                                <div><a target="_blank" href="{{ $linkSocialMediaWhatsappPortal }}"><img src="{{asset('/_site/assets/SVGs/Brancos/whatsapp.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                                            @endif
                                             @if( request()->portal->podcast )
-                                                <div ><a target="_blank" href="{{url(request()->portal->podcast)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/podcasts.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                                                <div><a target="_blank" href="{{url(request()->portal->podcast)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/podcasts.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
                                             @endif
                                             @if( request()->portal->youtube )
-                                                <div ><a target="_blank" href="{{url(request()->portal->youtube)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/youtube.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                                                <div><a target="_blank" href="{{url(request()->portal->youtube)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/youtube.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
                                             @endif
                                         </div>
                                     </div>

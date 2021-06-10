@@ -19,7 +19,7 @@ class Sindicato extends Model
         $list->leftjoin('files as logo', 'logo.id', '=', 'sindicatos.logo');
         $list->whereNull('sindicatos.deleted_at');
                           
-        $list->orderBy('sindicatos.created_at', 'desc');
+        $list->orderBy('sindicatos.cidade', 'asc');
 
         $listAll = $list->addSelect(
             'sindicatos.id          as id',
@@ -71,7 +71,7 @@ class Sindicato extends Model
         $list->whereNull('sindicatos.deleted_at');
         $list->where('sindicatos.ativo', 'S');
                           
-        $list->orderBy('sindicatos.created_at', 'desc');
+        $list->orderBy('sindicatos.cidade', 'asc');
 
         $listAll = $list->addSelect(
             'sindicatos.id          as id',

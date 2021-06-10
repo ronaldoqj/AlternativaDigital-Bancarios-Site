@@ -139,7 +139,7 @@
                         dense="dense"
                         maxlength="20"
                         counter="20"
-                        v-mask="['(##) #####-####']"
+                        v-mask="['(##) #### ####']"
                         rounded
                         outlined
                         clearable
@@ -154,7 +154,7 @@
                         dense="dense"
                         maxlength="20"
                         counter="20"
-                        v-mask="['(##) #####-####']"
+                        v-mask="['(##) #### ####']"
                         rounded
                         outlined
                         clearable
@@ -234,11 +234,11 @@
                                         label="Whatsapp:"
                                         :prepend-icon="'$vuetify.icons.iconOnlyLetterWhatsapp'"
                                         dense="dense"
-                                        maxlength="240"
-                                        counter="240"
+                                        maxlength="20"
+                                        counter="20"
+                                        v-mask="['(##) #####-####']"
                                         rounded
                                         outlined
-                                        disabled
                                         clearable
                                     ></v-text-field>
                                 </div>

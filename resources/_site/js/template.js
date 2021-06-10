@@ -57,6 +57,16 @@ $(document).ready(function ()
         aumentaDiminui('aumenta', rel);
     });
 
+    /**
+     * lgpd
+     */
+     $('#disagree').click(function() {
+         $('#lgpd').hide();
+     });
+     $('#agree').click(function() {
+         $('#lgpd').hide();
+         document.cookie = "lgpd=ok";
+     });
 
     playerAudio();
     eventSocialNetworks();
@@ -123,7 +133,7 @@ function eventSocialNetworks()
                   window.open(ulrSN,'ADverso', 'toolbar=0, status=0, width=650, height=450');
                   break;
               case 'Whatsapp':
-                  // code block
+                  window.open(url, '_blank');
                   break;
           }
   

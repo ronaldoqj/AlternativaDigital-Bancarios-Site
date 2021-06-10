@@ -968,6 +968,41 @@ form.fieldsRounded .btn div::before {
   padding: 0;
 }
 
+/* lgpd */
+
+#lgpd {
+  position: fixed;
+  bottom: 0;
+  border: solid 1px #125488;
+  z-index: 90909090;
+  width: 100%;
+  padding: 20px;
+  background-color: #0B3C5E;
+}
+
+#lgpd p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 1.5em;
+  line-height: 1.2em;
+  color: white;
+}
+
+#lgpd .actions {
+  text-align: center;
+}
+
+#lgpd .actions .btnLgpd {
+  font-family: "Anton", sans-serif;
+  background: #0B3C5E;
+  border: solid 1px #0B3C5E;
+  font-size: 1.2em;
+  color: white;
+  padding: 5px 20px;
+  margin: 0 5px;
+  border-radius: 7px;
+}
+
 .title-page {
   --colorTitle: #125488;
   font-size: 2.9rem;

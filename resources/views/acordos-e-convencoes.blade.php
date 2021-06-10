@@ -1,10 +1,38 @@
+<?php
+    $linkSocialMediaFacebook = url('editais');
+    $linkSocialMediaTwitter = '&url=' . url('editais');
+
+    $imagePortalToShare = '';
+    if ( isset(request()->portal->dataLogo['pathfile']) && isset(request()->portal->dataLogo['namefile']) )
+    {
+        $imagePortalToShare = asset(request()->portal->dataLogo['pathfile'] . '/' . request()->portal->dataLogo['namefile']);
+    }
+?>
+
 @extends('layouts.layout')
+
+@section('metatags')
+<meta property="og:url"          content="{{$linkSocialMediaFacebook}}" />
+<meta property="og:type"         content="website" />
+<meta property="og:title"        content="Portal dos bancários-rs - Acordos e Convenções " />
+<?php /*
+<meta property="og:description" content="{{$noticia->subtitulo}}" />
+<meta property="og:image"       content="{{$urlImage}}" />
+*/ ?>
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:creator"     content="@fetrafi_rs">
+<meta name="twitter:description" content="Acordos e Convenções ">
+<meta name="twitter:domain"      content="Portal Bancários RS ">
+<meta name="twitter:image"       content="{{ $imagePortalToShare }}">
+<meta name="twitter:site"        content="@fetrafi_rs">
+<meta name="twitter:title"       content="Acordos e Convenções">
+@endsection
+
 @section('css')
     <link href="{{asset('/_site/css/pages/acordos-e-convencoes.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
 @endsection
+
 @section('content')
-
-
 <section id="acordos-e-convencoes" class="container">
 
 <div class="title-page">
@@ -13,8 +41,6 @@
  
 
 <div class="accordionStandard" id="accordionStandard">
-
-    
     @foreach($list as $key => $ano)
     <div class="card">
         <div class="card-header">
@@ -24,8 +50,6 @@
         </div>
         <div id="collapse-{{$loop->iteration}}" class="collapse {{$loop->first ? 'show' : ''}}" aria-labelledby="headingOne" data-parent="#accordionStandard">
             <div class="card-body">
-
-
                 <!-- Sub-Collapse -->
                 <?php
                     $arrayEntidades = ['Aditiva - RS', 'Fenaban', 'Banco do Brasil'];
@@ -51,10 +75,9 @@
 
                             <div class="titulo-btns">Compartilhar</div>
                             <div class="SHARED__icons__socials--midia">
-                                <div> <a href="{{ url('acordos-e-convencoes') }}" title="Facebook" class="btSocialNetwork"><img src="{{asset('/_site/assets/SVGs/Facebook-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
-                                <div> <a href="{{ url('acordos-e-convencoes') }}" title="Twitter" class="btSocialNetwork"><img src="{{asset('/_site/assets/SVGs/Twitter-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
-                                <!-- <div> <a href="#"><img src="{{asset('/_site/assets/SVGs/Instagram-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div> -->
-                                <div> <a href='{{ "whatsapp://send?text=$edital->titulo - " . url("noticia") }}'><img src="{{asset('/_site/assets/SVGs/Whatsapp-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                                <div> <a title="Facebook" class="btSocialNetwork" href="{{ $linkSocialMediaFacebook }}"> <img src="{{asset('/_site/assets/SVGs/Facebook-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                                <div> <a title="Twitter" class="btSocialNetwork" href="{{ $edital->titulo . $linkSocialMediaTwitter }}"> <img src="{{asset('/_site/assets/SVGs/Twitter-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                                <div class="d-block d-lg-none"> <a title="Whatsapp" title="Whatsapp" href="whatsapp://send?text={{$edital->titulo}} - {{url("/acordos-e-convencoes")}}" ><img src="{{asset('/_site/assets/SVGs/Whatsapp-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                             </div>
 
                             <div class="clear-fix"></div>
@@ -65,14 +88,11 @@
                 </div>
                 @endforeach
                 <!-- Sub-Collapse Fim -->
-
             </div>
         </div>
     </div>
     @endforeach
-
 </div>
 
 </section>
-
 @endsection

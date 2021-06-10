@@ -5,6 +5,29 @@
     $logoFile = request()->syndicate['logo_file']['pathfile'] ?? null;
     $logoPahtfile = request()->syndicate['logo_file']['namefile'] ?? null;
     $logoLink = "/{$logoFile}/{$logoPahtfile}";
+
+    /**
+     * Whatsapp
+     */
+    $syndicate = request()->syndicate;
+    $whatsapp = request()->portal->whatsapp;
+    $nameEntity = 'Portal dos Bancárioas-RS';
+    
+    if ($syndicate) {
+        $whatsapp = $syndicate['whatsapp'];
+        if ($syndicate['name']) {
+            $nameEntity = $syndicate['name'];
+        }
+    }
+    
+    if ($whatsapp) {
+        $whatsapp = 55 . preg_replace('/[^0-9]/', '', $whatsapp);
+        $linkSocialMediaWhatsapp = "https://api.whatsapp.com/send?phone={$whatsapp}&text=Olá {$nameEntity}, acessei seu contato no Portal dos Bancários RS.";
+    }
+
+    //dd($whatsapp);
+    //<div class="d-block"> <a title="Whatsapp" class="btSocialNetwork" href="{{ $linkSocialMediaWhatsapp }}"><img src="{{asset('/_site/assets/SVGs/Whatsapp-Vertical.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+    //href="whatsapp://send?text={{$maisNoticias[$i]->title}} - {{url("/noticia/{$maisNoticias[$i]->id}")}}" title="Whatsapp" class="icon-whatsapp"
 ?>
 @extends('layouts.layout')
     @section('css-syndicate')
@@ -61,10 +84,12 @@
                                 <div> <a href="{{url(request()->syndicate['twitter'])}}"><img src="{{asset('/_site/assets/SVGs/Brancos/twitter.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                             @endif
                             @if( request()->syndicate['instagram'] )
-                                <div> <a href="{{url(request()->syndicate['instagram'])}}"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                            <div> <a href="{{url(request()->syndicate['instagram'])}}"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                             @endif
-
-                            <div> <a href="#"><img src="{{asset('/_site/assets/SVGs/Brancos/whatsapp.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                            
+                            @if( request()->syndicate['whatsapp'] )
+                            <div> <a title="Whatsapp" class="btSocialNetwork" href="{{ $linkSocialMediaWhatsapp }}"><img src="{{asset('/_site/assets/SVGs/Brancos/whatsapp.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                            @endif
 
                             @if( request()->syndicate['podcast'] )
                                 <div> <a href="{{url(request()->syndicate['podcast'])}}"><img src="{{asset('/_site/assets/SVGs/Brancos/podcasts.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
