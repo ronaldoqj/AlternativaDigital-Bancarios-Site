@@ -830,6 +830,10 @@ form.fieldsRounded select {
   box-shadow: 0px 4px 5px #B4B4B460;
 }
 
+form.fieldsRounded .required {
+  border-color: #53A6D8;
+}
+
 form.fieldsRounded .btn {
   border-radius: 10px;
   font-weight: bold;

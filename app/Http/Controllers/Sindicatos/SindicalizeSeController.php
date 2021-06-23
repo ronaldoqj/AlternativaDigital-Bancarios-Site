@@ -44,28 +44,32 @@ class SindicalizeSeController extends Controller
 
     private function sendMail(Request $request): bool {
 
-        $banner = new File();
-        $banner = $banner->find($request->syndicate['banner']);
-        $logo = new File();
-        $logo = $logo->find($request->syndicate['logo']);
-
-        $bannerPath = asset("/{$banner->pathfile}/{$banner->namefile}");
-        $logoPath = asset("/{$logo->pathfile}/{$logo->namefile}");
-
-        $request->request->add(['bannerPathFull' => $bannerPath]);
-        $request->request->add(['logoPathFull' => $logoPath]);
-
-        $this->mailSend = $request->syndicate['email'];
-        $this->mailFrom = $request->input('email');
-        $this->nomeSend = $request->input('nome');
-
-        // $user = User::findOrFail(auth()->id());
-        $user = '';
-
-        Mail::send('emails.sindicatos.sindicalize-se', ['user' => $user, 'parameters' => $request], function($m) use ($user) {
-            $m->from($this->mailFrom, 'Portal dos Bancários | Formulário sindicalize-se, '. $this->nomeSend);
-            $m->to($this->mailSend, $this->nomeSend)->subject($this->nomeSend);
-        });
+        if ($request->syndicate['email'])
+        {
+            $banner = new File();
+            $banner = $banner->find($request->syndicate['banner']);
+            $logo = new File();
+            $logo = $logo->find($request->syndicate['logo']);
+    
+            $bannerPath = asset("/{$banner->pathfile}/{$banner->namefile}");
+            $logoPath = asset("/{$logo->pathfile}/{$logo->namefile}");
+    
+            $request->request->add(['bannerPathFull' => $bannerPath]);
+            $request->request->add(['logoPathFull' => $logoPath]);
+    
+            $this->mailSend = $request->syndicate['email'];
+            $this->mailFrom = $request->input('inputEmail');
+            $this->nomeSend = $request->input('inputNome');
+    
+            // $user = User::findOrFail(auth()->id());
+            $user = '';
+    
+            Mail::send('emails.sindicatos.sindicalize-se', ['user' => $user, 'parameters' => $request], function($m) use ($user) {
+                $m->from($this->mailFrom, 'Portal dos Bancários | Formulário sindicalize-se, '. $this->nomeSend);
+                $m->cc(env('MAIL_BLIND_CARBON_COPY'));
+                $m->to($this->mailSend, $this->nomeSend)->subject($this->nomeSend);
+            });
+        }
 
         return true;
     }

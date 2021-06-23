@@ -460,6 +460,7 @@
                     file: '',
                     subdominio: '',
                     name: 'required',
+                    email: 'required',
                 },
 
                 dataInputs: {
@@ -532,6 +533,9 @@
 
                 if ( _.isEmpty(this.dataInputs.name) )
                     this.errorsShow.errors.push({title: 'Nome', description: 'obrigatório'});
+                
+                if ( _.isEmpty(this.dataInputs.email) )
+                    this.errorsShow.errors.push({title: 'E-Mail', description: 'obrigatório'});
                 
                 if (this.errorsShow.errors.length > 0)
                 {
