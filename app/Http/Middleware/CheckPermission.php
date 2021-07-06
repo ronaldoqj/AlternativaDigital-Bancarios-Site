@@ -46,7 +46,11 @@ class CheckPermission
                     if (! $this->checkPermissionADM($varNamePermission)) { return redirect()->route('adm-home'); }
                     break;
                     
-                    
+                case 'adm_categoriasConvenios':
+                    if (! $this->checkPermissionADM($varNamePermission)) { return redirect()->route('adm-home'); }
+                    break;
+
+
                 /** Portal */
                 case 'portal_campanhas':
                     if (! $this->checkPermissionPortal($varNamePermission)) { return redirect()->route('adm-home'); }

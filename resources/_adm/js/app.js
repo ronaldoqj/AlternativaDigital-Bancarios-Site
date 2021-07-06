@@ -52,6 +52,8 @@ Vue.component('acordos-e-convencoes-page', require('./_pages/acordos-e-convencoe
 Vue.component('acordos-e-convencoes-cadastro-page', require('./_pages/acordos-e-convencoes/AcordosEConvencoesCadastro.vue').default);
 Vue.component('editais-page', require('./_pages/editais/Editais.vue').default);
 Vue.component('editais-cadastro-page', require('./_pages/editais/EditaisCadastro.vue').default);
+Vue.component('categorias-convenios-page', require('./_pages/categorias-convenios/CategoriasConvenios.vue').default);
+Vue.component('categorias-convenios-cadastro-page', require('./_pages/categorias-convenios/CategoriasConveniosCadastro.vue').default);
 Vue.component('entidades-parceiras-page', require('./_pages/entidades-parceiras/EntidadesParceiras.vue').default);
 Vue.component('entidades-parceiras-cadastro-page', require('./_pages/entidades-parceiras/EntidadesParceirasCadastro.vue').default);
 Vue.component('sindicatos-page', require('./_pages/sindicatos/Sindicatos.vue').default);

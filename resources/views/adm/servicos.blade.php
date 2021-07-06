@@ -41,6 +41,7 @@
         csrf="{{ csrf_token() }}"
         entity="{{session()->get('configAdm')['entity']}}"
         data="{{json_encode($data)}}"
+        :convenios="true"
     />
 </div>
 @endsection

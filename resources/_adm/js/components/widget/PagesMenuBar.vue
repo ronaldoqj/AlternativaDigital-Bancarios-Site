@@ -1,20 +1,25 @@
 <template>
-    <div class="row">
-        <div class="col-12">
-            <div class="box-btns">
-                <div class="item-btn" v-for="(item, key, index) in btnsTopBar" :key="index" style="display:flex">
-                    <img v-if="index" src="/_adm/assets/SVGs/icon-arrow-right.svg" class="img-fluid" onload="SVGInject(this)" />
-                    <a :href="item.link" >
-                        <div class="box__buttons--access">
-                            <img :src="item.icon" class="img-fluid" width="30" height="30" onload="SVGInject(this)" />
-                            <p>{{item.title}}</p>
-                        </div>
-                    </a>
+
+    <div>
+        <div class="row">
+            <div class="col-12">
+                <div class="box-btns">
+                    <div class="item-btn" v-for="(item, key, index) in btnsTopBar" :key="index" style="display:flex">
+                        <img v-if="index" src="/_adm/assets/SVGs/icon-arrow-right.svg" class="img-fluid" onload="SVGInject(this)" />
+                        <a :href="item.link" >
+                            <div class="box__buttons--access">
+                                <img :src="item.icon" class="img-fluid" width="30" height="30" onload="SVGInject(this)" />
+                                <p>{{item.title}}</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <slot></slot>
                 </div>
-                <slot></slot>
             </div>
         </div>
     </div>
+
 </template>  
 
 <script>
@@ -27,10 +32,17 @@ export default {
          * @property {string} btnsTopBar.title texto com o nome do btn
          * @property {string} btnsTopBar.link  link para outra página
          * @property {string} btnsTopBar.icon  icon em .svg
+         *
+         * @property {Boolean} onlyIcon obriga o componente retornar apenas icones, ou seja, sem a estrutura html
+         *                     contentora dos botões onde é renderizado o background e outros estilos da section bos botões
          */
         btnsTopBar: {
             type: Object,
-            required: true
+            required: false
+        },
+        onlyIcon: {
+            type: Boolean,
+            required: false
         }
     }
 }

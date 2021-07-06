@@ -63,6 +63,13 @@ class PermissionsSeeder extends Seeder
             'description' => 'Gerenciamento das informações do próprio usuário no adm',
             'created_at' => Carbon::now()
         ]);
+        DB::table('permissions')->insert([
+            'entity' => 'adm',
+            'name' => 'Categorias Convênios',
+            'var_name' => 'adm_categoriasConvenios',
+            'description' => 'Gerenciamento das categorias dos convênios',
+            'created_at' => Carbon::now()
+        ]);
     }
 
     private function portal()

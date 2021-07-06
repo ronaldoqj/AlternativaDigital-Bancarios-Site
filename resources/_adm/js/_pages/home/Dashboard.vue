@@ -291,6 +291,13 @@ export default {
                         link: '/adm/entidades-parceiras',
                         subItem: {},
                     },
+                    adm_categoriasConvenios: {
+                        icon: '/_adm/assets/SVGs/icon-entidades-parceiras.svg',
+                        title: 'Categorias Convênios',
+                        var_name: 'adm_categoriasConvenios',
+                        link: '/adm/categorias-convenios',
+                        subItem: {},
+                    },
                     adm_usuarios: {
                         icon: '/_adm/assets/SVGs/Home/icon-users.svg',
                         title: 'Usuários',

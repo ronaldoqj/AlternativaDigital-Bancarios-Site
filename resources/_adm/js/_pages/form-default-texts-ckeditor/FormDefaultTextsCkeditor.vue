@@ -5,7 +5,7 @@
 
         <errors-component :objErrorsShow="errorsShow" @showErrorsChange="errorsShow.show = $event"></errors-component>
 
-        <form :action="formAction" method="post" @submit="checkForm" enctype="multipart/form-data">
+        <form :action="formAction" method="post" @submit="checkForm" enctype="multipart/form-data" class="mb-5">
             <input type="hidden" name="_token" :value="csrf">
             <input type="hidden" name="entity" :value="entity" />
             <input type="hidden" name="fetrafi" :value="fetrafi" />
@@ -18,7 +18,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-12 col-box-files" :class="borderFields.texto">
-                                <label>Texto</label>
+                                <h5>Texto</h5>
                                 <div id="ckeditor" class="box-files ckeditor">
                                     <!-- <ckeditor v-model="dataInputs.texto"></ckeditor> -->
                                 </div>
@@ -29,21 +29,36 @@
             </div>
 
             <!-- Submit -->
-            <div class="row mt-5">
+            <div class="row">
                 <div class="col-12">
                     <v-btn type="submit" class="btn-cadastrar" block rounded dark>{{valueBtnSubmit}}</v-btn>
                 </div>
             </div>
-        </form>  
+        </form>
+
+        <v-divider class="m-5"></v-divider>
+        <div v-if="this.convenios" class="mt-5 mb-5">
+            <div class="m-5"></div>
+            <v-row>
+                <v-col class="col-box-files">
+                        <convenio :action-form="formAction" :csrf="csrf" :propList="convenios"></convenio>
+                </v-col>
+            </v-row>
+        </div>
+
     </div>
 </template>  
 
 <script>
+import Convenio from "../form-default-texts-ckeditor/Convenios.vue"
+
 export default {
+    components: { Convenio },
     props: [
         'formAction',
         'csrf',
-        'data'
+        'data',
+        'convenios'
     ],
     data() {
         return {
@@ -52,7 +67,7 @@ export default {
              */
             entity: '',
             fetrafi: '',
-            valueBtnSubmit: 'Atualizar',
+            valueBtnSubmit: 'Atualizar Texto',
 
             // variavel necessária para o component de mensagens de erro
             errorsShow: {
@@ -104,7 +119,7 @@ export default {
     },
     mounted()
     {
-        this.editStartCompleteFilds( JSON.parse(this.data) );
+        this.editStartCompleteFilds( JSON.parse(this.data) );        
     }
 }
 </script>
