@@ -58,85 +58,343 @@
 
 
         <!-- Form Create -->
-        <v-dialog v-model="forms.create.modal.show" persistent max-width="600px">
-            <form ref="formCreate" :action="actionForm" method="post" enctype="multipart/form-data">
+        <v-dialog v-model="forms.create.modal.show" persistent max-width="1200px">
+            <form ref="formCreate" :action="actionForm + '/convenio'" method="post">
                 <input type="hidden" name="_token" :value="csrf" />
-                <input type="hidden" name="id" :value="forms.create.inputs.id" />
+                <input type="hidden" name="entity" :value="entity" />
+                <input type="hidden" name="convenio_selected" :value="computedConvenio" />
                 <input type="hidden" name="action" value="create" />
 
                 <v-card>
-                <v-card-title>
-                    <span class="headline modal-title">Cadastrar convênio</span>
-                </v-card-title>
-                <hr class="hr-line-modal" />
-                <v-card-text>
-                    <v-row class="p-3">
-                        <v-col cols="12">
-                            <v-file-input
-                                class="mt-4"
-                                name="icon"
-                                v-model="forms.create.inputs.icon"
-                                label="Icone da categoria:"
-                                placeholder="Procurar imagem"
-                                prepend-icon=""
-                                prepend-inner-icon="image"
-                                color="primary"
-                                outlined
-                                counter
-                                :show-size="1000"
-                                accept="image/png, image/jpeg, image/bmp"
-                                clearable
-                                required
-                            >
-                                <template v-slot:selection="{ index, text }">
-                                <v-chip v-if="index < 2" color="primary" dark label small>
-                                    {{ text }}
-                                </v-chip>
-                                <span v-else-if="index === 2" class="overline grey--text text--darken-3 mx-2" >
-                                    +{{ files.length - 2 }} File(s)
-                                </span>
-                                </template>
-                            </v-file-input>
-                        </v-col>
-                        <v-col cols="12">
-                            <v-text-field
-                                v-model="forms.create.inputs.name"
-                                name="name"
-                                maxlength="240"
-                                label="Nome da nova categoria"
-                                placeholder="Informe o nome da categoria"
-                                outlined
-                                prepend-inner-icon="library_add"
-                                counter
-                                clearable
-                                required
-                            ></v-text-field>
-                        </v-col>
-                    </v-row>
-                </v-card-text>
-                <hr class="hr-line-modal" />
-                <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn
-                        color="blue darken-1"
-                        text
-                        @click="forms.create.modal.show = false"
-                    >
-                        Cancelar
-                    </v-btn>
-                    <v-btn
-                        class="ma-2"
-                        color="success"
-                        type="submit"
-                        tile
-                        outlined
-                        :disabled="activeSubmitCreate"
-                        required
-                        clearable
-                    >
-                        Cadastrar <v-icon right dark> done </v-icon>
-                    </v-btn>
-                </v-card-actions>
+                    <v-card-title>
+                        <span class="headline modal-title">Cadastrar convênio</span>
+                    </v-card-title>
+                    <hr class="hr-line-modal" />
+                    <v-card-text>
+                        
+                        <v-row class="p-3">
+                            
+
+                            <div class="row">
+                                <!-- Convenios -->
+                                <div class="col-12" v-show="false">
+                                    <v-combobox
+                                        name="convenio"
+                                        v-model="forms.create.inputs.convenio.selected"
+                                        item-text="name"
+                                        item-value="id"
+                                        :items="forms.create.inputs.convenio.list"
+                                        label="Convenio:"
+                                        placeholder="Selecione um convenio"
+                                        rounded
+                                        outlined
+                                        dense
+                                        :clearable="true"
+                                    ></v-combobox>
+                                </div>
+                                
+                                <div class="col-12">
+                                    <v-combobox
+                                        name="convenio"
+                                        v-model="forms.create.inputs.convenio.selected"
+                                        item-text="name"
+                                        item-value="id"
+                                        :items="forms.create.inputs.convenio.list"
+                                        label="Convenio:"
+                                        placeholder="Selecione um convenio"
+                                        rounded
+                                        outlined
+                                        dense
+                                        :clearable="true"
+                                    ></v-combobox>
+                                </div>
+                                <!-- Nome -->
+                                <div class="col-12">
+                                    <v-text-field
+                                        v-model="forms.create.inputs.name"
+                                        name="name"
+                                        label="Nome:"
+                                        dense="dense"
+                                        maxlength="240"
+                                        counter="240"
+                                        rounded
+                                        outlined
+                                        clearable
+                                    ></v-text-field>
+                                </div>
+                                <!-- E-Mail -->
+                                <div class="col-12">
+                                    <v-text-field
+                                        v-model="forms.create.inputs.email"
+                                        :rules="forms.create.inputs.rules.email"
+                                        name="email"
+                                        label="E-Mail:"
+                                        dense="dense"
+                                        maxlength="240"
+                                        counter="240"
+                                        rounded
+                                        outlined
+                                        clearable
+                                    ></v-text-field>
+                                </div>
+                                <!-- subdominio -->
+                                <div class="col-12">
+                                    <v-text-field
+                                        v-model="forms.create.inputs.site"
+                                        name="site"
+                                        label="Site:"
+                                        dense="dense"
+                                        maxlength="240"
+                                        counter="240"
+                                        rounded
+                                        outlined
+                                        clearable
+                                    ></v-text-field>
+                                </div>
+                                <!-- Redes Sociais -->
+                                <div class="col-12">
+                                    <v-card class="mx-auto" outlined>
+                                        <v-card-text>
+                                            <v-row>
+                                                <!-- Facebook -->
+                                                <div class="col-12 col-md-6">
+                                                    <!-- <v-icon>$vuetify.icons.iconOnlyLetterFacebook</v-icon> -->
+                                                    <v-text-field
+                                                        v-model="forms.create.inputs.facebook"
+                                                        name="facebook"
+                                                        label="Facebook:"
+                                                        :prepend-icon="'$vuetify.icons.iconOnlyLetterFacebook'"
+                                                        dense="dense"
+                                                        maxlength="240"
+                                                        counter="240"
+                                                        rounded
+                                                        outlined
+                                                        clearable
+                                                    ></v-text-field>
+                                                </div>
+                                                <!-- Twitter -->
+                                                <div class="col-12 col-md-6">
+                                                    <v-text-field
+                                                        v-model="forms.create.inputs.twitter"
+                                                        name="twitter"
+                                                        label="Twitter:"
+                                                        :prepend-icon="'$vuetify.icons.iconOnlyLetterTwitter'"
+                                                        dense="dense"
+                                                        maxlength="240"
+                                                        counter="240"
+                                                        rounded
+                                                        outlined
+                                                        clearable
+                                                    ></v-text-field>
+                                                </div>
+                                                <!-- Instagram -->
+                                                <div class="col-12 col-md-6">
+                                                    <v-text-field
+                                                        v-model="forms.create.inputs.instagram"
+                                                        name="instagram"
+                                                        label="Instagram:"
+                                                        :prepend-icon="'$vuetify.icons.iconOnlyLetterInstagram'"
+                                                        dense="dense"
+                                                        maxlength="240"
+                                                        counter="240"
+                                                        rounded
+                                                        outlined
+                                                        clearable
+                                                    ></v-text-field>
+                                                </div>
+                                                <!-- Whatsapp -->
+                                                <div class="col-12 col-md-6">
+                                                    <v-text-field
+                                                        v-model="forms.create.inputs.whatsapp"
+                                                        name="whatsapp"
+                                                        label="Whatsapp:"
+                                                        :prepend-icon="'$vuetify.icons.iconOnlyLetterWhatsapp'"
+                                                        dense="dense"
+                                                        maxlength="20"
+                                                        counter="20"
+                                                        v-mask="['(##) ##### ####']"
+                                                        rounded
+                                                        outlined
+                                                        clearable
+                                                    ></v-text-field>
+                                                </div>
+                                                <!-- Podcast -->
+                                                <div class="col-12 col-md-6">
+                                                    <v-text-field
+                                                        v-model="forms.create.inputs.podcast"
+                                                        name="podcast"
+                                                        label="Podcast:"
+                                                        :prepend-icon="'$vuetify.icons.iconOnlyLetterPodcast'"
+                                                        dense="dense"
+                                                        maxlength="240"
+                                                        counter="240"
+                                                        rounded
+                                                        outlined
+                                                        clearable
+                                                    ></v-text-field>
+                                                </div>
+                                                <!-- Youtube -->
+                                                <div class="col-12 col-md-6">
+                                                    <v-text-field
+                                                        v-model="forms.create.inputs.youtube"
+                                                        name="youtube"
+                                                        label="Youtube:"
+                                                        :prepend-icon="'$vuetify.icons.iconOnlyLetterYoutube'"
+                                                        dense="dense"
+                                                        maxlength="240"
+                                                        counter="240"
+                                                        rounded
+                                                        outlined
+                                                        clearable
+                                                    ></v-text-field>
+                                                </div>
+                                            </v-row>
+                                        </v-card-text>
+                                    </v-card>
+                                </div>
+
+                                <!-- CEP -->
+                                <div class="col-12 col-md-4">
+                                    <v-text-field
+                                        v-model="forms.create.inputs.cep"
+                                        name="cep"
+                                        label="CEP:"
+                                        dense="dense"
+                                        maxlength="14"
+                                        counter="14"
+                                        v-mask="['#####-###']"
+                                        rounded
+                                        outlined
+                                        clearable
+                                    ></v-text-field>
+                                </div>
+                            </div>
+
+                            <div class="row inputs-finals-to-all-types">
+                                <!-- Endereço -->
+                                <div class="col-12 col-md-6">
+                                    <v-text-field
+                                        v-model="forms.create.inputs.endereco"
+                                        name="endereco"
+                                        label="Endereço:"
+                                        dense="dense"
+                                        maxlength="240"
+                                        counter="240"
+                                        rounded
+                                        outlined
+                                        clearable
+                                    ></v-text-field>
+                                </div>
+                                <!-- Número -->
+                                <div class="col-12 col-md-3 col-lg-2">
+                                    <v-text-field
+                                        v-model="forms.create.inputs.numero"
+                                        name="numero"
+                                        label="Número:"
+                                        dense="dense"
+                                        maxlength="30"
+                                        counter="30"
+                                        rounded
+                                        outlined
+                                        clearable
+                                    ></v-text-field>
+                                </div>
+                                <!-- Complemento -->
+                                <div class="col-12 col-md-3 col-lg-4">
+                                    <v-text-field
+                                        v-model="forms.create.inputs.complemento"
+                                        name="complemento"
+                                        label="Complemento:"
+                                        dense="dense"
+                                        maxlength="240"
+                                        counter="240"
+                                        rounded
+                                        outlined
+                                        clearable
+                                    ></v-text-field>
+                                </div>
+                                <!-- Bairro -->
+                                <div class="col-12 col-md-4">
+                                    <v-text-field
+                                        v-model="forms.create.inputs.bairro"
+                                        name="bairro"
+                                        label="Bairro:"
+                                        dense="dense"
+                                        maxlength="240"
+                                        counter="240"
+                                        rounded
+                                        outlined
+                                        clearable
+                                    ></v-text-field>
+                                </div>
+                                <!-- Cidade -->
+                                <div class="col-12 col-md-4">
+                                    <v-text-field
+                                        v-model="forms.create.inputs.cidade"
+                                        name="cidade"
+                                        label="Cidade:"
+                                        dense="dense"
+                                        maxlength="240"
+                                        counter="240"
+                                        rounded
+                                        outlined
+                                        clearable
+                                    ></v-text-field>
+                                </div>
+                                <!-- Estado -->
+                                <div class="col-12 col-md-4">
+                                    <v-combobox
+                                        name="uf"
+                                        v-model="forms.create.inputs.uf.selected"
+                                        item-text="estado"
+                                        item-value="sigla"
+                                        :items="forms.create.inputs.uf.items"
+                                        label="Estado:"
+                                        placeholder="Selecione um Estado"
+                                        rounded
+                                        outlined
+                                        dense
+                                        :clearable="true"
+                                    ></v-combobox>
+
+                                </div>
+                            </div>
+                                    
+
+
+
+
+
+
+
+
+
+
+                        </v-row>
+                    </v-card-text>
+                    <hr class="hr-line-modal" />
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn
+                            color="blue darken-1"
+                            text
+                            @click="forms.create.modal.show = false"
+                        >
+                            Cancelar
+                        </v-btn>
+                        <v-btn
+                            class="ma-2"
+                            color="success"
+                            type="submit"
+                            tile
+                            outlined
+                            :disabled="activeSubmitCreate"
+                            required
+                            clearable
+                        >
+                            Cadastrar <v-icon right dark> done </v-icon>
+                        </v-btn>
+                    </v-card-actions>
                 </v-card>
             </form>
         </v-dialog>
@@ -146,7 +404,7 @@
 
 <script>
 export default {
-    props: [ 'actionForm', 'propList', 'csrf' ],
+    props: [ 'actionForm', 'entity', 'propList', 'list', 'categoriasConvenios', 'estados', 'csrf' ],
     data() {
         return {
             forms: {
@@ -154,7 +412,41 @@ export default {
                     inputs: {
                         id: null,
                         name: null,
-                        icon: null
+                        email: null,
+                        hiddenConvenio: null,
+                        convenio: {
+                            selected: null,
+                            list: []
+                        },
+                        categoria: null,
+                        description: null,
+                        site: null,
+                        facebook: null,
+                        twitter: null,
+                        instagram: null,
+                        whatsapp: null,
+                        cep: null,
+                        endereco: null,
+                        numero: null,
+                        complemento: null,
+                        bairro: null,
+                        cidade: null,
+                        uf: {
+                            selected: null,
+                            items: JSON.parse(this.estados)
+                        },
+                        uf2: {
+                            selected: null,
+                            items: JSON.parse(this.estados)
+                        },
+
+                        rules: {
+                            email: [
+                                //v => !!v || 'E-mail is required',
+                                //v => /.+@.+/.test(v) || 'E-mail must be valid',
+                                v => !v || /.+@.+/.test(v) || 'E-mail must be valid',
+                            ],
+                        }
                     },
                     buttons: {
                         action: {
@@ -169,48 +461,49 @@ export default {
 
 
 
-            items: [
-                {
-                    title: 'Attractions',
-                    action: 'mdi-ticket',
-                    active: true,
-                    items: [{ title: 'List Item' }],
-                },
-                {
-                    title: 'Dining',
-                    action: 'mdi-silverware-fork-knife',
-                    items: [
-                        { title: 'Breakfast & brunch' },
-                        { title: 'New American' },
-                        { title: 'Sushi' },
-                    ],
-                },
-                {
-                    title: 'Education',
-                    action: 'mdi-school',
-                    items: [{ title: 'List Item' }],
-                },
-                {
-                    title: 'Family',
-                    action: 'mdi-run',
-                    items: [{ title: 'List Item' }],
-                },
-                {
-                    title: 'Health',
-                    action: 'mdi-bottle-tonic-plus',
-                    items: [{ title: 'List Item' }],
-                },
-                {
-                    title: 'Office',
-                    action: 'mdi-content-cut',
-                    items: [{ title: 'List Item' }],
-                },
-                {
-                    title: 'Promotions',
-                    action: 'mdi-tag',
-                    items: [{ title: 'List Item' }],
-                },
-            ],
+            items: [],
+            // items: [
+            //     {
+            //         title: 'Attractions',
+            //         action: 'mdi-ticket',
+            //         active: true,
+            //         items: [{ title: 'List Item' }],
+            //     },
+            //     {
+            //         title: 'Dining',
+            //         action: 'mdi-silverware-fork-knife',
+            //         items: [
+            //             { title: 'Breakfast & brunch' },
+            //             { title: 'New American' },
+            //             { title: 'Sushi' },
+            //         ],
+            //     },
+            //     {
+            //         title: 'Education',
+            //         action: 'mdi-school',
+            //         items: [{ title: 'List Item' }],
+            //     },
+            //     {
+            //         title: 'Family',
+            //         action: 'mdi-run',
+            //         items: [{ title: 'List Item' }],
+            //     },
+            //     {
+            //         title: 'Health',
+            //         action: 'mdi-bottle-tonic-plus',
+            //         items: [{ title: 'List Item' }],
+            //     },
+            //     {
+            //         title: 'Office',
+            //         action: 'mdi-content-cut',
+            //         items: [{ title: 'List Item' }],
+            //     },
+            //     {
+            //         title: 'Promotions',
+            //         action: 'mdi-tag',
+            //         items: [{ title: 'List Item' }],
+            //     },
+            // ],
 
 
         }
@@ -231,13 +524,17 @@ export default {
             let disabled = true;
 
             if ( this.forms.create.inputs.name &&
-                 this.forms.create.inputs.name.length > 2 &&
-                 ! _.isNil(this.forms.create.inputs.icon))
+                 this.forms.create.inputs.name.length > 2 )
             {
                 disabled = false;
             }
 
             return disabled;
+        },
+
+        computedConvenio() {
+            this.forms.create.inputs.hiddenConvenio = this.forms.create.inputs.convenio.selected;
+            return this.forms.create.inputs.hiddenConvenio ? this.forms.create.inputs.hiddenConvenio.id : '';
         }
     },
     methods: {
@@ -255,6 +552,10 @@ export default {
 
             return btnsBarTop;
         }
+    },
+
+    created() {
+        this.forms.create.inputs.convenio.list = JSON.parse(this.categoriasConvenios);
     }
 }
 </script>

@@ -41,7 +41,7 @@
             <div class="m-5"></div>
             <v-row>
                 <v-col class="col-box-files">
-                        <convenio :action-form="formAction" :csrf="csrf" :propList="convenios"></convenio>
+                        <convenio :action-form="formAction" :entity="entity" :categorias-convenios="categoriasConvenios" :estados="estados" :csrf="csrf" :propList="convenios"></convenio>
                 </v-col>
             </v-row>
         </div>
@@ -58,6 +58,8 @@ export default {
         'formAction',
         'csrf',
         'data',
+        'estados',
+        'categoriasConvenios',
         'convenios'
     ],
     data() {

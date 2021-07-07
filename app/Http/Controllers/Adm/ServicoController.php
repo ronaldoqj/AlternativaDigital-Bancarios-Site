@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Adm;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Servico;
+use App\Models\Estado;
+use App\Models\CategoriaConvenio;
 use Illuminate\Support\Facades\Auth;
 
 class ServicoController extends Controller
@@ -33,8 +35,28 @@ class ServicoController extends Controller
             $search = $this->saveInstituicao($type);
         }
 
-        return view('adm.servicos')->withData($search);
+        $estados = new Estado();
+
+        $categoriasConvenios = new CategoriaConvenio();
+        $categoriasConvenios = $categoriasConvenios->listAllToAdm()->get()->toJson();
+
+
+        return view('adm.servicos')->withItems(json_encode([]))
+                                   ->withData($search)
+                                   ->withCategoriasConvenios($categoriasConvenios)
+                                   ->withEstados(json_encode($estados->all()->toArray()));
     }
+
+
+    public function convenio(Request $request)
+    {
+
+        dd($request);
+
+        return redirect()->route('adm-servicos');
+    }
+
+
 
     public function edicao(Request $request)
     {

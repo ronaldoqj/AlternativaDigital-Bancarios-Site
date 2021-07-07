@@ -42,6 +42,9 @@
         entity="{{session()->get('configAdm')['entity']}}"
         data="{{json_encode($data)}}"
         :convenios="true"
+        list="{{$items}}"
+        estados="{{$estados}}"
+        categorias-convenios="{{$categoriasConvenios}}"
     />
 </div>
 @endsection

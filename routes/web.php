@@ -102,8 +102,12 @@ Route::prefix('adm')->namespace('Adm')->group(function ()
 
         Route::get('/institucional', 'InstituicaoController@index')->name('adm-instituicao');
         Route::post('/institucional', 'InstituicaoController@edicao')->name('adm-instituicao-edicao');
+        
         Route::get('/servicos', 'ServicoController@index')->name('adm-servicos');
         Route::post('/servicos', 'ServicoController@edicao')->name('adm-servicos-edicao');
+        Route::post('/servicos/convenio', 'ServicoController@convenio')->name('adm-servicos-convenio');
+
+
         Route::get('/contatos', 'ContatoController@index')->name('adm-contatos');
         Route::post('/contatos', 'ContatoController@edicao')->name('adm-contatos-edicao');
         
