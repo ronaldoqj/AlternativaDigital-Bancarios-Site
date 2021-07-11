@@ -1,3 +1,12 @@
+<?php
+$whatsappFetrafiRs = request()->syndicate['whatsapp'];
+
+if ($whatsappFetrafiRs) {
+    $whatsappFetrafiRs = 55 . preg_replace('/[^0-9]/', '', $whatsappFetrafiRs);
+    $linkSocialMediaWhatsappFetrafiRs = "https://api.whatsapp.com/send?phone={$whatsappFetrafiRs}&text=Olá Bancários-RS, acessei seu contato no Portal dos Bancários RS.";
+}
+?>
+
 @extends('layouts.layout-sindicato')
 @section('css')
     <link href="{{url(mix('/_site/css/pages/sindicatos/contato.css'))}}" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -71,22 +80,24 @@
             <div class="legendas">REDES SOCIAIS DO SINDICATO</div>
             <div class="flex-icons">
                 @if(request()->syndicate['facebook'])
-                <div><a target="blank" href="{{ url(request()->syndicate['facebook']) }}"><img src="{{asset('/_site/assets/SVGs/Brancos/facebook.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                <div><a target="_blank" href="{{ url(request()->syndicate['facebook']) }}"><img src="{{asset('/_site/assets/SVGs/Brancos/facebook.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
                 @endif
                 @if(request()->syndicate['twitter'])
-                <div><a target="blank" href="{{ url(request()->syndicate['twitter']) }}"><img src="{{asset('/_site/assets/SVGs/Brancos/twitter.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                <div><a target="_blank" href="{{ url(request()->syndicate['twitter']) }}"><img src="{{asset('/_site/assets/SVGs/Brancos/twitter.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
                 @endif
                 @if(request()->syndicate['instagram'])
-                <div><a target="blank" href="{{ url(request()->syndicate['instagram']) }}"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                <div><a target="_blank" href="{{ url(request()->syndicate['instagram']) }}"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
                 @endif
+                
                 @if(request()->syndicate['whatsapp'])
-                <div><a target="blank" href="{{ url(request()->syndicate['whatsapp']) }}"><img src="{{asset('/_site/assets/SVGs/Brancos/whatsapp.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                <div><a target="_blank" href="{{ $linkSocialMediaWhatsappFetrafiRs }}"><img src="{{asset('/_site/assets/SVGs/Brancos/whatsapp.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
                 @endif
+
                 @if(request()->syndicate['podcast'])
-                <div><a target="blank" href="{{ url(request()->syndicate['podcast']) }}"><img src="{{asset('/_site/assets/SVGs/Brancos/podcasts.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                <div><a target="_blank" href="{{ url(request()->syndicate['podcast']) }}"><img src="{{asset('/_site/assets/SVGs/Brancos/podcasts.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
                 @endif
                 @if(request()->syndicate['youtube'])
-                <div><a target="blank" href="{{ url(request()->syndicate['youtube']) }}"><img src="{{asset('/_site/assets/SVGs/Brancos/youtube.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
+                <div><a target="_blank" href="{{ url(request()->syndicate['youtube']) }}"><img src="{{asset('/_site/assets/SVGs/Brancos/youtube.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a></div>
                 @endif
             </div>
         </div>

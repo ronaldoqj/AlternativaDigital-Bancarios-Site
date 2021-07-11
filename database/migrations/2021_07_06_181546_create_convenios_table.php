@@ -32,7 +32,7 @@ class CreateConveniosTable extends Migration
             $table->string('complemento', 240)->nullable();
             $table->string('bairro', 240)->nullable();
             $table->string('cidade', 240)->nullable();
-            $table->string('uf', 240)->nullable();
+            $table->char('uf', 2)->nullable();
 
             $table->timestamps();
         });

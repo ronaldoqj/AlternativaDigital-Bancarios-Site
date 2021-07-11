@@ -167,7 +167,9 @@ class AcordoEConvencao extends Model
         foreach ($years as $year)
         {
             $item = $this->listByYear($year)->toArray();
-            $arrayYears[$year->dataInclusao] = ['year' => $year->dataInclusao, 'data' => $item];
+            if (count($item)) {
+                $arrayYears[$year->dataInclusao] = ['year' => $year->dataInclusao, 'data' => $item];
+            }
         }
 
         /**
@@ -204,12 +206,11 @@ class AcordoEConvencao extends Model
         // SELECT DATE_FORMAT(`dataInclusao`, '%Y') FROM acordos_e_convencoes
         // GROUP BY DATE_FORMAT(`dataInclusao`, '%Y')
         $list = DB::table('acordos_e_convencoes');
-        $list->leftjoin('files as filesBannerDestaque', 'filesBannerDestaque.id', '=', 'acordos_e_convencoes.bannerDestaque');
-        $list->orderBy('acordos_e_convencoes.dataInclusao', 'desc');
-        $list->groupByRaw('DATE_FORMAT(acordos_e_convencoes.dataInclusao, "%Y")');
-        $listAll = $list->addSelect( DB::raw('DATE_FORMAT(acordos_e_convencoes.dataInclusao, "%Y") as dataInclusao') );
+        $list->select( DB::raw('DATE_FORMAT(acordos_e_convencoes.dataInclusao, "%Y") as dataInclusao') );
+        $list->groupBy('dataInclusao');
+        $list->orderBy('dataInclusao', 'desc');
 
-        return $listAll->get();
+        return $list->distinct()->get();
     }
 
     /**

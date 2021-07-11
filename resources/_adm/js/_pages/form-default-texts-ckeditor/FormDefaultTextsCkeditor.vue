@@ -41,7 +41,7 @@
             <div class="m-5"></div>
             <v-row>
                 <v-col class="col-box-files">
-                        <convenio :action-form="formAction" :entity="entity" :categorias-convenios="categoriasConvenios" :estados="estados" :csrf="csrf" :propList="convenios"></convenio>
+                    <convenio :action-form="formAction" :entity="idEntity" :categorias-convenios="categoriasConvenios" :estados="estados" :list-categorias-com-convenios="JSON.parse(listCategoriasComConvenios)" :csrf="csrf"></convenio>
                 </v-col>
             </v-row>
         </div>
@@ -57,10 +57,12 @@ export default {
     props: [
         'formAction',
         'csrf',
+        'idEntity',
         'data',
         'estados',
         'categoriasConvenios',
-        'convenios'
+        'convenios',
+        'listCategoriasComConvenios'
     ],
     data() {
         return {

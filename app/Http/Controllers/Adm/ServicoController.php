@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Servico;
 use App\Models\Estado;
 use App\Models\CategoriaConvenio;
+use App\Models\Convenio;
 use Illuminate\Support\Facades\Auth;
 
 class ServicoController extends Controller
@@ -37,21 +38,88 @@ class ServicoController extends Controller
 
         $estados = new Estado();
 
+        /**
+         * Categorias Convenios
+         * 
+         * Alimenta o combobox das categorias dos convenios
+         */
         $categoriasConvenios = new CategoriaConvenio();
         $categoriasConvenios = $categoriasConvenios->listAllToAdm()->get()->toJson();
 
+        /**
+         * Listagem dos convenios organizados por categoria
+         * dentro de cada categoria contem a listagem dos convenios
+         */
+        $entity = (int)session()->get('configAdm')['entity'];
+        $convenio = new Convenio();
+        $getListCategoriasComConvenios = $convenio->getListCategoriasComConvenios($entity);
 
         return view('adm.servicos')->withItems(json_encode([]))
                                    ->withData($search)
                                    ->withCategoriasConvenios($categoriasConvenios)
+                                   ->withListCategoriasComConvenios($getListCategoriasComConvenios)
                                    ->withEstados(json_encode($estados->all()->toArray()));
     }
 
-
     public function convenio(Request $request)
     {
+        if ($request->isMethod('post'))
+        {
+            $convenio = new Convenio();
 
-        dd($request);
+            switch ($request->input('action'))
+            {
+                case 'create':
+                    $convenio->name = $request->input('name');
+                    $convenio->email = $request->input('email');
+                    $convenio->entidade = $request->input('entity');
+                    $convenio->categoria = $request->input('convenio');
+                    $convenio->description = $request->input('description');
+                    $convenio->site = $request->input('site');
+                    $convenio->facebook = $request->input('facebook');
+                    $convenio->twitter = $request->input('twitter');
+                    $convenio->instagram = $request->input('instagram');
+                    $convenio->whatsapp = $request->input('whatsapp');
+                    $convenio->cep = $request->input('cep');
+                    $convenio->endereco = $request->input('endereco');
+                    $convenio->numero = $request->input('numero');
+                    $convenio->complemento = $request->input('complemento');
+                    $convenio->bairro = $request->input('bairro');
+                    $convenio->cidade = $request->input('cidade');
+                    $convenio->uf = $request->input('uf');
+                    $convenio->save();
+                    break;
+                
+                case 'update':
+                    $update = $convenio->find($request->input('id'));
+                    //dump($request->input('convenio'));
+                    //dd($update);
+                    $update->name = $request->input('name');
+                    $update->email = $request->input('email');
+                    $update->entidade = $request->input('entity');
+                    $update->categoria = $request->input('convenio');
+                    $update->description = $request->input('description');
+                    $update->site = $request->input('site');
+                    $update->facebook = $request->input('facebook');
+                    $update->twitter = $request->input('twitter');
+                    $update->instagram = $request->input('instagram');
+                    $update->whatsapp = $request->input('whatsapp');
+                    $update->cep = $request->input('cep');
+                    $update->endereco = $request->input('endereco');
+                    $update->numero = $request->input('numero');
+                    $update->complemento = $request->input('complemento');
+                    $update->bairro = $request->input('bairro');
+                    $update->cidade = $request->input('cidade');
+                    $update->uf = $request->input('uf');
+                    $update->save();
+                    break;
+                
+                case 'delete':
+                    $convenio = $convenio->find($request->input('id'));
+                    $convenio->delete();
+                    break;
+            }
+        }
 
         return redirect()->route('adm-servicos');
     }

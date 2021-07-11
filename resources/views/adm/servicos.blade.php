@@ -39,12 +39,14 @@
         ref="cadastro"
         form-action="{{url('adm/servicos')}}"
         csrf="{{ csrf_token() }}"
-        entity="{{session()->get('configAdm')['entity']}}"
+        id-entity="{{session()->get('configAdm')['entity']}}"
         data="{{json_encode($data)}}"
+
         :convenios="true"
         list="{{$items}}"
         estados="{{$estados}}"
         categorias-convenios="{{$categoriasConvenios}}"
+        list-categorias-com-convenios="{{$listCategoriasComConvenios}}"
     />
 </div>
 @endsection

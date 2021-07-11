@@ -73928,7 +73928,7 @@ var opts = {};
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\wamp64\www\Projects\3-AlternativaDigital\Bancarios\Site\resources\_site\js\app.js */"./resources/_site/js/app.js");
+module.exports = __webpack_require__(/*! C:\wamp64\www\Projects\AlternativaDigital-Bancarios-Site\resources\_site\js\app.js */"./resources/_site/js/app.js");
 
 
 /***/ })

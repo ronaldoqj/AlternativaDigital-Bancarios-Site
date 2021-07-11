@@ -63,22 +63,22 @@ if ($whatsappFetrafiRs) {
             <div class="legendas">REDES SOCIAIS DA FETRAFI-RS</div>
             <div class="flex-icons">
                 @if( request()->fetrafirs->facebook )
-                    <div> <a target="blank" href="{{url(request()->fetrafirs->facebook)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/facebook.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                    <div> <a target="_blank" href="{{url(request()->fetrafirs->facebook)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/facebook.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                 @endif
                 @if( request()->fetrafirs->twitter )
-                <div> <a target="blank" href="{{url(request()->fetrafirs->twitter)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/twitter.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                <div> <a target="_blank" href="{{url(request()->fetrafirs->twitter)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/twitter.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                 @endif
                 @if( request()->fetrafirs->instagram )
-                <div> <a target="blank" href="{{url(request()->fetrafirs->instagram)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                <div> <a target="_blank" href="{{url(request()->fetrafirs->instagram)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/instagram.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                 @endif
                 @if ($whatsappFetrafiRs)
                 <div> <a target="_blank" href="{{ $linkSocialMediaWhatsappFetrafiRs }}"><img src="{{asset('/_site/assets/SVGs/Brancos/whatsapp.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                 @endif
                 @if( request()->fetrafirs->podcast )
-                <div> <a target="blank" href="{{url(request()->fetrafirs->podcast)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/podcasts.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                <div> <a target="_blank" href="{{url(request()->fetrafirs->podcast)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/podcasts.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                 @endif
                 @if( request()->fetrafirs->youtube )
-                <div> <a target="blank" href="{{url(request()->fetrafirs->youtube)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/youtube.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
+                <div> <a target="_blank" href="{{url(request()->fetrafirs->youtube)}}"><img src="{{asset('/_site/assets/SVGs/Brancos/youtube.svg')}}" class="img-fluid" onload="SVGInject(this)" /></a> </div>
                 @endif
             </div>
         </div>
