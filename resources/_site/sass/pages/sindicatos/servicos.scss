@@ -2,7 +2,6 @@
 // Globals Functions (Mixins)
 @import "../../_functions";
 
-
 #content-syndicate
 {
     #servicos
@@ -27,6 +26,157 @@
             .container-responsive-img {
                 padding: 0;
             }
+        }
+
+        .convenios {
+            margin-top: 80px;
+        }
+
+        .box-collapse
+        {
+            margin: 4px 0;
+
+            .collapse-title {
+                //font-family: "Anton", sans-serif;
+                padding: 10px 15px;
+                border: solid 1px #125488;
+                border-radius: 10px;
+                background-color: #125488;
+                color: white;
+                font-size: 1.6em;
+                letter-spacing: 0.03em;
+                display: flex;
+                align-items: center;
+                text-transform: uppercase;
+                font-weight: bold;
+    
+                .thumb-title {
+                    width: 40px;
+                    height: 40px;
+                    margin-right: 12px;
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                }
+            }
+
+            .card__convenio--list
+            {
+                display: flex;
+                margin: 30px 20px;
+        
+                img {
+                    width: 34px;
+                    height: 34px;
+                    object-fit: cover;
+                    background-position: center;
+                }
+
+                .col__list {
+                    width: 34px;
+                    height: 34px;
+                }
+                .col__list--first
+                {
+                    margin-right: 10px;
+                    text-align: center;
+
+                    svg
+                    {
+                        .cls-1,
+                        .cls-3,
+                        .cls-4,
+                        path,
+                        tspan {
+                            fill: #015c92;
+                        }
+                    }
+                }
+                .col__list--last
+                {
+                    font-size: 0.9em;
+                    color: #A9A9A9;
+
+                    h2 {
+                        font-size: 1.7em;
+                        font-weight: bold;
+                        color: #125488;
+                    }
+                    h3 {
+                        font-size: 1.1em;
+                        font-weight: bold;
+                        color: #125488;
+                        text-transform: uppercase;
+                    }
+                    p {
+                        font-size: 1.1em;
+                        color: #A9A9A9;
+                        line-height: 1.4em;
+                    }
+        
+                    .icons__socialmedias {
+                        display: flex;
+                        justify-content: space-around;
+                        padding: 10px;
+        
+                        a {
+                            width: 40px;
+        
+                            svg
+                            {
+                                .cls-1,
+                                .cls-3,
+                                .cls-4,
+                                path,
+                                tspan {
+                                    fill: #A5A5A5;
+                                    transition: 0.4s;
+                                }
+
+                                &:hover
+                                {
+                                    .cls-1,
+                                    .cls-3,
+                                    .cls-4,
+                                    path,
+                                    tspan {
+                                        fill: #015c92;
+                                    }
+                                }
+                            }
+                        }
+                    }
+        
+                    .informations {
+                        .icons {
+                            width: 15px;
+                            height: 15px;
+                        }
+
+                        ul {
+                            list-style: none;
+                            padding: 0;
+                            margin: 4px 0;
+
+                            li {
+                                display: inline-table;
+                            }
+                        }
+
+                        svg {
+                            path {
+                                fill: #125488 !important;
+                                transition: 0.4s;
+                            }
+                        }
+
+                        p {
+                            margin: 5px 0;
+                        }
+                    }
+                }
+            }
+
         }
     }
 }

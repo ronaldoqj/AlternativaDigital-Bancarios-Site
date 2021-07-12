@@ -53,16 +53,14 @@ class Convenio extends Model
                                         'icon.created_at as file_created_at',
                                         'icon.updated_at as file_updated_at')
                            ->get();
-        
 
         /** incherta os convenios nas categorias */
         foreach ($categorias as $categoria)
         {
-            $categoria->convenios = $this->getListConvenios($categoria->id)->get()->toArray();
+            $categoria->convenios = $this->getListConvenios($categoria->id, $entity)->get()->toArray();
         }
 
         return $categorias;
-
     }
 
     public function getGroupCategorias()
@@ -76,10 +74,14 @@ class Convenio extends Model
         return $listAll;
     }
 
-    public function getListConvenios($category = null)
+    public function getListConvenios($category = null, $entity = null)
     {
+        if (!$entity) {
+            $entity = (int)session()->get('configAdm')['entity'];
+        }
+
         $list = DB::table('convenios');
-        $list->where('convenios.entidade', (int)session()->get('configAdm')['entity']);
+        $list->where('convenios.entidade', $entity);
 
         /** Usado no momento somente pelo método desta classe: getListCategorias */
         if ( $category ) {
@@ -91,6 +93,7 @@ class Convenio extends Model
         $listAll = $list->addSelect('convenios.id as id',
                                     'convenios.name as name',
                                     'convenios.email as email',
+                                    'convenios.phone as phone',
                                     'convenios.entidade as entidade',
                                     'convenios.categoria as categoria',
                                     'convenios.description as description',
@@ -109,7 +112,5 @@ class Convenio extends Model
                                     'convenios.created_at as created_at',
                                     'convenios.updated_at as updated_at');
         return $listAll;
-
     }
-
 }

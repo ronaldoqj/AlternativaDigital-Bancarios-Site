@@ -15,7 +15,6 @@
 
         </pages-menu-bar>
 
-
         <!-- List -->
         <v-container>
             <v-row>
@@ -26,8 +25,8 @@
                             <v-list-item v-for="(item, i) in list" :key="i">
 
                 
-                                <v-list-item-avatar>
-                                <v-img :src="`/${item.file_pathfile}/${item.file_namefile}`"></v-img>
+                                <v-list-item-avatar tile>
+                                    <v-img :src="`/${item.file_pathfile}/${item.file_namefile}`"></v-img>
                                 </v-list-item-avatar>
 
                                 <v-list-item-content>
@@ -36,13 +35,12 @@
 
                                 <v-list-item-action>
                                     <div>
-                                        <v-btn @click="updateItem(item)" color="primary" fab small dark>
+                                        <v-btn @click="updateItem(item)" color="cyan" fab small dark>
                                             <v-icon>mdi-pencil</v-icon>
                                         </v-btn>
                                         <!-- <v-btn @click="deleteItem(item)" color="error" fab small dark>
                                             <v-icon>mdi-delete</v-icon>
                                         </v-btn> -->
-
 
                                         <v-menu :close-on-content-click="true" :nudge-width="150" offset-x>
                                             <template v-slot:activator="{ on, attrs }">
@@ -59,8 +57,6 @@
                                                 </v-btn>
                                             </v-card>
                                         </v-menu>
-
-
                                     </div>
                                 </v-list-item-action>
 
@@ -95,8 +91,8 @@
                 <hr class="hr-line-modal" />
                 <v-card-text>
                     <v-row class="p-3">
-                        <v-col class="mx-auto text-center">
-                            <v-list-item-avatar size="100">
+                        <v-col class="mx-auto text-center dialog__img--categoria">
+                            <v-list-item-avatar tile size="150">
                                 <v-img :src="forms.update.avatar" :alt="forms.update.inputs.name"></v-img>
                             </v-list-item-avatar>
                         </v-col>
@@ -113,7 +109,7 @@
                                 outlined
                                 counter
                                 :show-size="1000"
-                                accept="image/png, image/jpeg, image/bmp"
+                                accept="image/png, image/jpeg, image/bmp, image/svg+xml"
                                 clearable
                             >
                                 <template v-slot:selection="{ index, text }">
@@ -382,17 +378,39 @@ export default {
         if (! this.list.length) {
             this.forms.create.modal.show = true;
         }
-        //this.list = JSON.parse(JSON.parse(this.propList).list);
     }
 }
 </script>
 
 <style lang="scss">
 @import '~/../resources/_adm/sass/_vars.scss';
+
+.dialog__img--categoria
+{
+    background-color: #0B3C5E;
+
+    svg {
+        path, g {
+            fill: #0B3C5E;
+        }
+    }
+}
+
 .page-categorias-convenios
 {
     .v-list-item {
         border-bottom: solid 1px #eee;
+        background-color: #125488;
+    }
+
+    .v-list-item__content {
+        color: white;
+
+        svg {
+            path, g {
+                fill: white;
+            }
+        }
     }
 
     .v-expansion-panel-header
@@ -505,5 +523,4 @@ export default {
         }
     }
 }
-
 </style>

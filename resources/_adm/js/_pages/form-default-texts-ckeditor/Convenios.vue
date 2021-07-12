@@ -33,7 +33,8 @@
                     <template v-slot:activator>
                         <v-list-item-avatar tile>
                             <!-- <v-img src="http://localhost:3000/files/categorias_convenios/itachi-20210705_233643-050059.png"></v-img> -->
-                            <v-img :src="`/${item.file_pathfile}/${item.file_namefile}`"></v-img>
+                            <!-- <v-img :src="`/${item.file_pathfile}/${item.file_namefile}`"></v-img> -->
+                            <img :src="`/${item.file_pathfile}/${item.file_namefile}`" class="icon img-fluid" onload="SVGInject(this)" />
                         </v-list-item-avatar>
                         <v-list-item-content>
                             <v-list-item-title v-text="item.name"></v-list-item-title>
@@ -52,7 +53,8 @@
                         >
                             <div class="card__convenio--list">
                                 <div class="col__list col__list--first">
-                                    <v-img :src="`/${item.file_pathfile}/${item.file_namefile}`"></v-img>
+                                    <!-- <v-img :src="`/${item.file_pathfile}/${item.file_namefile}`"></v-img> -->
+                                    <img :src="`/${item.file_pathfile}/${item.file_namefile}`" class="icon img-fluid" onload="SVGInject(this)" />
                                     
                                     <v-btn @click="openEditConvenio(child)" class="mt-2" fab outlined x-small color="indigo">
                                         <v-icon dark> mdi-pencil </v-icon>    
@@ -89,12 +91,13 @@
                                             <ul>
                                                 <li><v-icon dense color="#125488"> mdi-map-marker </v-icon></li>
                                                 <li>
-                                                    <div>{{child.endereco}}, {{child.numero}}</div>
-                                                    <div>{{child.bairro}} - {{child.cidade}} / {{ child.uf }}</div>
+                                                    <div>{{child.endereco}}, nº {{child.numero}} - {{child.complemento}}</div>
+                                                    <div>{{child.bairro}}</div>
+                                                    <div>CEP: {{child.cep}} - {{child.cidade}} - {{ child.uf }}</div>
                                                 </li>
                                             </ul> 
                                         </p>
-                                        <p> <v-icon dense color="#125488"> mdi-phone-in-talk </v-icon> Telefone </p>
+                                        <p> <v-icon dense color="#125488"> mdi-phone-in-talk </v-icon> {{child.phone}} </p>
                                         <p> <v-icon dense color="#125488"> mdi-email </v-icon> {{child.email}} </p>
                                         <p> <v-icon dense color="#125488"> mdi-monitor-star </v-icon> {{child.site}} </p>
                                     </div>
@@ -144,45 +147,51 @@
                     <hr class="hr-line-modal" />
                     <v-card-text>
                         <v-row class="p-4 pt-2 pb-2">
-                            <div class="row">
+                            <div class="row dialog-row">
                                 <!-- Convenios -->
-                                <div class="col-12">
+                                <div class="col col-12 col-combobox-convenios">
                                     <v-combobox
                                         v-model="form.inputs.convenio.selected"
+                                        class="combobox-convenios"
                                         item-text="name"
                                         item-value="id"
                                         :items="form.inputs.convenio.list"
                                         label="Convenio:"
-                                        placeholder="Selecione um convenio"
+                                        background-color="#125488"
+                                        color="white"
+                                        item-color="#125488"
                                         rounded
                                         outlined
                                         dense
+                                        hide-details
                                         clearable
                                     >
                                         <!-- Campo selecionado para personalizar -->
                                         <template v-slot:selection="data">
-                                            <v-avatar  size="26" class="mr-4">
+                                            <v-avatar tile size="26" class="mr-4">
                                                 <v-img :src="data.item.img"></v-img>
                                             </v-avatar>
-                                            {{ data.item.name }}
+                                            <span>{{ data.item.name }}</span>
                                         </template>
 
                                         <!-- Listagem personalizada -->
                                         <template slot="item" slot-scope="data">
-                                            <v-avatar size="26" class="mr-4">
-                                                <v-img :src="data.item.img"></v-img>
-                                            </v-avatar>
-                                            {{ data.item.name }}
+                                            <div class="template--list--combobox">
+                                                <v-avatar tile size="26" class="mr-4">
+                                                    <v-img :src="data.item.img"></v-img>
+                                                </v-avatar>
+                                                <span>{{ data.item.name }}</span>
+                                            </div>
                                         </template>
                                     </v-combobox>
                                 </div>
                                 <!-- Nome -->
-                                <div class="col-12">
+                                <div class="col col-12">
                                     <v-text-field
                                         v-model="form.inputs.name"
                                         name="name"
                                         label="Nome:"
-                                        dense="dense"
+                                        dense
                                         maxlength="240"
                                         counter="240"
                                         rounded
@@ -191,13 +200,13 @@
                                     ></v-text-field>
                                 </div>
                                 <!-- E-Mail -->
-                                <div class="col-12">
+                                <div class="col col-12">
                                     <v-text-field
                                         v-model="form.inputs.email"
                                         :rules="form.inputs.rules.email"
                                         name="email"
                                         label="E-Mail:"
-                                        dense="dense"
+                                        dense
                                         maxlength="240"
                                         counter="240"
                                         rounded
@@ -205,12 +214,27 @@
                                         clearable
                                     ></v-text-field>
                                 </div>
-                                <div class="col-12">
+                                <!-- Telefone -->
+                                <div class="col col-12">
+                                    <v-text-field
+                                        v-model="form.inputs.phone"
+                                        name="phone"
+                                        label="Telefone:"
+                                        dense
+                                        maxlength="20"
+                                        counter="20"
+                                        v-mask="['(##) #### #####']"
+                                        rounded
+                                        outlined
+                                        clearable
+                                    ></v-text-field>
+                                </div>
+                                <div class="col col-12">
                                     <v-textarea
                                     v-model="form.inputs.description"
                                     name="description"
                                     label="Descrição"
-                                    dense="dense"
+                                    dense
                                     auto-grow
                                     outlined
                                     counter
@@ -219,12 +243,12 @@
                                     ></v-textarea>
                                 </div>
                                 <!-- Site -->
-                                <div class="col-12">
+                                <div class="col col-12">
                                     <v-text-field
                                         v-model="form.inputs.site"
                                         name="site"
                                         label="Site:"
-                                        dense="dense"
+                                        dense
                                         maxlength="240"
                                         counter="240"
                                         rounded
@@ -233,18 +257,18 @@
                                     ></v-text-field>
                                 </div>
                                 <!-- Redes Sociais -->
-                                <div class="col-12">
+                                <div class="col col-12 mb-5">
                                     <v-card class="mx-auto" outlined>
                                         <v-card-text>
                                             <v-row>
                                                 <!-- Facebook -->
-                                                <div class="col-12 col-md-6">
+                                                <div class="col col-12 col-md-6">
                                                     <v-text-field
                                                         v-model="form.inputs.facebook"
                                                         name="facebook"
                                                         label="Facebook:"
                                                         :prepend-icon="'$vuetify.icons.iconOnlyLetterFacebook'"
-                                                        dense="dense"
+                                                        dense
                                                         maxlength="240"
                                                         counter="240"
                                                         rounded
@@ -253,13 +277,13 @@
                                                     ></v-text-field>
                                                 </div>
                                                 <!-- Twitter -->
-                                                <div class="col-12 col-md-6">
+                                                <div class="col col-12 col-md-6">
                                                     <v-text-field
                                                         v-model="form.inputs.twitter"
                                                         name="twitter"
                                                         label="Twitter:"
                                                         :prepend-icon="'$vuetify.icons.iconOnlyLetterTwitter'"
-                                                        dense="dense"
+                                                        dense
                                                         maxlength="240"
                                                         counter="240"
                                                         rounded
@@ -268,13 +292,13 @@
                                                     ></v-text-field>
                                                 </div>
                                                 <!-- Instagram -->
-                                                <div class="col-12 col-md-6">
+                                                <div class="col col-12 col-md-6">
                                                     <v-text-field
                                                         v-model="form.inputs.instagram"
                                                         name="instagram"
                                                         label="Instagram:"
                                                         :prepend-icon="'$vuetify.icons.iconOnlyLetterInstagram'"
-                                                        dense="dense"
+                                                        dense
                                                         maxlength="240"
                                                         counter="240"
                                                         rounded
@@ -283,13 +307,13 @@
                                                     ></v-text-field>
                                                 </div>
                                                 <!-- Whatsapp -->
-                                                <div class="col-12 col-md-6">
+                                                <div class="col col-12 col-md-6">
                                                     <v-text-field
                                                         v-model="form.inputs.whatsapp"
                                                         name="whatsapp"
                                                         label="Whatsapp:"
                                                         :prepend-icon="'$vuetify.icons.iconOnlyLetterWhatsapp'"
-                                                        dense="dense"
+                                                        dense
                                                         maxlength="20"
                                                         counter="20"
                                                         v-mask="['(##) ##### ####']"
@@ -303,12 +327,12 @@
                                     </v-card>
                                 </div>
                                 <!-- CEP -->
-                                <div class="col-12 col-md-4">
+                                <div class="col col-12 col-md-4">
                                     <v-text-field
                                         v-model="form.inputs.cep"
                                         name="cep"
                                         label="CEP:"
-                                        dense="dense"
+                                        dense
                                         maxlength="14"
                                         counter="14"
                                         v-mask="['#####-###']"
@@ -321,12 +345,12 @@
 
                             <div class="row inputs-finals-to-all-types">
                                 <!-- Endereço -->
-                                <div class="col-12 col-md-6">
+                                <div class="col col-12 col-md-6">
                                     <v-text-field
                                         v-model="form.inputs.endereco"
                                         name="endereco"
                                         label="Endereço:"
-                                        dense="dense"
+                                        dense
                                         maxlength="240"
                                         counter="240"
                                         rounded
@@ -335,12 +359,12 @@
                                     ></v-text-field>
                                 </div>
                                 <!-- Número -->
-                                <div class="col-12 col-md-3 col-lg-2">
+                                <div class="col col-12 col-md-3 col-lg-2">
                                     <v-text-field
                                         v-model="form.inputs.numero"
                                         name="numero"
                                         label="Número:"
-                                        dense="dense"
+                                        dense
                                         maxlength="30"
                                         counter="30"
                                         rounded
@@ -349,12 +373,12 @@
                                     ></v-text-field>
                                 </div>
                                 <!-- Complemento -->
-                                <div class="col-12 col-md-3 col-lg-4">
+                                <div class="col col-12 col-md-3 col-lg-4">
                                     <v-text-field
                                         v-model="form.inputs.complemento"
                                         name="complemento"
                                         label="Complemento:"
-                                        dense="dense"
+                                        dense
                                         maxlength="240"
                                         counter="240"
                                         rounded
@@ -363,12 +387,12 @@
                                     ></v-text-field>
                                 </div>
                                 <!-- Bairro -->
-                                <div class="col-12 col-md-4">
+                                <div class="col col-12 col-md-4">
                                     <v-text-field
                                         v-model="form.inputs.bairro"
                                         name="bairro"
                                         label="Bairro:"
-                                        dense="dense"
+                                        dense
                                         maxlength="240"
                                         counter="240"
                                         rounded
@@ -377,12 +401,12 @@
                                     ></v-text-field>
                                 </div>
                                 <!-- Cidade -->
-                                <div class="col-12 col-md-4">
+                                <div class="col col-12 col-md-4">
                                     <v-text-field
                                         v-model="form.inputs.cidade"
                                         name="cidade"
                                         label="Cidade:"
-                                        dense="dense"
+                                        dense
                                         maxlength="240"
                                         counter="240"
                                         rounded
@@ -391,7 +415,7 @@
                                     ></v-text-field>
                                 </div>
                                 <!-- Estado -->
-                                <div class="col-12 col-md-4">
+                                <div class="col col-12 col-md-4">
                                     <v-combobox
                                         v-model="form.inputs.uf.selected"
                                         item-text="estado"
@@ -439,6 +463,7 @@ export default {
                     action: null,
                     name: null,
                     email: null,
+                    phone: null,
                     hiddenConvenio: null,
                     convenio: {
                         selected: null,
@@ -497,7 +522,7 @@ export default {
         activeSubmitCreate() {
             let disabled = true;
 
-            if ( this.form.inputs.name && this.form.inputs.name.length > 2 ) {
+            if ( this.form.inputs.name && this.form.inputs.name.length > 2 && this.form.inputs.convenio.selected ) {
                 disabled = false;
             }
 
@@ -521,6 +546,7 @@ export default {
                 this.form.inputs.id = null;
                 this.form.inputs.name = null;
                 this.form.inputs.email = null;
+                this.form.inputs.phone = null;
                 this.form.inputs.hiddenConvenio = null;
                 this.form.inputs.convenio.selected = null;
                 this.form.inputs.categoria = null;
@@ -569,6 +595,7 @@ export default {
             this.form.inputs.id = child.id;
             this.form.inputs.name = child.name;
             this.form.inputs.email = child.email;
+            this.form.inputs.phone = child.phone;
             this.form.inputs.hiddenConvenio = null;
             this.form.inputs.convenio.selected = this.form.inputs.convenio.list.find((element, index) => element.id == child.categoria);
             this.form.inputs.categoria = null;
@@ -608,13 +635,57 @@ export default {
     created() {
         let categoriaConvenios = JSON.parse(this.categoriasConvenios).map( item => ({id: item.id, name: item.name , img: `/${item.file_pathfile}/${item.file_namefile}`}) );
         this.form.inputs.convenio.list = categoriaConvenios;
-        console.log('form.inputs.convenio.list', this.form.inputs.convenio.list);
     }
 }
 </script>
 
 <style lang="scss">
 @import '~/../resources/_adm/sass/_vars.scss';
+
+.template--list--combobox {
+    background-color: #015c92;
+    width: 100%;
+    padding: 6px 10px;
+    color: white;
+}
+
+.v-list-item--active {
+    .template--list--combobox {
+        background-color: #0B3C5E;
+    }
+}
+
+.col-combobox-convenios
+{
+    background-color: #015c92;
+    padding: 10px 2px !important;
+    margin: 20px 0;
+    border-radius: 5px;
+
+    .combobox-convenios
+    {
+        .v-select-list {
+            background-color: #015c92 !important;
+        }
+        
+        .v-list-item {
+            background-color: #EBEBEB !important;
+        }
+
+        .v-select__slot,
+        .v-list.v-select-list.v-sheet  {
+            color: white !important;
+            span, label {
+                color: white !important;
+            }
+        }
+    }
+}
+
+.dialog-row .col {
+    padding: 5px;
+}
+
 .componente-convenios
 {    
     .v-list-group {
@@ -624,6 +695,23 @@ export default {
         .v-list-group__header.v-list-item--active {
             background-color: rgba(0,0,0,0.04);
         }
+    }
+
+    .icon {
+        .cls-1,
+        .cls-3,
+        .cls-4,
+        path,
+        tspan {
+            fill: #015c92;
+        }
+    }
+    
+    img {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        background-position: center;
     }
 
     .card__convenio--list

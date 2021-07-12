@@ -292,7 +292,7 @@ export default {
                         subItem: {},
                     },
                     adm_categoriasConvenios: {
-                        icon: '/_adm/assets/SVGs/icon-entidades-parceiras.svg',
+                        icon: '/_adm/assets/SVGs/Home/icon-categorias.svg',
                         title: 'Categorias Convênios',
                         var_name: 'adm_categoriasConvenios',
                         link: '/adm/categorias-convenios',

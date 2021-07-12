@@ -73,9 +73,7 @@ Route::prefix('adm')->namespace('Adm')->group(function ()
         Route::get('/entidades', 'EntidadeController@index')->name('adm-entidades');
         Route::post('/entidades/actions', 'EntidadeController@actions')->name('adm-entidades-actions');
         
-        
         Route::match(['get', 'post'], '/categorias-convenios', 'CategoriaConvenioController@index')->name('adm-categorias-convenios');
-        
         
         Route::get('/usuarios', 'UsuarioController@index')->name('adm-usuarios');
         Route::get('/usuarios/cadastro', 'UsuarioController@cadastro')->name('adm-usuarios-cadastro');

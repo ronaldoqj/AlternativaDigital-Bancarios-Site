@@ -27,3 +27,140 @@
   }
 }
 
+#content-syndicate #servicos .convenios {
+  margin-top: 80px;
+}
+
+#content-syndicate #servicos .box-collapse {
+  margin: 4px 0;
+}
+
+#content-syndicate #servicos .box-collapse .collapse-title {
+  padding: 10px 15px;
+  border: solid 1px #125488;
+  border-radius: 10px;
+  background-color: #125488;
+  color: white;
+  font-size: 1.6em;
+  letter-spacing: 0.03em;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+#content-syndicate #servicos .box-collapse .collapse-title .thumb-title {
+  width: 40px;
+  height: 40px;
+  margin-right: 12px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#content-syndicate #servicos .box-collapse .card__convenio--list {
+  display: flex;
+  margin: 30px 20px;
+}
+
+#content-syndicate #servicos .box-collapse .card__convenio--list img {
+  width: 34px;
+  height: 34px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  background-position: center;
+}
+
+#content-syndicate #servicos .box-collapse .card__convenio--list .col__list {
+  width: 34px;
+  height: 34px;
+}
+
+#content-syndicate #servicos .box-collapse .card__convenio--list .col__list--first {
+  margin-right: 10px;
+  text-align: center;
+}
+
+#content-syndicate #servicos .box-collapse .card__convenio--list .col__list--first svg .cls-1,
+#content-syndicate #servicos .box-collapse .card__convenio--list .col__list--first svg .cls-3,
+#content-syndicate #servicos .box-collapse .card__convenio--list .col__list--first svg .cls-4,
+#content-syndicate #servicos .box-collapse .card__convenio--list .col__list--first svg path,
+#content-syndicate #servicos .box-collapse .card__convenio--list .col__list--first svg tspan {
+  fill: #015c92;
+}
+
+#content-syndicate #servicos .box-collapse .card__convenio--list .col__list--last {
+  font-size: 0.9em;
+  color: #A9A9A9;
+}
+
+#content-syndicate #servicos .box-collapse .card__convenio--list .col__list--last h2 {
+  font-size: 1.7em;
+  font-weight: bold;
+  color: #125488;
+}
+
+#content-syndicate #servicos .box-collapse .card__convenio--list .col__list--last h3 {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #125488;
+  text-transform: uppercase;
+}
+
+#content-syndicate #servicos .box-collapse .card__convenio--list .col__list--last p {
+  font-size: 1.1em;
+  color: #A9A9A9;
+  line-height: 1.4em;
+}
+
+#content-syndicate #servicos .box-collapse .card__convenio--list .col__list--last .icons__socialmedias {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+#content-syndicate #servicos .box-collapse .card__convenio--list .col__list--last .icons__socialmedias a {
+  width: 40px;
+}
+
+#content-syndicate #servicos .box-collapse .card__convenio--list .col__list--last .icons__socialmedias a svg .cls-1,
+#content-syndicate #servicos .box-collapse .card__convenio--list .col__list--last .icons__socialmedias a svg .cls-3,
+#content-syndicate #servicos .box-collapse .card__convenio--list .col__list--last .icons__socialmedias a svg .cls-4,
+#content-syndicate #servicos .box-collapse .card__convenio--list .col__list--last .icons__socialmedias a svg path,
+#content-syndicate #servicos .box-collapse .card__convenio--list .col__list--last .icons__socialmedias a svg tspan {
+  fill: #A5A5A5;
+  transition: 0.4s;
+}
+
+#content-syndicate #servicos .box-collapse .card__convenio--list .col__list--last .icons__socialmedias a svg:hover .cls-1,
+#content-syndicate #servicos .box-collapse .card__convenio--list .col__list--last .icons__socialmedias a svg:hover .cls-3,
+#content-syndicate #servicos .box-collapse .card__convenio--list .col__list--last .icons__socialmedias a svg:hover .cls-4,
+#content-syndicate #servicos .box-collapse .card__convenio--list .col__list--last .icons__socialmedias a svg:hover path,
+#content-syndicate #servicos .box-collapse .card__convenio--list .col__list--last .icons__socialmedias a svg:hover tspan {
+  fill: #015c92;
+}
+
+#content-syndicate #servicos .box-collapse .card__convenio--list .col__list--last .informations .icons {
+  width: 15px;
+  height: 15px;
+}
+
+#content-syndicate #servicos .box-collapse .card__convenio--list .col__list--last .informations ul {
+  list-style: none;
+  padding: 0;
+  margin: 4px 0;
+}
+
+#content-syndicate #servicos .box-collapse .card__convenio--list .col__list--last .informations ul li {
+  display: inline-table;
+}
+
+#content-syndicate #servicos .box-collapse .card__convenio--list .col__list--last .informations svg path {
+  fill: #125488 !important;
+  transition: 0.4s;
+}
+
+#content-syndicate #servicos .box-collapse .card__convenio--list .col__list--last .informations p {
+  margin: 5px 0;
+}
+

@@ -21,6 +21,7 @@ class CreateConveniosTable extends Migration
             $table->integer('entidade')->nullable();
             $table->integer('categoria')->nullable();
             $table->text('description')->nullable();
+            $table->string('phone', 20)->nullable();
             $table->string('site', 240)->nullable();
             $table->string('facebook', 240)->nullable();
             $table->string('twitter', 240)->nullable();

@@ -72,6 +72,7 @@ class ServicoController extends Controller
                 case 'create':
                     $convenio->name = $request->input('name');
                     $convenio->email = $request->input('email');
+                    $convenio->phone = $request->input('phone');
                     $convenio->entidade = $request->input('entity');
                     $convenio->categoria = $request->input('convenio');
                     $convenio->description = $request->input('description');
@@ -92,10 +93,9 @@ class ServicoController extends Controller
                 
                 case 'update':
                     $update = $convenio->find($request->input('id'));
-                    //dump($request->input('convenio'));
-                    //dd($update);
                     $update->name = $request->input('name');
                     $update->email = $request->input('email');
+                    $update->phone = $request->input('phone');
                     $update->entidade = $request->input('entity');
                     $update->categoria = $request->input('convenio');
                     $update->description = $request->input('description');
@@ -123,7 +123,6 @@ class ServicoController extends Controller
 
         return redirect()->route('adm-servicos');
     }
-
 
 
     public function edicao(Request $request)

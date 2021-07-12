@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Models\Servico;
+use App\Models\Convenio;
 
 class ServicosController extends Controller
 {
@@ -26,6 +27,15 @@ class ServicosController extends Controller
     {
         $data = new Servico();
 
-        return view('sindicatos.servicos')->withData( $data->where('entity', $request->syndicate['id'])->first() );
+        /**
+         * Listagem dos convenios organizados por categoria
+         * dentro de cada categoria contem a listagem dos convenios
+         */
+        $entity = $request->syndicate['id'];
+        $convenio = new Convenio();
+        $getListCategoriasComConvenios = $convenio->getListCategoriasComConvenios($entity);
+
+        return view('sindicatos.servicos')->withData( $data->where('entity', $request->syndicate['id'])->first() )
+                                          ->withListConvenios($getListCategoriasComConvenios);
     }
 }
