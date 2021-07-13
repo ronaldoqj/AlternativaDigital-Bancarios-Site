@@ -325,7 +325,7 @@
                                 <div class="__text--3">
                                     Telefone: 55-33328310<br />
                                     E-mail: seebijui@gmail.com<br />
-                                    Endereço:  Rua Sete de Setembro 345 Sala 28 <br />
+                                    Endereço:  Rua Sete de Setembro 345 Sala 21 <br />
                                     Ijuí/RS
                                     <br /><br />
                                 </div>
