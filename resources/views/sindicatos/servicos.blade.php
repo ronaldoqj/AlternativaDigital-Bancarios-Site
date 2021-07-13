@@ -16,8 +16,8 @@
                 {!! $data->texto ?? '' !!}
             </p>
         </div>
-            
-        @if($listConvenios)
+
+        @if($listConvenios->count())
         <!-- Convenios -->
         <div class="convenios">
             <div class="title-page mt-5 mb-5">
