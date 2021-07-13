@@ -23,7 +23,6 @@
                     <v-list nav dense>
                         <v-list-item-group v-model="selectedItem" color="primary">
                             <v-list-item v-for="(item, i) in list" :key="i">
-
                 
                                 <v-list-item-avatar tile>
                                     <v-img :src="`/${item.file_pathfile}/${item.file_namefile}`"></v-img>
@@ -193,7 +192,7 @@
                                 outlined
                                 counter
                                 :show-size="1000"
-                                accept="image/png, image/jpeg, image/bmp"
+                                accept="image/png, image/jpeg, image/bmp, image/svg+xml"
                                 clearable
                                 required
                             >
